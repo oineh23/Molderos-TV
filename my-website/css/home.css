@@ -1,6 +1,19 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, sans-serif; background: #111; color: #fff; }
+/* Hide all scrollbars */
+body {
+  overflow: yes;
+}
 
+/* Optional: hide scrollbar while still allowing scroll (if needed somewhere) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: yes;     /* Firefox */
+}
     .navbar {
       display: flex; justify-content: space-between; align-items: center;
       padding: 10px; background: #222;
