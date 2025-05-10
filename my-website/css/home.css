@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  -ms-overflow-style: yes;  /* IE and Edge */
+  -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: yes;     /* Firefox */
 }
     .navbar {
