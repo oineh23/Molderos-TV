@@ -7,7 +7,7 @@ body {
 
 /* Optional: hide scrollbar while still allowing scroll (if needed somewhere) */
 ::-webkit-scrollbar {
-  display: yes;
+  display: none;
 }
 
 body {
