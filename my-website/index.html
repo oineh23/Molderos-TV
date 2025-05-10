@@ -10,7 +10,7 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script defer src="js/home.js"></script>
-
+  
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
@@ -31,100 +31,35 @@
   /*]]>/* */
   </script>
 
-  <!-- Custom CSS for Scrollbars and Responsive Layout -->
+  <!-- Custom CSS for Scrollbars -->
   <style>
-    /* Body and general layout */
+    /* Allow scrolling on the body */
     body {
-      overflow: auto;
-      height: 100vh;
-      margin: 0;
+      overflow: auto; /* Automatically adds a scrollbar if the content overflows */
+      height: 100vh;  /* Ensure the body takes the full viewport height */
+      margin: 0;      /* Remove any default margin */
     }
 
-    /* Responsive container */
-    .container {
-      width: 100%;
-      max-width: 1200px; /* Limit the maximum width of the container */
-      margin: 0 auto; /* Center the container */
-      padding: 20px;
-    }
-
-    /* Navigation adjustments */
-    .nav-wrapper {
-      width: 100%;
-      padding: 10px 0;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-    }
-
-    .nav-links a {
-      padding: 10px;
-      text-decoration: none;
-      color: #000;
-    }
-
-    /* Scrollable sections */
+    /* For the trending sections like movies, tv shows, anime */
     .list {
-      max-height: 400px;
-      overflow-y: auto;
-      margin-top: 20px;
-      padding-right: 10px;
+      max-height: 400px;  /* Limit the height to 400px */
+      overflow-y: auto;   /* Enable vertical scrolling */
+      margin-top: 20px;   /* Optional: Add some space above */
+      padding-right: 10px; /* Optional: Add space to the right for the scrollbar */
     }
 
+    /* Styling the scrollbar */
     .list::-webkit-scrollbar {
-      width: 8px;
+      width: 8px; /* Set the width of the scrollbar */
     }
 
     .list::-webkit-scrollbar-thumb {
-      background-color: #888;
-      border-radius: 10px;
+      background-color: #888;  /* Set the color of the scrollbar */
+      border-radius: 10px;     /* Rounded corners for the scrollbar */
     }
 
     .list::-webkit-scrollbar-thumb:hover {
-      background-color: #555;
-    }
-
-    /* Make sections flexible and mobile-friendly */
-    .row {
-      margin-bottom: 40px;
-    }
-
-    /* Media Queries for responsiveness */
-    @media screen and (max-width: 768px) {
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links a {
-        margin: 5px 0;
-      }
-
-      .container {
-        padding: 10px;
-      }
-
-      .list {
-        max-height: 300px;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .nav-links a {
-        font-size: 0.9rem;
-      }
-
-      .list {
-        max-height: 250px;
-      }
+      background-color: #555;  /* Darken the scrollbar when hovered */
     }
   </style>
 
@@ -186,7 +121,8 @@
         </select>
       </div>
       <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
-    </div
+    </div>
+  </div>
 
   <div class="search-modal" id="search-modal">
     <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
