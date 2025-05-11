@@ -73,22 +73,14 @@
         <a href="#" class="logo">
           <i class='bx bx-movie-play bx-tada main-color'></i>OiN3H<span class="main-color">™</span>
         </a>
-        <ul class="nav-menu" id="nav-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Genre</a></li>
-                    <li><a href="#">Movies</a></li>
-                    <li><a href="#">Series</a></li>
-                    <li><a href="#">About</a></li>
-                    <li>
-                </ul>
-                <!-- MOBILE MENU TOGGLE -->
-                <div class="hamburger-menu" id="hamburger-menu">
-                    <div class="hamburger"></div>
-                </div>
-            </div>
+        
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
         </div>
+      </div>
     </div>
-    <!-- END NAV -->
+  </div>
 
   <div class="banner" id="banner">
     <h1 id="banner-title"></h1>
@@ -133,7 +125,7 @@
   </div>
 
   <div class="search-modal" id="search-modal">
-    <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
+    <span class="close" onclick="closeSearchModal()" style="color: green;">&times;</span>
     <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
     <div class="results" id="search-results"></div>
   </div>
