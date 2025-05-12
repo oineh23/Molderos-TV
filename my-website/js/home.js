@@ -54,25 +54,20 @@ const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
     }
 
     function changeServer() {
-const server = document.getElementById('server').value;
-const type = currentItem.media_type === "movie" ? "movie" : "tv";
-let embedURL = "";
+      const server = document.getElementById('server').value;
+      const type = currentItem.media_type === "movie" ? "movie" : "tv";
+      let embedURL = "";
 
-if (server === "apimocine") {
-embedURL = https://apimocine.vercel.app/${type}/${currentItem.id}?autoplay=true;
-} else if (server === "vidsrc.cc") {
-embedURL = https://vidsrc.cc/v2/embed/${type}/${currentItem.id};
-} else if (server === "vidsrc.me") {
-embedURL = https://vidsrc.net/embed/${type}/?tmdb=${currentItem.id};
-} else if (server === "player.videasy.net") {
-embedURL = https://player.videasy.net/${type}/${currentItem.id};
-}
+      if (server === "vidsrc.cc") {
+        embedURL = `https://vidsrc.cc/v2/embed/${type}/${currentItem.id}`;
+      } else if (server === "vidsrc.me") {
+        embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${currentItem.id}`;
+      } else if (server === "player.videasy.net") {
+        embedURL = `https://player.videasy.net/${type}/${currentItem.id}`;
+      }
 
-const iframe = document.getElementById('modal-video');
-iframe.src = embedURL;
-iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
-}
-
+      document.getElementById('modal-video').src = embedURL;
+    }
 
     function closeModal() {
       document.getElementById('modal').style.display = 'none';
