@@ -11,13 +11,17 @@
   <script defer src="js/home.js"></script>
 </head>
 
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movie Search</title>
+  <link rel="stylesheet" href="main.css">
+</head>
 <body>
-  <div class="navbar">
-    <img src="logo.png" alt="LOGO HERE" />
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
-    </div>
+  <div class="container">
+    <h1>Movie Search</h1>
+    <input type="text" id="searchInput" placeholder="Search for a movie...">
+    <button onclick="searchMovies()">Search</button>
+    <div id="results"></div>
   </div>
 
   <div class="banner" id="banner">
