@@ -36,30 +36,17 @@
 </head>
 
 <body>
-  <!-- NAV -->
+  
   <div class="nav-wrapper">
-    <div class="container">
-      <div class="nav">
-        <a href="#" class="logo">
-          <i class='bx bx-movie-play bx-tada main-color'></i>KING<span class="main-color">KONG</span>-TV
-        </a>
-        <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
-        <ul class="nav-menu" id="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="genre.html">Genre</a></li>
-                    <li><a href="#">Movies</a></li>
-                    <li><a href="#">Series</a></li>
-                    <li><a href="#">About</a></li>
-                    <li>
-                </ul>
-                <!-- MOBILE MENU TOGGLE -->
-                <div class="hamburger-menu" id="hamburger-menu">
-                    <div class="hamburger"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END NAV -->
+    <body>
+  <div class="container">
+    <h1>Movie Search</h1>
+    <input type="text" id="searchInput" placeholder="Search for a movie...">
+    <button onclick="searchMovies()">Search</button>
+    <div id="results"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
 
   <div class="banner" id="banner">
     <h1 id="banner-title"></h1>
