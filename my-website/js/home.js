@@ -1,123 +1,38 @@
-const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-    const BASE_URL = 'https://api.themoviedb.org/3';
-    const IMG_URL = 'https://image.tmdb.org/t/p/original';
-    let currentItem;
+const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace this with your TMDB API Key
+const apiUrl = 'https://api.themoviedb.org/3/search/movie';
 
-    async function fetchTrending(type) {
-      const res = await fetch(`${BASE_URL}/trending/${type}/week?api_key=${API_KEY}`);
-      const data = await res.json();
-      return data.results;
+async function searchMovies() {
+  const query = document.getElementById('searchInput').value;
+  const resultsContainer = document.getElementById('results');
+  resultsContainer.innerHTML = '';
+
+  if (!query) return;
+
+  try {
+    const response = await fetch(`${apiUrl}?api_key=${apiKey}&query=${encodeURIComponent(query)}`);
+    const data = await response.json();
+
+    if (data.results.length === 0) {
+      resultsContainer.innerHTML = '<p>No results found.</p>';
+      return;
     }
 
-    async function fetchTrendingAnime() {
-  let allResults = [];
+    data.results.forEach(movie => {
+      const movieElement = document.createElement('div');
+      movieElement.classList.add('movie');
 
-  // Fetch from multiple pages to get more anime (max 3 pages for demo)
-  for (let page = 1; page <= 3; page++) {
-    const res = await fetch(`${BASE_URL}/trending/tv/week?api_key=${API_KEY}&page=${page}`);
-    const data = await res.json();
-    const filtered = data.results.filter(item =>
-      item.original_language === 'ja' && item.genre_ids.includes(16)
-    );
-    allResults = allResults.concat(filtered);
+      movieElement.innerHTML = `
+        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+        <h3>${movie.title}</h3>
+        <p>Rating: ${movie.vote_average}</p>
+        <p>${movie.release_date}</p>
+      `;
+
+      resultsContainer.appendChild(movieElement);
+    });
+
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+    resultsContainer.innerHTML = '<p>Error fetching results. Try again later.</p>';
   }
-
-  return allResults;
 }
-
-
-    function displayBanner(item) {
-      document.getElementById('banner').style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
-      document.getElementById('banner-title').textContent = item.title || item.name;
-    }
-
-    function displayList(items, containerId) {
-      const container = document.getElementById(containerId);
-      container.innerHTML = '';
-      items.forEach(item => {
-        const img = document.createElement('img');
-        img.src = `${IMG_URL}${item.poster_path}`;
-        img.alt = item.title || item.name;
-        img.onclick = () => showDetails(item);
-        container.appendChild(img);
-      });
-    }
-
-    function showDetails(item) {
-      currentItem = item;
-      document.getElementById('modal-title').textContent = item.title || item.name;
-      document.getElementById('modal-description').textContent = item.overview;
-      document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
-      document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2));
-      changeServer();
-      document.getElementById('modal').style.display = 'flex';
-    }
-
-    function changeServer() {
-      const server = document.getElementById('server').value;
-      const type = currentItem.media_type === "movie" ? "movie" : "tv";
-      let embedURL = "";
-
-      if (server === "vidsrc.cc") {
-        embedURL = `https://vidsrc.cc/v2/embed/${type}/${currentItem.id}`;
-      } else if (server === "vidsrc.me") {
-        embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${currentItem.id}`;
-      } else if (server === "player.videasy.net") {
-        embedURL = `https://player.videasy.net/${type}/${currentItem.id}`;
-      }
-
-      document.getElementById('modal-video').src = embedURL;
-    }
-
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-      document.getElementById('modal-video').src = '';
-    }
-
-    function openSearchModal() {
-      document.getElementById('search-modal').style.display = 'flex';
-      document.getElementById('search-input').focus();
-    }
-
-    function closeSearchModal() {
-      document.getElementById('search-modal').style.display = 'none';
-      document.getElementById('search-results').innerHTML = '';
-    }
-
-    async function searchTMDB() {
-      const query = document.getElementById('search-input').value;
-      if (!query.trim()) {
-        document.getElementById('search-results').innerHTML = '';
-        return;
-      }
-
-      const res = await fetch(`${BASE_URL}/search/multi?api_key=${API_KEY}&query=${query}`);
-      const data = await res.json();
-
-      const container = document.getElementById('search-results');
-      container.innerHTML = '';
-      data.results.forEach(item => {
-        if (!item.poster_path) return;
-        const img = document.createElement('img');
-        img.src = `${IMG_URL}${item.poster_path}`;
-        img.alt = item.title || item.name;
-        img.onclick = () => {
-          closeSearchModal();
-          showDetails(item);
-        };
-        container.appendChild(img);
-      });
-    }
-
-    async function init() {
-      const movies = await fetchTrending('movie');
-      const tvShows = await fetchTrending('tv');
-      const anime = await fetchTrendingAnime();
-
-      displayBanner(movies[Math.floor(Math.random() * movies.length)]);
-      displayList(movies, 'movies-list');
-      displayList(tvShows, 'tvshows-list');
-      displayList(anime, 'anime-list');
-    }
-
-    init();
