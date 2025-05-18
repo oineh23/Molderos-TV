@@ -1,18 +1,4 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-  <script>
-    // This function disables the context menu on right-click
-    document.addEventListener('contextmenu', function(event) {
-      event.preventDefault();
-      alert("Right-click is disabled on this page.");
-    });
-  </script>
-</head>
-  
-</html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -26,6 +12,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script defer src="js/home.js"></script>
   
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- OWL CAROUSEL -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+  
+  <!-- BOX ICONS -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  
+  <!-- APP CSS -->
+  <link rel="stylesheet" href="grid.css">
+  <link rel="stylesheet" href="app.css">
 
   <script type="text/javascript" data-cfasync="false">
   /*<![CDATA[/* */
@@ -33,17 +32,65 @@
   /*]]>/* */
   </script>
 
+  <!-- Custom CSS for Scrollbars -->
+  <style>
+    /* Allow scrolling on the body */
+    body {
+      overflow: auto; /* Automatically adds a scrollbar if the content overflows */
+      height: 100vh;  /* Ensure the body takes the full viewport height */
+      margin: 20;      /* Remove any default margin */
+    }
+
+    /* For the trending sections like movies, tv shows, anime */
+    .list {
+      max-height: 400px;  /* Limit the height to 400px */
+      overflow-y: auto;   /* Enable vertical scrolling */
+      margin-top: 20px;   /* Optional: Add some space above */
+      padding-right: 10px; /* Optional: Add space to the right for the scrollbar */
+    }
+
+    /* Styling the scrollbar */
+    .list::-webkit-scrollbar {
+      width: 8px; /* Set the width of the scrollbar */
+    }
+
+    .list::-webkit-scrollbar-thumb {
+      background-color: #888;  /* Set the color of the scrollbar */
+      border-radius: 10px;     /* Rounded corners for the scrollbar */
+    }
+
+    .list::-webkit-scrollbar-thumb:hover {
+      background-color: #555;  /* Darken the scrollbar when hovered */
+    }
+  </style>
+
 </head>
 
 <body>
-  <div class="container">
-    <h1>Movie Search</h1>
-    <input type="text" id="searchInput" placeholder="Search for a movie...">
-    <button onclick="searchMovies()">Search</button>
-    <div id="results"></div>
-  </div>
-  <script src="home.js"></script>
-</body>
+  <!-- NAV -->
+  <div class="nav-wrapper">
+    <div class="container">
+      <div class="nav">
+        <a href="#" class="logo">
+          <i class='bx bx-movie-play bx-tada main-color'></i>MOLD<span class="main-color">ER0S</span>-TV
+        </a>
+        <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+        <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="genre.html">Genre</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">Series</a></li>
+                    <li><a href="#">About</a></li>
+                    <li>
+                </ul>
+                <!-- MOBILE MENU TOGGLE -->
+                <div class="hamburger-menu" id="hamburger-menu">
+                    <div class="hamburger"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END NAV -->
 
   <div class="banner" id="banner">
     <h1 id="banner-title"></h1>
