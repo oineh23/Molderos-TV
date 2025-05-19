@@ -1,3 +1,15 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #111; color: #fff; }
+/* Hide all scrollbars */
+body {
+  overflow: yes;
+}
+
+/* Optional: hide scrollbar while still allowing scroll (if needed somewhere) */
+::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
     --main-color: #c0392b;
     --body-bg: #181616;
