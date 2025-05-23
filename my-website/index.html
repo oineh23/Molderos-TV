@@ -1,56 +1,75 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Website</title>
-  <link rel="stylesheet" href="css/home.css">
-  <link rel="preload" href="css/home.css" as="style">
-  <link rel="preload" href="js/home.js" as="script">
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MovieVerse - Watch Trending Movies & Shows</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="preload" href="css/home.css" as="style" />
+  <link rel="preload" href="js/home.js" as="script" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Script -->
   <script defer src="js/home.js"></script>
 </head>
-
 <body>
-  <div class="navbar">
-    <img src="logo.png" alt="LOGO HERE" />
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <img src="logo.png" alt="MovieVerse Logo" class="logo" />
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+      <input 
+        type="text" 
+        class="search-bar" 
+        placeholder="Search movies or shows..." 
+        onfocus="openSearchModal()" 
+        aria-label="Search"
+      />
     </div>
-  </div>
+  </nav>
 
-  <div class="banner" id="banner">
+  <!-- Banner -->
+  <header class="banner" id="banner">
     <h1 id="banner-title"></h1>
-  </div>
+  </header>
 
-  <div class="row">
-    <h2>Trending Movies</h2>
-    <div class="list" id="movies-list"></div>
-  </div>
+  <main>
+    <!-- Trending Movies -->
+    <section class="row">
+      <h2>🎬 Trending Movies</h2>
+      <div class="list" id="movies-list"></div>
+    </section>
 
-  <div class="row">
-    <h2>Trending TV Shows</h2>
-    <div class="list" id="tvshows-list"></div>
-  </div>
+    <!-- Trending TV Shows -->
+    <section class="row">
+      <h2>📺 Trending TV Shows</h2>
+      <div class="list" id="tvshows-list"></div>
+    </section>
 
-  <div class="row">
-    <h2>Trending Anime</h2>
-    <div class="list" id="anime-list"></div>
-  </div>
+    <!-- Trending Anime -->
+    <section class="row">
+      <h2>🌸 Trending Anime</h2>
+      <div class="list" id="anime-list"></div>
+    </section>
+  </main>
 
+  <!-- Modal for Movie Info -->
   <div class="modal" id="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
+      <span class="close" onclick="closeModal()" aria-label="Close modal">&times;</span>
       <div class="modal-body">
-  <img id="modal-image" src="" alt="" />
-  <div class="modal-text">
-    <h2 id="modal-title"></h2>
-    <div class="stars" id="modal-rating"></div>
-    <p id="modal-description"></p>
-  </div>
-</div>
-      
+        <img id="modal-image" src="" alt="Movie Poster" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+
       <div class="server-selector">
         <label for="server">Change Server:</label>
         <select id="server" onchange="changeServer()">
@@ -63,22 +82,30 @@
     </div>
   </div>
 
+  <!-- Search Modal -->
   <div class="search-modal" id="search-modal">
-    <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
-    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
+    <span class="close" onclick="closeSearchModal()" aria-label="Close search">&times;</span>
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Search for a movie or show..." 
+      oninput="searchTMDB()" 
+      aria-label="Search input"
+    />
     <div class="results" id="search-results"></div>
   </div>
 
-<footer class="footer">
-  <div class="footer-content">
-    <p>&copy; 2025 My Website. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="#">Disclaimer</a>
-      <a href="#">About Us</a>
-      <a href="#">Contact Us</a>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 MovieVerse. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Disclaimer</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-  
 </body>
+</html>
