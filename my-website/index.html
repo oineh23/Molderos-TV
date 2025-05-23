@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MoldeR0s | Movies & Shows</title>
+  <title>My Website</title>
   <link rel="stylesheet" href="css/home.css">
   <link rel="preload" href="css/home.css" as="style">
   <link rel="preload" href="js/home.js" as="script">
@@ -12,33 +12,44 @@
 </head>
 
 <body>
- <!-- Navbar -->
-  <nav class="nav-wrapper">
-    <div class="container d-flex justify-content-between align-items-center">
-      <a href="#" class="logo"><i class='bx bx-movie-play bx-tada main-color'></i>MO<span class="main-color">LDE</span>R0S</a>
-      <button class="search-button" id="search-button">Search</button>
-    </div>
-  </nav>
-
-  <!-- Banner -->
-  <div class="banner">
-    <div class="container">
-      <h1 class="display-4 fw-bold">Welcome to MoldeR0s</h1>
-      <p class="lead">Discover trending movies, TV shows, and anime</p>
+  <div class="navbar">
+    <img src="logo.png" alt="LOGO HERE" />
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
     </div>
   </div>
 
-  <!-- Content Rows -->
-  <div class="container mt-5">
-    <h2 class="mb-3">Trending Movies</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="movies-list"></div>
-
-    <h2 class="mt-5 mb-3">Trending TV Shows</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="tvshows-list"></div>
-
-    <h2 class="mt-5 mb-3">Trending Anime</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="anime-list"></div>
+  <div class="banner" id="banner">
+    <h1 id="banner-title"></h1>
   </div>
+
+  <div class="row">
+    <h2>Trending Movies</h2>
+    <div class="list" id="movies-list"></div>
+  </div>
+
+  <div class="row">
+    <h2>Trending TV Shows</h2>
+    <div class="list" id="tvshows-list"></div>
+  </div>
+
+  <div class="row">
+    <h2>Trending Anime</h2>
+    <div class="list" id="anime-list"></div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
+      <div class="modal-body">
+  <img id="modal-image" src="" alt="" />
+  <div class="modal-text">
+    <h2 id="modal-title"></h2>
+    <div class="stars" id="modal-rating"></div>
+    <p id="modal-description"></p>
+  </div>
+</div>
       
       <div class="server-selector">
         <label for="server">Change Server:</label>
