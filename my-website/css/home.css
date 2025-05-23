@@ -1,3 +1,4 @@
+
 /* Reset & Base */
 * {
   margin: 0;
@@ -6,14 +7,14 @@
 }
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #141414;
-  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0e0e10;
+  color: #ffffff;
   line-height: 1.6;
 }
 
 a {
-  color: #e50914;
+  color: #00bcd4;
   text-decoration: none;
 }
 
@@ -26,64 +27,69 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 40px;
-  position: fixed;
+  background-color: #121212;
+  padding: 10px 20px;
+  position: sticky;
   top: 0;
-  width: 100%;
   z-index: 1000;
-  background-color: rgba(20, 20, 20, 0.95);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .navbar .logo {
-  width: 100px;
+  width: 120px;
+  height: auto;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 15px;
 }
 
 .search-bar {
-  background-color: #333;
-  border: none;
-  padding: 8px 16px;
+  padding: 6px 12px;
   border-radius: 20px;
-  color: #fff;
+  border: none;
+  outline: none;
+  background-color: #1e1e1e;
+  color: white;
 }
 
 /* Hero Section */
 .hero-section {
   background: url('../img/hero.jpg') no-repeat center center/cover;
-  height: 80vh;
+  height: 60vh;
   display: flex;
-  align-items: flex-end;
-  justify-content: start;
-  padding: 40px;
-  color: #fff;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
 }
 
 .hero-overlay {
-  max-width: 600px;
+  background-color: rgba(0,0,0,0.6);
+  padding: 40px;
+  border-radius: 12px;
 }
 
 .hero-section h1 {
   font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .subtitle {
   font-size: 1.2rem;
-  color: #ccc;
+  margin-bottom: 25px;
+  color: #ddd;
 }
 
 .cta-button {
   background-color: #e50914;
+  color: white;
   border: none;
-  padding: 12px 30px;
+  padding: 12px 25px;
+  border-radius: 30px;
   font-size: 1rem;
-  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -91,54 +97,44 @@ a:hover {
   background-color: #f40612;
 }
 
-/* Horizontal Scrolling Row */
+/* Section Layouts */
 .row {
-  padding: 40px 40px 0;
-  overflow: hidden;
+  padding: 40px 20px;
 }
 
 .row h2 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-bottom: 15px;
+  color: #ffcc00;
 }
 
 .list {
-  display: flex;
-  overflow-x: auto;
-  gap: 15px;
-  padding-bottom: 20px;
-  scroll-snap-type: x mandatory;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
 }
 
-.list::-webkit-scrollbar {
-  display: none;
-}
-
+/* Cards (movie/tv/anime items should be inserted here by JS) */
 .card {
-  flex: 0 0 auto;
-  width: 180px;
-  border-radius: 4px;
+  background-color: #1f1f1f;
+  border-radius: 10px;
   overflow: hidden;
-  background-color: #222;
-  transition: transform 0.3s;
-  scroll-snap-align: start;
-  position: relative;
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.08);
-  z-index: 10;
+  transform: scale(1.05);
 }
 
 .card img {
   width: 100%;
-  height: 270px;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 .card-title {
   padding: 10px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -147,41 +143,41 @@ a:hover {
   display: none;
   position: fixed;
   z-index: 2000;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.9);
-  padding: 40px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
 }
 
 .modal-content {
-  max-width: 900px;
-  margin: auto;
-  background: #111;
+  background-color: #222;
+  margin: 5% auto;
   padding: 20px;
-  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 10px;
   position: relative;
 }
 
 .modal .close {
   position: absolute;
-  top: 20px; right: 20px;
-  font-size: 24px;
+  right: 20px;
+  top: 20px;
+  font-size: 28px;
   cursor: pointer;
 }
 
 .modal-body {
   display: flex;
-  flex-wrap: wrap;
   gap: 20px;
 }
 
 .modal-body img {
-  width: 220px;
-  border-radius: 6px;
-}
-
-.modal-text {
-  flex: 1;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
 }
 
 .modal-text h2 {
@@ -193,50 +189,65 @@ a:hover {
   margin-bottom: 10px;
 }
 
-/* Genre Filter */
-.genre-filter {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 20px;
+/* Server Selector */
+.server-selector {
+  margin-top: 15px;
 }
 
-.genre-filter select {
+.server-selector select {
   background-color: #333;
-  color: #fff;
-  padding: 10px;
-  border-radius: 4px;
-  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
 }
 
 /* Search Modal */
 .search-modal {
   display: none;
   position: fixed;
-  z-index: 3000;
-  top: 15%;
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  background: #181818;
-  padding: 20px;
-  border-radius: 10px;
   width: 90%;
   max-width: 600px;
+  background-color: #121212;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1500;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
 .search-modal input {
   width: 100%;
-  padding: 12px;
-  background-color: #303030;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #1f1f1f;
   color: white;
   border: none;
-  border-radius: 6px;
+  margin-bottom: 15px;
 }
 
 .results {
   max-height: 300px;
   overflow-y: auto;
-  margin-top: 10px;
+}
+
+/* Genre Filter */
+.genre-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+}
+
+.genre-filter select {
+  background-color: #2b2b2b;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
 }
 
 /* Loading Spinner */
@@ -244,28 +255,31 @@ a:hover {
   text-align: center;
   padding: 30px;
   font-size: 1.2rem;
-  color: #e50914;
 }
 
 .loading-spinner i {
   font-size: 2rem;
   margin-right: 10px;
+  color: #ffcc00;
 }
 
 /* Footer */
 .footer {
   background-color: #121212;
-  color: #888;
   padding: 20px;
   text-align: center;
   margin-top: 50px;
 }
 
-.footer a {
-  color: #aaa;
-  margin: 0 10px;
+.footer-links {
+  margin-top: 10px;
 }
 
-.footer a:hover {
+.footer-links a {
+  margin: 0 10px;
+  color: #bbb;
+}
+
+.footer-links a:hover {
   color: white;
 }
