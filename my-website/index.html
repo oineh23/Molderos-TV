@@ -132,8 +132,14 @@
 
   <!-- Search Modal -->
   <div class="search-modal" id="search-modal">
-    <span class="close" onclick="closeSearchModal()" style="color: green;">&times;</span>
-    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
+    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Search movies, TV shows, or anime..." 
+      oninput="searchTMDB()" 
+      aria-label="Search input"
+    />
     <div class="results" id="search-results"></div>
   </div>
 
