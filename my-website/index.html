@@ -1,137 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MovieVerse - Watch Trending Movies & Shows</title>
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/home.css" />
-  <link rel="preload" href="css/home.css" as="style" />
-  <link rel="preload" href="js/home.js" as="script" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- Script -->
-  <script defer src="js/home.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix-style Movie Site</title>
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <img src="logo.png" alt="MovieVerse Logo" class="logo" />
+  <header class="navbar">
+    <img src="img/logo.png" alt="Logo" class="logo">
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="#movies-list">Movies</a>
-      <a href="#tvshows-list">TV Shows</a>
-      <a href="#anime-list">Anime</a>
-      <input 
-        type="text" 
-        class="search-bar" 
-        placeholder="Search..." 
-        onfocus="openSearchModal()" 
-        aria-label="Search movies or shows"
-      />
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header class="banner hero-section" id="banner">
-    <div class="hero-overlay">
-      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
-      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
+      <a href="#">Home</a>
+      <a href="#">TV Shows</a>
+      <a href="#">Movies</a>
+      <a href="#">My List</a>
+      <input type="text" class="search-bar" placeholder="Search...">
     </div>
   </header>
 
-  <!-- Genre Filter -->
+  <section class="hero-section">
+    <div class="hero-overlay">
+      <h1>Featured Title</h1>
+      <p class="subtitle">Watch the latest blockbuster now</p>
+      <div class="hero-buttons">
+        <button class="cta-button play"><i class="fas fa-play"></i> Play</button>
+        <button class="cta-button info"><i class="fas fa-info-circle"></i> More Info</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="row">
+    <h2>Trending Now</h2>
+    <div class="list" id="trending-list">
+      <!-- Movie Cards Inserted by JavaScript -->
+    </div>
+  </section>
+
+  <section class="row">
+    <h2>Top Rated</h2>
+    <div class="list" id="top-rated-list">
+      <!-- Movie Cards Inserted by JavaScript -->
+    </div>
+  </section>
+
+  <section class="row">
+    <h2>Anime Picks</h2>
+    <div class="list" id="anime-list">
+      <!-- Movie Cards Inserted by JavaScript -->
+    </div>
+  </section>
+
+  <section class="row">
+    <h2>Continue Watching</h2>
+    <div class="list" id="continue-watching">
+      <!-- Continue watching cards -->
+    </div>
+  </section>
+
   <div class="genre-filter">
-    <label for="genre-select">Filter by Genre:</label>
-    <select id="genre-select" onchange="filterByGenre(this.value)">
-      <option value="all">All</option>
+    <label for="genre-select">Browse by Genre:</label>
+    <select id="genre-select">
+      <option value="">All Genres</option>
       <option value="action">Action</option>
       <option value="comedy">Comedy</option>
       <option value="drama">Drama</option>
+      <option value="horror">Horror</option>
+      <option value="romance">Romance</option>
       <option value="sci-fi">Sci-Fi</option>
-      <option value="anime">Anime</option>
     </select>
   </div>
 
-  <main>
-    <!-- Trending Movies -->
-    <section class="row" id="movies-list-section">
-      <h2>🎬 Trending Movies</h2>
-      <div class="list" id="movies-list"></div>
-    </section>
-
-    <!-- Trending TV Shows -->
-    <section class="row" id="tvshows-list-section">
-      <h2>📺 Trending TV Shows</h2>
-      <div class="list" id="tvshows-list"></div>
-    </section>
-
-    <!-- Trending Anime -->
-    <section class="row" id="anime-list-section">
-      <h2>🌸 Trending Anime</h2>
-      <div class="list" id="anime-list"></div>
-    </section>
-  </main>
-
-  <!-- Loading Spinner -->
-  <div class="loading-spinner" id="loading-spinner" style="display: none;">
-    <i class="fas fa-spinner fa-spin"></i>
-    <span>Loading content...</span>
+  <div class="loading-spinner" id="loading">
+    <i class="fas fa-spinner fa-spin"></i> Loading...
   </div>
 
-  <!-- Modal for Movie Info -->
   <div class="modal" id="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()" aria-label="Close modal">&times;</span>
+      <span class="close" id="close-modal">&times;</span>
       <div class="modal-body">
-        <img id="modal-image" src="" alt="Movie Poster" />
+        <img id="modal-img" src="" alt="">
         <div class="modal-text">
-          <h2 id="modal-title"></h2>
-          <div class="stars" id="modal-rating"></div>
-          <p id="modal-description"></p>
+          <h2 id="modal-title">Title</h2>
+          <div class="stars" id="modal-stars">★★★★★</div>
+          <p id="modal-overview">Overview here</p>
+          <div class="server-selector">
+            <label for="server-select">Watch on:</label>
+            <select id="server-select">
+              <option value="vidsrc.cc">Vidsrc.cc</option>
+              <option value="vidsrc.me">Vidsrc.me</option>
+              <option value="videasy.net">Videasy.net</option>
+            </select>
+          </div>
+          <iframe id="modal-video" src="" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
-
-      <div class="server-selector">
-        <label for="server">Choose Server:</label>
-        <select id="server" onchange="changeServer()">
-          <option value="vidsrc.cc">Vidsrc.cc</option>
-          <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Videasy.net</option>
-        </select>
-      </div>
-      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
-  <!-- Search Modal -->
   <div class="search-modal" id="search-modal">
-    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
-    <input 
-      type="text" 
-      id="search-input" 
-      placeholder="Search movies, TV shows, or anime..." 
-      oninput="searchTMDB()" 
-      aria-label="Search input"
-    />
+    <input type="text" placeholder="Search..." id="search-input">
     <div class="results" id="search-results"></div>
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2025 MovieVerse. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Disclaimer</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-      </div>
+    <p>&copy; 2025 Netflix Clone. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">Contact</a>
     </div>
   </footer>
 
+  <script src="script.js"></script>
 </body>
+
 </html>
