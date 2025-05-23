@@ -120,9 +120,4 @@ const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
       displayList(anime, 'anime-list');
     }
 
- <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
-  <script src="js/home.js" defer></script>
-
     init();
