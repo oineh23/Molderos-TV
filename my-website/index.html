@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover trending movies, TV shows, and anime. Watch trailers and more.">
   <title>MOLDER0S-TV</title>
-  <style>
-    
-    <!-- Stylesheets -->
+
+  <!-- Stylesheets -->
   <link rel="preload" href="css/home.css" as="style">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -17,43 +17,44 @@
   <!-- Scripts -->
   <link rel="preload" href="js/home.js" as="script">
   <script defer src="js/home.js"></script>
-</head>
-    
+
+  <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #111;
       color: #eee;
       margin: 0;
     }
-    header, nav, footer, section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 1rem;
-    }
-    nav {
+    header.navbar {
       background-color: #000;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
     }
-    nav a {
+    header.navbar img {
+      height: 40px;
+    }
+    .nav-links a, nav a {
       color: #e50914;
       text-decoration: none;
       margin: 0 10px;
       font-weight: bold;
     }
-    .logo {
-      font-size: 1.5rem;
-      color: #fff;
+    .search-bar {
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: none;
+      margin-left: 10px;
     }
-    header {
+    .banner {
       background: #222;
       text-align: center;
       padding: 3rem 1rem;
     }
-    header h1 {
+    .banner h1 {
       font-size: 2.5rem;
-      margin-bottom: 1rem;
+      color: #fff;
     }
     section h2 {
       color: #fff;
@@ -66,53 +67,124 @@
       margin-top: 1rem;
       min-height: 100px;
     }
-    footer {
+    .modal, .search-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .modal-content, .search-modal {
+      background: #222;
+      margin: 5% auto;
+      padding: 1rem;
+      max-width: 800px;
+      color: #fff;
+    }
+    .close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      float: right;
+      cursor: pointer;
+    }
+    footer.footer {
       background: #000;
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
       color: #aaa;
     }
+    .footer-links a {
+      color: #e50914;
+      margin: 0 10px;
+    }
   </style>
 </head>
+
 <body>
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="logo">MOLDER0S-TV</div>
-    <div>
+  <!-- TOP NAVIGATION -->
+  <header class="navbar">
+    <img src="logo.png" alt="MOLDER0S-TV Logo" />
+    <nav class="nav-links">
       <a href="#">Home</a>
       <a href="#">Movies</a>
       <a href="#">Series</a>
       <a href="#">Anime</a>
       <a href="#">About</a>
-    </div>
-  </nav>
-
-  <!-- BANNER -->
-  <header>
-    <h1>Welcome to MOLDER0S-TV</h1>
-    <p>Watch trending movies, TV shows, and anime free and fast!</p>
+      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+    </nav>
   </header>
 
-  <!-- TRENDING SECTIONS -->
-  <section>
-    <h2>🔥 Trending Movies</h2>
-    <div class="list" id="movies-list">[Movies content here]</div>
+  <!-- BANNER -->
+  <section class="banner" id="banner">
+    <h1>Welcome to MOLDER0S-TV</h1>
+    <p>Watch trending movies, TV shows, and anime free and fast!</p>
   </section>
 
-  <section>
-    <h2>📺 Trending TV Shows</h2>
-    <div class="list" id="tvshows-list">[TV Shows content here]</div>
-  </section>
+  <!-- TRENDING CONTENT -->
+  <main>
+    <section class="row">
+      <h2>🔥 Trending Movies</h2>
+      <div class="list" id="movies-list">[Movies content here]</div>
+    </section>
 
-  <section>
-    <h2>🐉 Trending Anime</h2>
-    <div class="list" id="anime-list">[Anime content here]</div>
-  </section>
+    <section class="row">
+      <h2>📺 Trending TV Shows</h2>
+      <div class="list" id="tvshows-list">[TV Shows content here]</div>
+    </section>
+
+    <section class="row">
+      <h2>🐉 Trending Anime</h2>
+      <div class="list" id="anime-list">[Anime content here]</div>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button class="close" onclick="closeModal()" aria-label="Close Modal">&times;</button>
+      <div class="modal-body">
+        <img id="modal-image" src="" alt="Poster" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+      <div class="server-selector">
+        <label for="server">Change Server:</label>
+        <select id="server" onchange="changeServer()">
+          <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
+          <option value="player.videasy.net">Player.Videasy.net</option>
+        </select>
+      </div>
+      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-modal" id="search-modal" role="dialog" aria-modal="true">
+    <button class="close" onclick="closeSearchModal()" aria-label="Close Search Modal">&times;</button>
+    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
+    <div class="results" id="search-results"></div>
+  </div>
 
   <!-- FOOTER -->
-  <footer>
-    &copy; 2025 MOLDER0S-TV. All rights reserved.
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 MOLDER0S-TV. All rights reserved.</p>
+      <nav class="footer-links">
+        <a href="#">Disclaimer</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>
