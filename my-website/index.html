@@ -22,40 +22,66 @@
     <img src="logo.png" alt="MovieVerse Logo" class="logo" />
     <div class="nav-links">
       <a href="index.html">Home</a>
+      <a href="#movies-list">Movies</a>
+      <a href="#tvshows-list">TV Shows</a>
+      <a href="#anime-list">Anime</a>
       <input 
         type="text" 
         class="search-bar" 
-        placeholder="Search movies or shows..." 
+        placeholder="Search..." 
         onfocus="openSearchModal()" 
-        aria-label="Search"
+        aria-label="Search movies or shows"
       />
     </div>
   </nav>
 
-  <!-- Banner -->
-  <header class="banner" id="banner">
-    <h1 id="banner-title"></h1>
+  <!-- Hero Section -->
+  <header class="banner hero-section" id="banner">
+    <div class="hero-overlay">
+      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
+      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
+      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
+    </div>
   </header>
+
+  <!-- Genre Filter -->
+  <div class="genre-filter">
+    <label for="genre-select">Filter by Genre:</label>
+    <select id="genre-select" onchange="filterByGenre(this.value)">
+      <option value="all">All</option>
+      <option value="action">Action</option>
+      <option value="comedy">Comedy</option>
+      <option value="drama">Drama</option>
+      <option value="sci-fi">Sci-Fi</option>
+      <option value="anime">Anime</option>
+    </select>
+  </div>
 
   <main>
     <!-- Trending Movies -->
-    <section class="row">
+    <section class="row" id="movies-list-section">
       <h2>🎬 Trending Movies</h2>
       <div class="list" id="movies-list"></div>
     </section>
 
     <!-- Trending TV Shows -->
-    <section class="row">
+    <section class="row" id="tvshows-list-section">
       <h2>📺 Trending TV Shows</h2>
       <div class="list" id="tvshows-list"></div>
     </section>
 
     <!-- Trending Anime -->
-    <section class="row">
+    <section class="row" id="anime-list-section">
       <h2>🌸 Trending Anime</h2>
       <div class="list" id="anime-list"></div>
     </section>
   </main>
+
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" id="loading-spinner" style="display: none;">
+    <i class="fas fa-spinner fa-spin"></i>
+    <span>Loading content...</span>
+  </div>
 
   <!-- Modal for Movie Info -->
   <div class="modal" id="modal">
@@ -71,11 +97,11 @@
       </div>
 
       <div class="server-selector">
-        <label for="server">Change Server:</label>
+        <label for="server">Choose Server:</label>
         <select id="server" onchange="changeServer()">
           <option value="vidsrc.cc">Vidsrc.cc</option>
           <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Player.Videasy.net</option>
+          <option value="player.videasy.net">Videasy.net</option>
         </select>
       </div>
       <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
@@ -84,11 +110,11 @@
 
   <!-- Search Modal -->
   <div class="search-modal" id="search-modal">
-    <span class="close" onclick="closeSearchModal()" aria-label="Close search">&times;</span>
+    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
     <input 
       type="text" 
       id="search-input" 
-      placeholder="Search for a movie or show..." 
+      placeholder="Search movies, TV shows, or anime..." 
       oninput="searchTMDB()" 
       aria-label="Search input"
     />
