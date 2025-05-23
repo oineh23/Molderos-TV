@@ -1,101 +1,315 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    My Website
-  </title>
-  <!-- GOOGLE FONTS -->
+    <title>My Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
-    <!-- OWL CAROUSEL -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
-    <!-- BOX ICONS -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <!-- APP CSS -->
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="preload" href="css/grid.css" as="style">
-    <link rel="preload" href="js/home.js" as="script">
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous">
-    <script defer src="js/home.js"></script>
-  
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Cairo', sans-serif;
+        }
+        .nav-wrapper {
+            background-color: #333;
+            padding: 1rem;
+            text-align: center;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+        .main-color {
+            color: #007bff;
+        }
+        .search-button {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+        .banner {
+            background-image: linear-gradient(to bottom, #333, #555);
+            padding: 5rem;
+            text-align: center;
+            color: #fff;
+        }
+        .row {
+            margin-top: 2rem;
+        }
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card {
+            margin: 1rem;
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            cursor: pointer;
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .card-text {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .search-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .search-modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .footer {
+            background-color: #333;
+            padding: 1rem;
+            text-align: center;
+            color: #fff;
+        }
+    </style>
 </head>
-
 <body>
-  <!-- NAV -->
     <div class="nav-wrapper">
         <div class="container">
             <div class="nav">
                 <a href="#" class="logo">
                     <i class='bx bx-movie-play bx-tada main-color'></i>MO<span class="main-color">LDE</span>R0S
                 </a>
-      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+                <button class="search-button" id="search-button">Search</button>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="banner" id="banner">
-    <h1 id="banner-title"></h1>
-  </div>
-
-  <div class="row">
-    <h2>Trending Movies</h2>
-    <div class="list" id="movies-list"></div>
-  </div>
-
-  <div class="row">
-    <h2>Trending TV Shows</h2>
-    <div class="list" id="tvshows-list"></div>
-  </div>
-
-  <div class="row">
-    <h2>Trending Anime</h2>
-    <div class="list" id="anime-list"></div>
-  </div>
-
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
-      <div class="modal-body">
-  <img id="modal-image" src="" alt="" />
-  <div class="modal-text">
-    <h2 id="modal-title"></h2>
-    <div class="stars" id="modal-rating"></div>
-    <p id="modal-description"></p>
-  </div>
-</div>
-      
-      <div class="server-selector">
-        <label for="server">Change Server:</label>
-        <select id="server" onchange="changeServer()">
-          <option value="vidsrc.cc">Vidsrc.cc</option>
-          <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Player.Videasy.net</option>
-        </select>
-      </div>
-      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+    <div class="banner" id="banner">
+        <h1 id="banner-title">Welcome to My Website</h1>
     </div>
-  </div>
-
-  <div class="search-modal" id="search-modal">
-    <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
-    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
-    <div class="results" id="search-results"></div>
-  </div>
-
-<footer class="footer">
-  <div class="footer-content">
-    <p>&copy; 2025 My Website. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="#">Disclaimer</a>
-      <a href="#">About Us</a>
-      <a href="#">Contact Us</a>
+    <div class="row">
+        <h2>Trending Movies</h2>
+        <div class="list" id="movies-list"></div>
     </div>
-  </div>
-</footer>
+    <div class="row">
+        <h2>Trending TV Shows</h2>
+        <div class="list" id="tvshows-list"></div>
+    </div>
+    <div class="row">
+        <h2>Trending Anime</h2>
+        <div class="list" id="anime-list"></div>
+    </div>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <img id="modal-image" src="" alt="" />
+                <div class="modal-text">
+                    <h2 id="modal-title"></h2>
+                    <div class="stars" id="modal-rating"></div>
+                    <p id="modal-description"></p>
+                </div>
+            </div>
+            <div class="server-selector">
+                <label for="server">Change Server:</label>
+                <select id="server">
+                    <option value="vidsrc.cc">Vidsrc.cc</option>
+                    <option value="vidsrc.me">Vidsrc.me</option>
+                    <option value="player.videasy.net">Player.Videasy.net</option>
+                </select>
+            </div>
+            <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="search-modal" id="search-modal">
+        <span class="close" onclick="closeSearchModal()">&times;</span>
+        <input type="text" id="search-input-modal" placeholder="Search for a movie or show..." />
+        <div class="results" id="search-results"></div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 My Website. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Disclaimer</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+    <script>
+        const apiKey = 'YOUR_API_KEY';
+        const apiUrl = `https://api.themoviedb.org/3`;
 
-  
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function closeSearchModal() {
+            document.getElementById("search-modal").style.display = "none";
+        }
+
+        document.getElementById("search-button").addEventListener("click", function() {
+            document.getElementById("search-modal").style.display = "block";
+        });
+
+        axios.get(`${apiUrl}/trending/movie/day?api_key=${apiKey}`)
+            .then(response => {
+                const movies = response.data.results;
+                const moviesList = document.getElementById("movies-list");
+                movies.forEach(movie => {
+                    const card = document.createElement("div");
+                    card.classList.add("card");
+                    card.innerHTML = `
+                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+                        <div class="card-body">
+                            <h5 class="card-title">${movie.title}</h5>
+                            <p class="card-text">${movie.overview}</p>
+                        </div>
+                    `;
+                    moviesList.appendChild(card);
+                    card.addEventListener("click", function() {
+                        const modal = document.getElementById("modal");
+                        modal.style.display = "block";
+                        const modalImage = document.getElementById("modal-image");
+                        modalImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+                        const modalTitle = document.getElementById("modal-title");
+                        modalTitle.textContent = movie.title;
+                        const modalDescription = document.getElementById("modal-description");
+                        modalDescription.textContent = movie.overview;
+                    });
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        axios.get(`${apiUrl}/trending/tv/day?api_key=${apiKey}`)
+            .then(response => {
+                const tvshows = response.data.results;
+                const tvshowsList = document.getElementById("tvshows-list");
+                tvshows.forEach(tvshow => {
+                    const card = document.createElement("div");
+                    card.classList.add("card");
+                    card.innerHTML = `
+                        <img src="https://image.tmdb.org/t/p/w500${tvshow.poster_path}" alt="${tvshow.name}" />
+                        <div class="card-body">
+                            <h5 class="card-title">${tvshow.name}</h5>
+                            <p class="card-text">${tvshow.overview}</p>
+                        </div>
+                    `;
+                    tvshowsList.appendChild(card);
+                    card.addEventListener("click", function() {
+                        const modal = document.getElementById("modal");
+                        modal.style.display = "block";
+                        const modalImage = document.getElementById("modal-image");
+                        modalImage.src = `https://image.tmdb.org/t/p/w500${tvshow.poster_path}`;
+                        const modalTitle = document.getElementById("modal-title");
+                        modalTitle.textContent = tvshow.name;
+                        const modalDescription = document.getElementById("modal-description");
+                        modalDescription.textContent = tvshow.overview;
+                    });
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        axios.get(`${apiUrl}/trending/anime/day?api_key=${apiKey}`)
+            .then(response => {
+                const anime = response.data.results;
+                const animeList = document.getElementById("anime-list");
+                anime.forEach(anime => {
+                    const card = document.createElement("div");
+                    card.classList.add("card");
+                    card.innerHTML = `
+                        <img src="https://image.tmdb.org/t/p/w500${anime.poster_path}" alt="${anime.name}" />
+                        <div class="card-body">
+                            <h5 class="card-title">${anime.name}</h5>
+                            <p class="card-text">${anime.overview}</p>
+                        </div>
+                    `;
+                    animeList.appendChild(card);
+                    card.addEventListener("click", function() {
+                        const modal = document.getElementById("modal");
+                        modal.style.display = "block";
+                        const modalImage = document.getElementById("modal-image");
+                        modalImage.src = `https://image.tmdb.org/t/p/w500${anime.poster_path}`;
+                        const modalTitle = document.getElementById("modal-title");
+                        modalTitle.textContent = anime.name;
+                        const modalDescription = document.getElementById("modal-description");
+                        modalDescription.textContent = anime.overview;
+                    });
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </body>
+</html>
