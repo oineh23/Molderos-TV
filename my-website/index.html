@@ -2,117 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Watch trending movies, TV shows, and anime on MOLDER0S-TV. Free and fast streaming!" />
-  <meta name="keywords" content="movies, tv shows, anime, streaming, MOLDER0S-TV" />
-  <meta name="author" content="MOLDER0S" />
-
+  <meta name="description" content="Watch trending movies, TV shows, and anime on MOLDER0S-TV." />
   <title>MOLDER0S-TV</title>
-  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="icon" href="images/favicon.png" />
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/home.css" />
   <link rel="stylesheet" href="grid.css" />
   <link rel="stylesheet" href="app.css" />
-  <link rel="preload" href="css/home.css" as="style" />
-  <link rel="preload" href="js/home.js" as="script" />
-
-  <!-- Fonts & Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet" />
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet' />
-
-  <!-- JavaScript -->
   <script defer src="js/home.js"></script>
 
-  <!-- Disable right-click -->
-  <script>
-    document.addEventListener('contextmenu', function(event) {
-      event.preventDefault();
-      alert("Right-click is disabled on this page.");
-    });
-  </script>
-
-  <!-- Scrollbar Styling -->
   <style>
     body {
-      overflow: auto;
-      height: 100vh;
+      font-family: 'Cairo', sans-serif;
+      background-color: #111;
+      color: #eee;
       margin: 0;
     }
 
-    .list {
-      max-height: 400px;
-      overflow-y: auto;
-      margin-top: 20px;
-      padding-right: 10px;
+    .nav-wrapper {
+      background-color: #000;
+      padding: 1rem 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
 
-    .list::-webkit-scrollbar {
-      width: 8px;
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .main-color {
+      color: #e50914;
+    }
+
+    .section {
+      padding: 2rem 1rem;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 1rem;
+      border-left: 5px solid #e50914;
+      padding-left: 10px;
+    }
+
+    .banner {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('images/banner.jpg') no-repeat center center/cover;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .banner h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .footer {
+      background: #000;
+      padding: 20px;
+      text-align: center;
+      border-top: 1px solid #222;
+    }
+
+    .footer-content {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a {
+      color: #eee;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #e50914;
+    }
+
+    .modal {
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    .modal-content {
+      background: #1c1c1c;
+      color: #fff;
+    }
+
+    .search-bar {
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem;
     }
 
     .list::-webkit-scrollbar-thumb {
-      background-color: #888;
-      border-radius: 10px;
+      background-color: #e50914;
     }
 
-    .list::-webkit-scrollbar-thumb:hover {
-      background-color: #555;
+    @media screen and (max-width: 768px) {
+      .banner h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- NAV -->
+  <!-- NAVBAR -->
   <nav class="nav-wrapper">
-    <div class="container">
-      <div class="nav">
-        <a href="#" class="logo" aria-label="Homepage">
-          <i class='bx bx-movie-play bx-tada main-color'></i>MOLDER<span class="main-color">0S</span>-TV
-        </a>
-        <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" aria-label="Search" />
-        <ul class="nav-menu" id="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="genre.html">Genre</a></li>
-          <li><a href="#">Movies</a></li>
-          <li><a href="#">Series</a></li>
-          <li><a href="#">About</a></li>
-        </ul>
-        <button class="hamburger-menu" id="hamburger-menu" aria-label="Toggle navigation">
-          <div class="hamburger"></div>
-        </button>
-      </div>
+    <div class="container nav">
+      <a href="#" class="logo"><i class='bx bx-movie-play bx-tada main-color'></i> MOLDER<span class="main-color">0S</span>-TV</a>
+      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="genre.html">Genre</a></li>
+        <li><a href="#">Movies</a></li>
+        <li><a href="#">Series</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
     </div>
   </nav>
 
-  <!-- BANNER -->
-  <div class="banner" id="banner">
-    <h1 id="banner-title"></h1>
-  </div>
+  <!-- HERO BANNER -->
+  <header class="banner">
+    <h1 id="banner-title">Welcome to MOLDER0S-TV</h1>
+    <p>Stream the latest trending movies, TV shows, and anime — free and fast!</p>
+  </header>
 
   <!-- TRENDING SECTIONS -->
   <section class="section">
-    <h2>Trending Movies</h2>
+    <h2><i class="fas fa-fire main-color"></i> Trending Movies</h2>
     <div class="list" id="movies-list"></div>
   </section>
 
   <section class="section">
-    <h2>Trending TV Shows</h2>
+    <h2><i class="fas fa-tv main-color"></i> Trending TV Shows</h2>
     <div class="list" id="tvshows-list"></div>
   </section>
 
   <section class="section">
-    <h2>Trending Anime</h2>
+    <h2><i class="fas fa-dragon main-color"></i> Trending Anime</h2>
     <div class="list" id="anime-list"></div>
   </section>
 
   <!-- MODAL -->
-  <div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal" id="modal">
     <div class="modal-content">
-      <button class="close" onclick="closeModal()" aria-label="Close modal" style="color: red;">&times;</button>
+      <button class="close" onclick="closeModal()" aria-label="Close modal">&times;</button>
       <div class="modal-body">
         <img id="modal-image" src="" alt="Poster" />
         <div class="modal-text">
@@ -126,7 +170,7 @@
         <select id="server" onchange="changeServer()">
           <option value="vidsrc.cc">Vidsrc.cc</option>
           <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Player.Videasy.net</option>
+          <option value="player.videasy.net">Videasy.net</option>
         </select>
       </div>
       <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
@@ -135,8 +179,8 @@
 
   <!-- SEARCH MODAL -->
   <div class="search-modal" id="search-modal">
-    <button class="close" onclick="closeSearchModal()" aria-label="Close search" style="color: green;">&times;</button>
-    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" aria-label="Search input" />
+    <button class="close" onclick="closeSearchModal()" aria-label="Close search">&times;</button>
+    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
     <div class="results" id="search-results"></div>
   </div>
 
@@ -147,7 +191,7 @@
       <div class="footer-links">
         <a href="#">Disclaimer</a>
         <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
+        <a href="#">Contact</a>
       </div>
     </div>
   </footer>
