@@ -3,197 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Watch trending movies, TV shows, and anime on MOLDER0S-TV." />
   <title>MOLDER0S-TV</title>
-  <link rel="icon" href="images/favicon.png" />
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/home.css" />
-  <link rel="stylesheet" href="grid.css" />
-  <link rel="stylesheet" href="app.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet" />
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet' />
-  <script defer src="js/home.js"></script>
-
   <style>
     body {
-      font-family: 'Cairo', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #111;
       color: #eee;
       margin: 0;
     }
-
-    .nav-wrapper {
+    header, nav, footer, section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 1rem;
+    }
+    nav {
       background-color: #000;
-      padding: 1rem 0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #fff;
-      text-transform: uppercase;
-    }
-
-    .main-color {
+    nav a {
       color: #e50914;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
     }
-
-    .section {
-      padding: 2rem 1rem;
-    }
-
-    .section h2 {
+    .logo {
       font-size: 1.5rem;
       color: #fff;
+    }
+    header {
+      background: #222;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
-      border-left: 5px solid #e50914;
+    }
+    section h2 {
+      color: #fff;
+      border-left: 4px solid #e50914;
       padding-left: 10px;
     }
-
-    .banner {
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('images/banner.jpg') no-repeat center center/cover;
-      color: white;
-      padding: 100px 20px;
-      text-align: center;
-    }
-
-    .banner h1 {
-      font-size: 3rem;
-      font-weight: bold;
-    }
-
-    .footer {
-      background: #000;
-      padding: 20px;
-      text-align: center;
-      border-top: 1px solid #222;
-    }
-
-    .footer-content {
-      color: #aaa;
-      font-size: 0.9rem;
-    }
-
-    .footer-links a {
-      color: #eee;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-
-    .footer-links a:hover {
-      color: #e50914;
-    }
-
-    .modal {
-      background: rgba(0, 0, 0, 0.85);
-    }
-
-    .modal-content {
+    .list {
       background: #1c1c1c;
-      color: #fff;
+      padding: 1rem;
+      margin-top: 1rem;
+      min-height: 100px;
     }
-
-    .search-bar {
-      border: none;
-      border-radius: 5px;
-      padding: 0.5rem;
-    }
-
-    .list::-webkit-scrollbar-thumb {
-      background-color: #e50914;
-    }
-
-    @media screen and (max-width: 768px) {
-      .banner h1 {
-        font-size: 2rem;
-      }
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #aaa;
     }
   </style>
 </head>
-
 <body>
-  <!-- NAVBAR -->
-  <nav class="nav-wrapper">
-    <div class="container nav">
-      <a href="#" class="logo"><i class='bx bx-movie-play bx-tada main-color'></i> MOLDER<span class="main-color">0S</span>-TV</a>
-      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="genre.html">Genre</a></li>
-        <li><a href="#">Movies</a></li>
-        <li><a href="#">Series</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="logo">MOLDER0S-TV</div>
+    <div>
+      <a href="#">Home</a>
+      <a href="#">Movies</a>
+      <a href="#">Series</a>
+      <a href="#">Anime</a>
+      <a href="#">About</a>
     </div>
   </nav>
 
-  <!-- HERO BANNER -->
-  <header class="banner">
-    <h1 id="banner-title">Welcome to MOLDER0S-TV</h1>
-    <p>Stream the latest trending movies, TV shows, and anime — free and fast!</p>
+  <!-- BANNER -->
+  <header>
+    <h1>Welcome to MOLDER0S-TV</h1>
+    <p>Watch trending movies, TV shows, and anime free and fast!</p>
   </header>
 
   <!-- TRENDING SECTIONS -->
-  <section class="section">
-    <h2><i class="fas fa-fire main-color"></i> Trending Movies</h2>
-    <div class="list" id="movies-list"></div>
+  <section>
+    <h2>🔥 Trending Movies</h2>
+    <div class="list" id="movies-list">[Movies content here]</div>
   </section>
 
-  <section class="section">
-    <h2><i class="fas fa-tv main-color"></i> Trending TV Shows</h2>
-    <div class="list" id="tvshows-list"></div>
+  <section>
+    <h2>📺 Trending TV Shows</h2>
+    <div class="list" id="tvshows-list">[TV Shows content here]</div>
   </section>
 
-  <section class="section">
-    <h2><i class="fas fa-dragon main-color"></i> Trending Anime</h2>
-    <div class="list" id="anime-list"></div>
+  <section>
+    <h2>🐉 Trending Anime</h2>
+    <div class="list" id="anime-list">[Anime content here]</div>
   </section>
-
-  <!-- MODAL -->
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <button class="close" onclick="closeModal()" aria-label="Close modal">&times;</button>
-      <div class="modal-body">
-        <img id="modal-image" src="" alt="Poster" />
-        <div class="modal-text">
-          <h2 id="modal-title"></h2>
-          <div class="stars" id="modal-rating"></div>
-          <p id="modal-description"></p>
-        </div>
-      </div>
-      <div class="server-selector">
-        <label for="server">Change Server:</label>
-        <select id="server" onchange="changeServer()">
-          <option value="vidsrc.cc">Vidsrc.cc</option>
-          <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Videasy.net</option>
-        </select>
-      </div>
-      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <!-- SEARCH MODAL -->
-  <div class="search-modal" id="search-modal">
-    <button class="close" onclick="closeSearchModal()" aria-label="Close search">&times;</button>
-    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
-    <div class="results" id="search-results"></div>
-  </div>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2025 MOLDER0S-TV. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Disclaimer</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
+  <footer>
+    &copy; 2025 MOLDER0S-TV. All rights reserved.
   </footer>
 </body>
 </html>
