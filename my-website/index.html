@@ -5,43 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MovieVerse - Watch Trending Movies & Shows</title>
 
+  <!-- SEO Meta Tags -->
   <meta name="description" content="Watch trending movies, TV shows, and anime online on MovieVerse. Updated daily with the latest content." />
   <meta name="theme-color" content="#000000" />
 
   <!-- Styles -->
   <link rel="preload" href="css/home.css" as="style" />
   <link rel="stylesheet" href="css/home.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- Manifest -->
   <link rel="manifest" href="manifest.json" />
+
+  <!-- Scripts -->
   <script defer src="js/home.js"></script>
 </head>
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="index.html" class="logo-link" aria-label="Homepage">
-        <img src="logo.png" alt="MovieVerse Logo" class="logo" loading="lazy" />
-      </a>
-      <div class="nav-links">
-        <a href="#movies-list-section">Movies</a>
-        <a href="#tvshows-list-section">TV Shows</a>
-        <a href="#anime-list-section">Anime</a>
-        <input 
-          type="search" 
-          class="search-bar" 
-          placeholder="Search..." 
-          onfocus="openSearchModal()" 
-          aria-label="Search movies or shows"
-        />
-      </div>
+  <nav class="navbar" aria-label="Main Navigation">
+    <a href="index.html" class="logo-link" aria-label="Homepage">
+      <img src="logo.png" alt="MovieVerse Logo" class="logo" loading="lazy" />
+    </a>
+    <div class="nav-links">
+      <a href="#movies-list-section">Movies</a>
+      <a href="#tvshows-list-section">TV Shows</a>
+      <a href="#anime-list-section">Anime</a>
+      <input 
+        type="search" 
+        class="search-bar" 
+        placeholder="Search..." 
+        onfocus="openSearchModal()" 
+        aria-label="Search movies or shows"
+      />
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <header class="hero-section">
-    <div class="hero-overlay container">
+  <header class="banner hero-section" id="banner" role="banner">
+    <div class="hero-overlay">
       <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
       <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
       <button onclick="scrollToTrending()" class="cta-button" aria-label="Explore trending content">Explore Now</button>
@@ -49,7 +51,7 @@
   </header>
 
   <!-- Genre Filter -->
-  <section class="genre-filter container">
+  <section class="genre-filter" aria-label="Genre filter">
     <label for="genre-select">Filter by Genre:</label>
     <select id="genre-select" onchange="filterByGenre(this.value)">
       <option value="all">All</option>
@@ -62,33 +64,33 @@
   </section>
 
   <!-- Main Content -->
-  <main class="content container">
+  <main>
 
-    <section class="row" id="movies-list-section">
-      <h2 class="section-title">🎬 Trending Movies</h2>
+    <section class="row" id="movies-list-section" aria-labelledby="movies-heading">
+      <h2 id="movies-heading">🎬 Trending Movies</h2>
       <div class="list" id="movies-list" aria-live="polite"></div>
     </section>
 
-    <section class="row" id="tvshows-list-section">
-      <h2 class="section-title">📺 Trending TV Shows</h2>
+    <section class="row" id="tvshows-list-section" aria-labelledby="tvshows-heading">
+      <h2 id="tvshows-heading">📺 Trending TV Shows</h2>
       <div class="list" id="tvshows-list" aria-live="polite"></div>
     </section>
 
-    <section class="row" id="anime-list-section">
-      <h2 class="section-title">🌸 Trending Anime</h2>
+    <section class="row" id="anime-list-section" aria-labelledby="anime-heading">
+      <h2 id="anime-heading">🌸 Trending Anime</h2>
       <div class="list" id="anime-list" aria-live="polite"></div>
     </section>
 
   </main>
 
   <!-- Loading Spinner -->
-  <div class="loading-spinner" id="loading-spinner" role="status" hidden>
+  <div class="loading-spinner" id="loading-spinner" role="status" aria-hidden="true" hidden>
     <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
     <span>Loading content...</span>
   </div>
 
-  <!-- Movie Info Modal -->
-  <div class="modal" id="modal" role="dialog" aria-modal="true" hidden>
+  <!-- Modal for Movie Info -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
     <div class="modal-content">
       <button class="close" onclick="closeModal()" aria-label="Close modal">&times;</button>
       <div class="modal-body">
@@ -108,7 +110,7 @@
           <option value="player.videasy.net">Videasy.net</option>
         </select>
       </div>
-      <iframe id="modal-video" width="100%" height="360" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 
@@ -126,10 +128,10 @@
   </div>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content container">
+  <footer class="footer" role="contentinfo">
+    <div class="footer-content">
       <p>&copy; 2025 MovieVerse. All rights reserved.</p>
-      <nav class="footer-links">
+      <nav class="footer-links" aria-label="Footer navigation">
         <a href="#">Disclaimer</a>
         <a href="#">About Us</a>
         <a href="#">Contact</a>
