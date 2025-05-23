@@ -1,3 +1,4 @@
+
 /* Reset & Base */
 * {
   margin: 0;
@@ -6,14 +7,14 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #111;
-  color: #fff;
-  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0e0e10;
+  color: #ffffff;
+  line-height: 1.6;
 }
 
 a {
-  color: #1db954;
+  color: #00bcd4;
   text-decoration: none;
 }
 
@@ -24,73 +25,116 @@ a:hover {
 /* Navbar */
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: #000;
-  padding: 10px 15px;
+  justify-content: space-between;
+  background-color: #121212;
+  padding: 10px 20px;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
-.navbar img {
-  height: 40px;
+.navbar .logo {
+  width: 120px;
+  height: auto;
 }
 
 .nav-links {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 15px;
 }
 
 .search-bar {
-  padding: 5px 10px;
+  padding: 6px 12px;
   border-radius: 20px;
   border: none;
-  background: #222;
-  color: #fff;
-  width: 140px;
-  font-size: 14px;
+  outline: none;
+  background-color: #1e1e1e;
+  color: white;
 }
 
-/* Section Titles */
+/* Hero Section */
+.hero-section {
+  background: url('../img/hero.jpg') no-repeat center center/cover;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero-overlay {
+  background-color: rgba(0,0,0,0.6);
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: #ddd;
+}
+
+.cta-button {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  background-color: #f40612;
+}
+
+/* Section Layouts */
 .row {
-  padding: 20px 15px;
+  padding: 40px 20px;
 }
 
 .row h2 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
   color: #ffcc00;
 }
 
-/* List Grid */
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
 }
 
-/* Card */
+/* Cards (movie/tv/anime items should be inserted here by JS) */
 .card {
-  background: #1c1c1c;
-  border-radius: 5px;
+  background-color: #1f1f1f;
+  border-radius: 10px;
   overflow: hidden;
-  transition: transform 0.2s;
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .card img {
   width: 100%;
-  height: 150px;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 .card-title {
-  padding: 5px;
-  font-size: 0.85rem;
+  padding: 10px;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -99,123 +143,143 @@ a:hover {
   display: none;
   position: fixed;
   z-index: 2000;
-  top: 0;
   left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.9);
-  padding: 20px;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
 }
 
 .modal-content {
-  max-width: 600px;
-  background: #222;
-  margin: auto;
-  padding: 15px;
-  border-radius: 8px;
+  background-color: #222;
+  margin: 5% auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 10px;
   position: relative;
 }
 
 .modal .close {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 22px;
-  color: red;
+  right: 20px;
+  top: 20px;
+  font-size: 28px;
   cursor: pointer;
 }
 
 .modal-body {
   display: flex;
-  gap: 10px;
-  flex-direction: column;
-  align-items: center;
+  gap: 20px;
 }
 
 .modal-body img {
   width: 200px;
   height: auto;
-  border-radius: 5px;
-}
-
-.modal-text {
-  text-align: center;
+  border-radius: 10px;
 }
 
 .modal-text h2 {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .stars {
   color: gold;
-  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+/* Server Selector */
+.server-selector {
+  margin-top: 15px;
+}
+
+.server-selector select {
+  background-color: #333;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
 }
 
 /* Search Modal */
 .search-modal {
   display: none;
   position: fixed;
-  top: 15%;
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  max-width: 500px;
-  background: #121212;
-  padding: 15px;
-  border-radius: 6px;
+  max-width: 600px;
+  background-color: #121212;
+  padding: 20px;
+  border-radius: 10px;
   z-index: 1500;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
 .search-modal input {
   width: 100%;
-  padding: 8px;
-  background: #1f1f1f;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #1f1f1f;
   color: white;
   border: none;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .results {
-  max-height: 250px;
+  max-height: 300px;
   overflow-y: auto;
+}
+
+/* Genre Filter */
+.genre-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+}
+
+.genre-filter select {
+  background-color: #2b2b2b;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  text-align: center;
+  padding: 30px;
+  font-size: 1.2rem;
+}
+
+.loading-spinner i {
+  font-size: 2rem;
+  margin-right: 10px;
+  color: #ffcc00;
 }
 
 /* Footer */
 .footer {
-  background: #000;
+  background-color: #121212;
+  padding: 20px;
   text-align: center;
-  padding: 15px;
-  margin-top: 20px;
-  font-size: 0.9rem;
+  margin-top: 50px;
+}
+
+.footer-links {
+  margin-top: 10px;
 }
 
 .footer-links a {
-  margin: 0 8px;
-  color: #aaa;
-  font-size: 0.85rem;
+  margin: 0 10px;
+  color: #bbb;
 }
 
 .footer-links a:hover {
-  color: #fff;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .card img {
-    height: 120px;
-  }
-
-  .modal-body {
-    flex-direction: column;
-  }
-
-  .search-bar {
-    width: 100px;
-  }
-
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
+  color: white;
 }
