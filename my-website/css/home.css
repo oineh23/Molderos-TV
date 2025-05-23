@@ -5,11 +5,12 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  width: 100%;
+  overflow-x: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #0e0e10;
   color: #ffffff;
-  line-height: 1.6;
 }
 
 a {
@@ -24,10 +25,11 @@ a:hover {
 /* Navbar */
 .navbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   background-color: #121212;
-  padding: 10px 20px;
+  padding: 10px 5vw;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -36,13 +38,13 @@ a:hover {
 
 .navbar .logo {
   width: 120px;
-  height: auto;
 }
 
 .nav-links {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 15px;
+  align-items: center;
 }
 
 .search-bar {
@@ -52,6 +54,7 @@ a:hover {
   outline: none;
   background-color: #1e1e1e;
   color: white;
+  width: 160px;
 }
 
 /* Hero Section */
@@ -63,21 +66,24 @@ a:hover {
   justify-content: center;
   text-align: center;
   position: relative;
+  padding: 0 5vw;
 }
 
 .hero-overlay {
   background-color: rgba(0,0,0,0.6);
-  padding: 40px;
+  padding: 30px 20px;
   border-radius: 12px;
+  max-width: 800px;
+  width: 100%;
 }
 
 .hero-section h1 {
-  font-size: 3rem;
+  font-size: 6vw;
   margin-bottom: 15px;
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  font-size: 1.5vw;
   margin-bottom: 25px;
   color: #ddd;
 }
@@ -92,28 +98,24 @@ a:hover {
   cursor: pointer;
 }
 
-.cta-button:hover {
-  background-color: #f40612;
-}
-
-/* Section Layouts */
-.row {
-  padding: 40px 20px;
+/* Main Content */
+main {
+  padding: 40px 5vw;
 }
 
 .row h2 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   margin-bottom: 15px;
   color: #ffcc00;
 }
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
 }
 
-/* Cards (movie/tv/anime items should be inserted here by JS) */
+/* Card Items */
 .card {
   background-color: #1f1f1f;
   border-radius: 10px;
@@ -128,7 +130,6 @@ a:hover {
 .card img {
   width: 100%;
   height: auto;
-  display: block;
 }
 
 .card-title {
@@ -137,27 +138,44 @@ a:hover {
   text-align: center;
 }
 
+/* Genre Filter */
+.genre-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.genre-filter select {
+  background-color: #2b2b2b;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
 /* Modal */
 .modal {
   display: none;
   position: fixed;
   z-index: 2000;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
   background-color: rgba(0,0,0,0.85);
+  padding: 40px 10px;
 }
 
 .modal-content {
   background-color: #222;
-  margin: 5% auto;
+  margin: auto;
   padding: 20px;
-  width: 90%;
   max-width: 800px;
   border-radius: 10px;
   position: relative;
+  width: 95%;
 }
 
 .modal .close {
@@ -170,35 +188,24 @@ a:hover {
 
 .modal-body {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
 .modal-body img {
-  width: 200px;
+  width: 100%;
+  max-width: 200px;
   height: auto;
   border-radius: 10px;
 }
 
-.modal-text h2 {
-  margin-bottom: 10px;
+.modal-text {
+  flex: 1;
 }
 
 .stars {
   color: gold;
   margin-bottom: 10px;
-}
-
-/* Server Selector */
-.server-selector {
-  margin-top: 15px;
-}
-
-.server-selector select {
-  background-color: #333;
-  color: white;
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #444;
 }
 
 /* Search Modal */
@@ -232,21 +239,24 @@ a:hover {
   overflow-y: auto;
 }
 
-/* Genre Filter */
-.genre-filter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  gap: 10px;
+/* Footer */
+.footer {
+  background-color: #121212;
+  padding: 30px 20px;
+  text-align: center;
 }
 
-.genre-filter select {
-  background-color: #2b2b2b;
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  color: #bbb;
+}
+
+.footer-links a:hover {
   color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
 }
 
 /* Loading Spinner */
@@ -262,23 +272,33 @@ a:hover {
   color: #ffcc00;
 }
 
-/* Footer */
-.footer {
-  background-color: #121212;
-  padding: 20px;
-  text-align: center;
-  margin-top: 50px;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 7vw;
+  }
 
-.footer-links {
-  margin-top: 10px;
-}
+  .subtitle {
+    font-size: 3.5vw;
+  }
 
-.footer-links a {
-  margin: 0 10px;
-  color: #bbb;
-}
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.footer-links a:hover {
-  color: white;
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
