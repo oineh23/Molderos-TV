@@ -27,26 +27,28 @@
 
   <!-- Navbar -->
   <header class="nav-wrapper">
-    <div class="container nav">
-      <a href="#" class="logo">
-        <i class='bx bx-movie-play bx-tada main-color'></i>
-        MOLD<span class="main-color">EROS</span>-TV
-      </a>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="#movies-list">Movies</a>
-        <a href="#tvshows-list">TV Shows</a>
-        <a href="#anime-list">Anime</a>
-        <input 
-          type="text" 
-          class="search-bar" 
-          placeholder="Search..." 
-          onfocus="openSearchModal()" 
-          aria-label="Search"
-        />
-      </nav>
-    </div>
-  </header>
+  <div class="container nav">
+    <a href="#" class="logo">
+      <i class='bx bx-movie-play bx-tada main-color'></i>
+      MOLD<span class="main-color">EROS</span>-TV
+    </a>
+    <i class='bx bx-menu nav-toggle-btn' onclick="toggleMobileNav()"></i>
+    <nav class="nav-links nav-toggle">
+      <a href="index.html">Home</a>
+      <a href="#movies-list">Movies</a>
+      <a href="#tvshows-list">TV Shows</a>
+      <a href="#anime-list">Anime</a>
+      <input 
+        type="text" 
+        class="search-bar" 
+        placeholder="Search..." 
+        onfocus="openSearchModal()" 
+        aria-label="Search"
+      />
+    </nav>
+  </div>
+</header>
+
 
   <!-- Hero Section -->
   <section class="hero-section" id="banner">
