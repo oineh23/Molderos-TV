@@ -1,3 +1,4 @@
+
 /* Global Styles */
 * {
   margin: 0;
@@ -346,51 +347,4 @@ main {
   .logo {
     font-size: 1.2rem;
   }
-
-/* Theme Toggle Button */
-#theme-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--text-color);
-  font-size: 1.2rem;
-  margin-left: 1rem;
 }
-
-/* Default (Light Mode) Variables */
-:root {
-  --bg-color: #ffffff;
-  --text-color: #111111;
-  --card-bg: #f4f4f4;
-}
-
-/* Dark Mode Overrides */
-body.dark-mode {
-  --bg-color: #121212;
-  --text-color: #f4f4f4;
-  --card-bg: #1e1e1e;
-}
-
-/* Apply theme colors */
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-.card-container,
-.modal-content,
-.footer,
-.search-modal,
-.nav-wrapper {
-  background-color: var(--card-bg);
-  color: var(--text-color);
-}
-
-input,
-select,
-button {
-  background-color: var(--card-bg);
-  color: var(--text-color);
-  border: 1px solid var(--text-color);
-}
-
