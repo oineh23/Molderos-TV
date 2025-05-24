@@ -32,13 +32,6 @@ async function fetchTrendingAnime() {
   }
   return allResults;
 }
-// Fetch Trending Korean Movies
-async function fetchKoreanMovies() {
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=b8c2d0fa80cd79b5d28d9fe2853806bb&with_original_language=ko&sort_by=popularity.desc`;
-  const res = await fetch(url);
-  const data = await res.json();
-  displayMovies(data.results, 'korean-movies-list');
-}
 
 // Display banner section
 function displayBanner(item) {
