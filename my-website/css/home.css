@@ -190,6 +190,82 @@ main {
   height: 240px;
   object-fit: cover;
 }
+.card-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+}
+
+.card-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.card-container::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 4px;
+}
+
+.movie-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #1e1e1e;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.movie-card .card-info {
+  padding: 10px;
+  color: #fff;
+}
+
+.movie-card .card-info h3 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.movie-card .rating {
+  font-size: 0.85rem;
+  color: #ffd700;
+}
+
+.movie-card .genre {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-top: 4px;
+}
+
+.movie-card .watch-btn {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+  padding: 6px 0;
+  background: #e50914;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.movie-card .watch-btn:hover {
+  background: #b00610;
+}
+
 
 /* Modal */
 .modal {
