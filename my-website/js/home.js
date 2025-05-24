@@ -1,3 +1,26 @@
+let allMovies = [];
+let allTVShows = [];
+let genreMap = {}; // Will hold genres like {28: 'Action'}
+
+async function fetchGenres(type) {
+  const data = await fetchData(`${BASE_URL}/genre/${type}/list?api_key=${API_KEY}`);
+  data.forEach(g => genreMap[g.id] = g.name);
+  populateGenreFilter();
+}
+
+function populateGenreFilter() {
+  const select = document.getElementById('genre-filter');
+  const added = new Set();
+  Object.entries(genreMap).forEach(([id, name]) => {
+    if (!added.has(name)) {
+      const option = document.createElement('option');
+      option.value = id;
+      option.textContent = name;
+      select.appendChild(option);
+      added.add(name);
+    }
+  });
+}
 
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
