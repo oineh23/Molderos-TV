@@ -4,6 +4,31 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 let currentItem;
 
+const genreSelect = document.getElementById('genre-select');
+const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // replace with your real key
+
+// Fetch and populate genres
+async function loadGenres() {
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`);
+    const data = await res.json();
+    data.genres.forEach(genre => {
+      const option = document.createElement('option');
+      option.value = genre.id;
+      option.textContent = genre.name;
+      genreSelect.appendChild(option);
+    });
+  } catch (error) {
+    console.error('Failed to load genres:', error);
+  }
+}
+
+// Call this on page load
+document.addEventListener('DOMContentLoaded', () => {
+  loadGenres();
+});
+
+
 // Utility to fetch and handle errors
 async function fetchData(url) {
   try {
