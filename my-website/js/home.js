@@ -4,49 +4,6 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 let currentItem;
 
-const genreSelect = document.getElementById('genre-select');
-const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // replace with your real key
-
-// Fetch and populate genres
-async function loadGenres()
-{
-  try {
-    const res = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`);
-    const data = await res.json();
-    data.genres.forEach(genre => {
-      const option = document.createElement('option');
-      option.value = genre.id;
-      option.textContent = genre.name;
-      genreSelect.appendChild(option);
-    });
-  } catch (error) {
-    console.error('Failed to load genres:', error);
-  }
-}
-
-// Call this on page load
-document.addEventListener('DOMContentLoaded', () => {
-  loadGenres()async function filterByGenre(genreId) {
-  const moviesList = document.getElementById('movies-list');
-  moviesList.innerHTML = ''; // Clear previous results
-
-  const url =
-    genreId === 'all'
-      ? `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`
-      : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
-
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-    displayMovies(data.results); // You must have a displayMovies() function to render the movies
-  } catch (err) {
-    console.error('Error filtering by genre:', err);
-  }
-};
-});
-
-
-
 // Utility to fetch and handle errors
 async function fetchData(url) {
   try {
