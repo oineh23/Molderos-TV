@@ -9,23 +9,6 @@ const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // replace with your real key
 
 // Fetch and populate genres
 async function loadGenres()
-  async function filterByGenre(genreId) {
-  const moviesList = document.getElementById('movies-list');
-  moviesList.innerHTML = ''; // Clear previous results
-
-  const url =
-    genreId === 'all'
-      ? `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`
-      : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
-
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-    displayMovies(data.results); // You must have a displayMovies() function to render the movies
-  } catch (err) {
-    console.error('Error filtering by genre:', err);
-  }
-}
 {
   try {
     const res = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`);
@@ -43,7 +26,23 @@ async function loadGenres()
 
 // Call this on page load
 document.addEventListener('DOMContentLoaded', () => {
-  loadGenres();
+  loadGenres()async function filterByGenre(genreId) {
+  const moviesList = document.getElementById('movies-list');
+  moviesList.innerHTML = ''; // Clear previous results
+
+  const url =
+    genreId === 'all'
+      ? `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`
+      : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    displayMovies(data.results); // You must have a displayMovies() function to render the movies
+  } catch (err) {
+    console.error('Error filtering by genre:', err);
+  }
+};
 });
 
 
