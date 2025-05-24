@@ -348,3 +348,23 @@ main {
     font-size: 1.2rem;
   }
 }
+#search-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+}
+
+#search-results .search-result-item {
+  width: 100px;
+  text-align: center;
+}
+
+#search-results .search-result-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
