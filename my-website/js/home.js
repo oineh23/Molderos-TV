@@ -8,7 +8,23 @@ async function fetchGenres(type) {
   populateGenreFilter();
 }
 
-function populateGenreFilter() {
+  function populateGenreFilter()
+  function filterByGenre() {
+  const selected = document.getElementById('genre-filter').value;
+  if (selected === 'all') {
+    displayList(allMovies, 'movies-list');
+    displayList(allTVShows, 'tvshows-list');
+    return;
+  }
+
+  const genreId = parseInt(selected);
+  const filteredMovies = allMovies.filter(item => item.genre_ids.includes(genreId));
+  const filteredTV = allTVShows.filter(item => item.genre_ids.includes(genreId));
+
+  displayList(filteredMovies, 'movies-list');
+  displayList(filteredTV, 'tvshows-list');
+}
+{
   const select = document.getElementById('genre-filter');
   const added = new Set();
   Object.entries(genreMap).forEach(([id, name]) => {
