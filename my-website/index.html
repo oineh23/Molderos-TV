@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,28 +22,6 @@
       alert("Right-click is disabled on this page.");
     });
   </script>
-  
-  <script>
-  const toggleButton = document.getElementById("theme-toggle");
-  const icon = toggleButton.querySelector("i");
-  const userPrefersDark = localStorage.getItem("theme") === "dark";
-
-  if (userPrefersDark) {
-    document.body.classList.add("dark-mode");
-    icon.classList.remove("fa-moon");
-    icon.classList.add("fa-sun");
-  }
-
-  toggleButton.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    const isDark = document.body.classList.contains("dark-mode");
-
-    icon.classList.toggle("fa-moon", !isDark);
-    icon.classList.toggle("fa-sun", isDark);
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  });
-</script>
-
 </head>
 <body>
 
@@ -64,11 +43,7 @@
           placeholder="Search..." 
           onfocus="openSearchModal()" 
           aria-label="Search"
-          />
-<button id="theme-toggle" aria-label="Toggle Theme">
-  <i class="fas fa-moon"></i>
-</button>
-        
+        />
       </nav>
     </div>
   </header>
