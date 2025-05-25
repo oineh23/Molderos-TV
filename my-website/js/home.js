@@ -18,6 +18,37 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 let currentItem;
 
+async function filterByGenre(genreId) {
+  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDb key
+  const url = genreId
+    ? `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`
+    : `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`;
+
+  try {
+    document.getElementById('loading-spinner').style.display = 'flex';
+    const res = await fetch(url);
+    const data = await res.json();
+    const moviesList = document.getElementById('movies-list');
+    moviesList.innerHTML = '';
+
+    data.results.forEach(movie => {
+      const card = document.createElement('div');
+      card.className = 'movie-card';
+      card.innerHTML = `
+        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+        <h3>${movie.title}</h3>
+        <p>⭐ ${movie.vote_average}</p>
+      `;
+      moviesList.appendChild(card);
+    });
+
+    document.getElementById('loading-spinner').style.display = 'none';
+  } catch (err) {
+    console.error('Error loading genre movies:', err);
+    document.getElementById('loading-spinner').style.display = 'none';
+  }
+}
+
 // Utility to fetch and handle errors
 async function fetchData(url) {
   try {
