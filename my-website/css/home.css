@@ -1,3 +1,37 @@
+/* --- Movie Card Layout and Spacing --- */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between movie cards */
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.card-container .card {
+  width: 180px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.card-container .card:hover {
+  transform: scale(1.05);
+}
+
+.card-container .card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 2px solid #333;
+}
+
+.card-container .card .card-info {
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+}
 
 /* Global Styles */
 * {
