@@ -23,6 +23,53 @@
   </script>
 </head>
 
+  <!-- Add this just before </body> -->
+<script>
+  async function fetchShowDetails(type, id) {
+    const url = `https://streaming-availability.p.rapidapi.com/shows/${type}/${id}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
+        'x-rapidapi-key': 'bb71f7e6e3msh3e8a5953db1cf34p14b47fjsn9fd2b27ecc62'
+      }
+    };
+
+    try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+
+      // Fill modal data
+      document.getElementById("modal-title").innerText = data.title || data.name || "Title Unavailable";
+      document.getElementById("modal-description").innerText = data.overview || "No description available.";
+      document.getElementById("modal-image").src = data.posterPath 
+        ? `https://image.tmdb.org/t/p/w500${data.posterPath}` 
+        : "https://via.placeholder.com/300x450?text=No+Image";
+
+      // Optional: Add stream/trailer if you want
+      document.getElementById("modal-video").src = ""; // Reset video iframe
+
+      document.getElementById("modal").style.display = "block";
+    } catch (error) {
+      console.error('Error fetching show:', error);
+      alert('Failed to fetch show details.');
+    }
+  }
+</script>
+
+<!-- Sample Card You Can Put Anywhere (e.g. Inside Movies List) -->
+<section class="row">
+  <h2>📌 Featured Example (RapidAPI)</h2>
+  <div class="card-container">
+    <div class="card">
+      <img src="https://image.tmdb.org/t/p/w500/f.jpg" alt="Poster" />
+      <h3>Game of Thrones</h3>
+      <button onclick="fetchShowDetails('series', 'tt0944947')">View Details</button>
+    </div>
+  </div>
+</section>
+
+
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
