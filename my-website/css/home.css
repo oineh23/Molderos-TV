@@ -2,23 +2,24 @@
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
+  gap: 20px; /* space between cards */
+  justify-content: center; /* or space-between / flex-start */
+  padding: 20px 0; /* space around the whole row */
 }
 
 .card {
-  position: relative;
-  width: 200px;
-  background-color: #121212;
-  border-radius: 12px;
+  background-color: #111; /* example background */
+  border-radius: 10px;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  width: 180px;
+  margin: 0; /* remove default margin if any */
+  transition: transform 0.3s;
 }
 
 .card:hover {
   transform: scale(1.05);
-  z-index: 2;
 }
+
 
 .card img {
   width: 100%;
