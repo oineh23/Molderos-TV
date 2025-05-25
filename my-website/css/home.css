@@ -14,6 +14,15 @@ body {
   scroll-behavior: smooth;
 }
 
+body {
+  background-image: url('https://wallpaperaccess.com/full/3156327.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
 a {
   color: inherit;
   text-decoration: none;
