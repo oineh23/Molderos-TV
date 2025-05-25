@@ -1,66 +1,78 @@
+
 /* --- Enhanced Movie Card Layout and Effects --- */
-/* Card Container – horizontal scroll like Netflix */
 .card-container {
   display: flex;
-  overflow-x: auto;
-  gap: 1.2rem;
-  padding: 1rem 0;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
-.card-container::-webkit-scrollbar {
-  height: 8px;
-}
-
-.card-container::-webkit-scrollbar-thumb {
-  background: #444;
-  border-radius: 4px;
-}
-
-/* Card */
 .card {
-  flex: 0 0 auto;
-  width: 180px;
-  background-color: #111;
+  position: relative;
+  width: 200px;
+  background-color: #121212;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  scroll-snap-align: start;
-  cursor: pointer;
-  position: relative;
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.1);
-  z-index: 5;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
+  transform: scale(1.05);
+  z-index: 2;
 }
 
 .card img {
   width: 100%;
-  height: 270px;
-  object-fit: cover;
-  border-bottom: 2px solid #222;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid #333;
+}
+
+.genre-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: #e50914;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.watch-button {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e50914;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover .watch-button {
+  opacity: 1;
 }
 
 .card-info {
-  padding: 0.6rem;
-  color: #fff;
-  font-size: 0.9rem;
+  padding: 10px;
+  text-align: center;
+  color: white;
 }
 
-.card-info h4 {
-  font-size: 1rem;
-  margin: 0.4rem 0;
-  line-height: 1.3;
+.card-info h3 {
+  font-size: 16px;
+  margin: 0;
 }
 
 .card-info p {
-  font-size: 0.8rem;
-  color: #ccc;
-  margin: 0;
+  font-size: 14px;
+  margin: 4px 0 0;
 }
 
 
@@ -78,45 +90,37 @@
 
 /* --- Movie Card Layout and Spacing --- */
 .card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem 2rem;
-  justify-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between movie cards */
+  justify-content: center;
+  padding: 20px 0;
 }
 
-.movie-card {
-  position: relative;
+.card-container .card {
   width: 180px;
-  height: 270px;
+  background-color: #1e1e1e;
   border-radius: 10px;
   overflow: hidden;
-  background-color: #1c1c1c;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.movie-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   transition: transform 0.3s ease;
 }
 
-.movie-card:hover {
+.card-container .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
 }
 
-.movie-info {
-  position: absolute;
-  bottom: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-  color: white;
+.card-container .card img {
   width: 100%;
-  padding: 0.5rem;
-  font-size: 14px;
+  height: auto;
+  display: block;
+  border-bottom: 2px solid #333;
+}
+
+.card-container .card .card-info {
+  padding: 10px;
+  color: #fff;
+  text-align: center;
 }
 
 /* Global Styles */
@@ -246,14 +250,12 @@ select {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .card {
-    width: 140px;
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
   }
-
-  .card img {
-    height: 210px;
-  }
-}
 
   #menu-toggle:checked + .menu-icon + .nav-links {
     display: flex;
