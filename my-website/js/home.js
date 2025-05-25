@@ -9,15 +9,6 @@ const genreMap = {
   // Add more as needed
 };
 
-function getGenreName(id) {
-  return genreMap[id] || 'Genre';
-}
-
-const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-const BASE_URL = 'https://api.themoviedb.org/3';
-const IMG_URL = 'https://image.tmdb.org/t/p/original';
-let currentItem;
-
 async function filterByGenre(genreId) {
   const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDb key
   const url = genreId
