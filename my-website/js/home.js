@@ -71,13 +71,10 @@ async function filterByGenre(genreId) {
     moviesList.innerHTML = '';
 
     data.results.forEach(movie => {
-      const card = document.createElement('div');
-      card.className = 'movie-card';
-      card.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-        <h3>${movie.title}</h3>
-        <p>⭐ ${movie.vote_average}</p>
-      `;
+      if (!movie.poster_path) return;
+      // Ensure media_type is set for embed URL building
+      movie.media_type = 'movie';
+      const card = createCard(movie);
       moviesList.appendChild(card);
     });
 
@@ -87,6 +84,7 @@ async function filterByGenre(genreId) {
     document.getElementById('loading-spinner').style.display = 'none';
   }
 }
+
 
 // ====== DISPLAY FUNCTIONS ======
 
