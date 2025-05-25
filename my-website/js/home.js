@@ -1,3 +1,8 @@
+// ====== CONFIGURATION ======
+const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+const BASE_URL = 'https://api.themoviedb.org/3';
+const IMG_URL = 'https://image.tmdb.org/t/p/original';
+
 const genreMap = {
   28: 'Action',
   35: 'Comedy',
@@ -9,16 +14,14 @@ const genreMap = {
   // Add more as needed
 };
 
+let currentItem;
+
+// ====== HELPER FUNCTIONS ======
+
 function getGenreName(id) {
   return genreMap[id] || 'Genre';
 }
 
-const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-const BASE_URL = 'https://api.themoviedb.org/3';
-const IMG_URL = 'https://image.tmdb.org/t/p/original';
-let currentItem;
-
-// Utility to fetch and handle errors
 async function fetchData(url) {
   try {
     const res = await fetch(url);
@@ -30,11 +33,35 @@ async function fetchData(url) {
   }
 }
 
+function debounce(func, delay = 300) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+// ====== API FETCHERS ======
+
+const fetchTrending = (type) =>
+  fetchData(`${BASE_URL}/trending/${type}/week?api_key=${API_KEY}`);
+
+async function fetchTrendingAnime() {
+  let allResults = [];
+  for (let page = 1; page <= 3; page++) {
+    const results = await fetchData(`${BASE_URL}/trending/tv/week?api_key=${API_KEY}&page=${page}`);
+    const filtered = results.filter(item =>
+      item.original_language === 'ja' && item.genre_ids.includes(16)
+    );
+    allResults = allResults.concat(filtered);
+  }
+  return allResults;
+}
+
 async function filterByGenre(genreId) {
-  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDb key
   const url = genreId
-    ? `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`
-    : `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`;
+    ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
+    : `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`;
 
   try {
     document.getElementById('loading-spinner').style.display = 'flex';
@@ -61,43 +88,14 @@ async function filterByGenre(genreId) {
   }
 }
 
-// Utility to fetch and handle errors
-async function fetchData(url) {
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-    return data.results || [];
-  } catch (error) {
-    console.error('Fetch error:', error);
-    return [];
-  }
-}
+// ====== DISPLAY FUNCTIONS ======
 
-// Fetch trending movies or TV shows
-const fetchTrending = (type) =>
-  fetchData(`${BASE_URL}/trending/${type}/week?api_key=${API_KEY}`);
-
-// Fetch trending anime (Japanese + genre id 16 = animation)
-async function fetchTrendingAnime() {
-  let allResults = [];
-  for (let page = 1; page <= 3; page++) {
-    const results = await fetchData(`${BASE_URL}/trending/tv/week?api_key=${API_KEY}&page=${page}`);
-    const filtered = results.filter(item =>
-      item.original_language === 'ja' && item.genre_ids.includes(16)
-    );
-    allResults = allResults.concat(filtered);
-  }
-  return allResults;
-}
-
-// Display banner section
 function displayBanner(item) {
   const banner = document.getElementById('banner');
   banner.style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
   document.getElementById('banner-title').textContent = item.title || item.name || 'Unknown Title';
 }
 
-// Render list of media items
 function displayList(items, containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
@@ -138,6 +136,7 @@ function createCard(item) {
 
   info.appendChild(title);
   info.appendChild(rating);
+
   card.appendChild(genre);
   card.appendChild(img);
   card.appendChild(button);
@@ -146,7 +145,8 @@ function createCard(item) {
   return card;
 }
 
-// Show modal with media details
+// ====== MODAL FUNCTIONS ======
+
 function showDetails(item) {
   currentItem = item;
   document.getElementById('modal-title').textContent = item.title || item.name;
@@ -158,12 +158,11 @@ function showDetails(item) {
   document.getElementById('modal').style.display = 'flex';
 }
 
-// Change streaming server and update iframe
 function changeServer() {
   const server = document.getElementById('server').value;
   const type = currentItem.media_type === 'movie' ? 'movie' : 'tv';
-
   let embedURL = '';
+
   switch (server) {
     case 'vidsrc.cc':
       embedURL = `https://vidsrc.cc/v2/embed/${type}/${currentItem.id}`;
@@ -181,11 +180,12 @@ function changeServer() {
   document.getElementById('modal-video').src = embedURL;
 }
 
-// Close modals
 function closeModal() {
   document.getElementById('modal').style.display = 'none';
   document.getElementById('modal-video').src = '';
 }
+
+// ====== SEARCH MODAL ======
 
 function openSearchModal() {
   document.getElementById('search-modal').style.display = 'flex';
@@ -197,16 +197,6 @@ function closeSearchModal() {
   document.getElementById('search-results').innerHTML = '';
 }
 
-// Debounce helper to reduce search API spam
-function debounce(func, delay = 300) {
-  let timeout;
-  return (...args) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), delay);
-  };
-}
-
-// Search functionality
 const searchTMDB = debounce(async () => {
   const query = document.getElementById('search-input').value.trim();
   if (!query) {
@@ -220,6 +210,7 @@ const searchTMDB = debounce(async () => {
 
   results.forEach(item => {
     if (!item.poster_path) return;
+
     const img = document.createElement('img');
     img.src = `${IMG_URL}${item.poster_path}`;
     img.alt = item.title || item.name || 'Search result';
@@ -227,11 +218,13 @@ const searchTMDB = debounce(async () => {
       closeSearchModal();
       showDetails(item);
     };
+
     container.appendChild(img);
   });
 }, 400);
 
-// Initial data load
+// ====== INIT ======
+
 async function init() {
   const [movies, tvShows, anime] = await Promise.all([
     fetchTrending('movie'),
