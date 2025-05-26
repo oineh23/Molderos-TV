@@ -83,22 +83,20 @@
       </a>
       <input type="checkbox" id="menu-toggle" />
       <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
-     <nav class="nav-links">
-  <a href="index.html">Home</a>
-  <a href="#movies-list">Movies</a>
-  <a href="#tvshows-list">TV Shows</a>
-  <a href="#anime-list">Anime</a>
-  <a href="#vivamax-list">VIVAMAX</a> <!-- ✅ Added this -->
-  <input 
-    type="text" 
-    class="search-bar" 
-    placeholder="Search..." 
-    onfocus="openSearchModal()" 
-    aria-label="Search"
-  />
-  <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
-</nav>
-
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#movies-list">Movies</a>
+        <a href="#tvshows-list">TV Shows</a>
+        <a href="#anime-list">Anime</a>
+        <input 
+          type="text" 
+          class="search-bar" 
+          placeholder="Search..." 
+          onfocus="openSearchModal()" 
+          aria-label="Search"
+        />
+        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
+      </nav>
     </div>
   </header>
 
@@ -132,28 +130,21 @@
 
   <!-- Main Content -->
   <main>
-  <section class="row" id="movies-list-section">
-    <h2>🎬 Trending Movies</h2>
-    <div class="card-container" id="movies-list"></div>
-  </section>
+    <section class="row" id="movies-list-section">
+      <h2>🎬 Trending Movies</h2>
+      <div class="card-container" id="movies-list"></div>
+    </section>
 
-  <section class="row" id="tvshows-list-section">
-    <h2>📺 Trending TV Shows</h2>
-    <div class="card-container" id="tvshows-list"></div>
-  </section>
+    <section class="row" id="tvshows-list-section">
+      <h2>📺 Trending TV Shows</h2>
+      <div class="card-container" id="tvshows-list"></div>
+    </section>
 
-  <section class="row" id="anime-list-section">
-    <h2>🌸 Trending Anime</h2>
-    <div class="card-container" id="anime-list"></div>
-  </section>
-
-  <!-- ✅ VIVAMAX Section -->
-  <section class="row" id="vivamax-list-section">
-    <h2>🔥 Trending VIVAMAX</h2>
-    <div class="card-container" id="vivamax-list"></div>
-  </section>
-</main>
-
+    <section class="row" id="anime-list-section">
+      <h2>🌸 Trending Anime</h2>
+      <div class="card-container" id="anime-list"></div>
+    </section>
+  </main>
 
   <!-- Loading Spinner -->
   <div class="loading-spinner" id="loading-spinner" style="display: none;">
