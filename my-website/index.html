@@ -34,34 +34,6 @@
   /*]]>/* */
   </script>
 
-  <script>
-window.addEventListener('load', () => {
-  document.querySelectorAll('video, audio').forEach(el => {
-    el.muted = true;
-    el.volume = 0;
-  });
-});
-</script>
-
-  <button id="openAd" style="display:none;">Open Ad</button>
-
-<script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function () {
-    // Add user interaction listener (example: anywhere user clicks on page)
-    document.body.addEventListener('click', function openSilentPopupOnce() {
-      // Only open once
-      document.body.removeEventListener('click', openSilentPopupOnce);
-
-      // Open popup silently
-      const popup = window.open("https://popads.net/ad-link", "_blank", "width=1,height=1,left=-1000,top=-1000");
-      if (popup) {
-        popup.blur(); // optional: push it behind
-        window.focus(); // return focus to main window
-      }
-    });
-  });
-</script>
-
   <style>
   :root {
     --bg-color: #ffffff;
