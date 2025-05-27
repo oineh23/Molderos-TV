@@ -354,7 +354,12 @@ select {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background-color: #1c1c1c;
+  
+  body.light-mode .genre-filter {
+  background-color: #eee;
+  color: #111;
+}
+
 }
 
 .genre-filter select {
