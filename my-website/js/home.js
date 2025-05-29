@@ -58,6 +58,15 @@ async function fetchTrendingAnime() {
   return allResults;
 }
 
+async function fetchPhilippinesMovies() {
+  let allResults = [];
+  for (let page = 1; page <= 3; page++) {
+    const results = await fetchData(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_original_language=tl&page=${page}`);
+    allResults = allResults.concat(results);
+  }
+  return allResults;
+}
+
 async function filterByGenre(genreId) {
   const url = genreId
     ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
@@ -224,16 +233,18 @@ const searchTMDB = debounce(async () => {
 // ====== INIT ======
 
 async function init() {
-  const [movies, tvShows, anime] = await Promise.all([
+  const [movies, tvShows, anime, philippines] = await Promise.all([
     fetchTrending('movie'),
     fetchTrending('tv'),
-    fetchTrendingAnime()
+    fetchTrendingAnime(),
+    fetchPhilippinesMovies()
   ]);
 
   displayBanner(movies[Math.floor(Math.random() * movies.length)]);
   displayList(movies, 'movies-list');
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
+  displayList(philippines, 'philippines-list');
 }
 
 init();
