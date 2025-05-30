@@ -60,7 +60,40 @@ async function fetchTrendingAnime() {
 }
 
 async function fetchNBAScores() {
-  const url = 'https://v2.nba.api-sports.io/games';
+  const url = 'async function fetchNBAScores() {
+  const url = 'https://api-nba-v1.p.rapidapi.com/games?date=2025-05-30';
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': 'bb71f7e6e3msh3e8a5953db1cf34p14b47fjsn9fd2b27ecc62',
+      'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    const scoresContainer = document.getElementById("nba-scores");
+    scoresContainer.innerHTML = '';
+
+    data.response.forEach(game => {
+      const div = document.createElement("div");
+      div.classList.add("nba-card");
+      div.innerHTML = `
+        <h3>${game.teams.home.name} vs ${game.teams.visitors.name}</h3>
+        <p>Score: ${game.scores.home.points} - ${game.scores.visitors.points}</p>
+        <p>Status: ${game.status.long}</p>
+      `;
+      scoresContainer.appendChild(div);
+    });
+  } catch (err) {
+    console.error(err);
+    document.getElementById("nba-scores").innerText = "Failed to load scores.";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", fetchNBAScores);
+';
   const options = {
     method: 'GET',
     headers: {
