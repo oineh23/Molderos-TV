@@ -226,3 +226,35 @@
   </footer>
 </body>
 </html>
+
+<script>
+function togglePlayPause() {
+  const iframe = document.getElementById("modal-video");
+  const playPauseIcon = document.querySelector("#play-pause i");
+
+  if (playPauseIcon.classList.contains("fa-play")) {
+    if (!iframe.src.includes("autoplay=1")) {
+      iframe.src += (iframe.src.includes("?") ? "&" : "?") + "autoplay=1";
+    }
+    playPauseIcon.classList.remove("fa-play");
+    playPauseIcon.classList.add("fa-pause");
+  } else {
+    const src = iframe.src.replace("&autoplay=1", "").replace("?autoplay=1", "");
+    iframe.src = src;
+    playPauseIcon.classList.remove("fa-pause");
+    playPauseIcon.classList.add("fa-play");
+  }
+}
+
+function toggleFullScreen() {
+  const modal = document.getElementById("modal");
+  if (!document.fullscreenElement) {
+    modal.requestFullscreen().catch(err => {
+      alert(`Error attempting to enter fullscreen: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+}
+</script>
+
