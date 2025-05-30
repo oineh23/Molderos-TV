@@ -21,9 +21,8 @@
       event.preventDefault();
       alert("Right-click is disabled on this page.");
     });
-  </script>
 
-const apiKey = 'https://api.sportsdata.io/v3/nba/scores/json/Standings/%7Bseason%7D?key=139bef496dd24839ab26676d89b81bb5';
+    const apiKey = 'https://api.sportsdata.io/v3/nba/scores/json/Standings/%7Bseason%7D?key=139bef496dd24839ab26676d89b81bb5';
 const today = new Date().toISOString().slice(0, 10); // Format: YYYY-MM-DD
 const gamesUrl = `https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/${today}`;
 
@@ -57,7 +56,7 @@ fetch(gamesUrl, {
     document.getElementById("nbaGamesContainer").innerHTML =
       "<p style='color: red;'>Failed to load NBA games. Check API key or internet connection.</p>";
   });
-
+  </script>
 
   <style>
   :root {
