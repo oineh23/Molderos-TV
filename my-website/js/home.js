@@ -44,7 +44,7 @@ function debounce(func, delay = 300) {
 
 async function fetchVivamaxMovies() {
   const container = document.getElementById("vivamax-movies");
-  const apiKey = 'YOUR_TMDB_API_KEY'; // <-- Replace with your real TMDb key
+  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // <-- Replace with your real TMDb key
 
   try {
     const response = await fetch(
