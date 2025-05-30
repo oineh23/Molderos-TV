@@ -86,7 +86,7 @@ async function filterByGenre(genreId) {
   }
 }
 
-const API_KEY = 'your_tmdb_api_key';
+const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const VIVAMAX_COMPANY_ID = 149142;
 
 async function fetchVivamaxMovies() {
