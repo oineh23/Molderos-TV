@@ -60,7 +60,7 @@ async function fetchTrendingAnime() {
 }
 
 async function fetchNBAScores() {
-  const url = 'https://api-nba-v1.p.rapidapi.com/games?date=2025-05-30';
+  const url = 'https://nba-api-free-data.p.rapidapi.com/nba-atlantic-team-list';
   const options = {
     method: 'GET',
     headers: {
