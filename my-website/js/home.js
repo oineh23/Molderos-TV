@@ -86,6 +86,36 @@ async function filterByGenre(genreId) {
   }
 }
 
+const API_KEY = 'your_tmdb_api_key';
+const VIVAMAX_COMPANY_ID = 149142;
+
+async function fetchVivamaxMovies() {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_companies=${VIVAMAX_COMPANY_ID}`);
+    const data = await response.json();
+    displayVivamaxMovies(data.results);
+  } catch (error) {
+    console.error("Failed to fetch Vivamax movies:", error);
+  }
+}
+
+function displayVivamaxMovies(movies) {
+  const container = document.getElementById('vivamax-container');
+  container.innerHTML = '';
+
+  movies.forEach(movie => {
+    const movieEl = document.createElement('div');
+    movieEl.classList.add('movie-card');
+    movieEl.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+      <h3>${movie.title}</h3>
+      <p>${movie.release_date}</p>
+    `;
+    container.appendChild(movieEl);
+  });
+}
+
+fetchVivamaxMovies();
 
 // ====== DISPLAY FUNCTIONS ======
 
