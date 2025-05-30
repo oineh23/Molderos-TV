@@ -42,6 +42,35 @@ function debounce(func, delay = 300) {
   };
 }
 
+async function fetchVivamaxMovies() {
+  const container = document.getElementById("vivamax-movies");
+  const apiKey = 'YOUR_TMDB_API_KEY'; // <-- Replace with your real TMDb key
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_companies=6944&language=tl-PH&region=PH&sort_by=popularity.desc`
+    );
+    const data = await response.json();
+
+    data.results.forEach(movie => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+
+      card.innerHTML = `
+        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+        <h3>${movie.title}</h3>
+      `;
+
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error("Error loading Vivamax movies:", err);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", fetchVivamaxMovies);
+
+
 // ====== API FETCHERS ======
 
 const fetchTrending = (type) =>
