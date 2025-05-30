@@ -74,44 +74,6 @@
   margin: 4px 0 0;
 }
 
-#vivamax-section {
-  padding: 20px;
-}
-
-#vivamax-section .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: start;
-}
-
-#vivamax-section .card {
-  width: 160px;
-  background-color: #1c1c1c;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-#vivamax-section .card:hover {
-  transform: scale(1.05);
-}
-
-#vivamax-section .card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-#vivamax-section .card h3 {
-  font-size: 1rem;
-  margin: 8px;
-  text-align: center;
-  color: white;
-}
-
-
-
 /* Fade-in animation */
 @keyframes fadeIn {
   0% {
@@ -157,6 +119,42 @@
   padding: 10px;
   color: #fff;
   text-align: center;
+}
+
+#vivamax-section {
+  padding: 20px;
+}
+
+#vivamax-section .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: start;
+}
+
+#vivamax-section .card {
+  width: 160px;
+  background-color: #1c1c1c;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+#vivamax-section .card:hover {
+  transform: scale(1.05);
+}
+
+#vivamax-section .card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#vivamax-section .card h3 {
+  font-size: 1rem;
+  margin: 8px;
+  text-align: center;
+  color: white;
 }
 
 /* Global Styles */
