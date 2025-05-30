@@ -65,7 +65,7 @@ async function fetchNBAScores() {
     method: 'GET',
     headers: {
       'X-RapidAPI-Key': 'bb71f7e6e3msh3e8a5953db1cf34p14b47fjsn9fd2b27ecc62',
-      'X-RapidAPI-Host': 'x-rapidapi-host: nba-api-free-data.p.rapidapi.com'
+      'X-RapidAPI-Host': 'nba-api-free-data.p.rapidapi.com'
     }
   };
 
