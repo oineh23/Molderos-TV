@@ -21,41 +21,6 @@
       event.preventDefault();
       alert("Right-click is disabled on this page.");
     });
-
-    const apiKey = '139bef496dd24839ab26676d89b81bb5';
-const today = new Date().toISOString().slice(0, 10); // Format: YYYY-MM-DD
-const gamesUrl = `https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/${today}`;
-
-fetch(gamesUrl, {
-  headers: {
-    'Ocp-Apim-Subscription-Key': apiKey
-  }
-})
-  .then(response => response.json())
-  .then(games => {
-    const container = document.getElementById("nbaGamesContainer");
-    if (games.length === 0) {
-      container.innerHTML = "<p style='color: white;'>No games scheduled for today.</p>";
-      return;
-    }
-
-    games.forEach(game => {
-      const gameDiv = document.createElement("div");
-      gameDiv.classList.add("game-card");
-      gameDiv.innerHTML = `
-        <h4>${game.AwayTeam} @ ${game.HomeTeam}</h4>
-        <p>Date: ${new Date(game.DateTime).toLocaleString()}</p>
-        <p>Status: ${game.Status}</p>
-        <p>Venue: ${game.Stadium?.Name || "TBD"}</p>
-      `;
-      container.appendChild(gameDiv);
-    });
-  })
-  .catch(error => {
-    console.error('NBA API error:', error);
-    document.getElementById("nbaGamesContainer").innerHTML =
-      "<p style='color: red;'>Failed to load NBA games. Check API key or internet connection.</p>";
-  });
   </script>
 
   <style>
@@ -180,12 +145,6 @@ fetch(gamesUrl, {
       <h2>🌸 Trending Anime</h2>
       <div class="card-container" id="anime-list"></div>
     </section>
-
-    <section id="nba-live" class="category-section">
-  <h2 class="section-title">🏀 Upcoming NBA Games</h2>
-  <div id="nbaGamesContainer" class="nba-games-list"></div>
-</section>
-
   </main>
 
   <!-- Loading Spinner -->
