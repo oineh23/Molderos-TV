@@ -165,29 +165,40 @@
     <span>Loading content...</span>
   </div>
 
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
-      <div class="modal-body">
-        <img id="modal-image" src="" alt="Movie poster" />
-        <div class="modal-text">
-          <h2 id="modal-title"></h2>
-          <div class="stars" id="modal-rating"></div>
-          <p id="modal-description"></p>
-        </div>
-      </div>
-      <div class="server-selector">
-        <label for="server">Change Server:</label>
+  <!-- Netflix-Style Modal Player -->
+<div class="modal" id="modal">
+  <div class="modal-overlay" onclick="closeModal()"></div>
+  <div class="modal-content player-modal">
+    <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
+
+    <div class="video-wrapper">
+      <iframe id="modal-video" src="" allowfullscreen></iframe>
+
+      <div class="video-controls">
+        <button onclick="togglePlayPause()" id="play-pause">
+          <i class="fas fa-play"></i>
+        </button>
+        <button onclick="toggleFullScreen()">
+          <i class="fas fa-expand"></i>
+        </button>
         <select id="server" onchange="changeServer()">
           <option value="vidsrc.cc">Vidsrc.cc</option>
           <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Player.Videasy.net</option>
+          <option value="player.videasy.net">Videasy</option>
         </select>
       </div>
-      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-text">
+        <h2 id="modal-title"></h2>
+        <div class="stars" id="modal-rating"></div>
+        <p id="modal-description"></p>
+      </div>
     </div>
   </div>
+</div>
+
 
   <!-- Search Modal -->
   <div class="search-modal" id="search-modal">
