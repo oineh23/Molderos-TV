@@ -4,9 +4,6 @@ const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 
-const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-const VIVAMAX_COMPANY_ID = 149142;
-
 const genreMap = {
   28: 'Action',
   35: 'Comedy',
@@ -89,33 +86,6 @@ async function filterByGenre(genreId) {
   }
 }
 
-async function fetchVivamaxMovies() {
-  try {
-    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_companies=${VIVAMAX_COMPANY_ID}`);
-    const data = await response.json();
-    displayVivamaxMovies(data.results);
-  } catch (error) {
-    console.error("Failed to fetch Vivamax movies:", error);
-  }
-}
-
-function displayVivamaxMovies(movies) {
-  const container = document.getElementById('vivamax-container');
-  container.innerHTML = '';
-
-  movies.forEach(movie => {
-    const movieEl = document.createElement('div');
-    movieEl.classList.add('movie-card');
-    movieEl.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-      <h3>${movie.title}</h3>
-      <p>${movie.release_date}</p>
-    `;
-    container.appendChild(movieEl);
-  });
-}
-
-fetchVivamaxMovies();
 
 // ====== DISPLAY FUNCTIONS ======
 
