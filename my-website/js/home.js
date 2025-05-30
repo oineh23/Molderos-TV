@@ -1,3 +1,4 @@
+
 // ====== CONFIGURATION ======
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -54,15 +55,6 @@ async function fetchTrendingAnime() {
       item.original_language === 'ja' && item.genre_ids.includes(16)
     );
     allResults = allResults.concat(filtered);
-  }
-  return allResults;
-}
-
-async function fetchPhilippinesMovies() {
-  let allResults = [];
-  for (let page = 1; page <= 3; page++) {
-    const results = await fetchData(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_original_language=tl&page=${page}`);
-    allResults = allResults.concat(results);
   }
   return allResults;
 }
@@ -233,18 +225,16 @@ const searchTMDB = debounce(async () => {
 // ====== INIT ======
 
 async function init() {
-  const [movies, tvShows, anime, philippines] = await Promise.all([
+  const [movies, tvShows, anime] = await Promise.all([
     fetchTrending('movie'),
     fetchTrending('tv'),
-    fetchTrendingAnime(),
-    fetchPhilippinesMovies()
+    fetchTrendingAnime()
   ]);
 
   displayBanner(movies[Math.floor(Math.random() * movies.length)]);
   displayList(movies, 'movies-list');
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
-  displayList(philippines, 'philippines-list');
 }
 
 init();
