@@ -60,12 +60,12 @@ async function fetchTrendingAnime() {
 }
 
 async function fetchNBAScores() {
-  const url = 'https://api-nba-v1.p.rapidapi.com/players/statistics?game=813';
+  const url = 'https://v2.nba.api-sports.io/games';
   const options = {
     method: 'GET',
     headers: {
       'X-RapidAPI-Key': 'bb71f7e6e3msh3e8a5953db1cf34p14b47fjsn9fd2b27ecc62',
-      'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
+      'X-RapidAPI-Host': 'https://v2.nba.api-sports.io/games'
     }
   };
 
