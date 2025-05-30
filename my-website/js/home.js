@@ -4,6 +4,9 @@ const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 
+const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+const VIVAMAX_COMPANY_ID = 149142;
+
 const genreMap = {
   28: 'Action',
   35: 'Comedy',
@@ -85,9 +88,6 @@ async function filterByGenre(genreId) {
     document.getElementById('loading-spinner').style.display = 'none';
   }
 }
-
-const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-const VIVAMAX_COMPANY_ID = 149142;
 
 async function fetchVivamaxMovies() {
   try {
