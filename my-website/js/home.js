@@ -4,31 +4,6 @@ const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 
-const apiKey = '139bef496dd24839ab26676d89b81bb5';
-const url = 'https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/2025-MAY-30'; // Change date dynamically as needed
-
-fetch(url, {
-  headers: {
-    'Ocp-Apim-Subscription-Key': apiKey
-  }
-})
-  .then(response => response.json())
-  .then(games => {
-    const container = document.getElementById("nbaGamesContainer");
-    games.forEach(game => {
-      const gameDiv = document.createElement("div");
-      gameDiv.classList.add("game-card");
-      gameDiv.innerHTML = `
-        <h4>${game.AwayTeam} @ ${game.HomeTeam}</h4>
-        <p>Date: ${new Date(game.DateTime).toLocaleString()}</p>
-        <p>Status: ${game.Status}</p>
-      `;
-      container.appendChild(gameDiv);
-    });
-  })
-  .catch(error => console.error('Error fetching NBA games:', error));
-
-
 const genreMap = {
   28: 'Action',
   35: 'Comedy',
