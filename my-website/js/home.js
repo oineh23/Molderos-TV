@@ -61,7 +61,7 @@ async function fetchTrendingAnime() {
 
 async function fetchNBAScores() {
   const url = 'async function fetchNBAScores() {
-  const url = 'https://api-nba-v1.p.rapidapi.com/games?date=2025-05-30';
+  const url = 'https://api-nba-v1.p.rapidapi.com/leagues';
   const options = {
     method: 'GET',
     headers: {
