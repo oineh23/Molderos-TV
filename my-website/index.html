@@ -73,35 +73,38 @@
 </script>
 
   <script>
-  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-  const vivamaxCompanyId = 149142;
-  const vivamaxContainer = document.getElementById('vivamax-movies');
+  document.addEventListener("DOMContentLoaded", () => {
+    const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+    const vivamaxCompanyId = 149142;
+    const vivamaxContainer = document.getElementById('vivamax-movies');
 
-  async function fetchVivamaxMovies() {
-    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_companies=${vivamaxCompanyId}`;
+    async function fetchVivamaxMovies() {
+      const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_companies=${vivamaxCompanyId}`;
 
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      displayVivamaxMovies(data.results);
-    } catch (error) {
-      console.error('Error fetching Vivamax movies:', error);
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        displayVivamaxMovies(data.results);
+      } catch (error) {
+        console.error('Error fetching Vivamax movies:', error);
+      }
     }
-  }
 
-  function displayVivamaxMovies(movies) {
-    vivamaxContainer.innerHTML = movies.map(movie => `
-      <div class="movie-card">
-        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-        <h4>${movie.title}</h4>
-        <p>${movie.release_date}</p>
-      </div>
-    `).join('');
-  }
+    function displayVivamaxMovies(movies) {
+      vivamaxContainer.innerHTML = movies
+        .filter(movie => movie.poster_path) // filter out movies without posters
+        .map(movie => `
+          <div class="movie-card">
+            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+            <h4>${movie.title}</h4>
+            <p>${movie.release_date}</p>
+          </div>
+        `).join('');
+    }
 
-  fetchVivamaxMovies();
+    fetchVivamaxMovies();
+  });
 </script>
-
   
 </head>
 
