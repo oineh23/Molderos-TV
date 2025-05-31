@@ -184,6 +184,81 @@ function closeModal() {
   document.getElementById('modal-video').src = '';
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  fetchMovies();
+  fetchTVShows();
+});
+
+async function fetchMovies() {
+  try {
+    const res = await fetch("https://apimocine.vercel.app/movie/");
+    const data = await res.json();
+    const movies = data.slice(0, 20); // Show only first 20 for now
+    const container = document.getElementById("movies-list");
+
+    movies.forEach(movie => {
+      const card = createCard(movie);
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error fetching movies:", error);
+  }
+}
+
+async function fetchTVShows() {
+  try {
+    const res = await fetch("https://apimocine.vercel.app/tv/");
+    const data = await res.json();
+    const shows = data.slice(0, 20); // Show only first 20 for now
+    const container = document.getElementById("tvshows-list");
+
+    shows.forEach(show => {
+      const card = createCard(show);
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error fetching TV shows:", error);
+  }
+}
+
+function createCard(item) {
+  const card = document.createElement("div");
+  card.className = "media-card";
+  card.innerHTML = `
+    <img src="${item.poster || item.image}" alt="${item.title}" loading="lazy" />
+    <div class="media-info">
+      <h3>${item.title}</h3>
+      <p>${item.year || "Unknown Year"}</p>
+    </div>
+  `;
+  card.onclick = () => openModal(item);
+  return card;
+}
+
+function openModal(item) {
+  document.getElementById("modal-title").textContent = item.title;
+  document.getElementById("modal-description").textContent = item.synopsis || "No description available.";
+  document.getElementById("modal-image").src = item.poster || item.image;
+  document.getElementById("modal-video").src = `${getServerURL()}/embed/${item.id}`;
+  document.getElementById("modal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+  document.getElementById("modal-video").src = "";
+}
+
+function getServerURL() {
+  const server = document.getElementById("server").value;
+  return `https://${server}`;
+}
+
+function changeServer() {
+  const iframe = document.getElementById("modal-video");
+  const currentId = iframe.src.split("/embed/")[1];
+  iframe.src = `${getServerURL()}/embed/${currentId}`;
+}
+
 // ====== SEARCH MODAL ======
 
 function openSearchModal() {
