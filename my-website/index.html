@@ -23,46 +23,6 @@
     });
   </script>
 
-  <script>
-  function openModal(movieId, title) {
-    document.getElementById("modal").style.display = "block";
-    document.getElementById("modal-title").textContent = title;
-    document.getElementById("modal-video").src = `https://vidsrc.to/embed/movie/${movieId}`;
-    // optionally clear/restore other modal fields like rating, description, etc.
-  }
-
-  function closeModal() {
-    document.getElementById("modal").style.display = "none";
-    document.getElementById("modal-video").src = ""; // stop playback
-  }
-
-  function changeServer() {
-    const server = document.getElementById("server").value;
-    const title = document.getElementById("modal-title").textContent;
-    const movieId = extractMovieIdFromVidsrc(document.getElementById("modal-video").src);
-
-    let embedUrl;
-    switch (server) {
-      case "vidsrc.cc":
-        embedUrl = `https://vidsrc.to/embed/movie/${movieId}`;
-        break;
-      case "vidsrc.me":
-        embedUrl = `https://vidsrc.me/embed/${movieId}`;
-        break;
-      case "player.videasy.net":
-        embedUrl = `https://player.videasy.net/embed/movie/${movieId}`;
-        break;
-    }
-
-    document.getElementById("modal-video").src = embedUrl;
-  }
-
-  function extractMovieIdFromVidsrc(url) {
-    const match = url.match(/movie\/(\d+)/);
-    return match ? match[1] : '';
-  }
-</script>
-
   <style>
   :root {
     --bg-color: #ffffff;
@@ -111,49 +71,7 @@
     }
   });
 </script>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-    const vivamaxCompanyId = 149142;
-    const vivamaxContainer = document.getElementById('vivamax-movies');
-    const vivamaxLoading = document.getElementById('vivamax-loading');
-
-    async function fetchVivamaxMovies() {
-      const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_companies=${vivamaxCompanyId}`;
-
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        displayVivamaxMovies(data.results);
-      } catch (error) {
-        console.error('Error fetching Vivamax movies:', error);
-        vivamaxLoading.textContent = "Failed to load Vivamax movies.";
-      }
-    }
-
-    function displayVivamaxMovies(movies) {
-  const filtered = movies.filter(movie => movie.poster_path);
-  if (filtered.length === 0) {
-    vivamaxLoading.textContent = "No Vivamax movies found.";
-    return;
-  }
-
-  vivamaxContainer.innerHTML = filtered.map(movie => `
-    <div class="movie-card" onclick="openModal(${movie.id}, '${movie.title.replace(/'/g, "\\'")}')">
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-      <h4>${movie.title}</h4>
-      <p>${movie.release_date}</p>
-    </div>
-  `).join('');
-
-  vivamaxLoading.style.display = 'none';
-  vivamaxContainer.style.display = 'grid';
-}
-    
-    fetchVivamaxMovies();
-  });
-</script> 
+  
 </head>
 
 <body>
@@ -227,14 +145,6 @@
       <h2>🌸 Trending Anime</h2>
       <div class="card-container" id="anime-list"></div>
     </section>
-    
-    <section class="section" id="vivamax-section">
-  <h2 class="section-title">🎞️ Vivamax Movies</h2>
-  <div id="vivamax-loading">
-    <i class="fas fa-spinner fa-spin"></i> Loading Vivamax movies...
-  </div>
-  <div id="vivamax-movies" class="movie-grid" style="display: none;"></div>
-</section>
   </main>
 
   <!-- Loading Spinner -->
