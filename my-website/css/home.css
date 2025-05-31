@@ -406,54 +406,6 @@ main {
   object-fit: cover;
 }
 
-/* Vivamax movie grid */
-#vivamax-movies {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.movie-card {
-  background-color: var(--nav-bg);
-  color: var(--text-color);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.movie-card:hover {
-  transform: scale(1.05);
-}
-
-.movie-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-bottom: 2px solid #ccc;
-}
-
-.movie-card h4 {
-  font-size: 1rem;
-  margin: 0.5rem 0 0;
-}
-
-.movie-card p {
-  font-size: 0.9rem;
-  margin: 0.3rem 0 1rem;
-  color: gray;
-}
-
-/* Vivamax spinner */
-#vivamax-loading {
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.2rem;
-  color: var(--text-color);
-}
-
 /* Modal */
 .modal {
   position: fixed;
