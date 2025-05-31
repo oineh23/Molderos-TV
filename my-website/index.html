@@ -23,6 +23,46 @@
     });
   </script>
 
+  <script>
+  function openModal(movieId, title) {
+    document.getElementById("modal").style.display = "block";
+    document.getElementById("modal-title").textContent = title;
+    document.getElementById("modal-video").src = `https://vidsrc.to/embed/movie/${movieId}`;
+    // optionally clear/restore other modal fields like rating, description, etc.
+  }
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+    document.getElementById("modal-video").src = ""; // stop playback
+  }
+
+  function changeServer() {
+    const server = document.getElementById("server").value;
+    const title = document.getElementById("modal-title").textContent;
+    const movieId = extractMovieIdFromVidsrc(document.getElementById("modal-video").src);
+
+    let embedUrl;
+    switch (server) {
+      case "vidsrc.cc":
+        embedUrl = `https://vidsrc.to/embed/movie/${movieId}`;
+        break;
+      case "vidsrc.me":
+        embedUrl = `https://vidsrc.me/embed/${movieId}`;
+        break;
+      case "player.videasy.net":
+        embedUrl = `https://player.videasy.net/embed/movie/${movieId}`;
+        break;
+    }
+
+    document.getElementById("modal-video").src = embedUrl;
+  }
+
+  function extractMovieIdFromVidsrc(url) {
+    const match = url.match(/movie\/(\d+)/);
+    return match ? match[1] : '';
+  }
+</script>
+
   <style>
   :root {
     --bg-color: #ffffff;
