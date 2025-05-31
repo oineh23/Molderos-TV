@@ -93,24 +93,24 @@
     }
 
     function displayVivamaxMovies(movies) {
-      const filtered = movies.filter(movie => movie.poster_path);
-      if (filtered.length === 0) {
-        vivamaxLoading.textContent = "No Vivamax movies found.";
-        return;
-      }
+  const filtered = movies.filter(movie => movie.poster_path);
+  if (filtered.length === 0) {
+    vivamaxLoading.textContent = "No Vivamax movies found.";
+    return;
+  }
 
-      vivamaxContainer.innerHTML = filtered.map(movie => `
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-          <h4>${movie.title}</h4>
-          <p>${movie.release_date}</p>
-        </div>
-      `).join('');
+  vivamaxContainer.innerHTML = filtered.map(movie => `
+    <div class="movie-card" onclick="openModal(${movie.id}, '${movie.title.replace(/'/g, "\\'")}')">
+      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+      <h4>${movie.title}</h4>
+      <p>${movie.release_date}</p>
+    </div>
+  `).join('');
 
-      vivamaxLoading.style.display = 'none';
-      vivamaxContainer.style.display = 'grid';
-    }
-
+  vivamaxLoading.style.display = 'none';
+  vivamaxContainer.style.display = 'grid';
+}
+    
     fetchVivamaxMovies();
   });
 </script> 
