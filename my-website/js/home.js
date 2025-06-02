@@ -184,7 +184,7 @@ function closeModal() {
   document.getElementById('modal-video').src = '';
 }
 
-const TMDB_API_KEY = "YOUR_TMDB_API_KEY"; // Replace this
+const TMDB_API_KEY = "b8c2d0fa80cd79b5d28d9fe2853806bb"; // Replace this
 
 // Call this when opening a TV show in the modal
 function openTvShowModal(tvShowId, title, imageUrl, rating, description) {
