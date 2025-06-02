@@ -112,6 +112,34 @@ async function fetchSeasonsAndEpisodes(tvId) {
       });
     }
 
+    const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDb API key
+const sportsMoviesContainer = document.getElementById('sportsMoviesContainer');
+
+async function fetchSportsMovies() {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_keywords=627`);
+    const data = await response.json();
+    displaySportsMovies(data.results);
+  } catch (error) {
+    console.error('Error fetching sports movies:', error);
+  }
+}
+
+function displaySportsMovies(movies) {
+  sportsMoviesContainer.innerHTML = '';
+  movies.forEach(movie => {
+    const movieCard = document.createElement('div');
+    movieCard.classList.add('movie-card');
+    movieCard.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+      <h3>${movie.title}</h3>
+    `;
+    sportsMoviesContainer.appendChild(movieCard);
+  });
+}
+
+fetchSportsMovies();
+
     // Step 3: Render
     renderSeasonsAndEpisodes(seasonsData);
 
