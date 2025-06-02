@@ -184,6 +184,75 @@ function closeModal() {
   document.getElementById('modal-video').src = '';
 }
 
+const TMDB_API_KEY = "YOUR_TMDB_API_KEY"; // Replace this
+
+// Call this when opening a TV show in the modal
+function openTvShowModal(tvShowId, title, imageUrl, rating, description) {
+  document.getElementById("modal-title").textContent = title;
+  document.getElementById("modal-image").src = imageUrl;
+  document.getElementById("modal-rating").textContent = `⭐ ${rating}`;
+  document.getElementById("modal-description").textContent = description;
+
+  populateSeasons(tvShowId);
+
+  // Show modal
+  document.getElementById("modal").style.display = "block";
+}
+
+// Fetch and populate the season dropdown
+function populateSeasons(tvShowId) {
+  fetch(`https://api.themoviedb.org/3/tv/${tvShowId}?api_key=${TMDB_API_KEY}`)
+    .then(res => res.json())
+    .then(data => {
+      const select = document.getElementById("season-select");
+      select.innerHTML = "";
+
+      data.seasons.forEach(season => {
+        const option = document.createElement("option");
+        option.value = season.season_number;
+        option.textContent = season.name;
+        select.appendChild(option);
+      });
+
+      // Load episodes for the first season by default
+      loadEpisodesForSeason(select.value, tvShowId);
+
+      // Save TV show ID for later use on change
+      select.setAttribute("data-tvshow-id", tvShowId);
+    })
+    .catch(err => {
+      console.error("Error fetching seasons:", err);
+    });
+}
+
+// Load episodes for a specific season
+function loadEpisodesForSeason(seasonNumber, tvShowId = null) {
+  const select = document.getElementById("season-select");
+  if (!tvShowId) {
+    tvShowId = select.getAttribute("data-tvshow-id");
+  }
+
+  fetch(`https://api.themoviedb.org/3/tv/${tvShowId}/season/${seasonNumber}?api_key=${TMDB_API_KEY}`)
+    .then(res => res.json())
+    .then(data => {
+      const episodeList = document.getElementById("episode-list");
+      episodeList.innerHTML = "";
+
+      data.episodes.forEach(ep => {
+        const epDiv = document.createElement("div");
+        epDiv.className = "episode-card";
+        epDiv.innerHTML = `
+          <strong>S${ep.season_number}E${ep.episode_number}:</strong> ${ep.name}
+          <p>${ep.overview || "No description available."}</p>
+        `;
+        episodeList.appendChild(epDiv);
+      });
+    })
+    .catch(err => {
+      console.error("Error fetching episodes:", err);
+    });
+}
+
 // ====== SEARCH MODAL ======
 
 function openSearchModal() {
