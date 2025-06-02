@@ -290,14 +290,14 @@ function loadEpisodesForSeason(seasonNumber, tvShowId = null) {
 // ====== SEARCH MODAL ======
 
 function openSearchModal() {
-  document.getElementById('search-modal').style.display = 'flex';
-  document.getElementById('search-input').focus();
+  document.getElementById("search-modal").classList.add("active");
+  document.getElementById("search-input").focus();
 }
 
 function closeSearchModal() {
-  document.getElementById('search-modal').style.display = 'none';
-  document.getElementById('search-results').innerHTML = '';
+  document.getElementById("search-modal").classList.remove("active");
 }
+
 
 const searchTMDB = debounce(async () => {
   const query = document.getElementById('search-input').value.trim();
