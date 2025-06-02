@@ -86,6 +86,40 @@ async function filterByGenre(genreId) {
   }
 }
 
+async function fetchSeasonsAndEpisodes(tvId) {
+  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDb API key
+  const seasonContainer = document.getElementById('season-episode-container');
+  seasonContainer.innerHTML = '<p>Loading seasons...</p>';
+
+  try {
+    // Step 1: Fetch show details to get number of seasons
+    const showResponse = await fetch(`https://api.themoviedb.org/3/tv/${tvId}?api_key=${apiKey}`);
+    const showData = await showResponse.json();
+    const numberOfSeasons = showData.number_of_seasons;
+
+    const seasonsData = [];
+
+    // Step 2: Loop through each season and fetch episodes
+    for (let i = 1; i <= numberOfSeasons; i++) {
+      const seasonResponse = await fetch(`https://api.themoviedb.org/3/tv/${tvId}/season/${i}?api_key=${apiKey}`);
+      const seasonDetails = await seasonResponse.json();
+      seasonsData.push({
+        season_number: seasonDetails.season_number,
+        episodes: seasonDetails.episodes.map(ep => ({
+          episode_number: ep.episode_number,
+          name: ep.name,
+        })),
+      });
+    }
+
+    // Step 3: Render
+    renderSeasonsAndEpisodes(seasonsData);
+
+  } catch (error) {
+    console.error('Failed to load seasons and episodes:', error);
+    seasonContainer.innerHTML = '<p>Error loading episodes.</p>';
+  }
+}
 
 // ====== DISPLAY FUNCTIONS ======
 
