@@ -102,17 +102,17 @@ async function fetchPinoyMovies(page = 1) {
   }
 }
 
-function displayPinoyMovies(movies) {
-  const container = document.getElementById('pinoy-movies');
+function renderPinoyMovies(movies) {
+  const container = document.getElementById("pinoy-movies");
+  container.innerHTML = "";
 
   movies.forEach(movie => {
-    const card = document.createElement('div');
-    card.className = 'media-card';
+    const card = document.createElement("div");
+    card.classList.add("media-card");
     card.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+      <img src="${movie.poster}" alt="${movie.title}">
       <h3>${movie.title}</h3>
     `;
-    card.onclick = () => openModal(movie); // if you have a modal player
     container.appendChild(card);
   });
 }
