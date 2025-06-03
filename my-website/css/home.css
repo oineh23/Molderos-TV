@@ -199,6 +199,22 @@
   text-align: center;
 }
 
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+.load-more {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem 1rem;
+  background: #e50914;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 /* Global Styles */
 * {
   margin: 0;
