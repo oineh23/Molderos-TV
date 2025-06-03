@@ -89,7 +89,7 @@ async function filterByGenre(genreId) {
 let pinoyPage = 1;
 
 async function fetchPinoyMovies(page = 1) {
-  const API_KEY = 'YOUR_API_KEY'; // Replace with your TMDb API Key
+  const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDb API Key
   const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_original_language=tl&region=PH&sort_by=popularity.desc&page=${page}`;
 
   try {
