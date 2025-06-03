@@ -152,18 +152,20 @@
     <span>Loading content...</span>
   </div>
 
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
-      <div class="modal-body">
-        <img id="modal-image" src="" alt="Movie poster" />
-        <div class="modal-text">
-          <h2 id="modal-title"></h2>
-          <div class="stars" id="modal-rating"></div>
-          <p id="modal-description"></p>
-        </div>
-      </div>
+  <!-- Search Modal -->
+<div class="search-modal" id="search-modal">
+  <div class="search-modal-box">
+    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Search movies, TV shows, or anime..." 
+      oninput="searchTMDB()" 
+      aria-label="Search input"
+    />
+    <div class="results" id="search-results"></div>
+  </div>
+</div>
       <div class="server-selector">
         <label for="server">Change Server:</label>
         <select id="server" onchange="changeServer()">
