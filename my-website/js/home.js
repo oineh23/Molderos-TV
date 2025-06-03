@@ -109,17 +109,13 @@ function renderPinoyMovies(movies) {
   movies.forEach(movie => {
     const card = document.createElement("div");
     card.classList.add("media-card");
-
     card.innerHTML = `
       <img src="${movie.poster}" alt="${movie.title}">
       <h3>${movie.title}</h3>
-      <button class="watch-btn" onclick="openModal('${movie.id}', 'pinoy')">Watch</button>
     `;
-
     container.appendChild(card);
   });
 }
-
 
 // Load first page on page load
 document.addEventListener('DOMContentLoaded', () => {
