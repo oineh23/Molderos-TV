@@ -237,3 +237,28 @@ async function init() {
 }
 
 init();
+
+// ====== PINOY MOVIES SECTION ======
+
+async function fetchPinoyMovies() {
+  const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_origin_country=PH&with_original_language=tl&sort_by=popularity.desc&page=1`;
+  const pinoyMovies = await fetchData(url);
+
+  const pinoyContainer = document.getElementById('pinoy-movie-list');
+  if (!pinoyContainer) return;
+
+  pinoyContainer.innerHTML = '';
+
+  pinoyMovies.forEach(movie => {
+    if (!movie.poster_path) return;
+    movie.media_type = 'movie'; // ensure for modal server
+    const card = createCard(movie);
+    pinoyContainer.appendChild(card);
+  });
+}
+
+// Call this from init
+init().then(() => {
+  fetchPinoyMovies();
+});
+
