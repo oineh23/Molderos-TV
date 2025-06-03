@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,6 @@
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <script defer src="js/home.js"></script>
 
-  <!-- Disable Right Click -->
   <script>
     document.addEventListener('contextmenu', function(event) {
       event.preventDefault();
@@ -23,63 +23,62 @@
     });
   </script>
 
-  <!-- Theme Styles -->
   <style>
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #000000;
-      --nav-bg: #f0f0f0;
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --nav-bg: #f0f0f0;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --nav-bg: #1e1e1e;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-wrapper {
+    background-color: var(--nav-bg);
+    transition: background-color 0.3s ease;
+  }
+
+  .theme-toggle {
+    cursor: pointer;
+    font-size: 1.4rem;
+    margin-left: 15px;
+    color: var(--text-color);
+  }
+</style>
+<script>
+  // Theme toggle logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
+    const toggleBtn = document.getElementById("theme-toggle");
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
+      });
     }
-
-    [data-theme="dark"] {
-      --bg-color: #121212;
-      --text-color: #ffffff;
-      --nav-bg: #1e1e1e;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .nav-wrapper {
-      background-color: var(--nav-bg);
-      transition: background-color 0.3s ease;
-    }
-
-    .theme-toggle {
-      cursor: pointer;
-      font-size: 1.4rem;
-      margin-left: 15px;
-      color: var(--text-color);
-    }
-  </style>
-
-  <!-- Theme Toggle Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const currentTheme = localStorage.getItem("theme") || "light";
-      document.documentElement.setAttribute("data-theme", currentTheme);
-
-      const toggleBtn = document.getElementById("theme-toggle");
-      if (toggleBtn) {
-        toggleBtn.addEventListener("click", () => {
-          const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-          document.documentElement.setAttribute("data-theme", newTheme);
-          localStorage.setItem("theme", newTheme);
-          toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
-        });
-      }
-    });
-  </script>
+  });
+</script>
+  
 </head>
 
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
     <div class="container nav">
-      <a href="#" class="logo">
+        <a href="#" class="logo">
         <i class='bx bx-movie-play bx-tada main-color'></i>
         MOLD<span class="main-color">EROS</span>-TV
       </a>
@@ -154,31 +153,44 @@
     <span>Loading content...</span>
   </div>
 
-  <!-- Search Modal -->
-  <div class="search-modal" id="search-modal">
-    <div class="search-modal-box">
-      <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
-      <input 
-        type="text" 
-        id="search-input" 
-        placeholder="Search movies, TV shows, or anime..." 
-        oninput="searchTMDB()" 
-        aria-label="Search input"
-      />
-      <div class="results" id="search-results"></div>
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
+      <div class="modal-body">
+        <img id="modal-image" src="" alt="Movie poster" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+      <div class="server-selector">
+        <label for="server">Change Server:</label>
+        <select id="server" onchange="changeServer()">
+          <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
+          <option value="player.videasy.net">Player.Videasy.net</option>
+        </select>
+      </div>
+      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
-  <!-- Video Player -->
-  <div class="server-selector">
-    <label for="server">Change Server:</label>
-    <select id="server" onchange="changeServer()">
-      <option value="vidsrc.cc">Vidsrc.cc</option>
-      <option value="vidsrc.me">Vidsrc.me</option>
-      <option value="player.videasy.net">Player.Videasy.net</option>
-    </select>
+  <!-- Search Modal -->
+<div class="search-modal" id="search-modal">
+  <div class="search-modal-box">
+    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Search movies, TV shows, or anime..." 
+      oninput="searchTMDB()" 
+      aria-label="Search input"
+    />
+    <div class="results" id="search-results"></div>
   </div>
-  <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+</div>
 
   <!-- Footer -->
   <footer class="footer">
