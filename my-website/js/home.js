@@ -86,6 +86,47 @@ async function filterByGenre(genreId) {
   }
 }
 
+let pinoyPage = 1;
+
+async function fetchPinoyMovies(page = 1) {
+  const API_KEY = 'YOUR_API_KEY'; // Replace with your TMDb API Key
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_original_language=tl&region=PH&sort_by=popularity.desc&page=${page}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    displayPinoyMovies(data.results);
+  } catch (error) {
+    console.error('Error fetching Pinoy movies:', error);
+  }
+}
+
+function displayPinoyMovies(movies) {
+  const container = document.getElementById('pinoy-movies');
+
+  movies.forEach(movie => {
+    const card = document.createElement('div');
+    card.className = 'media-card';
+    card.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+      <h3>${movie.title}</h3>
+    `;
+    card.onclick = () => openModal(movie); // if you have a modal player
+    container.appendChild(card);
+  });
+}
+
+// Load first page on page load
+document.addEventListener('DOMContentLoaded', () => {
+  fetchPinoyMovies(pinoyPage);
+});
+
+// Load more on button click
+document.getElementById('load-more-pinoy').addEventListener('click', () => {
+  pinoyPage++;
+  fetchPinoyMovies(pinoyPage);
+});
 
 // ====== DISPLAY FUNCTIONS ======
 
