@@ -102,7 +102,7 @@ async function fetchPinoyMovies(page = 1) {
   }
 }
 
-function renderPinoyMovies(movies) {
+function renderPinoyMovies(movies) { ... } // ✅ This exists
   const container = document.getElementById("pinoy-movies");
   container.innerHTML = "";
 
