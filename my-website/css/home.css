@@ -811,3 +811,17 @@ body.light-mode .footer-links a:hover {
   right: 0;
 }
 
+.movie-card img {
+  width: 100%;
+  height: 75%;
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
+}
+
+.movie-card h4 {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 0.4rem;
+  color: #fff;
+}
+
