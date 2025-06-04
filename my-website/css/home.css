@@ -1,3 +1,4 @@
+
 /* --- Enhanced Movie Card Layout and Effects --- */
 .card-container {
   display: flex;
@@ -699,60 +700,4 @@ body.light-mode .footer {
 
 body.light-mode .footer-links a:hover {
   color: #e50914;
-}
-
-/* --- 🇵🇭 Pinoy Movies Section --- */
-.pinoy-movies-section {
-  padding: 2rem;
-  background-color: #111;
-}
-
-.section-title {
-  font-size: 1.8rem;
-  color: #fff;
-  margin-bottom: 1rem;
-}
-
-.movie-row {
-  display: flex;
-  overflow-x: auto;
-  gap: 1rem;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 1rem;
-}
-
-.movie-row::-webkit-scrollbar {
-  height: 8px;
-}
-
-.movie-row::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-.movie-card {
-  flex: 0 0 auto;
-  width: 160px;
-  scroll-snap-align: start;
-  background-color: #222;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.movie-card:hover {
-  transform: scale(1.05);
-}
-
-.movie-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.movie-title {
-  color: #fff;
-  text-align: center;
-  padding: 0.5rem;
-  font-size: 0.9rem;
 }
