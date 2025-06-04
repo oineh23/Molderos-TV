@@ -700,3 +700,100 @@ body.light-mode .footer {
 body.light-mode .footer-links a:hover {
   color: #e50914;
 }
+
+/* ====== PINOY MOVIES SECTION ====== */
+
+#pinoy-movies {
+  padding: 2rem 1rem;
+  background-color: #111;
+  color: #fff;
+}
+
+#pinoy-movies .section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #e50914;
+}
+
+/* Tabs for Now Showing / Top Rated / Trending */
+#pinoy-movies .pinoy-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  padding: 8px 16px;
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.tab-button:hover {
+  background: #333;
+  transform: translateY(-1px);
+}
+
+.tab-button.active {
+  background-color: #e50914;
+  border-color: #e50914;
+  color: #fff;
+}
+
+/* Genre filter dropdown */
+#pinoy-movies .pinoy-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+#pinoy-genre-filter {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+#pinoy-genre-filter:focus {
+  border-color: #e50914;
+}
+
+/* Movie list grid */
+#pinoy-movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+/* Load More Button */
+#pinoy-movies .load-more-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+#load-more-pinoy {
+  padding: 10px 20px;
+  background-color: #e50914;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#load-more-pinoy:hover {
+  background-color: #b0060f;
+  transform: translateY(-1px);
+}
