@@ -159,7 +159,15 @@
     </select>
   </div>
 
-  <div class="vivamax-grid" id="pinoy-movie-list"></div>
+  <div class="slider-wrapper">
+  <button class="slider-btn left" onclick="scrollPinoyMovies(-1)">&#10094;</button>
+
+  <div class="vivamax-slider" id="pinoy-movie-list">
+    <!-- Cards will be dynamically inserted here -->
+  </div>
+
+  <button class="slider-btn right" onclick="scrollPinoyMovies(1)">&#10095;</button>
+</div>
 
   <div class="load-more-container">
     <button id="load-more-pinoy">Load More</button>
