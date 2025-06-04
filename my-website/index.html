@@ -113,6 +113,7 @@
   <section class="genre-filter">
     <div class="container">
       <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
         <option value="">All</option>
         <option value="28">Action</option>
         <option value="35">Comedy</option>
@@ -148,8 +149,7 @@
   <h2 class="section-title">🇵🇭 Pinoy Movies</h2>
 
   <div class="pinoy-controls">
-   <label for="genre-select">🎯 Filter by Genre:</label>
-      <select id="genre-select" onchange="filterByGenre(this.value)">
+    <select id="pinoy-genre-filter">
       <option value="">All Genres</option>
       <option value="28">Action</option>
       <option value="35">Comedy</option>
