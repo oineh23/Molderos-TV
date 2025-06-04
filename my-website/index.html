@@ -78,7 +78,7 @@
   <header class="nav-wrapper">
     <div class="container nav">
         <a href="#" class="logo">
-  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 1.8rem;"></i>
+  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
   MOLD<span class="main-color">EROS</span>-TV
         </a>
       <input type="checkbox" id="menu-toggle" />
@@ -110,37 +110,23 @@
   </section>
 
   <!-- Genre Filter -->
-<section class="genre-filter">
-  <div class="container">
-    <label for="genre-select">🎯 Filter by Genre:</label>
-    <select id="genre-select" onchange="filterByGenre(this.value)">
-      <option value="">All</option>
-      <option value="28">Action</option>
-      <option value="35">Comedy</option>
-      <option value="18">Drama</option>
-      <option value="27">Horror</option>
-      <option value="16">Animation</option>
-      <option value="10749">Romance</option>
-      <option value="878">Science Fiction</option>
-      <option value="10751">Family</option>
-      <option value="99">Documentary</option>
-      <option value="">All Genres</option>
-      <option value="28">Action</option>
-      <option value="35">Comedy</option>
-      <option value="18">Drama</option>
-      <option value="10749">Romance</option>
-      <option value="80">Crime</option>
+  <section class="genre-filter">
+    <div class="container">
+      <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="27">Horror</option>
+        <option value="16">Animation</option>
+        <option value="10749">Romance</option>
+        <option value="878">Science Fiction</option>
+        <option value="10751">Family</option>
+        <option value="99">Documentary</option>
       </select>
     </div>
-
-    <div class="vivamax-grid" id="pinoy-movie-list"></div>
-
-    <div class="load-more-container">
-      <button id="load-more-pinoy">Load More</button>
-    </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- Main Content -->
   <main>
@@ -158,6 +144,27 @@
       <h2>🌸 Trending Anime</h2>
       <div class="card-container" id="anime-list"></div>
     </section>
+
+    <section class="section" id="pinoy-movies">
+  <h2 class="section-title">🇵🇭 Pinoy Movies</h2>
+
+  <div class="pinoy-controls">
+    <select id="pinoy-genre-filter">
+      <option value="">All Genres</option>
+      <option value="28">Action</option>
+      <option value="35">Comedy</option>
+      <option value="18">Drama</option>
+      <option value="10749">Romance</option>
+      <option value="80">Crime</option>
+    </select>
+  </div>
+
+  <div class="vivamax-grid" id="pinoy-movie-list"></div>
+
+  <div class="load-more-container">
+    <button id="load-more-pinoy">Load More</button>
+  </div>
+</section>
   </main>
 
   <!-- Loading Spinner -->
