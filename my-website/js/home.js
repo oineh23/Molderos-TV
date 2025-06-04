@@ -307,3 +307,9 @@ init().then(() => {
   fetchPinoyMoviesPaginated();
   setupPinoyControls();
 });
+
+function scrollPinoyMovies(direction) {
+  const slider = document.getElementById('pinoy-movie-list');
+  const scrollAmount = slider.offsetWidth * 0.8;
+  slider.scrollLeft += direction * scrollAmount;
+}
