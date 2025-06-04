@@ -745,35 +745,6 @@ body.light-mode .footer-links a:hover {
   text-align: center;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .vivamax-section h2 {
-    font-size: 1.5rem;
-  }
-
-  .vivamax-card .title {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .vivamax-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on phones */
-  }
-
-  .vivamax-section {
-    padding: 1rem;
-  }
-
-  .vivamax-section h2 {
-    font-size: 1.3rem;
-  }
-
-  .vivamax-card .title {
-    font-size: 0.85rem;
-  }
-}
-
 /* === Responsive Fixes for "Ph Pinoy Movies" Section === */
 
 /* Tablet view (768px and below) */
