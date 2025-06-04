@@ -718,7 +718,7 @@ body.light-mode .footer-links a:hover {
 .vivamax-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .vivamax-card {
