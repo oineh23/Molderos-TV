@@ -307,3 +307,72 @@ init().then(() => {
   fetchPinoyMoviesPaginated();
   setupPinoyControls();
 });
+
+// ====== PINOY MOVIES: TABS + GENRE + PAGINATION ======
+
+let pinoyPage = 1;
+let pinoyGenre = '';
+let pinoyType = 'now_playing';
+
+async function fetchPinoyContent(reset = false) {
+  let url = '';
+  if (pinoyType === 'trending') {
+    url = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&page=${pinoyPage}`;
+  } else {
+    url = `${BASE_URL}/movie/${pinoyType}?api_key=${API_KEY}&page=${pinoyPage}`;
+  }
+
+  // Fetch and filter only Pinoy (PH origin or Tagalog)
+  const all = await fetchData(url);
+  const filtered = all.filter(
+    m => (m.original_language === 'tl' || m.origin_country?.includes('PH')) &&
+         (!pinoyGenre || m.genre_ids.includes(Number(pinoyGenre)))
+  );
+
+  const container = document.getElementById('pinoy-movie-list');
+  if (reset) {
+    container.innerHTML = '';
+    pinoyPage = 1;
+  }
+
+  filtered.forEach(movie => {
+    if (!movie.poster_path) return;
+    movie.media_type = 'movie';
+    container.appendChild(createCard(movie));
+  });
+}
+
+function setupPinoyAdvancedControls() {
+  const genreSelect = document.getElementById('pinoy-genre-filter');
+  const loadMoreBtn = document.getElementById('load-more-pinoy');
+  const tabButtons = document.querySelectorAll('.tab-button');
+
+  genreSelect.addEventListener('change', () => {
+    pinoyGenre = genreSelect.value;
+    pinoyPage = 1;
+    fetchPinoyContent(true);
+  });
+
+  loadMoreBtn.addEventListener('click', () => {
+    pinoyPage++;
+    fetchPinoyContent();
+  });
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      pinoyType = btn.getAttribute('data-type');
+      pinoyPage = 1;
+      fetchPinoyContent(true);
+    });
+  });
+}
+
+// Call after main init
+init().then(() => {
+  fetchPinoyContent(true);
+  setupPinoyAdvancedControls();
+});
+
