@@ -74,6 +74,71 @@
   margin: 4px 0 0;
 }
 
+/* Section Title */
+.section-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  padding: 0 1rem;
+}
+
+/* Movie Grid Container */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+/* Movie Card */
+.movie-card {
+  background-color: #1c1c1c;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.movie-card .movie-title {
+  font-size: 1rem;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+/* Hover Effect */
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+/* Media Queries for Responsive Design */
+
+/* Tablets (768px to 1024px) */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+  .movie-title {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .movie-title {
+    font-size: 0.9rem;
+  }
+}
 
 /* Fade-in animation */
 @keyframes fadeIn {
@@ -765,62 +830,3 @@ body.light-mode .footer-links a:hover {
   color: #fff;
   padding: 0 1rem;
 }
-
-/* Movie Grid Container */
-.movie-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
-  padding: 0 1rem;
-}
-
-/* Movie Card */
-.movie-card {
-  background-color: #1c1c1c;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.movie-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.movie-card .movie-title {
-  font-size: 1rem;
-  color: #fff;
-  text-align: center;
-  padding: 0.5rem;
-}
-
-/* Hover Effect */
-.movie-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
-}
-
-/* Media Queries for Responsive Design */
-
-/* Tablets (768px to 1024px) */
-@media (max-width: 1024px) and (min-width: 768px) {
-  .movie-grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  }
-  .movie-title {
-    font-size: 0.95rem;
-  }
-}
-
-/* Mobile (up to 767px) */
-@media (max-width: 767px) {
-  .movie-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .movie-title {
-    font-size: 0.9rem;
-  }
-}
-
