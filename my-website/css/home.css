@@ -702,59 +702,74 @@ body.light-mode .footer-links a:hover {
   color: #e50914;
 }
 
-/* === Vivamax-Style Pinoy Movies Section === */
+/* Base styling for the Vivamax section */
+.vivamax-section {
+  padding: 2rem;
+  background-color: #111;
+  color: #fff;
+}
+
+.vivamax-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 .vivamax-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 2rem;
-  padding: 1rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
 }
 
 .vivamax-card {
-  position: relative;
-  border-radius: 10px;
+  background-color: #1c1c1c;
+  border-radius: 8px;
   overflow: hidden;
-  cursor: pointer;
   transition: transform 0.3s ease;
-}
-
-.vivamax-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-  object-fit: cover;
 }
 
 .vivamax-card:hover {
   transform: scale(1.05);
 }
 
-.vivamax-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
-  color: #ffffff;
-  padding: 0.5rem;
-  font-size: 0.85rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.vivamax-card:hover .vivamax-info {
-  opacity: 1;
-}
-
-.vivamax-info h4 {
-  margin: 0;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.vivamax-info span {
+.vivamax-card img {
+  width: 100%;
+  height: auto;
   display: block;
-  font-size: 0.75rem;
-  color: #ccc;
+  border-bottom: 2px solid #333;
+}
+
+.vivamax-card .title {
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .vivamax-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .vivamax-card .title {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vivamax-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on phones */
+  }
+
+  .vivamax-section {
+    padding: 1rem;
+  }
+
+  .vivamax-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .vivamax-card .title {
+    font-size: 0.85rem;
+  }
 }
