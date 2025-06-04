@@ -701,3 +701,60 @@ body.light-mode .footer {
 body.light-mode .footer-links a:hover {
   color: #e50914;
 }
+
+/* === Vivamax-Style Pinoy Movies Section === */
+.vivamax-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.vivamax-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.vivamax-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.vivamax-card:hover {
+  transform: scale(1.05);
+}
+
+.vivamax-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
+  color: #ffffff;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.vivamax-card:hover .vivamax-info {
+  opacity: 1;
+}
+
+.vivamax-info h4 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.vivamax-info span {
+  display: block;
+  font-size: 0.75rem;
+  color: #ccc;
+}
