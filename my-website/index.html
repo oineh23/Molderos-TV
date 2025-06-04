@@ -149,7 +149,8 @@
   <h2 class="section-title">🇵🇭 Pinoy Movies</h2>
 
   <div class="pinoy-controls">
-    <select id="pinoy-genre-filter">
+   <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
       <option value="">All Genres</option>
       <option value="28">Action</option>
       <option value="35">Comedy</option>
