@@ -758,3 +758,56 @@ body.light-mode .footer-links a:hover {
   font-size: 0.75rem;
   color: #ccc;
 }
+
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.vivamax-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.vivamax-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.vivamax-slider .movie-card {
+  min-width: 160px;
+  height: 240px;
+  background: #1e1e1e;
+  border-radius: 10px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 2rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.slider-btn.left {
+  left: 0;
+}
+
+.slider-btn.right {
+  right: 0;
+}
+
