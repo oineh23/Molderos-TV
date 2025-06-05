@@ -124,7 +124,7 @@
   text-align: center;
 }
 
-/* === Global Reset === */
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -137,6 +137,9 @@ body {
   color: #fff;
   line-height: 1.5;
   scroll-behavior: smooth;
+}
+
+body {
   background-image: url('../images/Elden Ring Game Wallpaper.jpg');
   background-size: cover;
   background-position: center;
@@ -154,12 +157,14 @@ img {
   display: block;
 }
 
-button, input, select {
+button,
+input,
+select {
   font-family: inherit;
   outline: none;
 }
 
-/* === Navbar === */
+/* Navbar */
 .nav-wrapper {
   background-color: #141414;
   padding: 1rem 2rem;
@@ -173,12 +178,16 @@ button, input, select {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  
+  body.light-mode .logo {
+  color: #111;
+}
+
   display: flex;
   align-items: center;
   gap: 0.3rem;
@@ -190,7 +199,7 @@ button, input, select {
 
 .nav-links {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 1.5rem;
 }
 
@@ -223,7 +232,82 @@ button, input, select {
   color: #aaa;
 }
 
-/* === Hero Section === */
+/* Make nav responsive */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+#menu-toggle {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #menu-toggle:checked + .menu-icon + .nav-links {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .hero-section h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-section p.subtitle {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .modal-content {
+    flex-direction: column;
+  }
+
+  .modal-body {
+    flex-direction: column;
+  }
+
+  .modal img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Hero Section */
 .hero-section {
   position: relative;
   height: 45vh;
@@ -266,12 +350,18 @@ button, input, select {
   background-color: #f40612;
 }
 
-/* === Genre Filter === */
+/* Genre Filter */
 .genre-filter {
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
   gap: 1rem;
+  
+  body.light-mode .genre-filter {
+  background-color: #eee;
+  color: #111;
+}
+
 }
 
 .genre-filter select {
@@ -282,20 +372,27 @@ button, input, select {
   color: #fff;
 }
 
-/* === Card Container === */
+/* Main Content */
+main {
+  padding: 2rem;
+}
+
+.row h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Card Grid */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-  justify-content: center;
+  gap: 1rem;
 }
 
 .card {
-  background-color: #1e1e1e;
-  border-radius: 12px;
+  background-color: #222;
+  border-radius: 10px;
   overflow: hidden;
-  position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
@@ -303,69 +400,22 @@ button, input, select {
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-  z-index: 2;
 }
 
 .card img {
   width: 100%;
   height: 240px;
   object-fit: cover;
-  border-bottom: 2px solid #333;
 }
 
-.card-info {
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
-.card-info h3 {
-  font-size: 16px;
-}
-
-.card-info p {
-  font-size: 14px;
-  margin-top: 4px;
-}
-
-.genre-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background-color: #e50914;
-  color: white;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-}
-
-.watch-button {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #e50914;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  cursor: pointer;
-}
-
-.card:hover .watch-button {
-  opacity: 1;
-}
-
-/* === Modal === */
+/* Modal */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.85);
+  background-color: rgba(0, 0, 0, 0.85);
   display: none;
   align-items: center;
   justify-content: center;
@@ -376,14 +426,15 @@ button, input, select {
   background-color: #181818;
   padding: 2rem;
   border-radius: 10px;
-  max-width: 800px;
   width: 90%;
+  max-width: 800px;
   position: relative;
 }
 
 .modal-body {
   display: flex;
   gap: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .modal-body img {
@@ -408,14 +459,29 @@ button, input, select {
   color: #fff;
 }
 
-/* === Search Modal === */
+.stars {
+  margin-bottom: 0.5rem;
+}
+
+/* Spinner */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+  font-size: 1.2rem;
+  color: #e50914;
+}
+
+/* Search Modal */
 .search-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(20, 20, 20, 0.95);
+  background-color: rgba(20, 20, 20, 0.95);
   display: none;
   flex-direction: column;
   padding: 2rem;
@@ -445,7 +511,63 @@ button, input, select {
   margin-bottom: 1rem;
 }
 
-/* === Footer === */
+/* Search Modal Background Overlay */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.search-modal-box {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Close Button */
+.search-modal-box .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Search Input */
+#search-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Search Results Container */
+#search-results {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Show Modal (controlled by JS) */
+.search-modal.active {
+  display: flex;
+}
+
+/* Footer */
 .footer {
   background-color: #141414;
   padding: 1.5rem 2rem;
@@ -465,70 +587,20 @@ button, input, select {
   text-decoration: underline;
 }
 
-/* === Light Mode === */
-body.light-mode {
-  background-color: #f5f5f5;
-  color: #111;
-}
-
-body.light-mode .card,
-body.light-mode .modal-content,
-body.light-mode .search-modal {
-  background-color: #fff;
-  color: #000;
-}
-
-body.light-mode .card-info h3,
-body.light-mode .card-info p,
-body.light-mode .modal-text h2,
-body.light-mode .modal-text p {
-  color: #000;
-}
-
-body.light-mode .nav-wrapper,
-body.light-mode .genre-filter {
-  background-color: #eee;
-}
-
-body.light-mode .nav-links a {
-  color: #111;
-}
-
-body.light-mode .search-bar {
-  background-color: #ddd;
-  color: #111;
-}
-
-/* === Responsive === */
+/* Responsive Design */
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .menu-icon {
-    display: block;
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
-
-  #menu-toggle:checked + .menu-icon + .nav-links {
-    display: flex;
-  }
-
-  .hero-overlay h1 {
-    font-size: 1.6rem;
-  }
-
-  .cta-button {
-    font-size: 1rem;
-    padding: 10px 20px;
-  }
-
   .modal-body {
     flex-direction: column;
     align-items: center;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .search-bar {
+    width: 100px;
   }
 }
 
@@ -537,16 +609,16 @@ body.light-mode .search-bar {
     font-size: 1.5rem;
   }
 
+  .cta-button {
+    font-size: 0.9rem;
+  }
+
   .card-container {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 
   .logo {
     font-size: 1.2rem;
-  }
-
-  .cta-button {
-    font-size: 0.9rem;
   }
 }
 
