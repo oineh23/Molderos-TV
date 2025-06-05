@@ -371,6 +371,18 @@ select {
   color: #fff;
 }
 
+/* Default light mode */
+.genre-filter {
+  background-color: #f0f0f0; /* light gray background for default */
+  color: #000;
+}
+
+/* When dark mode is ON */
+body.dark-mode .genre-filter {
+  background-color: #ffffff; /* light background for genre-filter in dark mode */
+  color: #000000; /* optional: make text dark for contrast */
+}
+
 /* Main Content */
 main {
   padding: 2rem;
