@@ -309,7 +309,7 @@ select {
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 45vh;
+  height: 60vh;
   background: url('../images/hero-bg.jpg') no-repeat center center/cover;
   display: flex;
   align-items: center;
