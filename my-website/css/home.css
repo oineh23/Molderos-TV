@@ -704,10 +704,10 @@ body.light-mode .footer-links a:hover {
 
 /* === Vivamax-Style Pinoy Movies Section === */
 .vivamax-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1.7rem;
-  padding: 0rem 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
 .vivamax-card {
