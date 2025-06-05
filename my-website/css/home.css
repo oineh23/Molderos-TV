@@ -703,77 +703,58 @@ body.light-mode .footer-links a:hover {
 }
 
 /* === Vivamax-Style Pinoy Movies Section === */
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
+.vivamax-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
-.card {
+.vivamax-card {
   position: relative;
-  width: 200px;
-  background-color: #121212;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  z-index: 2;
-}
-
-.card img {
+.vivamax-card img {
   width: 100%;
   height: auto;
   display: block;
-  border-bottom: 1px solid #333;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-.genre-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background-color: #e50914;
-  color: #fff;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-  z-index: 2;
+.vivamax-card:hover {
+  transform: scale(1.05);
 }
 
-.watch-button {
+.vivamax-info {
   position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #e50914;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
+  color: #ffffff;
+  padding: 0.5rem;
+  font-size: 0.85rem;
   opacity: 0;
   transition: opacity 0.3s ease;
-  cursor: pointer;
 }
 
-.card:hover .watch-button {
+.vivamax-card:hover .vivamax-info {
   opacity: 1;
 }
 
-.card-info {
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
-.card-info h3 {
-  font-size: 16px;
+.vivamax-info h4 {
   margin: 0;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
-.card-info p {
-  font-size: 14px;
-  margin: 4px 0 0;
+.vivamax-info span {
+  display: block;
+  font-size: 0.75rem;
+  color: #ccc;
 }
