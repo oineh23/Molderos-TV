@@ -722,7 +722,7 @@ body.light-mode .footer-links a:hover {
   width: 75%;
   height: auto;
   display: block;
-  border-radius: 30px;
+  border-radius: 75px;
   object-fit: cover;
 }
 
