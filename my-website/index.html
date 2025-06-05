@@ -116,39 +116,23 @@
   </section>
 
   <!-- Genre Filter -->
-  <section class="row" id="movies-list-section">
-  <div class="section-header">
-    <h2>🎬 Trending Movies</h2>
-    <div class="genre-filter">
-      <label for="genre-select">🎯 Genre:</label>
-      <select id="genre-select">
+  <section class="genre-filter">
+    <div class="container">
+      <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
         <option value="">All</option>
-        <optgroup label="Popular Genres">
-          <option value="28">Action</option>
-          <option value="35">Comedy</option>
-          <option value="18">Drama</option>
-          <option value="10749">Romance</option>
-          <option value="80">Crime</option>
-          <option value="27">Horror</option>
-          <option value="10751">Family</option>
-          <option value="16">Animation</option>
-        </optgroup>
-        <optgroup label="Other Genres">
-          <option value="99">Documentary</option>
-          <option value="10402">Music</option>
-          <option value="9648">Mystery</option>
-          <option value="878">Science Fiction</option>
-          <option value="10752">War</option>
-          <option value="37">Western</option>
-          <option value="36">History</option>
-          <option value="14">Fantasy</option>
-          <option value="53">Thriller</option>
-        </optgroup>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="27">Horror</option>
+        <option value="16">Animation</option>
+        <option value="10749">Romance</option>
+        <option value="878">Science Fiction</option>
+        <option value="10751">Family</option>
+        <option value="99">Documentary</option>
       </select>
     </div>
-  </div>
-  <div class="card-container" id="movies-list"></div>
-</section>
+  </section>
 
   <!-- Main Content -->
   <main>
