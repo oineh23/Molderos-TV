@@ -704,7 +704,7 @@ body.light-mode .footer-links a:hover {
 
 /* === Vivamax-Style Pinoy Movies Section === */
 .vivamax-grid {
-  display: flex;
+  display: grid;
   flex-wrap: wrap;
   gap: 1.5rem;
   justify-content: center;
