@@ -123,7 +123,7 @@
   text-align: center;
 }
 
-/* === Reset and Global Styles === */
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -136,6 +136,9 @@ body {
   color: #fff;
   line-height: 1.5;
   scroll-behavior: smooth;
+}
+
+body {
   background-image: url('../images/Elden Ring Game Wallpaper.jpg');
   background-size: cover;
   background-position: center;
@@ -160,7 +163,7 @@ select {
   outline: none;
 }
 
-/* === Navbar === */
+/* Navbar */
 .nav-wrapper {
   background-color: #141414;
   padding: 1rem 2rem;
@@ -174,12 +177,16 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  
+  body.light-mode .logo {
+  color: #111;
+}
+
   display: flex;
   align-items: center;
   gap: 0.3rem;
@@ -193,7 +200,6 @@ select {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -225,7 +231,82 @@ select {
   color: #aaa;
 }
 
-/* === Hero Section === */
+/* Make nav responsive */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+#menu-toggle {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #menu-toggle:checked + .menu-icon + .nav-links {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .hero-section h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-section p.subtitle {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .modal-content {
+    flex-direction: column;
+  }
+
+  .modal-body {
+    flex-direction: column;
+  }
+
+  .modal img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Hero Section */
 .hero-section {
   position: relative;
   height: 60vh;
@@ -268,19 +349,48 @@ select {
   background-color: #f40612;
 }
 
-/* === Card Grid === */
+/* Genre Filter */
+.genre-filter {
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  body.light-mode .genre-filter {
+  background-color: #eee;
+  color: #111;
+}
+
+}
+
+.genre-filter select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #222;
+  color: #fff;
+}
+
+/* Main Content */
+main {
+  padding: 2rem;
+}
+
+.row h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Card Grid */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1rem;
-  justify-content: center;
-  padding: 20px;
 }
 
 .card {
-  position: relative;
   background-color: #222;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
@@ -289,64 +399,15 @@ select {
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-  z-index: 2;
 }
 
 .card img {
   width: 100%;
   height: 240px;
   object-fit: cover;
-  border-bottom: 2px solid #333;
 }
 
-.genre-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background-color: #e50914;
-  color: #fff;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-  z-index: 2;
-}
-
-.watch-button {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #e50914;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  cursor: pointer;
-}
-
-.card:hover .watch-button {
-  opacity: 1;
-}
-
-.card-info {
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
-.card-info h3 {
-  font-size: 16px;
-  margin: 0;
-}
-
-.card-info p {
-  font-size: 14px;
-  margin: 4px 0 0;
-}
-
-/* === Modal === */
+/* Modal */
 .modal {
   position: fixed;
   top: 0;
@@ -372,7 +433,7 @@ select {
 .modal-body {
   display: flex;
   gap: 1.5rem;
-  flex-wrap: wrap;
+  margin-bottom: 1rem;
 }
 
 .modal-body img {
@@ -401,53 +462,233 @@ select {
   margin-bottom: 0.5rem;
 }
 
-/* === Responsive === */
+/* Spinner */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+  font-size: 1.2rem;
+  color: #e50914;
+}
+
+/* Search Modal */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, 0.95);
+  display: none;
+  flex-direction: column;
+  padding: 2rem;
+  z-index: 1500;
+}
+
+.search-modal input {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background-color: #222;
+  color: #fff;
+}
+
+.search-modal .results {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.search-modal .close {
+  font-size: 2rem;
+  align-self: flex-end;
+  cursor: pointer;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* Search Modal Background Overlay */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.search-modal-box {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Close Button */
+.search-modal-box .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Search Input */
+#search-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Search Results Container */
+#search-results {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Show Modal (controlled by JS) */
+.search-modal.active {
+  display: flex;
+}
+
+/* Footer */
+.footer {
+  background-color: #141414;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  color: #aaa;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .hero-section h1 { font-size: 1.6rem; }
-  .cta-button { font-size: 1rem; padding: 10px 20px; }
-  .modal-body { flex-direction: column; align-items: center; }
-  .search-bar { width: 100px; }
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .search-bar {
+    width: 100px;
+  }
 }
 
 @media (max-width: 480px) {
-  .hero-overlay h1 { font-size: 1.5rem; }
-  .cta-button { font-size: 0.9rem; }
-  .card-container { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
-  .logo { font-size: 1.2rem; }
+  .hero-overlay h1 {
+    font-size: 1.5rem;
+  }
+
+  .cta-button {
+    font-size: 0.9rem;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
 }
 
-/* === Light Mode === */
+/* === Light Mode Styles === */
 body.light-mode {
   background-color: #f5f5f5;
   color: #111;
 }
 
 body.light-mode .card,
-body.light-mode .card-container .card,
-body.light-mode .modal-content {
+body.light-mode .card-container .card {
   background-color: #fff;
   color: #000;
 }
 
+body.light-mode .card-info,
 body.light-mode .card-info h3,
 body.light-mode .card-info p {
   color: #000;
 }
 
-body.light-mode .nav-wrapper { background-color: #fff; }
-body.light-mode .logo { color: #111; }
-body.light-mode .nav-links a { color: #111; }
-body.light-mode .nav-links a:hover { color: #e50914; }
+body.light-mode .nav-wrapper {
+  background-color: #fff;
+}
+
+body.light-mode .logo {
+  color: #111;
+}
+
+body.light-mode .nav-links a {
+  color: #111;
+}
+
+body.light-mode .nav-links a:hover {
+  color: #e50914;
+}
+
 body.light-mode .search-bar {
   background-color: #ddd;
   color: #111;
 }
-body.light-mode .search-bar::placeholder { color: #555; }
+
+body.light-mode .search-bar::placeholder {
+  color: #555;
+}
 
 body.light-mode .genre-filter {
   background-color: #eee;
 }
+
 body.light-mode .genre-filter select {
+  background-color: #fff;
+  color: #000;
+}
+
+body.light-mode .modal-content {
+  background-color: #fff;
+  color: #111;
+}
+
+body.light-mode .modal-text h2,
+body.light-mode .modal-text p {
+  color: #000;
+}
+
+body.light-mode .search-modal {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #000;
+}
+
+body.light-mode .search-modal input {
   background-color: #fff;
   color: #000;
 }
