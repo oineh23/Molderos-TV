@@ -354,7 +354,7 @@ select {
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
   
   body.light-mode .genre-filter {
   background-color: #eee;
