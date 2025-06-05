@@ -707,7 +707,7 @@ body.light-mode .footer-links a:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1.7rem;
-  padding: 1rem 0;
+  padding: 1rem 8;
 }
 
 .vivamax-card {
@@ -719,10 +719,10 @@ body.light-mode .footer-links a:hover {
 }
 
 .vivamax-card img {
-  width: 75%;
+  width: 100%;
   height: auto;
   display: block;
-  border-radius: 75px;
+  border-radius: 10px;
   object-fit: cover;
 }
 
