@@ -28,6 +28,33 @@
   /*]]>/* */
   </script>
 
+  <script>
+  function changeServer() {
+    const server = document.getElementById('server').value;
+    const videoId = document.getElementById('modal').getAttribute('data-video-id'); // e.g., IMDb ID like tt1234567
+    const iframe = document.getElementById('modal-video');
+
+    // Define URL patterns for each server
+    const serverUrls = {
+      "vidlink.pro": `https://vidlink.pro/embed/${videoId}`,
+      "vidsrc.dev": `https://vidsrc.dev/embed/${videoId}`,
+      "111movies.com": `https://111movies.com/embed/${videoId}`,
+      "vidjoy.pro": `https://vidjoy.pro/embed/${videoId}`,
+      "vidsrc.io": `https://vidsrc.io/embed/${videoId}`,
+      "vidsrc.cc": `https://vidsrc.cc/embed/${videoId}`,
+      "vidsrc.xyz": `https://vidsrc.xyz/embed/${videoId}`,
+      "www.2embed.cc": `https://www.2embed.cc/embed/${videoId}`,
+      "moviesapi.club": `https://moviesapi.club/embed/${videoId}`
+    };
+
+    if (serverUrls[server]) {
+      iframe.src = serverUrls[server];
+    } else {
+      iframe.src = ''; // Fallback if server key is missing
+    }
+  }
+</script>
+
   <style>
   :root {
     --bg-color: #ffffff;
