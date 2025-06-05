@@ -107,13 +107,16 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero-section" id="banner">
-    <div class="hero-overlay">
-      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
-      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
-    </div>
-  </section>
+  <section class="hero-section" id="banner" style="position: relative; height: 100vh; overflow: hidden;">
+  <video autoplay muted loop playsinline style="position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+    <source src="media/hero-background.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center; background: rgba(0, 0, 0, 0.5);">
+    <h1 style="font-size: 3rem; color: white; animation: fadeIn 1.5s;">Welcome to <span style="color: red;">MOLDEROS-TV</span></h1>
+    <p class="subtitle" style="color: #ccc;">Your daily dose of trending Movies, TV & Anime</p>
+    <button onclick="scrollToTrending()" class="cta-button" style="padding: 12px 24px; font-size: 1rem; margin-top: 20px;">🎬 Start Watching</button>
+  </div>
+</section>
 
   <!-- Genre Filter -->
   <section class="genre-filter">
