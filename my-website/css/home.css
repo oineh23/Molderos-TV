@@ -758,3 +758,31 @@ body.light-mode .footer-links a:hover {
   font-size: 0.75rem;
   color: #ccc;
 }
+
+/* ==== Vivamax Logo Styling ==== */
+.vivamax-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.vivamax-logo {
+  height: 60px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.vivamax-logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.vivamax-title {
+  font-size: 1.8rem;
+  margin: 0;
+  color: var(--text-color);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
