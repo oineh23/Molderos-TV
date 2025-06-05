@@ -123,7 +123,7 @@
   text-align: center;
 }
 
-/* --- Global Styles --- */
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -136,7 +136,14 @@ body {
   color: #fff;
   line-height: 1.5;
   scroll-behavior: smooth;
-  background: url('../images/Elden Ring Game Wallpaper.jpg') no-repeat center center / cover fixed;
+}
+
+body {
+  background-image: url('../images/Elden Ring Game Wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 a {
@@ -149,12 +156,14 @@ img {
   display: block;
 }
 
-button, input, select {
+button,
+input,
+select {
   font-family: inherit;
   outline: none;
 }
 
-/* --- Navbar --- */
+/* Navbar */
 .nav-wrapper {
   background-color: #141414;
   padding: 1rem 2rem;
@@ -168,12 +177,16 @@ button, input, select {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  
+  body.light-mode .logo {
+  color: #111;
+}
+
   display: flex;
   align-items: center;
   gap: 0.3rem;
@@ -187,7 +200,6 @@ button, input, select {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -219,21 +231,86 @@ button, input, select {
   color: #aaa;
 }
 
+/* Make nav responsive */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 .menu-icon {
   display: none;
   font-size: 1.8rem;
   cursor: pointer;
 }
-
 #menu-toggle {
   display: none;
 }
 
-/* --- Hero Section --- */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #menu-toggle:checked + .menu-icon + .nav-links {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .hero-section h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-section p.subtitle {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .modal-content {
+    flex-direction: column;
+  }
+
+  .modal-body {
+    flex-direction: column;
+  }
+
+  .modal img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Hero Section */
 .hero-section {
   position: relative;
   height: 60vh;
-  background: url('../images/hero-bg.jpg') no-repeat center center / cover;
+  background: url('../images/hero-bg.jpg') no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -272,12 +349,18 @@ button, input, select {
   background-color: #f40612;
 }
 
-/* --- Genre Filter --- */
+/* Genre Filter */
 .genre-filter {
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
   gap: 1rem;
+  
+  body.light-mode .genre-filter {
+  background-color: #eee;
+  color: #111;
+}
+
 }
 
 .genre-filter select {
@@ -288,95 +371,53 @@ button, input, select {
   color: #fff;
 }
 
-/* --- Card Grid --- */
+/* Main Content */
+main {
+  padding: 2rem;
+}
+
+.row h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Card Grid */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1rem;
-  padding: 20px;
-  justify-content: center;
 }
 
 .card {
-  position: relative;
-  width: 100%;
   background-color: #222;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
 }
 
 .card img {
   width: 100%;
   height: 240px;
   object-fit: cover;
-  border-bottom: 1px solid #333;
 }
 
-.card-info {
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
-.card-info h3 {
-  font-size: 16px;
-  margin: 0;
-}
-
-.card-info p {
-  font-size: 14px;
-  margin: 4px 0 0;
-}
-
-.genre-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background-color: #e50914;
-  color: #fff;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-  z-index: 2;
-}
-
-.watch-button {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #e50914;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  cursor: pointer;
-}
-
-.card:hover .watch-button {
-  opacity: 1;
-}
-
-/* --- Modal --- */
-.modal, .search-modal {
+/* Modal */
+.modal {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.85);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
   display: none;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 2000;
 }
 
@@ -392,7 +433,7 @@ button, input, select {
 .modal-body {
   display: flex;
   gap: 1.5rem;
-  flex-direction: row;
+  margin-bottom: 1rem;
 }
 
 .modal-body img {
@@ -417,7 +458,11 @@ button, input, select {
   color: #fff;
 }
 
-/* --- Spinner --- */
+.stars {
+  margin-bottom: 0.5rem;
+}
+
+/* Spinner */
 .loading-spinner {
   display: flex;
   align-items: center;
@@ -428,7 +473,100 @@ button, input, select {
   color: #e50914;
 }
 
-/* --- Footer --- */
+/* Search Modal */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, 0.95);
+  display: none;
+  flex-direction: column;
+  padding: 2rem;
+  z-index: 1500;
+}
+
+.search-modal input {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background-color: #222;
+  color: #fff;
+}
+
+.search-modal .results {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.search-modal .close {
+  font-size: 2rem;
+  align-self: flex-end;
+  cursor: pointer;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* Search Modal Background Overlay */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.search-modal-box {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Close Button */
+.search-modal-box .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Search Input */
+#search-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Search Results Container */
+#search-results {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Show Modal (controlled by JS) */
+.search-modal.active {
+  display: flex;
+}
+
+/* Footer */
 .footer {
   background-color: #141414;
   padding: 1.5rem 2rem;
@@ -448,39 +586,72 @@ button, input, select {
   text-decoration: underline;
 }
 
-/* --- Light Mode --- */
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .search-bar {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-overlay h1 {
+    font-size: 1.5rem;
+  }
+
+  .cta-button {
+    font-size: 0.9rem;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+}
+
+/* === Light Mode Styles === */
 body.light-mode {
   background-color: #f5f5f5;
   color: #111;
 }
 
 body.light-mode .card,
-body.light-mode .card-container .card,
-body.light-mode .modal-content,
-body.light-mode .search-modal input {
+body.light-mode .card-container .card {
   background-color: #fff;
   color: #000;
 }
 
+body.light-mode .card-info,
 body.light-mode .card-info h3,
-body.light-mode .card-info p,
-body.light-mode .modal-text h2,
-body.light-mode .modal-text p {
+body.light-mode .card-info p {
   color: #000;
 }
 
-body.light-mode .nav-wrapper,
-body.light-mode .footer {
+body.light-mode .nav-wrapper {
   background-color: #fff;
-  color: #555;
+}
+
+body.light-mode .logo {
+  color: #111;
 }
 
 body.light-mode .nav-links a {
   color: #111;
 }
 
-body.light-mode .nav-links a:hover,
-body.light-mode .footer-links a:hover {
+body.light-mode .nav-links a:hover {
   color: #e50914;
 }
 
@@ -502,22 +673,46 @@ body.light-mode .genre-filter select {
   color: #000;
 }
 
-body.light-mode .search-modal {
-  background-color: rgba(255,255,255,0.95);
+body.light-mode .modal-content {
+  background-color: #fff;
+  color: #111;
+}
+
+body.light-mode .modal-text h2,
+body.light-mode .modal-text p {
   color: #000;
 }
 
-/* --- Vivamax Pinoy Movies --- */
+body.light-mode .search-modal {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #000;
+}
+
+body.light-mode .search-modal input {
+  background-color: #fff;
+  color: #000;
+}
+
+body.light-mode .footer {
+  background-color: #f1f1f1;
+  color: #555;
+}
+
+body.light-mode .footer-links a:hover {
+  color: #e50914;
+}
+
+/* === Vivamax-Style Pinoy Movies Section === */
 .vivamax-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
 .vivamax-card {
   position: relative;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -537,9 +732,11 @@ body.light-mode .search-modal {
 
 .vivamax-info {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
-  color: #fff;
+  color: #ffffff;
   padding: 0.5rem;
   font-size: 0.85rem;
   opacity: 0;
@@ -556,60 +753,8 @@ body.light-mode .search-modal {
   font-size: 0.9rem;
 }
 
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .hero-section h1 {
-    font-size: 1.6rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .cta-button {
-    font-size: 1rem;
-    padding: 10px 20px;
-  }
-
-  .modal-body {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .menu-icon {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    width: 100%;
-    margin-top: 1rem;
-  }
-
-  #menu-toggle:checked + .menu-icon + .nav-links {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .search-bar {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-overlay h1 {
-    font-size: 1.5rem;
-  }
-
-  .cta-button {
-    font-size: 0.9rem;
-  }
-
-  .logo {
-    font-size: 1.2rem;
-  }
-
-  .card-container {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  }
+.vivamax-info span {
+  display: block;
+  font-size: 0.75rem;
+  color: #ccc;
 }
