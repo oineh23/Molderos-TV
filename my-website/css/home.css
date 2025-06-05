@@ -123,7 +123,7 @@
   text-align: center;
 }
 
-/* === Global Styles === */
+/* --- Global Styles --- */
 * {
   margin: 0;
   padding: 0;
@@ -136,11 +136,7 @@ body {
   color: #fff;
   line-height: 1.5;
   scroll-behavior: smooth;
-  background-image: url('../images/Elden Ring Game Wallpaper.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: url('../images/Elden Ring Game Wallpaper.jpg') no-repeat center center / cover fixed;
 }
 
 a {
@@ -158,7 +154,7 @@ button, input, select {
   outline: none;
 }
 
-/* === Navbar === */
+/* --- Navbar --- */
 .nav-wrapper {
   background-color: #141414;
   padding: 1rem 2rem;
@@ -233,11 +229,11 @@ button, input, select {
   display: none;
 }
 
-/* === Hero Section === */
+/* --- Hero Section --- */
 .hero-section {
   position: relative;
   height: 60vh;
-  background: url('../images/hero-bg.jpg') no-repeat center center/cover;
+  background: url('../images/hero-bg.jpg') no-repeat center center / cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,7 +272,7 @@ button, input, select {
   background-color: #f40612;
 }
 
-/* === Genre Filter === */
+/* --- Genre Filter --- */
 .genre-filter {
   padding: 1rem 2rem;
   display: flex;
@@ -292,7 +288,7 @@ button, input, select {
   color: #fff;
 }
 
-/* === Card Grid === */
+/* --- Card Grid --- */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -303,11 +299,13 @@ button, input, select {
 
 .card {
   position: relative;
+  width: 100%;
   background-color: #222;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 .card:hover {
@@ -321,6 +319,22 @@ button, input, select {
   height: 240px;
   object-fit: cover;
   border-bottom: 1px solid #333;
+}
+
+.card-info {
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+.card-info h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.card-info p {
+  font-size: 14px;
+  margin: 4px 0 0;
 }
 
 .genre-badge {
@@ -354,29 +368,11 @@ button, input, select {
   opacity: 1;
 }
 
-.card-info {
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
-.card-info h3 {
-  font-size: 16px;
-  margin: 0;
-}
-
-.card-info p {
-  font-size: 14px;
-  margin: 4px 0 0;
-}
-
-/* === Modal === */
+/* --- Modal --- */
 .modal, .search-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: rgba(0,0,0,0.85);
   display: none;
   justify-content: center;
@@ -421,7 +417,7 @@ button, input, select {
   color: #fff;
 }
 
-/* === Spinner === */
+/* --- Spinner --- */
 .loading-spinner {
   display: flex;
   align-items: center;
@@ -432,7 +428,7 @@ button, input, select {
   color: #e50914;
 }
 
-/* === Footer === */
+/* --- Footer --- */
 .footer {
   background-color: #141414;
   padding: 1.5rem 2rem;
@@ -452,7 +448,7 @@ button, input, select {
   text-decoration: underline;
 }
 
-/* === Light Mode === */
+/* --- Light Mode --- */
 body.light-mode {
   background-color: #f5f5f5;
   color: #111;
@@ -466,8 +462,17 @@ body.light-mode .search-modal input {
   color: #000;
 }
 
-body.light-mode .nav-wrapper {
+body.light-mode .card-info h3,
+body.light-mode .card-info p,
+body.light-mode .modal-text h2,
+body.light-mode .modal-text p {
+  color: #000;
+}
+
+body.light-mode .nav-wrapper,
+body.light-mode .footer {
   background-color: #fff;
+  color: #555;
 }
 
 body.light-mode .nav-links a {
@@ -488,12 +493,70 @@ body.light-mode .search-bar::placeholder {
   color: #555;
 }
 
-body.light-mode .footer {
-  background-color: #f1f1f1;
-  color: #555;
+body.light-mode .genre-filter {
+  background-color: #eee;
 }
 
-/* === Responsive === */
+body.light-mode .genre-filter select {
+  background-color: #fff;
+  color: #000;
+}
+
+body.light-mode .search-modal {
+  background-color: rgba(255,255,255,0.95);
+  color: #000;
+}
+
+/* --- Vivamax Pinoy Movies --- */
+.vivamax-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+}
+
+.vivamax-card {
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.vivamax-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.vivamax-card:hover {
+  transform: scale(1.05);
+}
+
+.vivamax-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.vivamax-card:hover .vivamax-info {
+  opacity: 1;
+}
+
+.vivamax-info h4 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* --- Responsive --- */
 @media (max-width: 768px) {
   .hero-section h1 {
     font-size: 1.6rem;
@@ -549,142 +612,4 @@ body.light-mode .footer {
   .card-container {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
-}
-
-/* === Light Mode Styles === */
-body.light-mode {
-  background-color: #f5f5f5;
-  color: #111;
-}
-
-body.light-mode .card,
-body.light-mode .card-container .card {
-  background-color: #fff;
-  color: #000;
-}
-
-body.light-mode .card-info,
-body.light-mode .card-info h3,
-body.light-mode .card-info p {
-  color: #000;
-}
-
-body.light-mode .nav-wrapper {
-  background-color: #fff;
-}
-
-body.light-mode .logo {
-  color: #111;
-}
-
-body.light-mode .nav-links a {
-  color: #111;
-}
-
-body.light-mode .nav-links a:hover {
-  color: #e50914;
-}
-
-body.light-mode .search-bar {
-  background-color: #ddd;
-  color: #111;
-}
-
-body.light-mode .search-bar::placeholder {
-  color: #555;
-}
-
-body.light-mode .genre-filter {
-  background-color: #eee;
-}
-
-body.light-mode .genre-filter select {
-  background-color: #fff;
-  color: #000;
-}
-
-body.light-mode .modal-content {
-  background-color: #fff;
-  color: #111;
-}
-
-body.light-mode .modal-text h2,
-body.light-mode .modal-text p {
-  color: #000;
-}
-
-body.light-mode .search-modal {
-  background-color: rgba(255, 255, 255, 0.95);
-  color: #000;
-}
-
-body.light-mode .search-modal input {
-  background-color: #fff;
-  color: #000;
-}
-
-body.light-mode .footer {
-  background-color: #f1f1f1;
-  color: #555;
-}
-
-body.light-mode .footer-links a:hover {
-  color: #e50914;
-}
-
-/* === Vivamax-Style Pinoy Movies Section === */
-.vivamax-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
-  justify-content: center;
-}
-
-.vivamax-card {
-  position: relative;
-  border-radius: 5px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.vivamax-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-.vivamax-card:hover {
-  transform: scale(1.05);
-}
-
-.vivamax-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
-  color: #ffffff;
-  padding: 0.5rem;
-  font-size: 0.85rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.vivamax-card:hover .vivamax-info {
-  opacity: 1;
-}
-
-.vivamax-info h4 {
-  margin: 0;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.vivamax-info span {
-  display: block;
-  font-size: 0.75rem;
-  color: #ccc;
 }
