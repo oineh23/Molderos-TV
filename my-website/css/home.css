@@ -1,4 +1,5 @@
 
+
 /* --- Enhanced Movie Card Layout and Effects --- */
 .card-container {
   display: flex;
@@ -309,7 +310,7 @@ select {
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 70vh;
+  height: 45vh;
   background: url('../images/hero-bg.jpg') no-repeat center center/cover;
   display: flex;
   align-items: center;
@@ -369,18 +370,6 @@ select {
   border: none;
   background-color: #222;
   color: #fff;
-}
-
-/* Default light mode */
-.genre-filter {
-  background-color: #f0f0f0; /* light gray background for default */
-  color: #000;
-}
-
-/* When dark mode is ON */
-body.dark-mode .genre-filter {
-  background-color: #ffffff; /* light background for genre-filter in dark mode */
-  color: #000000; /* optional: make text dark for contrast */
 }
 
 /* Main Content */
