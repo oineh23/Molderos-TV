@@ -706,7 +706,7 @@ body.light-mode .footer-links a:hover {
 .vivamax-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 4rem;
+  gap: 2.3rem;
   padding: 1rem 0;
 }
 
