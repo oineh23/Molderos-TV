@@ -60,24 +60,50 @@
     color: var(--text-color);
   }
 </style>
-<script>
-  // Theme toggle logic
-  document.addEventListener("DOMContentLoaded", () => {
-    const currentTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.setAttribute("data-theme", currentTheme);
-
-    const toggleBtn = document.getElementById("theme-toggle");
-    if (toggleBtn) {
-      toggleBtn.addEventListener("click", () => {
-        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-        toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
-      });
-    }
-  });
-</script>
   
+<script>
+const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // 🔐 Replace with your key
+const genreId = 28; // 🎬 Action (change this if needed)
+const countrySelector = document.getElementById('countrySelector');
+const moviesContainer = document.getElementById('moviesContainer');
+
+countrySelector.addEventListener('change', () => {
+  const countryCode = countrySelector.value;
+  fetchMoviesByGenreAndCountry(genreId, countryCode);
+});
+
+async function fetchMoviesByGenreAndCountry(genreId, countryCode = '') {
+  const url = new URL('https://api.themoviedb.org/3/discover/movie');
+  url.searchParams.set('api_key', apiKey);
+  url.searchParams.set('with_genres', genreId);
+  url.searchParams.set('sort_by', 'popularity.desc');
+  if (countryCode) {
+    url.searchParams.set('region', countryCode);
+  }
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    displayMovies(data.results);
+  } catch (error) {
+    console.error('Failed to fetch movies:', error);
+  }
+}
+
+function displayMovies(movies) {
+  moviesContainer.innerHTML = movies.map(movie => `
+    <div class="movie-card">
+      <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" />
+      <h4>${movie.title}</h4>
+      <p>⭐ ${movie.vote_average}</p>
+    </div>
+  `).join('');
+}
+
+// Initial load (All countries)
+fetchMoviesByGenreAndCountry(genreId);
+</script>
+
 </head>
 
 <body>
@@ -117,21 +143,22 @@
   </section>
 
   <!-- Genre Filter -->
-  <section class="genre-filter">
-    <div class="container">
-      <label for="genre-select">🎯 Filter by Genre:</label>
-      <select id="genre-select" onchange="filterByGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="27">Horror</option>
-        <option value="16">Animation</option>
-        <option value="10749">Romance</option>
-        <option value="878">Science Fiction</option>
-        <option value="10751">Family</option>
-        <option value="99">Documentary</option>
-      </select>
+  <select id="countrySelector">
+  <option value="">🌍 All Countries</option>
+  <option value="US">🇺🇸 United States</option>
+  <option value="PH">🇵🇭 Philippines</option>
+  <option value="IN">🇮🇳 India</option>
+  <option value="JP">🇯🇵 Japan</option>
+  <option value="KR">🇰🇷 South Korea</option>
+  <option value="FR">🇫🇷 France</option>
+  <option value="ES">🇪🇸 Spain</option>
+  <option value="TH">🇹🇭 Thailand</option>
+  <option value="ID">🇮🇩 Indonesia</option>
+  <!-- Add more countries here -->
+</select>
+
+<div id="moviesContainer"></div>
+  
     </div>
   </section>
 
