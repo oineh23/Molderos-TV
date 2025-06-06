@@ -1,4 +1,5 @@
 
+
 // ====== CONFIGURATION ======
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -86,22 +87,6 @@ async function filterByGenre(genreId) {
   }
 }
 
-function createMovieCard(movie) {
-  const card = document.createElement('div');
-  card.classList.add('movie-card');
-
-  const releaseYear = movie.release_date ? movie.release_date.split('-')[0] : 'N/A';
-
-  card.innerHTML = `
-    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-    <div class="card-info">
-      <h3>${movie.title}</h3>
-      <span class="movie-year">${releaseYear}</span>
-    </div>
-  `;
-
-  return card;
-}
 
 // ====== DISPLAY FUNCTIONS ======
 
