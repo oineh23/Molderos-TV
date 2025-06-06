@@ -62,7 +62,7 @@
 </style>
   
 <script>
-const apiKey = 'YOUR_TMDB_API_KEY'; // 🔐 Replace with your key
+const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // 🔐 Replace with your key
 const genreId = 28; // 🎬 Action (change this if needed)
 const countrySelector = document.getElementById('countrySelector');
 const moviesContainer = document.getElementById('moviesContainer');
@@ -99,6 +99,10 @@ function displayMovies(movies) {
     </div>
   `).join('');
 }
+
+  // Initial load (All countries)
+fetchMoviesByGenreAndCountry(genreId);
+</script>
 
 // Initial load (All countries)
 fetchMoviesByGenreAndCountry(genreId);
