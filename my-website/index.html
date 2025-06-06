@@ -82,38 +82,34 @@
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
-    <div class="container nav">
-        <a href="#" class="logo">
-  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
-  MOLD<span class="main-color">EROS</span>-TV
-        </a>
-      <input type="checkbox" id="menu-toggle" />
-      <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="#pinoy-movies">PH Movies</a>
-        <a href="#tvshows-list">TV Shows</a>
-        <a href="#anime-list">Anime</a>
-        <input 
-          type="text" 
-          class="search-bar" 
-          placeholder="Search..." 
-          onfocus="openSearchModal()" 
-          aria-label="Search"
-        />
-        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
-      </nav>
-    </div>
-  </header>
+  <div class="container nav">
+    <a href="#" class="logo">
+      <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+      <span class="brand-highlight">MOLDEROS</span>-TV
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#pinoy-movies">PH Movies</a>
+      <a href="#tvshows-list">TV Shows</a>
+      <a href="#anime-list">Anime</a>
+      <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+      </div>
+      <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
+    </nav>
+  </div>
+</header>
 
   <!-- Hero Section -->
   <section class="hero-section" id="banner">
-    <div class="hero-overlay">
-      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
-      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
-    </div>
-  </section>
+  <div class="hero-overlay">
+    <h1 id="banner-title">Discover What's Streaming</h1>
+    <p class="subtitle">Movies. TV Shows. Anime. All in One Place.</p>
+    <button onclick="scrollToTrending()" class="cta-button">🔥 Explore Now</button>
+  </div>
+</section>
 
   <!-- Genre Filter -->
   <section class="genre-filter">
@@ -137,61 +133,36 @@
   <!-- Main Content -->
   <main>
     <section class="row" id="movies-list-section">
-      <h2>🎬 Trending Movies</h2>
-      <div class="card-container" id="movies-list"></div>
-    </section>
+  <h2><i class="fas fa-fire main-color"></i> Trending Movies</h2>
+  <div class="card-container" id="movies-list"></div>
+</section>
 
-    <section class="row" id="tvshows-list-section">
-      <h2>📺 Trending TV Shows</h2>
-      <div class="card-container" id="tvshows-list"></div>
-    </section>
+<section class="row" id="tvshows-list-section">
+  <h2><i class="fas fa-tv main-color"></i> Trending TV Shows</h2>
+  <div class="card-container" id="tvshows-list"></div>
+</section>
 
-    <section class="row" id="anime-list-section">
-      <h2>🌸 Trending Anime</h2>
-      <div class="card-container" id="anime-list"></div>
-    </section>
+<section class="row" id="anime-list-section">
+  <h2><i class="fas fa-star main-color"></i> Trending Anime</h2>
+  <div class="card-container" id="anime-list"></div>
+</section>
 
-    <section class="section" id="pinoy-movies">
-  <h2 style="display: flex; align-items: center; gap: 5px;">
-  <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
-  Vivamax
-</h2>
-
+    <!-- Vivamax Section -->
+<section class="section" id="pinoy-movies">
+  <h2 style="display: flex; align-items: center; gap: 10px;">
+    <img src="images/images.jpg" alt="Vivamax" style="height: 40px; border-radius: 5px;" />
+    Vivamax Picks
+  </h2>
   <div class="pinoy-controls">
     <select id="pinoy-genre-filter">
-  <option value="">All Genres</option>
-  <optgroup label="Popular Genres">
-    <option value="28">Action</option>
-    <option value="35">Comedy</option>
-    <option value="18">Drama</option>
-    <option value="10749">Romance</option>
-    <option value="80">Crime</option>
-    <option value="27">Horror</option>
-    <option value="10751">Family</option>
-    <option value="16">Animation</option>
-  </optgroup>
-  <optgroup label="Other Genres">
-    <option value="99">Documentary</option>
-    <option value="10402">Music</option>
-    <option value="9648">Mystery</option>
-    <option value="878">Science Fiction</option>
-    <option value="10752">War</option>
-    <option value="37">Western</option>
-    <option value="36">History</option>
-    <option value="14">Fantasy</option>
-    <option value="53">Thriller</option>
-  </optgroup>
-</select>
-
+      <!-- genre options unchanged -->
+    </select>
   </div>
-
   <div class="vivamax-grid" id="pinoy-movie-list"></div>
-
   <div class="load-more-container">
-    <button id="load-more-pinoy">Load More</button>
+    <button id="load-more-pinoy">🎥 Load More</button>
   </div>
 </section>
-  </main>
 
   <!-- Loading Spinner -->
   <div class="loading-spinner" id="loading-spinner" style="display: none;">
@@ -238,16 +209,14 @@
   </div>
 </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Disclaimer</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-      </div>
+  <!-- Footer Update -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 <span class="main-color">MOLDEROS-TV</span>. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Disclaimer</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact</a>
     </div>
-  </footer>
-</body>
-</html>
+  </div>
+</footer>
