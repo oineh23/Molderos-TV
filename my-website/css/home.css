@@ -93,6 +93,26 @@
   margin: 4px 0 0;
 }
 
+.movie-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.card-info {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-align: center;
+}
+
+.movie-year {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: #ffcc00;
+  margin-top: 5px;
+}
 
 /* Fade-in animation */
 @keyframes fadeIn {
