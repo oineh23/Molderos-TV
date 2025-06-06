@@ -42,6 +42,34 @@ function debounce(func, delay = 300) {
   };
 }
 
+function openModal(title, description, videoUrl, posterPath, rating) {
+  document.getElementById("modal-title").innerText = title;
+  document.getElementById("modal-description").innerText = description;
+  document.getElementById("modal-rating").innerText = `⭐ ${rating.toFixed(1)}`;
+  document.getElementById("modal-image").src = `https://image.tmdb.org/t/p/w500${posterPath}`;
+
+  const selectedServer = document.getElementById("server").value;
+  document.getElementById("modal-video").src = videoUrl.replace("vidsrc.to", selectedServer);
+
+  document.getElementById("modal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+  document.getElementById("modal-video").src = "";
+}
+
+function changeServer() {
+  const iframe = document.getElementById("modal-video");
+  const selectedServer = document.getElementById("server").value;
+  const currentSrc = iframe.src;
+
+  // Replace domain only, keep the movie ID path
+  const urlParts = currentSrc.split("/");
+  const movieId = urlParts[urlParts.length - 1];
+  iframe.src = `https://${selectedServer}/embed/movie/${movieId}`;
+}
+
 // ====== API FETCHERS ======
 
 const fetchTrending = (type) =>
