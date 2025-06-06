@@ -97,14 +97,15 @@
     }
 
     function displayKoreanMovies(movies) {
-      koreanMoviesSection.innerHTML = movies.map(movie => `
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-          <h3>${movie.title}</h3>
-          <p>⭐ ${movie.vote_average.toFixed(1)}</p>
-        </div>
-      `).join('');
-    }
+  koreanMoviesSection.innerHTML = movies.map(movie => `
+    <div class="movie-card" onclick="openModal('${movie.title}', '${movie.overview}', 'https://vidsrc.to/embed/movie/${movie.id}', '${movie.poster_path}', ${movie.vote_average})">
+      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+      <h3>${movie.title}</h3>
+      <p>⭐ ${movie.vote_average.toFixed(1)}</p>
+    </div>
+  `).join('');
+}
+
 
     getKoreanMovies();
   });
