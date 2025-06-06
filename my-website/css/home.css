@@ -1,3 +1,5 @@
+
+
 /* --- Enhanced Movie Card Layout and Effects --- */
 .card-container {
   display: flex;
@@ -120,50 +122,6 @@
   padding: 10px;
   color: #fff;
   text-align: center;
-}
-
-#korean-movies {
-  padding: 2rem;
-}
-
-.media-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.media-card {
-  background: var(--card-bg, #111);
-  border-radius: 10px;
-  overflow: hidden;
-  width: 160px;
-  transition: transform 0.3s;
-}
-
-.media-card:hover {
-  transform: scale(1.05);
-}
-
-.media-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.media-card h3 {
-  font-size: 1rem;
-  padding: 0.5rem;
-  margin: 0;
-  color: #fff;
-  text-align: center;
-}
-
-.media-card p {
-  font-size: 0.9rem;
-  color: #aaa;
-  text-align: center;
-  margin-bottom: 0.5rem;
 }
 
 /* Global Styles */
