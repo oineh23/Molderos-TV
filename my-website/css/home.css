@@ -368,53 +368,6 @@ select {
   background-color: #f40612;
 }
 
-.hero-section {
-  background: url('images/your-hero-background.jpg') center/cover no-repeat;
-  position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.hero-overlay {
-  text-align: center;
-  padding: 2rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  border-radius: 12px;
-  animation: fadeSlideUp 1.2s ease-out forwards;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.cta-button {
-  padding: 12px 28px;
-  font-size: 1.2rem;
-  background-color: #e50914;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  margin-top: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.cta-button:hover {
-  background-color: #b00610;
-}
-
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Genre Filter */
 .genre-filter {
   padding: 1rem 2rem;
