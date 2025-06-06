@@ -787,3 +787,23 @@ body.light-mode .footer-links a:hover {
   letter-spacing: 0.5px;
 }
 
+.movie-card .card-buttons {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.watch-btn {
+  background-color: #e50914;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.watch-btn:hover {
+  background-color: #f40612;
+}
+
