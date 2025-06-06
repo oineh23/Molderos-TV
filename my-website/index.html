@@ -249,27 +249,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Popup Ad Trigger Script -->
-  <script>
-    let popupOpened = false;
-
-    document.addEventListener('click', function openPopupAdOnce() {
-      if (!popupOpened) {
-        popupOpened = true;
-
-        // ✅ Replace with your actual ad URL
-        const adUrl = "https://www.popads.net";
-
-        const popup = window.open(adUrl, '_blank', 'noopener,noreferrer');
-        if (popup) {
-          popup.blur();
-          window.focus();
-        }
-
-        document.removeEventListener('click', openPopupAdOnce);
-      }
-    });
-  </script>
+  
 </body>
 </html>
