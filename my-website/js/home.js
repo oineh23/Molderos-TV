@@ -49,7 +49,7 @@ function openModal(title, description, videoUrl, posterPath, rating) {
   document.getElementById("modal-image").src = `https://image.tmdb.org/t/p/w500${posterPath}`;
 
   const selectedServer = document.getElementById("server").value;
-  document.getElementById("modal-video").src = videoUrl.replace("vidsrc.to", selectedServer);
+  document.getElementById("modal-video").src = videoUrl.replace("vidsrc.cc", selectedServer);
 
   document.getElementById("modal").style.display = "block";
 }
