@@ -357,3 +357,17 @@ document.getElementById("korean-genre-filter").addEventListener("change", () => 
   fetchKoreanMovies(koreanPage, document.getElementById("korean-genre-filter").value);
 });
 
+function createKoreanMovieCard(movie) {
+  const card = document.createElement("div");
+  card.classList.add("movie-card");
+
+  card.innerHTML = `
+    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+    <div class="movie-info">
+      <h3>${movie.title}</h3>
+      <button class="watch-btn" onclick="openModal('${movie.id}', 'Korean')">▶ Watch</button>
+    </div>
+  `;
+
+  document.querySelector("#korean-movies-section").appendChild(card);
+}
