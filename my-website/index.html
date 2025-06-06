@@ -81,7 +81,7 @@
 
   <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDb API key
+    const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
     const koreanMoviesSection = document.getElementById("korean-movies");
 
     async function getKoreanMovies() {
@@ -96,16 +96,28 @@
       }
     }
 
-    function displayKoreanMovies(movies) {
-  koreanMoviesSection.innerHTML = movies.map(movie => `
-    <div class="movie-card" onclick="openModal('${movie.title}', '${movie.overview}', 'https://vidsrc.to/embed/movie/${movie.id}', '${movie.poster_path}', ${movie.vote_average})">
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-      <h3>${movie.title}</h3>
-      <p>⭐ ${movie.vote_average.toFixed(1)}</p>
-    </div>
-  `).join('');
-}
+    async function getIMDbID(tmdbId) {
+      const res = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/external_ids?api_key=${apiKey}`);
+      const data = await res.json();
+      return data.imdb_id;
+    }
 
+    async function displayKoreanMovies(movies) {
+      koreanMoviesSection.innerHTML = "";
+
+      for (const movie of movies) {
+        const imdbId = await getIMDbID(movie.id);
+        const videoUrl = imdbId ? `https://vidsrc.to/embed/imdb/${imdbId}` : "#";
+
+        koreanMoviesSection.innerHTML += `
+          <div class="movie-card" onclick="openModal('${movie.title}', '${movie.overview}', '${videoUrl}', '${movie.poster_path}', ${movie.vote_average})">
+            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+            <h3>${movie.title}</h3>
+            <p>⭐ ${movie.vote_average.toFixed(1)}</p>
+          </div>
+        `;
+      }
+    }
 
     getKoreanMovies();
   });
