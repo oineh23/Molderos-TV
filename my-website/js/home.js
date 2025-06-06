@@ -313,3 +313,60 @@ function scrollPinoyMovies(direction) {
   const scrollAmount = slider.offsetWidth * 0.8;
   slider.scrollLeft += direction * scrollAmount;
 }
+
+// ==== MODAL CAROUSEL LOGIC ====
+const modal = document.querySelector('.modal');
+const modalContent = document.querySelector('.modal-content');
+const carousel = document.querySelector('.carousel');
+const closeBtn = document.querySelector('.modal-close');
+
+let currentSlide = 0;
+let images = [];
+
+// Open modal and load carousel
+function openModal(imageArray, startIndex = 0) {
+  images = imageArray;
+  currentSlide = startIndex;
+  updateCarousel();
+  modal.classList.add('active');
+}
+
+// Close modal
+closeBtn.addEventListener('click', () => {
+  modal.classList.remove('active');
+});
+
+// Show current slide
+function updateCarousel() {
+  carousel.innerHTML = '';
+  const img = document.createElement('img');
+  img.src = images[currentSlide];
+  carousel.appendChild(img);
+}
+
+// Navigate slides
+function showNextSlide() {
+  currentSlide = (currentSlide + 1) % images.length;
+  updateCarousel();
+}
+
+function showPrevSlide() {
+  currentSlide = (currentSlide - 1 + images.length) % images.length;
+  updateCarousel();
+}
+
+// Optional: keyboard support
+document.addEventListener('keydown', (e) => {
+  if (!modal.classList.contains('active')) return;
+  if (e.key === 'ArrowRight') showNextSlide();
+  if (e.key === 'ArrowLeft') showPrevSlide();
+  if (e.key === 'Escape') modal.classList.remove('active');
+});
+
+// Optional: Click on Vivamax card to open modal with images
+document.querySelectorAll('.vivamax-card').forEach((card, index) => {
+  card.addEventListener('click', () => {
+    const src = card.querySelector('img').src;
+    openModal([src]); // You can replace this array with multiple images
+  });
+});
