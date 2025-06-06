@@ -80,6 +80,39 @@
   
 </head>
 
+  <script>
+  const TMDB_API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDb API key
+
+  async function fetchKoreanMovies() {
+    try {
+      const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&with_original_language=ko&sort_by=popularity.desc`);
+      const data = await res.json();
+      displayMovies(data.results, 'korean-movies-list');
+    } catch (err) {
+      console.error('Failed to load Korean movies:', err);
+    }
+  }
+
+  function displayMovies(movies, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    movies.forEach(movie => {
+      const card = document.createElement('div');
+      card.classList.add('movie-card');
+      card.innerHTML = `
+        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" onclick="openModal(${movie.id}, 'movie')" />
+        <h3>${movie.title}</h3>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Call it on load
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchKoreanMovies();
+  });
+</script>
+
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
@@ -151,6 +184,11 @@
       <h2>🌸 Trending Anime</h2>
       <div class="card-container" id="anime-list"></div>
     </section>
+
+    <section class="row" id="korean-movies-section">
+  <h2>🇰🇷 Korean Movies</h2>
+  <div class="card-container" id="korean-movies-list"></div>
+</section>
 
     <section class="section" id="pinoy-movies">
   <h2 style="display: flex; align-items: center; gap: 5px;">
