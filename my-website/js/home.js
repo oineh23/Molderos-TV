@@ -315,6 +315,23 @@ function scrollPinoyMovies(direction) {
   slider.scrollLeft += direction * scrollAmount;
 }
 
+async function fetchKoreanMovies(page = 1, genre = "") {
+  try {
+    const url = `https://api.themoviedb.org/3/discover/movie?...`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    data.results.forEach(movie => {
+      if (!movie.poster_path) return;
+      movie.media_type = "movie";
+      const card = createCard(movie); // reuse global createCard
+      koreanMovieList.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error fetching Korean movies:", error);
+  }
+}
+
 const koreanMovieList = document.getElementById("korean-movie-list");
 const loadMoreKoreanBtn = document.getElementById("load-more-korean");
 let koreanPage = 1;
