@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,46 +80,6 @@
   
 </head>
 
-  <script>
-  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-const koreanMoviesUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_original_language=ko&sort_by=popularity.desc`;
-
-async function fetchKoreanMovies() {
-  try {
-    const response = await fetch(koreanMoviesUrl);
-    const data = await response.json();
-    const movies = data.results;
-    displayKoreanMovies(movies);
-  } catch (error) {
-    console.error('Error fetching Korean movies:', error);
-  }
-}
-
-function displayKoreanMovies(movies) {
-  const container = document.getElementById('korean-movie-list');
-  container.innerHTML = '';
-
-  movies.forEach(movie => {
-    const card = document.createElement('div');
-    card.className = 'media-card';
-    card.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" loading="lazy" />
-      <h3>${movie.title}</h3>
-      <p>Rating: ${movie.vote_average}</p>
-    `;
-    container.appendChild(card);
-  });
-}
-
-// Call it on page load
-fetchKoreanMovies();
-
-  // Call it on load
-  document.addEventListener('DOMContentLoaded', () => {
-    fetchKoreanMovies();
-  });
-</script>
-
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
@@ -191,13 +152,6 @@ fetchKoreanMovies();
       <div class="card-container" id="anime-list"></div>
     </section>
 
-   <section class="media-section" id="korean-movies">
-  <h2 class="section-title">Korean Movies</h2>
-  <div class="media-container" id="korean-movie-list">
-    <!-- Korean movie cards will be injected here by JavaScript -->
-  </div>
-</section>
-    
     <section class="section" id="pinoy-movies">
   <h2 style="display: flex; align-items: center; gap: 5px;">
   <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
