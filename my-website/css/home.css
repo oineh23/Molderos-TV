@@ -124,7 +124,7 @@
   text-align: center;
 }
 
-/* --- Global Styles --- */
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -137,6 +137,9 @@ body {
   color: #fff;
   line-height: 1.5;
   scroll-behavior: smooth;
+}
+
+body {
   background-image: url('../images/Elden Ring Game Wallpaper.jpg');
   background-size: cover;
   background-position: center;
@@ -161,7 +164,7 @@ select {
   outline: none;
 }
 
-/* --- Navbar --- */
+/* Navbar */
 .nav-wrapper {
   background-color: #141414;
   padding: 1rem 2rem;
@@ -175,12 +178,16 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  
+  body.light-mode .logo {
+  color: #111;
+}
+
   display: flex;
   align-items: center;
   gap: 0.3rem;
@@ -194,7 +201,6 @@ select {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -226,17 +232,28 @@ select {
   color: #aaa;
 }
 
-/* Responsive Nav */
+/* Make nav responsive */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 .menu-icon {
   display: none;
   font-size: 1.8rem;
   cursor: pointer;
 }
-
 #menu-toggle {
   display: none;
 }
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
@@ -257,9 +274,40 @@ select {
     width: 100%;
     margin-top: 10px;
   }
+
+  .hero-section h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-section p.subtitle {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .modal-content {
+    flex-direction: column;
+  }
+
+  .modal-body {
+    flex-direction: column;
+  }
+
+  .modal img {
+    width: 100%;
+    height: auto;
+  }
 }
 
-/* --- Hero Section --- */
+/* Hero Section */
 .hero-section {
   position: relative;
   height: 45vh;
@@ -302,12 +350,18 @@ select {
   background-color: #f40612;
 }
 
-/* --- Genre Filter --- */
+/* Genre Filter */
 .genre-filter {
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
   gap: 1rem;
+  
+  body.light-mode .genre-filter {
+  background-color: #eee;
+  color: #111;
+}
+
 }
 
 .genre-filter select {
@@ -318,17 +372,24 @@ select {
   color: #fff;
 }
 
-/* --- Movie Card Layout --- */
+/* Main Content */
+main {
+  padding: 2rem;
+}
+
+.row h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Card Grid */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1rem;
-  justify-content: center;
-  padding: 20px;
 }
 
 .card {
-  position: relative;
   background-color: #222;
   border-radius: 10px;
   overflow: hidden;
@@ -339,64 +400,15 @@ select {
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-  z-index: 2;
 }
 
 .card img {
   width: 100%;
   height: 240px;
   object-fit: cover;
-  border-bottom: 1px solid #333;
 }
 
-.genre-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background-color: #e50914;
-  color: #fff;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-  z-index: 2;
-}
-
-.watch-button {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #e50914;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  cursor: pointer;
-}
-
-.card:hover .watch-button {
-  opacity: 1;
-}
-
-.card-info {
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
-.card-info h3 {
-  font-size: 16px;
-  margin: 0;
-}
-
-.card-info p {
-  font-size: 14px;
-  margin: 4px 0 0;
-}
-
-/* --- Modal --- */
+/* Modal */
 .modal {
   position: fixed;
   top: 0;
@@ -423,7 +435,6 @@ select {
   display: flex;
   gap: 1.5rem;
   margin-bottom: 1rem;
-  flex-direction: row;
 }
 
 .modal-body img {
@@ -452,7 +463,55 @@ select {
   margin-bottom: 0.5rem;
 }
 
-/* --- Search Modal --- */
+/* Spinner */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+  font-size: 1.2rem;
+  color: #e50914;
+}
+
+/* Search Modal */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, 0.95);
+  display: none;
+  flex-direction: column;
+  padding: 2rem;
+  z-index: 1500;
+}
+
+.search-modal input {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background-color: #222;
+  color: #fff;
+}
+
+.search-modal .results {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.search-modal .close {
+  font-size: 2rem;
+  align-self: flex-end;
+  cursor: pointer;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* Search Modal Background Overlay */
 .search-modal {
   position: fixed;
   top: 0;
@@ -464,17 +523,12 @@ select {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  flex-direction: column;
-  padding: 2rem;
 }
 
-.search-modal.active {
-  display: flex;
-}
-
+/* Modal Box */
 .search-modal-box {
-  background: #181818;
-  color: #fff;
+  background: var(--bg-color);
+  color: var(--text-color);
   padding: 20px;
   border-radius: 12px;
   width: 90%;
@@ -483,6 +537,7 @@ select {
   position: relative;
 }
 
+/* Close Button */
 .search-modal-box .close {
   position: absolute;
   top: 10px;
@@ -491,6 +546,7 @@ select {
   cursor: pointer;
 }
 
+/* Search Input */
 #search-input {
   width: 100%;
   padding: 12px;
@@ -498,27 +554,20 @@ select {
   border: 1px solid #ccc;
   border-radius: 8px;
   margin-bottom: 15px;
-  background-color: #222;
-  color: #fff;
 }
 
+/* Search Results Container */
 #search-results {
   max-height: 300px;
   overflow-y: auto;
 }
 
-/* --- Spinner --- */
-.loading-spinner {
+/* Show Modal (controlled by JS) */
+.search-modal.active {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  gap: 1rem;
-  font-size: 1.2rem;
-  color: #e50914;
 }
 
-/* --- Footer --- */
+/* Footer */
 .footer {
   background-color: #141414;
   padding: 1.5rem 2rem;
@@ -538,92 +587,20 @@ select {
   text-decoration: underline;
 }
 
-/* --- Light Mode --- */
-body.light-mode {
-  background-color: #f5f5f5;
-  color: #111;
-}
-
-body.light-mode .card,
-body.light-mode .card-info,
-body.light-mode .card-container .card {
-  background-color: #fff;
-  color: #000;
-}
-
-body.light-mode .nav-wrapper {
-  background-color: #fff;
-}
-
-body.light-mode .nav-links a {
-  color: #111;
-}
-
-body.light-mode .nav-links a:hover {
-  color: #e50914;
-}
-
-body.light-mode .search-bar {
-  background-color: #ddd;
-  color: #111;
-}
-
-body.light-mode .search-bar::placeholder {
-  color: #555;
-}
-
-body.light-mode .genre-filter {
-  background-color: #eee;
-}
-
-body.light-mode .genre-filter select {
-  background-color: #fff;
-  color: #000;
-}
-
-body.light-mode .modal-content,
-body.light-mode .search-modal-box {
-  background-color: #fff;
-  color: #111;
-}
-
-body.light-mode .search-modal {
-  background-color: rgba(255, 255, 255, 0.95);
-}
-
-body.light-mode .footer {
-  background-color: #eee;
-  color: #555;
-}
-
-/* --- Responsive --- */
+/* Responsive Design */
 @media (max-width: 768px) {
   .modal-body {
     flex-direction: column;
     align-items: center;
   }
 
-  .hero-overlay h1 {
-    font-size: 1.6rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .cta-button {
-    font-size: 1rem;
-    padding: 10px 20px;
-  }
-
-  .card-container {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  .nav-links {
+    flex-wrap: wrap;
     gap: 1rem;
   }
 
-  .modal img {
-    width: 100%;
-    height: auto;
+  .search-bar {
+    width: 100px;
   }
 }
 
@@ -726,30 +703,6 @@ body.light-mode .footer-links a:hover {
   color: #e50914;
 }
 
-/* === Variables for Light/Dark Mode === */
-:root {
-  --bg-color: #ffffff;
-  --text-color: #111111;
-  --card-bg: #f0f0f0;
-  --modal-bg: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #111111;
-    --text-color: #ffffff;
-    --card-bg: #1e1e1e;
-    --modal-bg: #222222;
-}
-
-/* === Global === */
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
 /* === Vivamax-Style Pinoy Movies Section === */
 .vivamax-grid {
   display: grid;
@@ -764,7 +717,6 @@ body {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease;
-  background-color: var(--card-bg);
 }
 
 .vivamax-card img {
@@ -835,139 +787,3 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* === Responsive Layout === */
-@media (max-width: 1024px) {
-  .vivamax-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 0.75rem;
-  }
-
-  .vivamax-title {
-    font-size: 1.5rem;
-  }
-
-  .vivamax-info h4 {
-    font-size: 0.85rem;
-  }
-
-  .vivamax-info span {
-    font-size: 0.7rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .vivamax-grid {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 0.5rem;
-  }
-
-  .vivamax-logo {
-    height: 50px;
-  }
-
-  .vivamax-title {
-    font-size: 1.3rem;
-  }
-
-  .vivamax-info {
-    font-size: 0.75rem;
-    padding: 0.4rem;
-  }
-
-  .vivamax-info h4 {
-    font-size: 0.8rem;
-  }
-
-  .vivamax-info span {
-    font-size: 0.65rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .vivamax-grid {
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  }
-
-  .vivamax-title {
-    font-size: 1.1rem;
-  }
-
-  .vivamax-info h4 {
-    font-size: 0.75rem;
-  }
-
-  .vivamax-info span {
-    font-size: 0.6rem;
-  }
-}
-
-/* === Orientation Media Queries === */
-@media screen and (orientation: portrait) {
-  .vivamax-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  }
-
-  .vivamax-title {
-    font-size: 1.2rem;
-  }
-}
-
-@media screen and (orientation: landscape) {
-  .vivamax-grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-
-  .vivamax-title {
-    font-size: 1.5rem;
-  }
-}
-
-/* === Modal with Carousel === */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal.active {
-  display: flex;
-}
-
-.modal-content {
-  background: var(--modal-bg);
-  padding: 1rem;
-  border-radius: 10px;
-  max-width: 90%;
-  max-height: 90%;
-  overflow: hidden;
-  position: relative;
-}
-
-.carousel {
-  display: flex;
-  transition: transform 0.4s ease-in-out;
-}
-
-.carousel img {
-  width: 100%;
-  object-fit: contain;
-  border-radius: 10px;
-}
-
-/* Close button */
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.5rem;
-  color: #fff;
-  cursor: pointer;
-  z-index: 10;
-}
