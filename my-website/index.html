@@ -80,6 +80,7 @@
 </script>
 
   <script>
+  document.addEventListener("DOMContentLoaded", () => {
     const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDb API key
     const koreanMoviesSection = document.getElementById("korean-movies");
 
@@ -106,8 +107,9 @@
     }
 
     getKoreanMovies();
-  </script>
-  
+  });
+</script>
+
 </head>
 
 <body>
