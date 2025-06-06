@@ -359,19 +359,20 @@ document.getElementById("korean-genre-filter").addEventListener("change", () => 
 
 function createKoreanMovieCard(movie) {
   const card = document.createElement("div");
-  card.classList.add("movie-card");
-
-  movie.media_type = 'movie'; // Make sure modal can embed properly
+  card.className = "movie-card";
 
   card.innerHTML = `
-    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-    <div class="movie-info">
-      <h3>${movie.title}</h3>
-      <button class="watch-btn">▶ Watch</button>
+    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+    <h3>${movie.title}</h3>
+    <div class="card-buttons">
+      <button class="watch-btn" onclick="openModal(${movie.id}, 'movie')">
+        <i class="fas fa-play"></i> Watch
+      </button>
     </div>
   `;
 
-  card.querySelector('.watch-btn').addEventListener('click', () => showDetails(movie));
+  return card;
+}
 
   document.querySelector("#korean-movies-section").appendChild(card);
 }
