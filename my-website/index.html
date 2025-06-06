@@ -94,18 +94,19 @@
   }
 
   function displayMovies(movies, containerId) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-    movies.forEach(movie => {
-      const card = document.createElement('div');
-      card.classList.add('movie-card');
-      card.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" onclick="openModal(${movie.id}, 'movie')" />
-        <h3>${movie.title}</h3>
-      `;
-      container.appendChild(card);
-    });
-  }
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  movies.forEach(movie => {
+    const card = document.createElement('div');
+    card.classList.add('movie-card');
+    card.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+      <h3>${movie.title}</h3>
+      <button onclick="openModal(${movie.id}, 'movie')">▶️ Watch</button>
+    `;
+    container.appendChild(card);
+  });
+}
 
   // Call it on load
   document.addEventListener('DOMContentLoaded', () => {
