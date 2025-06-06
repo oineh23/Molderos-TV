@@ -198,10 +198,9 @@ select {
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  
-  body.light-mode .logo {
+  color: #fff;
+}
+body.light-mode .logo {
   color: #111;
 }
 
