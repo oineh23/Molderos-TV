@@ -124,6 +124,40 @@
   text-align: center;
 }
 
+.section-title {
+  font-size: 1.8rem;
+  margin: 20px;
+  color: #fff;
+}
+
+.movie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 20px;
+  justify-content: center;
+}
+
+.movie-card {
+  width: 150px;
+  background: #222;
+  color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #444;
+}
+
 /* Global Styles */
 * {
   margin: 0;
