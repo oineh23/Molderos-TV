@@ -62,7 +62,7 @@
 </style>
   
 <script>
-const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // 🔐 Replace with your key
+const apiKey = 'YOUR_TMDB_API_KEY'; // 🔐 Replace with your key
 const genreId = 28; // 🎬 Action (change this if needed)
 const countrySelector = document.getElementById('countrySelector');
 const moviesContainer = document.getElementById('moviesContainer');
@@ -89,6 +89,20 @@ async function fetchMoviesByGenreAndCountry(genreId, countryCode = '') {
     console.error('Failed to fetch movies:', error);
   }
 }
+
+function displayMovies(movies) {
+  moviesContainer.innerHTML = movies.map(movie => `
+    <div class="movie-card">
+      <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" />
+      <h4>${movie.title}</h4>
+      <p>⭐ ${movie.vote_average}</p>
+    </div>
+  `).join('');
+}
+
+// Initial load (All countries)
+fetchMoviesByGenreAndCountry(genreId);
+</script>
 
 function displayMovies(movies) {
   moviesContainer.innerHTML = movies.map(movie => `
