@@ -322,21 +322,24 @@ const closeBtn = document.querySelector('.modal-close');
 
 let currentSlide = 0;
 let images = [];
+let autoplayInterval = null;
 
-// Open modal and load carousel
+// Open modal and load images
 function openModal(imageArray, startIndex = 0) {
   images = imageArray;
   currentSlide = startIndex;
   updateCarousel();
   modal.classList.add('active');
+  startAutoplay(); // Start autoplay when opened
 }
 
 // Close modal
 closeBtn.addEventListener('click', () => {
   modal.classList.remove('active');
+  stopAutoplay();
 });
 
-// Show current slide
+// Show image at currentSlide
 function updateCarousel() {
   carousel.innerHTML = '';
   const img = document.createElement('img');
@@ -344,7 +347,7 @@ function updateCarousel() {
   carousel.appendChild(img);
 }
 
-// Navigate slides
+// Navigation
 function showNextSlide() {
   currentSlide = (currentSlide + 1) % images.length;
   updateCarousel();
@@ -355,18 +358,55 @@ function showPrevSlide() {
   updateCarousel();
 }
 
-// Optional: keyboard support
+// Keyboard support
 document.addEventListener('keydown', (e) => {
   if (!modal.classList.contains('active')) return;
   if (e.key === 'ArrowRight') showNextSlide();
   if (e.key === 'ArrowLeft') showPrevSlide();
-  if (e.key === 'Escape') modal.classList.remove('active');
+  if (e.key === 'Escape') {
+    modal.classList.remove('active');
+    stopAutoplay();
+  }
 });
 
-// Optional: Click on Vivamax card to open modal with images
+// Autoplay every 5 seconds
+function startAutoplay() {
+  stopAutoplay(); // Clear existing
+  autoplayInterval = setInterval(showNextSlide, 5000);
+}
+
+function stopAutoplay() {
+  if (autoplayInterval) {
+    clearInterval(autoplayInterval);
+    autoplayInterval = null;
+  }
+}
+
+// Swipe Support
+let touchStartX = 0;
+let touchEndX = 0;
+
+carousel.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+carousel.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleGesture();
+});
+
+function handleGesture() {
+  if (touchEndX < touchStartX - 50) {
+    showNextSlide();
+  } else if (touchEndX > touchStartX + 50) {
+    showPrevSlide();
+  }
+}
+
+// Optional: Trigger from cards
 document.querySelectorAll('.vivamax-card').forEach((card, index) => {
   card.addEventListener('click', () => {
     const src = card.querySelector('img').src;
-    openModal([src]); // You can replace this array with multiple images
+    openModal([src]); // Replace with more images if needed
   });
 });
