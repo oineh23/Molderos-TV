@@ -314,3 +314,46 @@ function scrollPinoyMovies(direction) {
   const scrollAmount = slider.offsetWidth * 0.8;
   slider.scrollLeft += direction * scrollAmount;
 }
+
+const koreanMovieList = document.getElementById("korean-movie-list");
+const loadMoreKoreanBtn = document.getElementById("load-more-korean");
+let koreanPage = 1;
+
+async function fetchKoreanMovies(page = 1, genre = "") {
+  const apiKey = "b8c2d0fa80cd79b5d28d9fe2853806bb";
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=ko-KR&sort_by=popularity.desc&region=KR&page=${page}&with_original_language=ko${genre ? `&with_genres=${genre}` : ""}`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  data.results.forEach(movie => {
+    const card = document.createElement("div");
+    card.classList.add("movie-card");
+
+    card.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" loading="lazy" />
+      <h4>${movie.title}</h4>
+    `;
+    card.onclick = () => openModal(movie);
+
+    koreanMovieList.appendChild(card);
+  });
+}
+
+// Initial load
+fetchKoreanMovies(koreanPage);
+
+// Load more button
+loadMoreKoreanBtn.addEventListener("click", () => {
+  koreanPage++;
+  const selectedGenre = document.getElementById("korean-genre-filter").value;
+  fetchKoreanMovies(koreanPage, selectedGenre);
+});
+
+// Genre filter change
+document.getElementById("korean-genre-filter").addEventListener("change", () => {
+  koreanPage = 1;
+  koreanMovieList.innerHTML = "";
+  fetchKoreanMovies(koreanPage, document.getElementById("korean-genre-filter").value);
+});
+
