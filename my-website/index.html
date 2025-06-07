@@ -48,6 +48,20 @@
   });
 </script>
 
+  <script>
+  function filterAnimeGenre(genre) {
+    const allAnimeCards = document.querySelectorAll('#anime-list .card');
+    allAnimeCards.forEach(card => {
+      const cardGenres = card.dataset.genres || '';
+      if (!genre || cardGenres.includes(genre)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
   <style>
   :root {
     --bg-color: #ffffff;
@@ -227,10 +241,14 @@
       <div class="card-container" id="tvshows-list"></div>
     </section>
 
-    <!-- Anime Genre Filter -->
-<section class="genre-filter">
+    <section class="row" id="anime-list-section">
+      <h2>🌸 Trending Anime</h2>
+      <div class="card-container" id="anime-list"></div>
+    </section>
+
+    <section class="genre-filter">
   <div class="container">
-    <label for="anime-genre-select">🌸 Anime Genres:</label>
+    <label for="anime-genre-select"> Anime Genres:</label>
     <select id="anime-genre-select" onchange="filterAnimeGenre(this.value)">
       <option value="">All</option>
       <option value="action">Action</option>
@@ -250,11 +268,6 @@
     </select>
   </div>
 </section>
-
-    <section class="row" id="anime-list-section">
-      <h2>🌸 Trending Anime</h2>
-      <div class="card-container" id="anime-list"></div>
-    </section>
 
     <section class="section" id="pinoy-movies">
   <h2 style="display: flex; align-items: center; gap: 5px;">
