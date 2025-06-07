@@ -227,6 +227,30 @@
       <div class="card-container" id="tvshows-list"></div>
     </section>
 
+    <!-- Anime Genre Filter -->
+<section class="genre-filter">
+  <div class="container">
+    <label for="anime-genre-select">🌸 Anime Genres:</label>
+    <select id="anime-genre-select" onchange="filterAnimeGenre(this.value)">
+      <option value="">All</option>
+      <option value="action">Action</option>
+      <option value="adventure">Adventure</option>
+      <option value="comedy">Comedy</option>
+      <option value="drama">Drama</option>
+      <option value="fantasy">Fantasy</option>
+      <option value="romance">Romance</option>
+      <option value="horror">Horror</option>
+      <option value="slice-of-life">Slice of Life</option>
+      <option value="supernatural">Supernatural</option>
+      <option value="isekai">Isekai</option>
+      <option value="sci-fi">Sci-Fi</option>
+      <option value="mecha">Mecha</option>
+      <option value="sports">Sports</option>
+      <option value="mystery">Mystery</option>
+    </select>
+  </div>
+</section>
+
     <section class="row" id="anime-list-section">
       <h2>🌸 Trending Anime</h2>
       <div class="card-container" id="anime-list"></div>
