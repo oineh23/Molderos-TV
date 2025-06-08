@@ -157,6 +157,64 @@
     }
   });
 </script>
+
+  <script>
+const animeList = document.getElementById("anime-list");
+const loadMoreBtn = document.getElementById("load-more-anime");
+const apiKey = "YOUR_TMDB_API_KEY"; // Replace with your TMDB API key
+
+let currentPage = 1;
+let selectedGenreId = "";
+let isLoading = false;
+
+async function fetchAnimeByGenre(genreId = "", page = 1) {
+  if (isLoading) return;
+  isLoading = true;
+
+  if (page === 1) animeList.innerHTML = "";
+
+  const url = genreId
+    ? `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_genres=${genreId}&with_keywords=210024|287501&sort_by=popularity.desc&language=en-US&page=${page}`
+    : `https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}&language=en-US&page=${page}`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    displayAnime(data.results);
+  } catch (err) {
+    console.error("Error fetching anime:", err);
+  } finally {
+    isLoading = false;
+  }
+}
+
+function displayAnime(animeListData) {
+  animeListData.forEach((anime) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w500${anime.poster_path}" alt="${anime.name}" />
+      <h3>${anime.name}</h3>
+      <p>⭐ ${anime.vote_average}</p>
+    `;
+    animeList.appendChild(card);
+  });
+}
+
+function filterAnimeByGenre(genreId) {
+  selectedGenreId = genreId;
+  currentPage = 1;
+  fetchAnimeByGenre(genreId, currentPage);
+}
+
+loadMoreBtn.addEventListener("click", () => {
+  currentPage++;
+  fetchAnimeByGenre(selectedGenreId, currentPage);
+});
+
+// Initial load
+fetchAnimeByGenre();
+</script>
   
 <body>
   <!-- Navbar -->
