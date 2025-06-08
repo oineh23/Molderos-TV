@@ -236,8 +236,23 @@
 
     <section class="row" id="anime-list-section">
   <h2>🌸 Trending Anime</h2>
-  <div class="card-container" id="anime-list"></div>
-  <div class="load-more-container">
+  <div class="anime-controls" style="margin-bottom: 15px;">
+  <label for="anime-genre-filter">🎯 Filter by Genre:</label>
+  <select id="anime-genre-filter" onchange="filterAnimeByGenre(this.value)">
+    <option value="">All</option>
+    <option value="16">Animation</option>
+    <option value="28">Action</option>
+    <option value="35">Comedy</option>
+    <option value="18">Drama</option>
+    <option value="10749">Romance</option>
+    <option value="27">Horror</option>
+    <option value="878">Sci-Fi</option>
+    <option value="14">Fantasy</option>
+    <option value="12">Adventure</option>
+    <!-- Add or remove genres as needed -->
+  </select>
+</div>
+      
     <button id="load-more-anime">🎥 Load More Anime</button>
   </div>
 </section>
