@@ -148,48 +148,6 @@
     }
   });
 </script>
-
-  <script>
-const animeList = document.getElementById('anime-list');
-const loadMoreAnimeBtn = document.getElementById('load-more-anime');
-let animePage = 1;
-
-const fetchTrendingAnime = async (page = 1) => {
-  const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDB key
-  const url = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_origin_country=JP&sort_by=popularity.desc&page=${page}`;
-
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    data.results.forEach(show => {
-      const card = document.createElement('div');
-      card.classList.add('card');
-
-      card.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="${show.name}" />
-        <h3>${show.name}</h3>
-        <p>⭐ ${show.vote_average.toFixed(1)}</p>
-      `;
-
-      animeList.appendChild(card);
-    });
-  } catch (error) {
-    console.error('Error loading anime:', error);
-  }
-};
-
-// Load the first set of anime when the page loads
-document.addEventListener("DOMContentLoaded", () => {
-  fetchTrendingAnime(animePage);
-});
-
-if (loadMoreAnimeBtn) {
-  loadMoreAnimeBtn.addEventListener('click', () => {
-    animePage++;
-    fetchTrendingAnime(animePage);
-  });
-}
-</script>
   
 <body>
   <!-- Navbar -->
