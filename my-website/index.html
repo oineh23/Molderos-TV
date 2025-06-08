@@ -53,8 +53,10 @@
     const cards = document.querySelectorAll('#anime-list .anime-card');
 
     cards.forEach(card => {
-      const genres = card.dataset.genre.toLowerCase();
-      if (!selectedGenre || genres.includes(selectedGenre.toLowerCase())) {
+      const genreList = card.dataset.genre.toLowerCase().split(',').map(g => g.trim());
+      const selected = selectedGenre.toLowerCase();
+
+      if (!selectedGenre || genreList.includes(selected)) {
         card.style.display = 'block';
       } else {
         card.style.display = 'none';
