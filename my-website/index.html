@@ -158,50 +158,6 @@
   });
 </script>
   
-  <script>
-  const TMDB_API_KEY = "b8c2d0fa80cd79b5d28d9fe2853806bb"; // Your TMDB key
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const tvShowsList = document.getElementById("tvshows-list");
-
-    async function fetchTrendingTVShows(genreId = "") {
-      const url = genreId
-        ? `https://api.themoviedb.org/3/discover/tv?api_key=${TMDB_API_KEY}&with_genres=${genreId}&sort_by=popularity.desc`
-        : `https://api.themoviedb.org/3/trending/tv/week?api_key=${TMDB_API_KEY}`;
-
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        renderTVShows(data.results);
-      } catch (error) {
-        console.error("Failed to fetch TV shows:", error);
-      }
-    }
-
-    function renderTVShows(shows) {
-      tvShowsList.innerHTML = "";
-      shows.forEach(show => {
-        const div = document.createElement("div");
-        div.classList.add("card");
-        div.innerHTML = `
-          <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="${show.name}">
-          <h3>${show.name}</h3>
-          <p>⭐ ${show.vote_average}</p>
-        `;
-        tvShowsList.appendChild(div);
-      });
-    }
-
-    // Hook global function for genre filtering
-    window.filterTVByGenre = function(genreId) {
-      fetchTrendingTVShows(genreId);
-    };
-
-    // Load default TV shows
-    fetchTrendingTVShows();
-  });
-</script>
-  
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
@@ -275,33 +231,8 @@
 
     <section class="row" id="tvshows-list-section">
       <h2>📺 Trending TV Shows</h2>
-
-  <!-- ✅ TV Shows Genre Filter -->
-  <div class="genre-filter">
-    <label for="tv-genre-select">🎯 Filter TV by Genre:</label>
-    <select id="tv-genre-select" onchange="filterTVByGenre(this.value)">
-      <option value="">All</option>
-      <option value="10759">Action & Adventure</option>
-      <option value="16">Animation</option>
-      <option value="35">Comedy</option>
-      <option value="80">Crime</option>
-      <option value="99">Documentary</option>
-      <option value="18">Drama</option>
-      <option value="10751">Family</option>
-      <option value="10762">Kids</option>
-      <option value="9648">Mystery</option>
-      <option value="10763">News</option>
-      <option value="10764">Reality</option>
-      <option value="10765">Sci-Fi & Fantasy</option>
-      <option value="10766">Soap</option>
-      <option value="10767">Talk</option>
-      <option value="10768">War & Politics</option>
-      <option value="37">Western</option>
-    </select>
-  </div>
-
-  <div class="card-container" id="tvshows-list"></div>
-</section>
+      <div class="card-container" id="tvshows-list"></div>
+    </section>
 
     <section class="row" id="anime-list-section">
   <h2>🌸 Trending Anime</h2>
