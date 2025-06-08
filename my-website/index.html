@@ -148,25 +148,6 @@
     }
   });
 </script>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    window.filterAnimeByGenre = function (selectedGenre) {
-      const cards = document.querySelectorAll('#anime-list .anime-card');
-
-      cards.forEach(card => {
-        const genreList = card.dataset.genre.toLowerCase().split(',').map(g => g.trim());
-        const selected = selectedGenre.toLowerCase();
-
-        if (!selectedGenre || genreList.includes(selected)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    };
-  });
-</script>
   
 </head>
 
@@ -248,25 +229,8 @@
 
     <section class="row" id="anime-list-section">
       <h2>🌸 Trending Anime</h2>
-      <section class="row" id="anime-list-section">
-
-  <!-- Genre Filter for Anime -->
-  <div class="anime-controls">
-    <label for="anime-genre-filter">🎯 Filter by Genre:</label>
-    <select id="anime-genre-filter" onchange="filterAnimeByGenre(this.value)">
-      <option value="">All Genres</option>
-      <option value="Action">Action</option>
-      <option value="Comedy">Comedy</option>
-      <option value="Drama">Drama</option>
-      <option value="Fantasy">Fantasy</option>
-      <option value="Romance">Romance</option>
-      <option value="Supernatural">Supernatural</option>
-      <option value="Adventure">Adventure</option>
-      <option value="Sci-Fi">Sci-Fi</option>
-      <option value="Slice of Life">Slice of Life</option>
-    </select>
-    
-</section>
+      <div class="card-container" id="anime-list"></div>
+    </section>
 
     <section class="section" id="pinoy-movies">
   <h2 style="display: flex; align-items: center; gap: 5px;">
