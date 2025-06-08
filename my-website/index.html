@@ -157,64 +157,6 @@
     }
   });
 </script>
-
-  <script>
-const animeList = document.getElementById("anime-list");
-const loadMoreBtn = document.getElementById("load-more-anime");
-const apiKey = "b8c2d0fa80cd79b5d28d9fe2853806bb"; // Replace with your TMDB API key
-
-let currentPage = 1;
-let selectedGenreId = "";
-let isLoading = false;
-
-async function fetchAnimeByGenre(genreId = "", page = 1) {
-  if (isLoading) return;
-  isLoading = true;
-
-  if (page === 1) animeList.innerHTML = "";
-
-  const url = genreId
-    ? `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_genres=${genreId}&with_keywords=210024|287501&sort_by=popularity.desc&language=en-US&page=${page}`
-    : `https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}&language=en-US&page=${page}`;
-
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-    displayAnime(data.results);
-  } catch (err) {
-    console.error("Error fetching anime:", err);
-  } finally {
-    isLoading = false;
-  }
-}
-
-function displayAnime(animeListData) {
-  animeListData.forEach((anime) => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w500${anime.poster_path}" alt="${anime.name}" />
-      <h3>${anime.name}</h3>
-      <p>⭐ ${anime.vote_average}</p>
-    `;
-    animeList.appendChild(card);
-  });
-}
-
-function filterAnimeByGenre(genreId) {
-  selectedGenreId = genreId;
-  currentPage = 1;
-  fetchAnimeByGenre(genreId, currentPage);
-}
-
-loadMoreBtn.addEventListener("click", () => {
-  currentPage++;
-  fetchAnimeByGenre(selectedGenreId, currentPage);
-});
-
-// Initial load
-fetchAnimeByGenre();
-</script>
   
 <body>
   <!-- Navbar -->
@@ -294,21 +236,9 @@ fetchAnimeByGenre();
 
     <section class="row" id="anime-list-section">
   <h2>🌸 Trending Anime</h2>
-  
-  <div class="anime-controls" style="margin-bottom: 15px;">
-    <label for="anime-genre-filter">🎯 Filter by Genre:</label>
-    <select id="anime-genre-filter" onchange="filterAnimeByGenre(this.value)">
-      <option value="">All</option>
-      <option value="16">Animation</option>
-      <option value="28">Action</option>
-      <option value="35">Comedy</option>
-      <option value="18">Drama</option>
-      <option value="10749">Romance</option>
-      <option value="27">Horror</option>
-      <option value="878">Sci-Fi</option>
-      <option value="14">Fantasy</option>
-      <option value="12">Adventure</option>
-    </select>
+  <div class="card-container" id="anime-list"></div>
+  <div class="load-more-container">
+    <button id="load-more-anime">🎥 Load More Anime</button>
   </div>
 </section>
 
