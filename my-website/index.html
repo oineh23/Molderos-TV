@@ -157,6 +157,48 @@
     }
   });
 </script>
+
+  <script>
+const tvShowsList = document.getElementById("tvshows-list");
+const TMDB_API_KEY = "YOUR_TMDB_API_KEY"; // Replace with your actual TMDB API key
+
+async function fetchTrendingTVShows(genreId = "") {
+  const url = genreId
+    ? `https://api.themoviedb.org/3/discover/tv?api_key=${TMDB_API_KEY}&with_genres=${genreId}&sort_by=popularity.desc`
+    : `https://api.themoviedb.org/3/trending/tv/week?api_key=${TMDB_API_KEY}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    renderTVShows(data.results);
+  } catch (error) {
+    console.error("Failed to fetch TV shows:", error);
+  }
+}
+
+function renderTVShows(shows) {
+  tvShowsList.innerHTML = "";
+  shows.forEach(show => {
+    const div = document.createElement("div");
+    div.classList.add("card");
+    div.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="${show.name}">
+      <h3>${show.name}</h3>
+      <p>⭐ ${show.vote_average}</p>
+    `;
+    tvShowsList.appendChild(div);
+  });
+}
+
+function filterTVByGenre(genreId) {
+  fetchTrendingTVShows(genreId);
+}
+
+// Load default on page load
+document.addEventListener("DOMContentLoaded", () => {
+  fetchTrendingTVShows();
+});
+</script>
   
 <body>
   <!-- Navbar -->
@@ -231,8 +273,6 @@
 
     <section class="row" id="tvshows-list-section">
       <h2>📺 Trending TV Shows</h2>
-      <section class="row" id="tvshows-list-section">
-  <h2>📺 Trending TV Shows</h2>
 
   <!-- ✅ TV Shows Genre Filter -->
   <div class="genre-filter">
