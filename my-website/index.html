@@ -48,6 +48,21 @@
   });
 </script>
 
+  <script>
+  function filterAnimeByGenre(selectedGenre) {
+    const cards = document.querySelectorAll('#anime-list .anime-card');
+
+    cards.forEach(card => {
+      const genres = card.dataset.genre.toLowerCase();
+      if (!selectedGenre || genres.includes(selectedGenre.toLowerCase())) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+  
   <style>
   :root {
     --bg-color: #ffffff;
@@ -147,21 +162,6 @@
       });
     }
   });
-</script>
-
-  <script>
-  function filterAnimeByGenre(selectedGenre) {
-    const cards = document.querySelectorAll('#anime-list .anime-card');
-
-    cards.forEach(card => {
-      const genres = card.dataset.genre.toLowerCase();
-      if (!selectedGenre || genres.includes(selectedGenre.toLowerCase())) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  }
 </script>
   
 </head>
