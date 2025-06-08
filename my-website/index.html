@@ -49,22 +49,24 @@
 </script>
 
   <script>
-  function filterAnimeByGenre(selectedGenre) {
-    const cards = document.querySelectorAll('#anime-list .anime-card');
+  document.addEventListener("DOMContentLoaded", () => {
+    window.filterAnimeByGenre = function (selectedGenre) {
+      const cards = document.querySelectorAll('#anime-list .anime-card');
 
-    cards.forEach(card => {
-      const genreList = card.dataset.genre.toLowerCase().split(',').map(g => g.trim());
-      const selected = selectedGenre.toLowerCase();
+      cards.forEach(card => {
+        const genreList = card.dataset.genre.toLowerCase().split(',').map(g => g.trim());
+        const selected = selectedGenre.toLowerCase();
 
-      if (!selectedGenre || genreList.includes(selected)) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  }
+        if (!selectedGenre || genreList.includes(selected)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    };
+  });
 </script>
-  
+
   <style>
   :root {
     --bg-color: #ffffff;
