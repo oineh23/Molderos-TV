@@ -157,45 +157,48 @@
     }
   });
 
-  const tvShowsList = document.getElementById("tvshows-list");
-const TMDB_API_KEY = "b8c2d0fa80cd79b5d28d9fe2853806bb"; // Replace with your actual TMDB API key
+  <script>
+  const TMDB_API_KEY = "b8c2d0fa80cd79b5d28d9fe2853806bb"; // Your TMDB key
 
-async function fetchTrendingTVShows(genreId = "") {
-  const url = genreId
-    ? `https://api.themoviedb.org/3/discover/tv?api_key=${TMDB_API_KEY}&with_genres=${genreId}&sort_by=popularity.desc`
-    : `https://api.themoviedb.org/3/trending/tv/week?api_key=${TMDB_API_KEY}`;
+  document.addEventListener("DOMContentLoaded", () => {
+    const tvShowsList = document.getElementById("tvshows-list");
 
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    renderTVShows(data.results);
-  } catch (error) {
-    console.error("Failed to fetch TV shows:", error);
-  }
-}
+    async function fetchTrendingTVShows(genreId = "") {
+      const url = genreId
+        ? `https://api.themoviedb.org/3/discover/tv?api_key=${TMDB_API_KEY}&with_genres=${genreId}&sort_by=popularity.desc`
+        : `https://api.themoviedb.org/3/trending/tv/week?api_key=${TMDB_API_KEY}`;
 
-function renderTVShows(shows) {
-  tvShowsList.innerHTML = "";
-  shows.forEach(show => {
-    const div = document.createElement("div");
-    div.classList.add("card");
-    div.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="${show.name}">
-      <h3>${show.name}</h3>
-      <p>⭐ ${show.vote_average}</p>
-    `;
-    tvShowsList.appendChild(div);
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        renderTVShows(data.results);
+      } catch (error) {
+        console.error("Failed to fetch TV shows:", error);
+      }
+    }
+
+    function renderTVShows(shows) {
+      tvShowsList.innerHTML = "";
+      shows.forEach(show => {
+        const div = document.createElement("div");
+        div.classList.add("card");
+        div.innerHTML = `
+          <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="${show.name}">
+          <h3>${show.name}</h3>
+          <p>⭐ ${show.vote_average}</p>
+        `;
+        tvShowsList.appendChild(div);
+      });
+    }
+
+    // Hook global function for genre filtering
+    window.filterTVByGenre = function(genreId) {
+      fetchTrendingTVShows(genreId);
+    };
+
+    // Load default TV shows
+    fetchTrendingTVShows();
   });
-}
-
-function filterTVByGenre(genreId) {
-  fetchTrendingTVShows(genreId);
-}
-
-// Load default on page load
-document.addEventListener("DOMContentLoaded", () => {
-  fetchTrendingTVShows();
-});
 </script>
   
 <body>
