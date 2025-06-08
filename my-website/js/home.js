@@ -43,6 +43,48 @@ function debounce(func, delay = 300) {
   };
 }
 
+const animeList = document.getElementById("anime-list");
+const loadMoreAnimeBtn = document.getElementById("load-more-anime");
+
+const TMDB_API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your real TMDB API key
+let currentAnimePage = 1;
+
+// Fetch and display anime
+async function fetchAnime(page = 1) {
+  const url = `https://api.themoviedb.org/3/discover/tv?api_key=${TMDB_API_KEY}&with_genres=16&sort_by=popularity.desc&page=${page}`;
+  
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    data.results.forEach(anime => {
+      const animeCard = document.createElement("div");
+      animeCard.classList.add("card");
+
+      animeCard.innerHTML = `
+        <img src="https://image.tmdb.org/t/p/w500${anime.poster_path}" alt="${anime.name}" />
+        <h3>${anime.name}</h3>
+        <p>⭐ ${anime.vote_average}</p>
+      `;
+
+      animeList.appendChild(animeCard);
+    });
+  } catch (error) {
+    console.error("Error fetching anime:", error);
+  }
+}
+
+// Initial load
+document.addEventListener("DOMContentLoaded", () => {
+  fetchAnime(currentAnimePage);
+});
+
+// Load more anime when button is clicked
+loadMoreAnimeBtn.addEventListener("click", () => {
+  currentAnimePage++;
+  fetchAnime(currentAnimePage);
+});
+
 // ====== API FETCHERS ======
 
 const fetchTrending = (type) =>
