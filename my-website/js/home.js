@@ -58,6 +58,7 @@ async function fetchAnime(page = 1) {
     const data = await response.json();
 
     data.results.forEach(anime => {
+      anime.media_type = 'tv';
       const animeCard = document.createElement("div");
       animeCard.classList.add("card");
 
