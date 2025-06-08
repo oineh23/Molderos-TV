@@ -58,17 +58,12 @@ async function fetchAnime(page = 1) {
     const data = await response.json();
 
     data.results.forEach(anime => {
-      anime.media_type = 'tv';
-      const animeCard = document.createElement("div");
-      animeCard.classList.add("card");
+      anime.media_type = 'tv';  // Add media_type so modal knows this is a TV show
+      
+      // Use your existing createCard function to build the card with "Watch Now" button
+      const card = createCard(anime);
 
-      animeCard.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w500${anime.poster_path}" alt="${anime.name}" />
-        <h3>${anime.name}</h3>
-        <p>⭐ ${anime.vote_average}</p>
-      `;
-
-      animeList.appendChild(animeCard);
+      animeList.appendChild(card);
     });
   } catch (error) {
     console.error("Error fetching anime:", error);
