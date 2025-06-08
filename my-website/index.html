@@ -48,25 +48,6 @@
   });
 </script>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    window.filterAnimeByGenre = function (selectedGenre) {
-      const cards = document.querySelectorAll('#anime-list .anime-card');
-
-      cards.forEach(card => {
-        const genreList = card.dataset.genre.toLowerCase().split(',').map(g => g.trim());
-        const selected = selectedGenre.toLowerCase();
-
-        if (!selectedGenre || genreList.includes(selected)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    };
-  });
-</script>
-
   <style>
   :root {
     --bg-color: #ffffff;
@@ -165,6 +146,25 @@
         toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
       });
     }
+  });
+</script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    window.filterAnimeByGenre = function (selectedGenre) {
+      const cards = document.querySelectorAll('#anime-list .anime-card');
+
+      cards.forEach(card => {
+        const genreList = card.dataset.genre.toLowerCase().split(',').map(g => g.trim());
+        const selected = selectedGenre.toLowerCase();
+
+        if (!selectedGenre || genreList.includes(selected)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    };
   });
 </script>
   
