@@ -230,17 +230,20 @@
 
     <!-- Trending TV Shows Section -->
 <section class="row" id="tvshows-list-section">
-  <h2>📺 Trending TV Shows</h2>
-
-  <select id="tv-genre-filter">
-  <option value="">All</option>
-  <option value="28">Action</option>
-  <option value="35">Comedy</option>
-  <option value="18">Drama</option>
-  <option value="10765">Sci-Fi</option>
-  <option value="16">Anime</option>
-</select>
-
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">📺 Trending TV Shows</h2>
+    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
+      <label for="tv-genre-filter">🎯 Filter by Genre:</label>
+      <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="10765">Sci-Fi</option>
+        <option value="16">Anime</option>
+      </select>
+    </div>
+  </div>
   <div class="card-container" id="tvshows-list"></div>
 </section>
 
