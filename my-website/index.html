@@ -198,8 +198,9 @@
     <section class="row" id="movies-list-section">
   <h2>🎬 Trending Movies</h2>
 
-  <!-- 🎯 Genre Filter placed right below the title -->
-  <div class="genre-filter" style="margin-top: 15px; text-align: center;">
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+  <h2 style="margin: 0;">🎬 Trending Movies</h2>
+  <div class="genre-filter">
     <label for="genre-select" style="font-weight: bold;">🎯 Filter by Genre:</label>
     <select 
       id="genre-select" 
@@ -226,6 +227,7 @@
       <option value="37">Western</option>
     </select>
   </div>
+</div>
 
   <!-- Movie Cards Container -->
   <div class="card-container" id="movies-list"></div>
