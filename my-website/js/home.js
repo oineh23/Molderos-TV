@@ -1,5 +1,4 @@
 
-
 // ====== CONFIGURATION ======
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -83,22 +82,6 @@ loadMoreAnimeBtn.addEventListener("click", () => {
   currentAnimePage++;
   fetchAnime(currentAnimePage);
 });
-
-function filterByGenre(genreId) {
-  showLoadingSpinner(); // Optional: show loading spinner
-
-  // Clear all existing cards
-  document.getElementById("movies-list").innerHTML = "";
-  document.getElementById("tvshows-list").innerHTML = "";
-  document.getElementById("anime-list").innerHTML = "";
-  document.getElementById("pinoy-movie-list").innerHTML = "";
-
-  // Load filtered content for each section
-  fetchTrendingMovies(genreId);
-  fetchTrendingTVShows(genreId);
-  fetchTrendingAnime(genreId);
-  fetchVivamaxContent(genreId);
-}
 
 // ====== API FETCHERS ======
 
