@@ -197,11 +197,9 @@
   <!-- Main Content -->
   <main>
     <section class="row" id="movies-list-section">
-  <h2>🎬 Trending Movies</h2>
-
-  <!-- Moved Genre Filter -->
-  <section class="genre-filter">
-    <div class="container">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">🎬 Trending Movies</h2>
+    <div class="genre-filter">
       <label for="genre-select">🎯 Filter by Genre:</label>
       <select id="genre-select" onchange="filterByGenre(this.value)">
         <option value="">All</option>
@@ -225,7 +223,7 @@
         <option value="37">Western</option>
       </select>
     </div>
-  </section>
+  </div>
 
   <div class="card-container" id="movies-list"></div>
 </section>
