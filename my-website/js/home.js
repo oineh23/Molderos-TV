@@ -74,9 +74,15 @@ document.addEventListener("DOMContentLoaded", () => {
   init().then(() => {
     fetchPinoyMoviesPaginated();
     setupPinoyControls();
-    setupTVControls(); // ← You will add this function in Step 3
+    function setupTVControls() {
+  const tvGenreSelect = document.getElementById('tv-genre-filter');
+
+  tvGenreSelect.addEventListener('change', () => {
+    tvGenre = tvGenreSelect.value;
+    tvPage = 1;
+    fetchTrendingTVShows(true); // reset = true
   });
-});
+}
 
 // Load more anime when button is clicked
 loadMoreAnimeBtn.addEventListener("click", () => {
