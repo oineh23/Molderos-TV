@@ -128,6 +128,26 @@ async function filterByGenre(genreId) {
   }
 }
 
+let tvGenre = '';
+let tvPage = 1;
+
+async function fetchTrendingTVShows(reset = false) {
+  const url = `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=${tvGenre}&sort_by=popularity.desc&page=${tvPage}`;
+  const container = document.getElementById('tvshows-list');
+
+  if (reset) {
+    container.innerHTML = '';
+    tvPage = 1;
+  }
+
+  const results = await fetchData(url);
+
+  results.forEach(tv => {
+    if (!tv.poster_path) return;
+    tv.media_type = 'tv';
+    container.appendChild(createCard(tv));
+  });
+}
 
 // ====== DISPLAY FUNCTIONS ======
 
