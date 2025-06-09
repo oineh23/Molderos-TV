@@ -373,7 +373,7 @@ select {
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 5rem;
   
   body.light-mode .genre-filter {
   background-color: #eee;
