@@ -196,43 +196,41 @@
   <!-- Main Content -->
   <main>
     <section class="row" id="movies-list-section">
-  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; row-gap: 10px;">
-    <div style="display: flex; align-items: center; gap: 12px;">
-      <h2 style="margin: 0;">🎬 Trending Movies</h2>
-      <div class="genre-filter" style="display: flex; align-items: center; gap: 8px;">
-        <label for="genre-select" style="font-weight: bold;">🎯 Genre:</label>
-        <select 
-          id="genre-select" 
-          onchange="filterByGenre(this.value)" 
-          style="padding: 8px 12px; font-size: 1rem; border-radius: 8px; border: 1px solid #ccc;">
-          <option value="">All</option>
-          <option value="28">Action</option>
-          <option value="35">Comedy</option>
-          <option value="18">Drama</option>
-          <option value="27">Horror</option>
-          <option value="16">Animation</option>
-          <option value="10749">Romance</option>
-          <option value="878">Science Fiction</option>
-          <option value="10751">Family</option>
-          <option value="99">Documentary</option>
-          <option value="12">Adventure</option>
-          <option value="80">Crime</option>
-          <option value="9648">Mystery</option>
-          <option value="53">Thriller</option>
-          <option value="14">Fantasy</option>
-          <option value="36">History</option>
-          <option value="10402">Music</option>
-          <option value="10752">War</option>
-          <option value="37">Western</option>
-        </select>
-      </div>
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; margin-bottom: 10px;">
+    <h2 style="margin: 0;">🎬 Trending Movies</h2>
+    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
+      <label for="genre-select" style="font-weight: bold;">🎯 Genre:</label>
+      <select 
+        id="genre-select" 
+        onchange="filterByGenre(this.value)" 
+        style="padding: 8px 12px; font-size: 1rem; border-radius: 8px; border: 1px solid #ccc;">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="27">Horror</option>
+        <option value="16">Animation</option>
+        <option value="10749">Romance</option>
+        <option value="878">Science Fiction</option>
+        <option value="10751">Family</option>
+        <option value="99">Documentary</option>
+        <option value="12">Adventure</option>
+        <option value="80">Crime</option>
+        <option value="9648">Mystery</option>
+        <option value="53">Thriller</option>
+        <option value="14">Fantasy</option>
+        <option value="36">History</option>
+        <option value="10402">Music</option>
+        <option value="10752">War</option>
+        <option value="37">Western</option>
+      </select>
     </div>
   </div>
 
   <!-- Movie Cards Container -->
   <div class="card-container" id="movies-list"></div>
 </section>
-    
+  
 </section>
 
     <!-- Trending TV Shows Section -->
