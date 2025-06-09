@@ -229,10 +229,36 @@
       <div class="card-container" id="movies-list"></div>
     </section>
 
-    <section class="row" id="tvshows-list-section">
-      <h2>📺 Trending TV Shows</h2>
-      <div class="card-container" id="tvshows-list"></div>
-    </section>
+    <!-- Trending TV Shows Section -->
+<section class="row" id="tvshows-list-section">
+  <h2>📺 Trending TV Shows</h2>
+
+  <!-- Genre Filter Specific to TV Shows -->
+  <div class="tv-genre-filter">
+    <label for="tv-genre-select">Filter by Genre:</label>
+    <select id="tv-genre-select" onchange="filterTvShowsByGenre(this.value)">
+      <option value="">All</option>
+      <option value="10759">Action & Adventure</option>
+      <option value="16">Animation</option>
+      <option value="35">Comedy</option>
+      <option value="80">Crime</option>
+      <option value="99">Documentary</option>
+      <option value="18">Drama</option>
+      <option value="10751">Family</option>
+      <option value="10762">Kids</option>
+      <option value="9648">Mystery</option>
+      <option value="10763">News</option>
+      <option value="10764">Reality</option>
+      <option value="10765">Sci-Fi & Fantasy</option>
+      <option value="10766">Soap</option>
+      <option value="10767">Talk</option>
+      <option value="10768">War & Politics</option>
+      <option value="37">Western</option>
+    </select>
+  </div>
+
+  <div class="card-container" id="tvshows-list"></div>
+</section>
 
     <section class="row" id="anime-list-section">
   <h2>🌸 Trending Anime</h2>
