@@ -269,7 +269,12 @@
       <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
       Vivamax
     </h2>
-    <label for="pinoy-genre-filter" style="font-weight: bold;">🎯 Genre:</label>
+    
+    <label for="genre-select" style="font-weight: bold;">🎯 Genre:</label>
+    <select 
+      id="genre-select" 
+      onchange="AllGenres(this.value)" 
+      style="padding: 8px 12px; margin-left: 10px; font-size: 1rem; border-radius: 8px; border: 1px solid #ccc;">
       <option value="">All Genres</option>
       <optgroup label="Popular Genres">
         <option value="28">Action</option>
