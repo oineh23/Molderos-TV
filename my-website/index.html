@@ -228,6 +228,247 @@
   <div class="card-container" id="movies-list"></div>
 </section>
 
+    ChatGPT
+You said:
+can you help me, please edit my HTML CODE i want to move Filter by genres after Trending Movies title from right
+ChatGPT said:
+Sure, I can help! Please paste your HTML code here, especially the section with the "Trending Movies" title and the "Filter by genres" element. That way, I can adjust it and move the filter dropdown (or list) to appear directly after the title, aligned to the right if that's what you mean.
+
+Once I have the code, I’ll show you the updated version.
+
+You said:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOLDEROS-TV - Trending Movies & Shows</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="preload" href="css/home.css" as="style" />
+  <link rel="preload" href="js/home.js" as="script" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <script defer src="js/home.js"></script>
+
+  <script>
+    document.addEventListener('contextmenu', function(event) {
+      event.preventDefault();
+      alert("Right-click is disabled on this page.");
+    });
+  </script>
+
+  <script type="text/javascript" data-cfasync="false">
+  /*<![CDATA[/* */
+  (function(){var b=window,n="d4aaaaf220b1059cdc1786c1f73b615f",q=[["siteId",307-360-27-817+720+5197520],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],y=["d3d3LmFudGlhZGJsb2Nrc3lzdGVtcy5jb20vckVmRWxxL1hWWC90c3dpcGVyLm1pbi5qcw==","ZDNjb2Q4MHRobjdxbmQuY2xvdWRmcm9udC5uZXQvb2QzLWdlby1wcm9qZWN0aW9uLm1pbi5qcw=="],h=-1,f,e,g=function(){clearTimeout(e);h++;if(y[h]&&!(1772762032000<(new Date).getTime()&&1<h)){f=b.document.createElement("script");f.type="text/javascript";f.async=!0;var p=b.document.getElementsByTagName("script")[0];f.src="https://"+atob(y[h]);f.crossOrigin="anonymous";f.onerror=g;f.onload=function(){clearTimeout(e);b[n.slice(0,16)+n.slice(0,16)]||g()};e=setTimeout(g,5E3);p.parentNode.insertBefore(f,p)}};if(!b[n]){try{Object.freeze(b[n]=q)}catch(e){}g()}})();
+  /*]]>/* */
+  </script>
+
+  <script>
+  document.addEventListener("keydown", function (e) {
+    // F12
+    if (e.key === "F12") {
+      e.preventDefault();
+    }
+
+    // Ctrl + Shift + I / J / C
+    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+      e.preventDefault();
+    }
+
+    // Ctrl + U (View Source)
+    if (e.ctrlKey && e.key === "u") {
+      e.preventDefault();
+    }
+  });
+</script>
+
+  <style>
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --nav-bg: #f0f0f0;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --nav-bg: #1e1e1e;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-wrapper {
+    background-color: var(--nav-bg);
+    transition: background-color 0.3s ease;
+  }
+
+  .theme-toggle {
+    cursor: pointer;
+    font-size: 1.4rem;
+    margin-left: 15px;
+    color: var(--text-color);
+  }
+
+    <style>
+  /* Fullscreen video modal styles for mobile and tablets */
+  @media (max-width: 1024px) {
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-body,
+    .modal-text,
+    .server-selector {
+      display: none; /* Hide extra content for fullscreen effect */
+    }
+
+    #modal-video {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+
+    .modal .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
+      color: #fff;
+      z-index: 2000;
+    }
+  }
+</style>
+
+  <style>  
+    
+  .load-more-container {
+    margin-top: 30px;
+    text-align: center;
+  }
+    
+</style>
+
+</style>
+<script>
+  // Theme toggle logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
+    const toggleBtn = document.getElementById("theme-toggle");
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
+      });
+    }
+  });
+</script>
+  
+<body>
+  <!-- Navbar -->
+  <header class="nav-wrapper">
+    <div class="container nav">
+        <a href="#" class="logo">
+  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+  MOLD<span class="main-color">EROS</span>-TV
+        </a>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#pinoy-movies">OPM</a>
+        <a href="#tvshows-list">TV Shows</a>
+        <a href="#anime-list">Anime</a>
+        <input 
+          type="text" 
+          class="search-bar" 
+          placeholder="Search..." 
+          onfocus="openSearchModal()" 
+          aria-label="Search"
+        />
+        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="banner">
+    <div class="hero-overlay">
+      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
+      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
+      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <section class="row" id="movies-list-section">
+  <h2>🎬 Trending Movies</h2>
+
+  <!-- Moved Genre Filter -->
+  <section class="genre-filter">
+    <div class="container">
+      <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="27">Horror</option>
+        <option value="16">Animation</option>
+        <option value="10749">Romance</option>
+        <option value="878">Science Fiction</option>
+        <option value="10751">Family</option>
+        <option value="99">Documentary</option>
+        <option value="12">Adventure</option>
+        <option value="80">Crime</option>
+        <option value="9648">Mystery</option>
+        <option value="53">Thriller</option>
+        <option value="14">Fantasy</option>
+        <option value="36">History</option>
+        <option value="10402">Music</option>
+        <option value="10752">War</option>
+        <option value="37">Western</option>
+      </select>
+    </div>
+  </section>
+
+  <div class="card-container" id="movies-list"></div>
+</section>
+
     <!-- Trending TV Shows Section -->
 <section class="row" id="tvshows-list-section">
   <h2>📺 Trending TV Shows</h2>
@@ -289,6 +530,893 @@
   <div class="vivamax-grid" id="pinoy-movie-list"></div>
   <div class="load-more-container">
    <button id="load-more-pinoy">🎥 Load More</button>
+  </div>
+</section>
+  </main>
+
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" id="loading-spinner" style="display: none;">
+    <i class="fas fa-spinner fa-spin"></i>
+    <span>Loading content...</span>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
+      <div class="modal-body">
+        <img id="modal-image" src="" alt="Movie poster" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+      <div class="server-selector">
+        <label for="server">Change Server:</label>
+        <select id="server" onchange="changeServer()">
+          <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
+          <option value="player.videasy.net">Player.Videasy.net</option>
+        </select>
+     </div>
+      <iframe id="modal-video" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+<div class="search-modal" id="search-modal">
+  <div class="search-modal-box">
+    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Search movies, TV shows, or anime..." 
+      oninput="searchTMDB()" 
+      aria-label="Search input"
+    />
+    <div class="results" id="search-results"></div>
+  </div>
+</div>
+
+    <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Disclaimer</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+  
+</body>
+</html>
+ChatGPT said:
+Thanks for sharing your HTML! To move the "Filter by Genre" section next to the "Trending Movies" title and aligned to the right, we can:
+
+Wrap the title and the filter in a flex container.
+
+Use justify-content: space-between to separate them.
+
+Optionally, tweak alignment with align-items: center.
+
+✅ Here’s the updated HTML snippet (only this section needs to change):
+Replace this:
+
+<section class="row" id="movies-list-section">
+  <h2>🎬 Trending Movies</h2>
+
+  <!-- Moved Genre Filter -->
+  <section class="genre-filter">
+    <div class="container">
+      <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
+With this:
+
+<section class="row" id="movies-list-section">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">🎬 Trending Movies</h2>
+    <div class="genre-filter">
+      <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="27">Horror</option>
+        <option value="16">Animation</option>
+        <option value="10749">Romance</option>
+        <option value="878">Science Fiction</option>
+        <option value="10751">Family</option>
+        <option value="99">Documentary</option>
+        <option value="12">Adventure</option>
+        <option value="80">Crime</option>
+        <option value="9648">Mystery</option>
+        <option value="53">Thriller</option>
+        <option value="14">Fantasy</option>
+        <option value="36">History</option>
+        <option value="10402">Music</option>
+        <option value="10752">War</option>
+        <option value="37">Western</option>
+      </select>
+    </div>
+  </div>
+✅ Optional CSS (to make the dropdown look cleaner inline):
+You can add this to your CSS:
+
+.genre-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.genre-filter label {
+  font-weight: bold;
+}
+Let me know if you’d like the same layout applied to other sections like TV Shows or Vivamax!
+
+You said:
+yes
+ChatGPT said:
+Great! Let's apply the same layout fix to both:
+
+Trending TV Shows
+
+Vivamax (Pinoy Movies)
+
+We'll make sure the genre filter appears inline with the section title, aligned to the right.
+
+✅ 1. Trending TV Shows Section – Updated
+Replace this part:
+
+<section class="row" id="tvshows-list-section">
+  <h2>📺 Trending TV Shows</h2>
+
+  <select id="tv-genre-filter">
+    <option value="">All</option>
+    <option value="28">Action</option>
+    <option value="35">Comedy</option>
+    <option value="18">Drama</option>
+    <option value="10765">Sci-Fi</option>
+    <option value="16">Anime</option>
+  </select>
+With this:
+
+<section class="row" id="tvshows-list-section">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">📺 Trending TV Shows</h2>
+    <div class="genre-filter">
+      <label for="tv-genre-filter">🎯 Filter by Genre:</label>
+      <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="10765">Sci-Fi</option>
+        <option value="16">Anime</option>
+      </select>
+    </div>
+  </div>
+✅ 2. Vivamax / Pinoy Movies Section – Updated
+Replace this:
+
+<section class="section" id="pinoy-movies">
+  <h2 style="display: flex; align-items: center; gap: 5px;">
+    <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
+    Vivamax
+  </h2>
+
+  <div class="pinoy-controls">
+    <select id="pinoy-genre-filter">
+With this:
+
+<section class="section" id="pinoy-movies">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="display: flex; align-items: center; gap: 5px; margin: 0;">
+      <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
+      Vivamax
+    </h2>
+    <div class="genre-filter">
+      <label for="pinoy-genre-filter">🎯 Filter by Genre:</label>
+      <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
+✅ CSS Styling Reminder
+If not already done, make sure this CSS is added (in your <style> or home.css):
+
+.genre-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.genre-filter label {
+  font-weight: bold;
+}
+Let me know if you want me to go ahead and combine all the updated HTML blocks for you into one file!
+
+You said:
+yes
+ChatGPT said:
+Here is your updated full HTML code with all three genre filters (for Trending Movies, Trending TV Shows, and Vivamax/Pinoy Movies) positioned inline next to their section titles on the right:
+
+✅ Key Changes Implemented:
+Trending Movies: Already corrected.
+
+Trending TV Shows: Genre filter aligned inline with title.
+
+Pinoy/Vivamax Movies: Genre filter aligned inline with title and image.
+
+✅ Final Code (updated parts only, clean & copy-ready):
+<!-- Trending Movies Section -->
+<section class="row" id="movies-list-section">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">🎬 Trending Movies</h2>
+    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
+      <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="27">Horror</option>
+        <option value="16">Animation</option>
+        <option value="10749">Romance</option>
+        <option value="878">Science Fiction</option>
+        <option value="10751">Family</option>
+        <option value="99">Documentary</option>
+        <option value="12">Adventure</option>
+        <option value="80">Crime</option>
+        <option value="9648">Mystery</option>
+        <option value="53">Thriller</option>
+        <option value="14">Fantasy</option>
+        <option value="36">History</option>
+        <option value="10402">Music</option>
+        <option value="10752">War</option>
+        <option value="37">Western</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-container" id="movies-list"></div>
+</section>
+
+<!-- Trending TV Shows Section -->
+<section class="row" id="tvshows-list-section">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">📺 Trending TV Shows</h2>
+    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
+      <label for="tv-genre-filter">🎯 Filter by Genre:</label>
+      <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="10765">Sci-Fi</option>
+        <option value="16">Anime</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-container" id="tvshows-list"></div>
+</section>
+
+    <section class="row" id="anime-list-section">
+  <h2>🌸 Trending Anime</h2>
+  <div class="card-container" id="anime-list"></div>
+  <div class="load-more-container">
+    <button id="load-more-anime">🎥 Load More Anime</button>
+  </div>
+</section>
+
+    <section class="section" id="pinoy-movies">
+  <hChatGPT
+You said:
+can you help me, please edit my HTML CODE i want to move Filter by genres after Trending Movies title from right
+ChatGPT said:
+Sure, I can help! Please paste your HTML code here, especially the section with the "Trending Movies" title and the "Filter by genres" element. That way, I can adjust it and move the filter dropdown (or list) to appear directly after the title, aligned to the right if that's what you mean.
+
+Once I have the code, I’ll show you the updated version.
+
+You said:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOLDEROS-TV - Trending Movies & Shows</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="preload" href="css/home.css" as="style" />
+  <link rel="preload" href="js/home.js" as="script" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <script defer src="js/home.js"></script>
+
+  <script>
+    document.addEventListener('contextmenu', function(event) {
+      event.preventDefault();
+      alert("Right-click is disabled on this page.");
+    });
+  </script>
+
+  <script type="text/javascript" data-cfasync="false">
+  /*<![CDATA[/* */
+  (function(){var b=window,n="d4aaaaf220b1059cdc1786c1f73b615f",q=[["siteId",307-360-27-817+720+5197520],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],y=["d3d3LmFudGlhZGJsb2Nrc3lzdGVtcy5jb20vckVmRWxxL1hWWC90c3dpcGVyLm1pbi5qcw==","ZDNjb2Q4MHRobjdxbmQuY2xvdWRmcm9udC5uZXQvb2QzLWdlby1wcm9qZWN0aW9uLm1pbi5qcw=="],h=-1,f,e,g=function(){clearTimeout(e);h++;if(y[h]&&!(1772762032000<(new Date).getTime()&&1<h)){f=b.document.createElement("script");f.type="text/javascript";f.async=!0;var p=b.document.getElementsByTagName("script")[0];f.src="https://"+atob(y[h]);f.crossOrigin="anonymous";f.onerror=g;f.onload=function(){clearTimeout(e);b[n.slice(0,16)+n.slice(0,16)]||g()};e=setTimeout(g,5E3);p.parentNode.insertBefore(f,p)}};if(!b[n]){try{Object.freeze(b[n]=q)}catch(e){}g()}})();
+  /*]]>/* */
+  </script>
+
+  <script>
+  document.addEventListener("keydown", function (e) {
+    // F12
+    if (e.key === "F12") {
+      e.preventDefault();
+    }
+
+    // Ctrl + Shift + I / J / C
+    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+      e.preventDefault();
+    }
+
+    // Ctrl + U (View Source)
+    if (e.ctrlKey && e.key === "u") {
+      e.preventDefault();
+    }
+  });
+</script>
+
+  <style>
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --nav-bg: #f0f0f0;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --nav-bg: #1e1e1e;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-wrapper {
+    background-color: var(--nav-bg);
+    transition: background-color 0.3s ease;
+  }
+
+  .theme-toggle {
+    cursor: pointer;
+    font-size: 1.4rem;
+    margin-left: 15px;
+    color: var(--text-color);
+  }
+
+    <style>
+  /* Fullscreen video modal styles for mobile and tablets */
+  @media (max-width: 1024px) {
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-body,
+    .modal-text,
+    .server-selector {
+      display: none; /* Hide extra content for fullscreen effect */
+    }
+
+    #modal-video {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+
+    .modal .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
+      color: #fff;
+      z-index: 2000;
+    }
+  }
+</style>
+
+  <style>  
+    
+  .load-more-container {
+    margin-top: 30px;
+    text-align: center;
+  }
+    
+</style>
+
+</style>
+<script>
+  // Theme toggle logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
+    const toggleBtn = document.getElementById("theme-toggle");
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
+      });
+    }
+  });
+</script>
+  
+<body>
+  <!-- Navbar -->
+  <header class="nav-wrapper">
+    <div class="container nav">
+        <a href="#" class="logo">
+  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+  MOLD<span class="main-color">EROS</span>-TV
+        </a>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#pinoy-movies">OPM</a>
+        <a href="#tvshows-list">TV Shows</a>
+        <a href="#anime-list">Anime</a>
+        <input 
+          type="text" 
+          class="search-bar" 
+          placeholder="Search..." 
+          onfocus="openSearchModal()" 
+          aria-label="Search"
+        />
+        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="banner">
+    <div class="hero-overlay">
+      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
+      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
+      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <section class="row" id="movies-list-section">
+  <h2>🎬 Trending Movies</h2>
+
+  <!-- Moved Genre Filter -->
+  <section class="genre-filter">
+    <div class="container">
+      <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="27">Horror</option>
+        <option value="16">Animation</option>
+        <option value="10749">Romance</option>
+        <option value="878">Science Fiction</option>
+        <option value="10751">Family</option>
+        <option value="99">Documentary</option>
+        <option value="12">Adventure</option>
+        <option value="80">Crime</option>
+        <option value="9648">Mystery</option>
+        <option value="53">Thriller</option>
+        <option value="14">Fantasy</option>
+        <option value="36">History</option>
+        <option value="10402">Music</option>
+        <option value="10752">War</option>
+        <option value="37">Western</option>
+      </select>
+    </div>
+  </section>
+
+  <div class="card-container" id="movies-list"></div>
+</section>
+
+    <!-- Trending TV Shows Section -->
+<section class="row" id="tvshows-list-section">
+  <h2>📺 Trending TV Shows</h2>
+
+  <select id="tv-genre-filter">
+  <option value="">All</option>
+  <option value="28">Action</option>
+  <option value="35">Comedy</option>
+  <option value="18">Drama</option>
+  <option value="10765">Sci-Fi</option>
+  <option value="16">Anime</option>
+</select>
+
+  <div class="card-container" id="tvshows-list"></div>
+</section>
+
+    <section class="row" id="anime-list-section">
+  <h2>🌸 Trending Anime</h2>
+  <div class="card-container" id="anime-list"></div>
+  <div class="load-more-container">
+    <button id="load-more-anime">🎥 Load More Anime</button>
+  </div>
+</section>
+
+    <section class="section" id="pinoy-movies">
+  <h2 style="display: flex; align-items: center; gap: 5px;">
+  <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
+  Vivamax
+</h2>
+
+  <div class="pinoy-controls">
+    <select id="pinoy-genre-filter">
+  <option value="">All Genres</option>
+  <optgroup label="Popular Genres">
+    <option value="28">Action</option>
+    <option value="35">Comedy</option>
+    <option value="18">Drama</option>
+    <option value="10749">Romance</option>
+    <option value="80">Crime</option>
+    <option value="27">Horror</option>
+    <option value="10751">Family</option>
+    <option value="16">Animation</option>
+  </optgroup>
+  <optgroup label="Other Genres">
+    <option value="99">Documentary</option>
+    <option value="10402">Music</option>
+    <option value="9648">Mystery</option>
+    <option value="878">Science Fiction</option>
+    <option value="10752">War</option>
+    <option value="37">Western</option>
+    <option value="36">History</option>
+    <option value="14">Fantasy</option>
+    <option value="53">Thriller</option>
+  </optgroup>
+</select>
+
+  </div>
+
+  <div class="vivamax-grid" id="pinoy-movie-list"></div>
+  <div class="load-more-container">
+   <button id="load-more-pinoy">🎥 Load More</button>
+  </div>
+</section>
+  </main>
+
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" id="loading-spinner" style="display: none;">
+    <i class="fas fa-spinner fa-spin"></i>
+    <span>Loading content...</span>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
+      <div class="modal-body">
+        <img id="modal-image" src="" alt="Movie poster" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+      <div class="server-selector">
+        <label for="server">Change Server:</label>
+        <select id="server" onchange="changeServer()">
+          <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
+          <option value="player.videasy.net">Player.Videasy.net</option>
+        </select>
+     </div>
+      <iframe id="modal-video" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+<div class="search-modal" id="search-modal">
+  <div class="search-modal-box">
+    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Search movies, TV shows, or anime..." 
+      oninput="searchTMDB()" 
+      aria-label="Search input"
+    />
+    <div class="results" id="search-results"></div>
+  </div>
+</div>
+
+    <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Disclaimer</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+  
+</body>
+</html>
+ChatGPT said:
+Thanks for sharing your HTML! To move the "Filter by Genre" section next to the "Trending Movies" title and aligned to the right, we can:
+
+Wrap the title and the filter in a flex container.
+
+Use justify-content: space-between to separate them.
+
+Optionally, tweak alignment with align-items: center.
+
+✅ Here’s the updated HTML snippet (only this section needs to change):
+Replace this:
+
+<section class="row" id="movies-list-section">
+  <h2>🎬 Trending Movies</h2>
+
+  <!-- Moved Genre Filter -->
+  <section class="genre-filter">
+    <div class="container">
+      <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
+With this:
+
+<section class="row" id="movies-list-section">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">🎬 Trending Movies</h2>
+    <div class="genre-filter">
+      <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="27">Horror</option>
+        <option value="16">Animation</option>
+        <option value="10749">Romance</option>
+        <option value="878">Science Fiction</option>
+        <option value="10751">Family</option>
+        <option value="99">Documentary</option>
+        <option value="12">Adventure</option>
+        <option value="80">Crime</option>
+        <option value="9648">Mystery</option>
+        <option value="53">Thriller</option>
+        <option value="14">Fantasy</option>
+        <option value="36">History</option>
+        <option value="10402">Music</option>
+        <option value="10752">War</option>
+        <option value="37">Western</option>
+      </select>
+    </div>
+  </div>
+✅ Optional CSS (to make the dropdown look cleaner inline):
+You can add this to your CSS:
+
+.genre-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.genre-filter label {
+  font-weight: bold;
+}
+Let me know if you’d like the same layout applied to other sections like TV Shows or Vivamax!
+
+You said:
+yes
+ChatGPT said:
+Great! Let's apply the same layout fix to both:
+
+Trending TV Shows
+
+Vivamax (Pinoy Movies)
+
+We'll make sure the genre filter appears inline with the section title, aligned to the right.
+
+✅ 1. Trending TV Shows Section – Updated
+Replace this part:
+
+<section class="row" id="tvshows-list-section">
+  <h2>📺 Trending TV Shows</h2>
+
+  <select id="tv-genre-filter">
+    <option value="">All</option>
+    <option value="28">Action</option>
+    <option value="35">Comedy</option>
+    <option value="18">Drama</option>
+    <option value="10765">Sci-Fi</option>
+    <option value="16">Anime</option>
+  </select>
+With this:
+
+<section class="row" id="tvshows-list-section">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">📺 Trending TV Shows</h2>
+    <div class="genre-filter">
+      <label for="tv-genre-filter">🎯 Filter by Genre:</label>
+      <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="10765">Sci-Fi</option>
+        <option value="16">Anime</option>
+      </select>
+    </div>
+  </div>
+✅ 2. Vivamax / Pinoy Movies Section – Updated
+Replace this:
+
+<section class="section" id="pinoy-movies">
+  <h2 style="display: flex; align-items: center; gap: 5px;">
+    <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
+    Vivamax
+  </h2>
+
+  <div class="pinoy-controls">
+    <select id="pinoy-genre-filter">
+With this:
+
+<section class="section" id="pinoy-movies">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="display: flex; align-items: center; gap: 5px; margin: 0;">
+      <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
+      Vivamax
+    </h2>
+    <div class="genre-filter">
+      <label for="pinoy-genre-filter">🎯 Filter by Genre:</label>
+      <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
+✅ CSS Styling Reminder
+If not already done, make sure this CSS is added (in your <style> or home.css):
+
+.genre-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.genre-filter label {
+  font-weight: bold;
+}
+Let me know if you want me to go ahead and combine all the updated HTML blocks for you into one file!
+
+You said:
+yes
+ChatGPT said:
+Here is your updated full HTML code with all three genre filters (for Trending Movies, Trending TV Shows, and Vivamax/Pinoy Movies) positioned inline next to their section titles on the right:
+
+✅ Key Changes Implemented:
+Trending Movies: Already corrected.
+
+Trending TV Shows: Genre filter aligned inline with title.
+
+Pinoy/Vivamax Movies: Genre filter aligned inline with title and image.
+
+✅ Final Code (updated parts only, clean & copy-ready):
+<!-- Trending Movies Section -->
+<section class="row" id="movies-list-section">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">🎬 Trending Movies</h2>
+    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
+      <label for="genre-select">🎯 Filter by Genre:</label>
+      <select id="genre-select" onchange="filterByGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="27">Horror</option>
+        <option value="16">Animation</option>
+        <option value="10749">Romance</option>
+        <option value="878">Science Fiction</option>
+        <option value="10751">Family</option>
+        <option value="99">Documentary</option>
+        <option value="12">Adventure</option>
+        <option value="80">Crime</option>
+        <option value="9648">Mystery</option>
+        <option value="53">Thriller</option>
+        <option value="14">Fantasy</option>
+        <option value="36">History</option>
+        <option value="10402">Music</option>
+        <option value="10752">War</option>
+        <option value="37">Western</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-container" id="movies-list"></div>
+</section>
+
+<!-- Trending TV Shows Section -->
+<section class="row" id="tvshows-list-section">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">📺 Trending TV Shows</h2>
+    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
+      <label for="tv-genre-filter">🎯 Filter by Genre:</label>
+      <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="10765">Sci-Fi</option>
+        <option value="16">Anime</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-container" id="tvshows-list"></div>
+</section>
+
+<!-- Vivamax / Pinoy Movies Section -->
+<section class="section" id="pinoy-movies">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="display: flex; align-items: center; gap: 5px; margin: 0;">
+      <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
+      Vivamax
+    </h2>
+    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
+      <label for="pinoy-genre-filter">🎯 Filter by Genre:</label>
+      <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
+        <option value="">All Genres</option>
+        <optgroup label="Popular Genres">
+          <option value="28">Action</option>
+          <option value="35">Comedy</option>
+          <option value="18">Drama</option>
+          <option value="10749">Romance</option>
+          <option value="80">Crime</option>
+          <option value="27">Horror</option>
+          <option value="10751">Family</option>
+          <option value="16">Animation</option>
+        </optgroup>
+        <optgroup label="Other Genres">
+          <option value="99">Documentary</option>
+          <option value="10402">Music</option>
+          <option value="9648">Mystery</option>
+          <option value="878">Science Fiction</option>
+          <option value="10752">War</option>
+          <option value="37">Western</option>
+          <option value="36">History</option>
+          <option value="14">Fantasy</option>
+          <option value="53">Thriller</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+  <div class="vivamax-grid" id="pinoy-movie-list"></div>
+  <div class="load-more-container">
+    <button id="load-more-pinoy">🎥 Load More</button>
   </div>
 </section>
   </main>
