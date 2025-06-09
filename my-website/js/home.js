@@ -351,3 +351,8 @@ function scrollPinoyMovies(direction) {
   const scrollAmount = slider.offsetWidth * 0.8;
   slider.scrollLeft += direction * scrollAmount;
 }
+
+document.getElementById('load-more-tvshows').addEventListener('click', () => {
+  tvShowsPage++;
+  fetchTrendingTVShows(tvShowsPage);
+});
