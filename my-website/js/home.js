@@ -70,6 +70,63 @@ async function fetchAnime(page = 1) {
   }
 }
 
+// Global variable to store all TV shows
+let allTvShows = [];
+
+// Fetch trending TV shows from TMDB
+async function fetchTrendingTVShows() {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=b8c2d0fa80cd79b5d28d9fe2853806bb`);
+    const data = await response.json();
+
+    // Save all shows to a global variable
+    allTvShows = data.results;
+
+    // Show all TV shows initially
+    displayTvShows(allTvShows);
+  } catch (error) {
+    console.error("Failed to fetch trending TV shows:", error);
+  }
+}
+
+// Function to display TV show cards
+function displayTvShows(shows) {
+  const container = document.getElementById('tvshows-list');
+  container.innerHTML = ''; // Clear current content
+
+  if (shows.length === 0) {
+    container.innerHTML = '<p>No TV shows found for this genre.</p>';
+    return;
+  }
+
+  shows.forEach(show => {
+    const card = document.createElement('div');
+    card.className = 'card'; // You can customize this style in your CSS
+
+    card.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="${show.name}">
+      <h3>${show.name}</h3>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+// Function to filter shows by selected genre
+function filterTvShowsByGenre(genreId) {
+  if (!genreId) {
+    displayTvShows(allTvShows); // Show all if "All" is selected
+  } else {
+    const filtered = allTvShows.filter(show =>
+      show.genre_ids.includes(parseInt(genreId))
+    );
+    displayTvShows(filtered);
+  }
+}
+
+// Call the fetch function when the page loads
+document.addEventListener('DOMContentLoaded', fetchTrendingTVShows);
+
 // Initial load
 document.addEventListener("DOMContentLoaded", () => {
   fetchAnime(currentAnimePage);
