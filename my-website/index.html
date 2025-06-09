@@ -193,8 +193,14 @@
     </div>
   </section>
 
-  <!-- Genre Filter -->
-  <section class="genre-filter">
+  <!-- Main Content -->
+  <main>
+    <section class="row" id="movies-list-section">
+  <h2>🎬 Trending Movies</h2>
+  <div class="card-container" id="movies-list"></div>
+
+  <!-- Moved Genre Filter Here -->
+  <section class="genre-filter" style="margin-top: 20px;">
     <div class="container">
       <label for="genre-select">🎯 Filter by Genre:</label>
       <select id="genre-select" onchange="filterByGenre(this.value)">
@@ -220,13 +226,7 @@
       </select>
     </div>
   </section>
-
-  <!-- Main Content -->
-  <main>
-    <section class="row" id="movies-list-section">
-      <h2>🎬 Trending Movies</h2>
-      <div class="card-container" id="movies-list"></div>
-    </section>
+</section>
 
     <!-- Trending TV Shows Section -->
 <section class="row" id="tvshows-list-section">
