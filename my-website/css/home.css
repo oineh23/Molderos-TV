@@ -814,3 +814,28 @@ body.light-mode .footer-links a:hover {
   font-weight: bold;
   letter-spacing: 0.5px;
 }
+
+/* Load More Button Styles */
+.load-more-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.load-more-container button {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.load-more-container button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
