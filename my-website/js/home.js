@@ -70,12 +70,12 @@ async function fetchAnime(page = 1) {
   }
 }
 
-// Call the fetch function when the page loads
-document.addEventListener('DOMContentLoaded', fetchTrendingTVShows);
-
-// Initial load
 document.addEventListener("DOMContentLoaded", () => {
-  fetchAnime(currentAnimePage);
+  init().then(() => {
+    fetchPinoyMoviesPaginated();
+    setupPinoyControls();
+    setupTVControls(); // ← You will add this function in Step 3
+  });
 });
 
 // Load more anime when button is clicked
