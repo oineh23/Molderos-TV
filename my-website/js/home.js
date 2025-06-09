@@ -84,6 +84,22 @@ loadMoreAnimeBtn.addEventListener("click", () => {
   fetchAnime(currentAnimePage);
 });
 
+function filterByGenre(genreId) {
+  showLoadingSpinner(); // Optional: show loading spinner
+
+  // Clear all existing cards
+  document.getElementById("movies-list").innerHTML = "";
+  document.getElementById("tvshows-list").innerHTML = "";
+  document.getElementById("anime-list").innerHTML = "";
+  document.getElementById("pinoy-movie-list").innerHTML = "";
+
+  // Load filtered content for each section
+  fetchTrendingMovies(genreId);
+  fetchTrendingTVShows(genreId);
+  fetchTrendingAnime(genreId);
+  fetchVivamaxContent(genreId);
+}
+
 // ====== API FETCHERS ======
 
 const fetchTrending = (type) =>
