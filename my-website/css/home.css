@@ -390,6 +390,16 @@ select {
   color: #fff;
 }
 
+.genre-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.genre-filter label {
+  font-weight: bold;
+}
+
 /* Main Content */
 main {
   padding: 2rem;
