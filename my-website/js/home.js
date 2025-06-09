@@ -16,6 +16,7 @@ const genreMap = {
 };
 
 let currentItem;
+let tvShowsPage = 1;
 
 // ====== HELPER FUNCTIONS ======
 
@@ -76,6 +77,28 @@ document.addEventListener("DOMContentLoaded", () => {
     setupTVControls(); // ← You will add this function in Step 3
   });
 });
+
+function fetchTrendingTVShows(page = 1) {
+  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your actual TMDB API key
+  const url = `https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}&page=${page}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const tvShowsList = document.getElementById('tvshows-list');
+      
+      data.results.forEach(show => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+          <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="${show.name}" />
+          <h3>${show.name}</h3>
+        `;
+        tvShowsList.appendChild(card); // 👈 Append instead of replacing
+      });
+    })
+    .catch(error => console.error('Error fetching TV shows:', error));
+}
 
 // Load more anime when button is clicked
 loadMoreAnimeBtn.addEventListener("click", () => {
