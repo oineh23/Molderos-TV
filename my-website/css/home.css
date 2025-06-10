@@ -817,25 +817,30 @@ body.light-mode .footer-links a:hover {
 
 /* Load More Button Styles */
 .load-more-container {
+  margin: 40px auto;
   text-align: center;
-  margin-top: 30px;
 }
 
 .load-more-container button {
-  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  background-color: #ff3c3c;
   color: #fff;
-  border: none;
-  padding: 12px 28px;
   font-size: 1rem;
-  font-weight: bold;
-  border-radius: 50px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .load-more-container button:hover {
+  background-color: #e02e2e;
   transform: scale(1.05);
-  background: linear-gradient(135deg, #ff4b2b, #ff416c);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 600px) {
+  .load-more-container button {
+    width: 90%;
+    font-size: 1rem;
+  }
 }
