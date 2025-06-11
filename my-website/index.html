@@ -49,6 +49,54 @@
   });
 </script>
 
+  <script>
+  const MOVIE_ENDPOINTS = [
+    'https://vidlink.pro/movie/',
+    'https://vidsrc.dev/embed/movie/',
+    'https://111movies.com/movie/',
+    'https://vidjoy.pro/embed/movie/',
+    'https://vidsrc.io/embed/movie/',
+    'https://vidsrc.cc/v2/embed/movie/',
+    'https://vidsrc.xyz/embed/movie/',
+    'https://www.2embed.cc/embed/',
+    'https://moviesapi.club/movie/'
+  ];
+
+  const SERIES_ENDPOINTS = [
+    'https://vidsrc.vip/embed/tv/',
+    'https://111movies.com/tv/',
+    'https://vidlink.pro/tv/',
+    'https://vidsrc.dev/embed/tv/',
+    'https://vidjoy.pro/embed/tv/',
+    'https://vidsrc.me/embed/tv/',
+    'https://vidsrc.cc/v2/embed/tv/',
+    'https://vidsrc.xyz/embed/tv/',
+    'https://www.2embed.cc/embedtvfull/'
+  ];
+
+  function getRandomEndpoint(endpoints) {
+    return endpoints[Math.floor(Math.random() * endpoints.length)];
+  }
+
+  function playMovie(movieId) {
+    const endpoint = getRandomEndpoint(MOVIE_ENDPOINTS);
+    const url = endpoint + movieId;
+
+    document.getElementById('player-container').innerHTML = `
+      <iframe src="${url}" width="100%" height="500px" frameborder="0" allowfullscreen></iframe>
+    `;
+  }
+
+  function playSeries(seriesId, season, episode) {
+    const endpoint = getRandomEndpoint(SERIES_ENDPOINTS);
+    const url = `${endpoint}${seriesId}/${season}/${episode}`;
+
+    document.getElementById('player-container').innerHTML = `
+      <iframe src="${url}" width="100%" height="500px" frameborder="0" allowfullscreen></iframe>
+    `;
+  }
+</script>
+
   <style>
   :root {
     --bg-color: #ffffff;
