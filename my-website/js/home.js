@@ -161,7 +161,7 @@ document.getElementById('load-more-movies').addEventListener('click', () => {
 
 // Example function (you should already have something similar)
 function loadTrendingMovies(page = 1) {
-  fetch(`https://api.themoviedb.org/3/trending/movie/week?page=${page}&api_key=YOUR_API_KEY`)
+  fetch(`https://api.themoviedb.org/3/trending/movie/week?page=${page}&api_key=b8c2d0fa80cd79b5d28d9fe2853806bb`)
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById('movies-list');
