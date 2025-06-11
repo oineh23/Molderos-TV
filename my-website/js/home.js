@@ -1,3 +1,7 @@
+import { fetchTrendingTVShows, setupTVControls } from './tvshows.js';
+import { fetchAnime, currentAnimePage, loadMoreAnimeBtn } from './anime.js';
+import { fetchPinoyMoviesPaginated, setupPinoyControls } from './pinoy.js';
+
 // ====== CONFIGURATION ======
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
