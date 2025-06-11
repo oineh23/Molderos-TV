@@ -152,6 +152,27 @@ async function filterByGenre(genreId) {
   document.getElementById('loading-spinner').style.display = 'none';
 }
 
+let moviePage = 1;
+
+document.getElementById('load-more-movies').addEventListener('click', () => {
+  moviePage++;
+  loadTrendingMovies(moviePage); // Assumes you have a function like this
+});
+
+// Example function (you should already have something similar)
+function loadTrendingMovies(page = 1) {
+  fetch(`https://api.themoviedb.org/3/trending/movie/week?page=${page}&api_key=YOUR_API_KEY`)
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('movies-list');
+      data.results.forEach(movie => {
+        const movieCard = createMovieCard(movie); // Your existing card creation function
+        container.appendChild(movieCard);
+      });
+    })
+    .catch(err => console.error('Error loading movies:', err));
+}
+
 // ====== TV SHOWS ======
 function setupTVControls() {
   const btn = document.getElementById('load-more-tvshows');
