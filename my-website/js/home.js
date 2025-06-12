@@ -330,9 +330,14 @@ const searchTMDB = debounce(async () => {
 // 🇰🇷 Korean Movies Section
 // ======================
 
-const koreanMovieList = document.getElementById('korean-movie-list');
-const loadMoreKoreanBtn = document.getElementById('load-more-korean');
-let koreanPage = 1;
+const genreSelect = document.getElementById('korean-genre-filter');
+genreSelect?.addEventListener('change', () => {
+koreanMovieList.innerHTML = '';
+koreanPage = 1;
+const selectedGenre = genreSelect.value;
+loadKoreanMovies(selectedGenre);
+});
+
 
 // Replace this with your actual TMDB API key
 const tmdbApiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
@@ -344,12 +349,13 @@ async function loadKoreanMovies(genre = '') {
     const data = await response.json();
 
     if (!data.results || data.results.length === 0) {
-      loadMoreKoreanBtn.style.display = 'none';
-      return;
-    }
+      loadMoreKoreanBtn?.addEventListener('click', () => {
+  loadKoreanMovies();
+});
 
   data.results.forEach(movie => {
-  const card = document.createElement('div');
+  movie.media_type = 'movie';
+  koreanMovieList.appendChild(createCard(movie));
   card.classList.add('movie-card');
 
   const img = document.createElement('img');
@@ -377,3 +383,10 @@ async function loadKoreanMovies(genre = '') {
 
   koreanMovieList.appendChild(card);
 });
+
+  loadMoreKoreanBtn?.addEventListener('click', () => {
+  loadKoreanMovies();
+});
+
+// On initial load
+loadKoreanMovies();
