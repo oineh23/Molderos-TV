@@ -650,6 +650,59 @@ main {
   }
 }
 
+.content-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.slide-wrapper {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  width: 80%;
+  overflow: hidden;
+}
+
+.slide {
+  min-width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  background: #333;
+  color: white;
+  padding: 3rem;
+  border-radius: 10px;
+}
+
+.arrow {
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 1rem;
+  user-select: none;
+}
+
+.arrow:active {
+  transform: scale(0.95);
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .arrow {
+    font-size: 1.5rem;
+  }
+
+  .slide {
+    font-size: 1.2rem;
+    padding: 2rem;
+  }
+}
+
 /* === Light Mode Styles === */
 body.light-mode {
   background-color: #f5f5f5;
