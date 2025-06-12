@@ -1,22 +1,33 @@
-export function getGenreName(id, genreMap) {
-  return genreMap[id] || 'Genre';
+// theme.js
+
+const toggleThemeBtn = document.getElementById('toggle-theme');
+const body = document.body;
+
+// Initialize theme
+export function initTheme() {
+  const storedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+
+  applyTheme(theme);
 }
 
-export async function fetchData(url) {
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-    return data.results || [];
-  } catch (error) {
-    console.error('Fetch error:', error);
-    return [];
-  }
+// Apply selected theme
+function applyTheme(theme) {
+  body.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  updateToggleButton(theme);
 }
 
-export function debounce(func, delay = 300) {
-  let timeout;
-  return (...args) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), delay);
-  };
+// Update toggle button icon/text
+function updateToggleButton(theme) {
+  if (!toggleThemeBtn) return;
+  toggleThemeBtn.innerHTML = theme === 'dark' ? '🌙 Dark' : '☀️ Light';
 }
+
+// Toggle theme on button click
+toggleThemeBtn?.addEventListener('click', () => {
+  const current = body.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+});
