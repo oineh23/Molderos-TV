@@ -347,39 +347,39 @@ async function loadKoreanMovies(genre = '') {
     }
 
     data.results.forEach(movie => {
-      if (!movie.poster_path) return; // skip if no poster
+  if (!movie.poster_path) return;
 
-      const card = document.createElement('div');
-      card.classList.add('movie-card');
+  const card = document.createElement('div');
+  card.classList.add('card'); // changed from 'movie-card' to match consistent style
 
-      const img = document.createElement('img');
-      img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
-      img.alt = movie.title;
+  const img = document.createElement('img');
+  img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+  img.alt = movie.title;
 
-      const title = document.createElement('h3');
-      title.textContent = movie.title;
+  const title = document.createElement('h3');
+  title.textContent = movie.title;
 
-      const rating = document.createElement('p');
-      rating.textContent = `⭐ ${movie.vote_average}`;
+  const rating = document.createElement('p');
+  rating.textContent = `⭐ ${movie.vote_average}`;
 
-      const watchBtn = document.createElement('button');
-      watchBtn.textContent = 'Watch Now';
-      watchBtn.className = 'watch-button';
+  const watchBtn = document.createElement('button');
+  watchBtn.textContent = 'Watch Now';
+  watchBtn.className = 'watch-button';
 
-      // Only watch button opens modal
-      card.addEventListener('click', () => {
-      movie.media_type = 'movie'; // Tag it so the embed logic knows it's a movie
-     showDetails(movie);
-      });
+  watchBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    movie.media_type = 'movie';
+    showDetails(movie);
+  });
 
+  const info = document.createElement('div');
+  info.className = 'card-info';
+  info.appendChild(title);
+  info.appendChild(rating);
 
-      card.appendChild(img);
-      card.appendChild(title);
-      card.appendChild(rating);
-      card.appendChild(watchBtn);
-
-      koreanMovieList.appendChild(card);
-    });
+  card.append(img, watchBtn, info);
+  koreanMovieList.appendChild(card);
+});
 
   } catch (error) {
     console.error('Failed to load Korean movies:', error);
