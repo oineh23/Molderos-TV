@@ -1,24 +1,27 @@
-import { fetchTrending } from './tvshows.js';
-import { fetchTrendingAnime } from './anime.js';
-import { fetchPinoyMoviesPaginated, setupPinoyControls } from './pinoy.js';
-import { displayBanner, displayList } from './card.js';
+// main.js
 
-async function init() {
-  const [movies, tvShows, anime] = await Promise.all([
-    fetchTrending('movie'),
-    fetchTrending('tv'),
-    fetchTrendingAnime()
-  ]);
-
-  displayBanner(movies[Math.floor(Math.random() * movies.length)]);
-  displayList(movies, 'movies-list');
-  displayList(tvShows, 'tvshows-list');
-  displayList(anime, 'anime-list');
-}
+import { loadMovies } from './movies.js';
+import { loadTVShows } from './tvshows.js';
+import { loadAnime } from './anime.js';
+import { setupModalPlayer } from './modal.js';
+import { initThemeToggle } from './theme.js';
+import { showLoading, hideLoading } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  init().then(() => {
-    fetchPinoyMoviesPaginated();
-    setupPinoyControls();
-  });
+  // Show loading spinner
+  showLoading();
+
+  // Load content sections
+  loadMovies();
+  loadTVShows();
+  loadAnime();
+
+  // Setup modal functionality
+  setupModalPlayer();
+
+  // Init dark/light mode toggle
+  initThemeToggle();
+
+  // Hide loading spinner after everything is ready
+  setTimeout(hideLoading, 1500); // Simulate content load delay
 });
