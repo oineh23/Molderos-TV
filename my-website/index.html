@@ -206,18 +206,14 @@
 
   <script>
   function toggleSections() {
-    const section = document.getElementById("media-sections");
-    const button = document.getElementById("exploreBtn");
-
-    if (section.classList.contains("hidden")) {
-      section.classList.remove("hidden");
-      section.scrollIntoView({ behavior: "smooth" });
-      button.textContent = "Hide Sections";
-    } else {
-      section.classList.add("hidden");
-      button.textContent = "Explore Now";
-    }
+  const section = document.getElementById("media-sections");
+  if (section.classList.contains("hidden")) {
+    section.classList.remove("hidden");
+    section.scrollIntoView({ behavior: "smooth" });
+  } else {
+    section.classList.add("hidden");
   }
+}
 </script>
 
 <body>
