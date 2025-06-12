@@ -347,11 +347,10 @@ async function loadKoreanMovies(genre = '') {
     }
 
     data.results.forEach(movie => {
-  ifdata.results.forEach(movie => {
   if (!movie.poster_path) return;
 
   const card = document.createElement('div');
-  card.classList.add('card'); // match consistent style
+  card.classList.add('card'); // changed from 'movie-card' to match consistent style
 
   const img = document.createElement('img');
   img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
@@ -359,11 +358,6 @@ async function loadKoreanMovies(genre = '') {
 
   const title = document.createElement('h3');
   title.textContent = movie.title;
-
-  const year = (movie.release_date || '').slice(0, 4);
-  const yearEl = document.createElement('p');
-  yearEl.className = 'movie-year';
-  yearEl.textContent = year ? `📅 ${year}` : '';
 
   const rating = document.createElement('p');
   rating.textContent = `⭐ ${movie.vote_average}`;
@@ -381,7 +375,6 @@ async function loadKoreanMovies(genre = '') {
   const info = document.createElement('div');
   info.className = 'card-info';
   info.appendChild(title);
-  info.appendChild(yearEl);      // ✅ Add year to info
   info.appendChild(rating);
 
   card.append(img, watchBtn, info);
