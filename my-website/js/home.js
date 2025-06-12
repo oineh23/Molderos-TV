@@ -359,8 +359,8 @@ async function loadKoreanMovies(genre = '') {
 
       // Optional: Hook into your modal system if needed
       card.addEventListener('click', () => {
-        openModalWithTMDB(movie.id);
-      });
+      movie.media_type = 'movie';
+        showDetails(movie);
 
       koreanMovieList.appendChild(card);
     });
