@@ -365,10 +365,10 @@ async function loadKoreanMovies(genre = '') {
   const watchBtn = document.createElement('button');
   watchBtn.textContent = 'Watch Now';
   watchBtn.className = 'watch-button';
-  watchBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Prevent event bubbling
-    openModalWithTMDB(movie.id);
-  });
+  card.addEventListener('click', () => {
+  movie.media_type = 'movie'; // Tag it so the embed logic knows it's a movie
+  showDetails(movie);
+});
 
   card.appendChild(img);
   card.appendChild(title);
