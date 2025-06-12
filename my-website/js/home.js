@@ -359,6 +359,11 @@ async function loadKoreanMovies(genre = '') {
   const title = document.createElement('h3');
   title.textContent = movie.title;
 
+  const year = (movie.release_date || '').slice(0, 4);
+  const yearEl = document.createElement('p');
+  yearEl.className = 'movie-year';
+  yearEl.textContent = year ? `📅 ${year}` : '';
+
   const rating = document.createElement('p');
   rating.textContent = `⭐ ${movie.vote_average}`;
 
