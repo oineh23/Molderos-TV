@@ -106,13 +106,20 @@ function createCard(item) {
   const title = document.createElement('h3');
   title.textContent = item.title || item.name;
 
+  // === Add Movie/TV Year ===
+  const year = (item.release_date || item.first_air_date || '').slice(0, 4);
+  const yearEl = document.createElement('p');
+  yearEl.className = 'movie-year';
+  yearEl.textContent = year ? `📅 ${year}` : '';
+
   const rating = document.createElement('p');
   rating.textContent = `⭐ ${item.vote_average?.toFixed(1)} / 10`;
 
   info.appendChild(title);
+  info.appendChild(yearEl); // <- Add year here
   info.appendChild(rating);
-  card.append(genre, img, button, info);
 
+  card.append(genre, img, button, info);
   return card;
 }
 
