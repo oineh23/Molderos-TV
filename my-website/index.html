@@ -211,8 +211,19 @@
       trendingSection.scrollIntoView({ behavior: "smooth" });
     }
   }
+
+    function toggleSections() {
+  const section = document.getElementById("media-sections");
+  if (section) {
+    const isVisible = section.style.display === "block";
+    section.style.display = isVisible ? "none" : "block";
+    if (!isVisible) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+}
 </script>
-  
+
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
