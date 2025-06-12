@@ -340,6 +340,29 @@
     <button id="load-more-pinoy">🎥 Load More</button>
   </div>
 </section>
+
+    <!-- Korean Movies Section -->
+<section class="section" id="korean-movies">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">🇰🇷 Korean Movies</h2>
+    <div class="genre-filter">
+      <label for="korean-genre-filter">🎯 Filter by Genre:</label>
+      <select id="korean-genre-filter" onchange="filterByKoreanGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="10749">Romance</option>
+        <option value="27">Horror</option>
+        <option value="80">Crime</option>
+      </select>
+    </div>
+  </div>
+  <div class="vivamax-grid" id="korean-movie-list"></div>
+  <div class="load-more-container">
+    <button id="load-more-korean">🎥 Load More</button>
+  </div>
+</section>
   </main>
 
   <!-- Loading Spinner -->
