@@ -350,11 +350,26 @@ async function loadKoreanMovies(genre = '') {
   if (!movie.poster_path) return;
 
   const card = document.createElement('div');
-  card.classList.add('card'); // changed from 'movie-card' to match consistent style
+  card.className = 'card'; // Use same style as other cards
+
+  const genre = document.createElement('span');
+  genre.className = 'genre-badge';
+  genre.textContent = getGenreName(movie.genre_ids?.[0]); // optional: add genre name
 
   const img = document.createElement('img');
   img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
   img.alt = movie.title;
+
+  const button = document.createElement('button');
+  button.className = 'watch-button';
+  button.textContent = 'Watch Now';
+  button.onclick = () => {
+    movie.media_type = 'movie';
+    showDetails(movie);
+  };
+
+  const info = document.createElement('div');
+  info.className = 'card-info';
 
   const title = document.createElement('h3');
   title.textContent = movie.title;
@@ -365,30 +380,13 @@ async function loadKoreanMovies(genre = '') {
   yearEl.textContent = year ? `📅 ${year}` : '';
 
   const rating = document.createElement('p');
-  rating.textContent = `⭐ ${movie.vote_average}`;
+  rating.textContent = `⭐ ${movie.vote_average?.toFixed(1)} / 10`;
 
-  const watchBtn = document.createElement('button');
-  watchBtn.textContent = 'Watch Now';
-  watchBtn.className = 'watch-button';
-
-  watchBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    movie.media_type = 'movie';
-    showDetails(movie);
-  });
-
-  const info = document.createElement('div');
-  info.className = 'card-info';
   info.appendChild(title);
-  info.appendChild(yearEl);      // ✅ Add year to info
+  info.appendChild(yearEl);
   info.appendChild(rating);
 
-  const info = document.createElement('div');
-  info.className = 'card-info';
-  info.appendChild(title);
-  info.appendChild(rating);
-
-  card.append(img, watchBtn, info);
+  card.append(genre, img, button, info); // Keep same order as other cards
   koreanMovieList.appendChild(card);
 });
 
