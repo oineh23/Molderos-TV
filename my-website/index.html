@@ -203,6 +203,15 @@
     }
   });
 </script>
+
+  <script>
+  function scrollToTrending() {
+    const trendingSection = document.getElementById("movies-list-section");
+    if (trendingSection) {
+      trendingSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+</script>
   
 <body>
   <!-- Navbar -->
