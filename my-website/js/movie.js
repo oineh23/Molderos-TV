@@ -1,44 +1,45 @@
 // movies.js
 
 import { createCard } from './utils.js';
-import { openModal } from './modal.js';
+import { showLoader, hideLoader, showError } from './ui.js';
 
-const MOVIES_SECTION_ID = 'trending-movies';
-const TMDB_API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-const MOVIES_API = `https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_API_KEY}`;
+const moviesSection = document.getElementById('trending-movies');
+const TMDB_API_KEY = 'YOUR_TMDB_API_KEY'; // Replace with your key
 
-export async function loadMovies() {
+async function fetchTrendingMovies() {
+  showLoader(moviesSection);
   try {
-    const response = await fetch(MOVIES_API);
-    const data = await response.json();
-    const movies = data.results || [];
+    const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_API_KEY}`);
+    const data = await res.json();
 
-    const moviesSection = document.getElementById(MOVIES_SECTION_ID);
-    moviesSection.innerHTML = ''; // Clear existing content
-
-    movies.forEach(movie => {
-      const card = createCard({
-        id: movie.id,
-        title: movie.title || movie.name,
-        posterPath: movie.poster_path,
-        backdropPath: movie.backdrop_path,
-        overview: movie.overview,
-        releaseDate: movie.release_date,
-        type: 'movie'
-      });
-
-      card.addEventListener('click', () => {
-        openModal({
-          id: movie.id,
-          title: movie.title,
-          type: 'movie'
-        });
-      });
-
-      moviesSection.appendChild(card);
-    });
-
-  } catch (error) {
-    console.error('Error loading movies:', error);
+    if (data.results && data.results.length > 0) {
+      displayMovies(data.results);
+    } else {
+      showError(moviesSection, 'No trending movies found.');
+    }
+  } catch (err) {
+    showError(moviesSection, 'Failed to load movies.');
+    console.error(err);
+  } finally {
+    hideLoader(moviesSection);
   }
+}
+
+function displayMovies(movies) {
+  moviesSection.innerHTML = ''; // Clear old cards
+  movies.forEach(movie => {
+    const card = createCard({
+      id: movie.id,
+      type: 'movie',
+      title: movie.title,
+      posterPath: movie.poster_path,
+      releaseDate: movie.release_date,
+      voteAverage: movie.vote_average
+    });
+    moviesSection.appendChild(card);
+  });
+}
+
+export function loadMovies() {
+  fetchTrendingMovies();
 }
