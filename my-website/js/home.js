@@ -349,43 +349,37 @@ async function loadKoreanMovies(genre = '') {
     }
 
     data.results.forEach(movie => {
-  const card = document.createElement('div');
-  card.classList.add('card'); // Make it consistent with your main card style
+      const card = document.createElement('div');
+      card.classList.add('movie-card');
+      card.innerHTML = `
+        <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" />
+        <h3>${movie.title}</h3>
+        <p>⭐ ${movie.vote_average}</p>
+      `;
 
-  const genre = document.createElement('span');
-  genre.className = 'genre-badge';
-  genre.textContent = 'Korean';
+      // Optional: Hook into your modal system if needed
+      card.addEventListener('click', () => {
+        openModalWithTMDB(movie.id);
+      });
 
-  const img = document.createElement('img');
-  img.src = `${IMG_URL}${movie.poster_path}`;
-  img.alt = movie.title;
-  img.loading = 'lazy';
+      koreanMovieList.appendChild(card);
+    });
+  } catch (error) {
+    console.error('Failed to load Korean movies:', error);
+  }
+}
 
-  const button = document.createElement('button');
-  button.className = 'watch-button';
-  button.textContent = 'Watch Now';
-  button.onclick = () => openModalWithTMDB(movie.id);
+function filterByKoreanGenre(genreId) {
+  koreanPage = 1;
+  koreanMovieList.innerHTML = '';
+  loadKoreanMovies(genreId);
+}
 
-  const info = document.createElement('div');
-  info.className = 'card-info';
-
-  const title = document.createElement('h3');
-  title.textContent = movie.title;
-
-  const year = (movie.release_date || '').slice(0, 4);
-  const yearEl = document.createElement('p');
-  yearEl.className = 'movie-year';
-  yearEl.textContent = year ? `📅 ${year}` : '';
-
-  const rating = document.createElement('p');
-  rating.textContent = `⭐ ${movie.vote_average?.toFixed(1)} / 10`;
-
-  info.appendChild(title);
-  info.appendChild(yearEl);
-  info.appendChild(rating);
-
-  card.append(genre, img, button, info);
-  koreanMovieList.appendChild(card);
+loadMoreKoreanBtn.addEventListener('click', () => {
+  koreanPage++;
+  const selectedGenre = document.getElementById('korean-genre-filter').value;
+  loadKoreanMovies(selectedGenre);
 });
 
-
+// Initial Korean movie load
+loadKoreanMovies();
