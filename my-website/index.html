@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MOLDEROS-TV - Trending Movies & Shows</title>
 
   <!-- Styles -->
@@ -184,7 +184,8 @@
 }
  
 </style>
-  
+
+</style>
 <script>
   // Theme toggle logic
   document.addEventListener("DOMContentLoaded", () => {
@@ -231,17 +232,13 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-  <video autoplay muted loop playsinline class="hero-video">
-    <img src="https://image.tmdb.org/t/p/w500/poster.jpg" alt="Movie Poster" />
-  </video>
-
-  <div class="hero-content">
-    <h1>Welcome to MOLDEROS-TV</h1>
-    <p>Stream your favorite Movies, TV Shows, and Anime now!</p>
-    <a href="#trending" class="btn">Explore Now</a>
-  </div>
-</section>
+  <section class="hero-section" id="banner">
+    <div class="hero-overlay">
+      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
+      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
+      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
+    </div>
+  </section>
 
   <!-- Main Content -->
   <main>
