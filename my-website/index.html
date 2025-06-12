@@ -79,10 +79,9 @@
     margin-left: 15px;
     color: var(--text-color);
   }
-    
-<!-- Remove extra <style> tags and properly close all -->
-<style>
-  /* Move modal media query into this main style block */
+
+    <style>
+  /* Fullscreen video modal styles for mobile and tablets */
   @media (max-width: 1024px) {
     .modal {
       position: fixed;
@@ -112,7 +111,7 @@
     .modal-body,
     .modal-text,
     .server-selector {
-      display: none;
+      display: none; /* Hide extra content for fullscreen effect */
     }
 
     #modal-video {
@@ -130,63 +129,6 @@
       z-index: 2000;
     }
   }
-
-  /* Additional responsive layout fixes */
-  body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 15px;
-    box-sizing: border-box;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-  }
-
-  @media screen and (max-width: 768px) {
-    .nav-links {
-      flex-direction: column;
-      background: var(--nav-bg);
-    }
-
-    .nav-links a,
-    .search-bar {
-      width: 100%;
-      margin: 5px 0;
-    }
-
-    .hero-section {
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-    }
-
-    .cta-button {
-      font-size: 1rem;
-      padding: 0.7rem 1.2rem;
-    }
-  }
 </style>
 
   <style>  
@@ -198,7 +140,7 @@
 
     .logo {
   font-family: 'Orbitron', sans-serif;
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #00ffff;
   text-shadow:
