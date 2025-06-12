@@ -250,108 +250,28 @@
   </section>
 
   <!-- Main Content -->
-  <main>
-    <section class="row" id="movies-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">🎬 Trending Movies</h2>
-    <div class="genre-filter">
-      <label for="genre-select">🎯 Filter by Genre:</label>
-      <select id="genre-select" onchange="filterByGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="27">Horror</option>
-        <option value="16">Animation</option>
-        <option value="10749">Romance</option>
-        <option value="878">Science Fiction</option>
-        <option value="10751">Family</option>
-        <option value="99">Documentary</option>
-        <option value="12">Adventure</option>
-        <option value="80">Crime</option>
-        <option value="9648">Mystery</option>
-        <option value="53">Thriller</option>
-        <option value="14">Fantasy</option>
-        <option value="36">History</option>
-        <option value="10402">Music</option>
-        <option value="10752">War</option>
-        <option value="37">Western</option>
-      </select>
-    </div>
-  </div>
+  <main id="media-sections" style="display: none;">
+  <!-- Trending Movies -->
+  <section class="row" id="movies-list-section">
+    <!-- Movie content here -->
+  </section>
 
-  <div class="card-container" id="movies-list"></div>
-</section>
+  <!-- Trending TV Shows -->
+  <section class="row" id="tvshows-list-section">
+    <!-- TV content here -->
+  </section>
 
-    <!-- Trending TV Shows Section -->
-<section class="row" id="tvshows-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">📺 Trending TV Shows</h2>
-    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="tv-genre-filter">🎯 Filter by Genre:</label>
-      <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="10765">Sci-Fi</option>
-        <option value="16">Anime</option>
-      </select>
-    </div>
-  </div>
-  <div class="card-container" id="tvshows-list"></div>
-</section>
+  <!-- Trending Anime -->
+  <section class="row" id="anime-list-section">
+    <!-- Anime content here -->
+  </section>
 
-    <section class="row" id="anime-list-section">
-  <h2>🌸 Trending Anime</h2>
-  <div class="card-container" id="anime-list"></div>
-  <div class="load-more-container">
-    <button id="load-more-anime">🎥 Load More</button>
-  </div>
-</section>
-
-    <!-- Vivamax / Pinoy Movies Section -->
-<section class="section" id="pinoy-movies">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="display: flex; align-items: center; gap: 5px; margin: 0;">
-      <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
-      Vivamax
-    </h2>
-    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="pinoy-genre-filter">🎯 Filter by Genre:</label>
-      <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
-        <option value="">All Genres</option>
-        <optgroup label="Popular Genres">
-          <option value="28">Action</option>
-          <option value="35">Comedy</option>
-          <option value="18">Drama</option>
-          <option value="10749">Romance</option>
-          <option value="80">Crime</option>
-          <option value="27">Horror</option>
-          <option value="10751">Family</option>
-          <option value="16">Animation</option>
-        </optgroup>
-        <optgroup label="Other Genres">
-          <option value="99">Documentary</option>
-          <option value="10402">Music</option>
-          <option value="9648">Mystery</option>
-          <option value="878">Science Fiction</option>
-          <option value="10752">War</option>
-          <option value="37">Western</option>
-          <option value="36">History</option>
-          <option value="14">Fantasy</option>
-          <option value="53">Thriller</option>
-        </optgroup>
-      </select>
-    </div>
-  </div>
-  <div class="vivamax-grid" id="pinoy-movie-list"></div>
-  <div class="load-more-container">
-    <button id="load-more-pinoy">🎥 Load More</button>
-  </div>
-</section>
-  </main>
-
+  <!-- Vivamax / Pinoy Movies -->
+  <section class="section" id="pinoy-movies">
+    <!-- Pinoy content here -->
+  </section>
+</main>
+  
   <!-- Loading Spinner -->
   <div class="loading-spinner" id="loading-spinner" style="display: none;">
     <i class="fas fa-spinner fa-spin"></i>
