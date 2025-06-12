@@ -230,14 +230,33 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero-section" id="banner">
-    <div class="hero-overlay">
-      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
-      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
+  <body>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to MOLDEROS-TV</h1>
+      <p>Stream trending movies, shows & anime</p>
+      <button id="exploreBtn">Explore Now</button>
     </div>
   </section>
+
+  <!-- MOVIES SECTION (Hidden Initially) -->
+  <section id="moviesSection" style="display: none;">
+    <!-- Your movie cards go here -->
+  </section>
+
+  <!-- JS to Toggle Display -->
+  <script>
+    document.getElementById('exploreBtn').addEventListener('click', function () {
+      document.getElementById('moviesSection').style.display = 'block';
+      this.style.display = 'none'; // optional
+      window.scrollTo({
+        top: document.getElementById('moviesSection').offsetTop,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
 
   <!-- Main Content -->
   <main>
