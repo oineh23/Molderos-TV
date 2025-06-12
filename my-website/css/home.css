@@ -329,28 +329,11 @@ select {
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 80vh;
-  color: white;
-  overflow: hidden;
-}
-
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
-  transition: background-image 1s ease-in-out;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  padding: 3rem;
-  text-align: center;
+  height: 45vh;
+  background: url('../images/hero-bg.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-overlay {
