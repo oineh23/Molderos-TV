@@ -348,38 +348,32 @@ async function loadKoreanMovies(genre = '') {
       return;
     }
 
-    data.results.forEach(movie => {
-      const card = document.createElement('div');
-      card.classList.add('movie-card');
-      card.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" />
-        <h3>${movie.title}</h3>
-        <p>⭐ ${movie.vote_average}</p>
-      `;
+  data.results.forEach(movie => {
+  const card = document.createElement('div');
+  card.classList.add('movie-card');
 
-      // Optional: Hook into your modal system if needed
-      card.addEventListener('click', () => {
-        openModalWithTMDB(movie.id);
-      });
+  const img = document.createElement('img');
+  img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+  img.alt = movie.title;
 
-      koreanMovieList.appendChild(card);
-    });
-  } catch (error) {
-    console.error('Failed to load Korean movies:', error);
-  }
-}
+  const title = document.createElement('h3');
+  title.textContent = movie.title;
 
-function filterByKoreanGenre(genreId) {
-  koreanPage = 1;
-  koreanMovieList.innerHTML = '';
-  loadKoreanMovies(genreId);
-}
+  const rating = document.createElement('p');
+  rating.textContent = `⭐ ${movie.vote_average}`;
 
-loadMoreKoreanBtn.addEventListener('click', () => {
-  koreanPage++;
-  const selectedGenre = document.getElementById('korean-genre-filter').value;
-  loadKoreanMovies(selectedGenre);
+  const watchBtn = document.createElement('button');
+  watchBtn.textContent = 'Watch Now';
+  watchBtn.className = 'watch-button';
+  watchBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    openModalWithTMDB(movie.id);
+  });
+
+  card.appendChild(img);
+  card.appendChild(title);
+  card.appendChild(rating);
+  card.appendChild(watchBtn);
+
+  koreanMovieList.appendChild(card);
 });
-
-// Initial Korean movie load
-loadKoreanMovies();
