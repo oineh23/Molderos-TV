@@ -369,83 +369,6 @@ select {
   background-color: #f40612;
 }
 
-.hero-section {
-  background: linear-gradient(to bottom, #000000c0, #000000c0), url('your-image.jpg') center/cover no-repeat;
-  position: relative;
-  height: 75vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
-}
-
-.hero-overlay {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
-  border-radius: 10px;
-  color: #fff;
-  animation: fadeInBackground 2s ease-in-out forwards;
-}
-
-.fade-slide-in {
-  opacity: 0;
-  transform: translateY(40px);
-  animation: slideUpFade 1.5s ease-out forwards;
-}
-
-.fade-in-delay {
-  opacity: 0;
-  animation: fadeIn 2s 1s ease-out forwards;
-}
-
-.bounce-in {
-  opacity: 0;
-  transform: scale(0.9);
-  animation: bounceIn 1s 1.5s ease-out forwards;
-}
-
-/* Keyframes */
-@keyframes fadeInBackground {
-  0% {
-    background: rgba(0, 0, 0, 0);
-  }
-  100% {
-    background: rgba(0, 0, 0, 0.6);
-  }
-}
-
-@keyframes slideUpFade {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes bounceIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 /* Genre Filter */
 .genre-filter {
   padding: 1rem 2rem;
@@ -520,7 +443,7 @@ main {
   top: 0;
   left: 0;
   width: 100%;
-  height: 90%;
+  height: 50%;
   background-color: rgba(0, 0, 0, 0.85);
   display: none;
   align-items: center;
