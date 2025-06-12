@@ -354,39 +354,41 @@ async function loadKoreanMovies(genre = '') {
 });
 
   data.results.forEach(movie => {
-  movie.media_type = 'movie';
-  koreanMovieList.appendChild(createCard(movie));
-  card.classList.add('movie-card');
+  const card = document.createElement('div');
+  card.classList.add('card'); // Make it consistent with your main card style
+
+  const genre = document.createElement('span');
+  genre.className = 'genre-badge';
+  genre.textContent = 'Korean';
 
   const img = document.createElement('img');
-  img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+  img.src = `${IMG_URL}${movie.poster_path}`;
   img.alt = movie.title;
+  img.loading = 'lazy';
+
+  const button = document.createElement('button');
+  button.className = 'watch-button';
+  button.textContent = 'Watch Now';
+  button.onclick = () => openModalWithTMDB(movie.id);
+
+  const info = document.createElement('div');
+  info.className = 'card-info';
 
   const title = document.createElement('h3');
   title.textContent = movie.title;
 
+  const year = (movie.release_date || '').slice(0, 4);
+  const yearEl = document.createElement('p');
+  yearEl.className = 'movie-year';
+  yearEl.textContent = year ? `📅 ${year}` : '';
+
   const rating = document.createElement('p');
-  rating.textContent = `⭐ ${movie.vote_average}`;
+  rating.textContent = `⭐ ${movie.vote_average?.toFixed(1)} / 10`;
 
-  const watchBtn = document.createElement('button');
-  watchBtn.textContent = 'Watch Now';
-  watchBtn.className = 'watch-button';
-  watchBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Prevent event bubbling
-    openModalWithTMDB(movie.id);
-  });
+  info.appendChild(title);
+  info.appendChild(yearEl);
+  info.appendChild(rating);
 
-  card.appendChild(img);
-  card.appendChild(title);
-  card.appendChild(rating);
-  card.appendChild(watchBtn);
-
+  card.append(genre, img, button, info);
   koreanMovieList.appendChild(card);
 });
-
-  loadMoreKoreanBtn?.addEventListener('click', () => {
-  loadKoreanMovies();
-});
-
-// On initial load
-loadKoreanMovies();
