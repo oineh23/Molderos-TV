@@ -359,9 +359,9 @@ async function loadKoreanMovies(genre = '') {
 
       // Optional: Hook into your modal system if needed
       card.addEventListener('click', () => {
-      movie.media_type = 'movie';
-        showDetails(movie);
-
+  movie.media_type = 'movie'; // Tag it so the embed logic knows it's a movie
+  showDetails(movie);
+});
       koreanMovieList.appendChild(card);
     });
   } catch (error) {
