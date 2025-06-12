@@ -245,7 +245,7 @@
      <a href="#trending-section" class="explore-now-btn">Explore Now</a>
 
 <!-- Later in the page -->
-<section id="trending-section">
+  <section id="trending-section">
   <div class="trending-movies">...</div>
   <div class="trending-tvshows">...</div>
   <div class="trending-anime">...</div>
@@ -339,4 +339,20 @@
   </footer>
   
 </body>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const exploreBtn = document.querySelector(".explore-now-btn");
+    const mediaSections = document.getElementById("media-sections");
+
+    if (exploreBtn && mediaSections) {
+      exploreBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        mediaSections.style.display = "block";
+        mediaSections.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+  });
+</script>
+
 </html>
