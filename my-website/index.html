@@ -5,17 +5,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MOLDEROS-TV - Trending Movies & Shows</title>
+  <link rel="manifest" href="manifest.json" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/home.css" />
-  <link rel="preload" href="css/home.css" as="style" />
-  <link rel="preload" href="js/home.js" as="script" />
-  <link rel="manifest" href="manifest.json" />
+  <link rel="preload" href="css/home.css" as="style" onload="this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="css/home.css" /></noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <script defer src="js/home.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+  
+  <!-- Theme and security scripts moved to end of body for better performance -->
+</head>
+<!-- Theme toggle and DOM manipulation scripts -->
+<script defer src="js/home.js"></script>
+<script defer>
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
+    const toggleBtn = document.getElementById("theme-toggle");
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
+      });
+    }
+  });
+</script>
 
   <script>
     document.addEventListener('contextmenu', function(event) {
