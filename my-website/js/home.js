@@ -335,7 +335,7 @@ const loadMoreKoreanBtn = document.getElementById('load-more-korean');
 let koreanPage = 1;
 
 // Replace this with your actual TMDB API key
-const tmdbApiKey = 'YOUR_TMDB_API_KEY';
+const tmdbApiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 
 async function loadKoreanMovies(genre = '') {
   try {
