@@ -1,44 +1,45 @@
 // tvshows.js
 
 import { createCard } from './utils.js';
-import { openModal } from './modal.js';
+import { showLoader, hideLoader, showError } from './ui.js';
 
-const TV_SECTION_ID = 'trending-tv';
-const TMDB_API_KEY = 'YOUR_TMDB_API_KEY';
-const TV_API = `https://api.themoviedb.org/3/trending/tv/week?api_key=${TMDB_API_KEY}`;
+const tvSection = document.getElementById('trending-tv');
+const TMDB_API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your actual key
 
-export async function loadTVShows() {
+async function fetchTrendingTVShows() {
+  showLoader(tvSection);
   try {
-    const response = await fetch(TV_API);
-    const data = await response.json();
-    const tvShows = data.results || [];
+    const res = await fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${TMDB_API_KEY}`);
+    const data = await res.json();
 
-    const tvSection = document.getElementById(TV_SECTION_ID);
-    tvSection.innerHTML = ''; // Clear existing content
-
-    tvShows.forEach(show => {
-      const card = createCard({
-        id: show.id,
-        title: show.name || show.original_name,
-        posterPath: show.poster_path,
-        backdropPath: show.backdrop_path,
-        overview: show.overview,
-        releaseDate: show.first_air_date,
-        type: 'tv'
-      });
-
-      card.addEventListener('click', () => {
-        openModal({
-          id: show.id,
-          title: show.name,
-          type: 'tv'
-        });
-      });
-
-      tvSection.appendChild(card);
-    });
-
-  } catch (error) {
-    console.error('Error loading TV shows:', error);
+    if (data.results && data.results.length > 0) {
+      displayTVShows(data.results);
+    } else {
+      showError(tvSection, 'No trending TV shows found.');
+    }
+  } catch (err) {
+    showError(tvSection, 'Failed to load TV shows.');
+    console.error(err);
+  } finally {
+    hideLoader(tvSection);
   }
+}
+
+function displayTVShows(tvShows) {
+  tvSection.innerHTML = ''; // Clear previous content
+  tvShows.forEach(show => {
+    const card = createCard({
+      id: show.id,
+      type: 'tv',
+      title: show.name,
+      posterPath: show.poster_path,
+      releaseDate: show.first_air_date,
+      voteAverage: show.vote_average
+    });
+    tvSection.appendChild(card);
+  });
+}
+
+export function loadTVShows() {
+  fetchTrendingTVShows();
 }
