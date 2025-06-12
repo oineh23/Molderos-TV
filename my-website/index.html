@@ -67,17 +67,17 @@
   </main>
 
   <!-- Video Modal -->
-  <div id="videoModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" id="closeModal">&times;</span>
-      <iframe id="videoFrame" allowfullscreen></iframe>
-      <div class="server-buttons">
-        <button class="server-btn" data-server="vidsrc.cc">vidsrc.cc</button>
-        <button class="server-btn" data-server="vidsrc.me">vidsrc.me</button>
-        <button class="server-btn" data-server="player.videasy.net">videasy</button>
-      </div>
+  <div id="video-modal" class="modal">
+  <div class="modal-inner">
+    <button id="modal-close">&times;</button>
+    <div class="server-switch">
+      <button class="server-btn" data-server="vidsrc">Vidsrc</button>
+      <button class="server-btn" data-server="vidsrcme">Vidsrc.me</button>
+      <button class="server-btn" data-server="videasy">Videasy</button>
     </div>
+    <div id="modal-content"></div>
   </div>
+</div>
 
   <!-- Search Modal -->
   <div id="searchModal" class="modal">
