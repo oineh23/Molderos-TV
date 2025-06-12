@@ -367,10 +367,11 @@ async function loadKoreanMovies(genre = '') {
       watchBtn.className = 'watch-button';
 
       // Only watch button opens modal
-      watchBtn.addEventListener('click', () => {
-        movie.media_type = 'movie';
-        showDetails(movie);
+      card.addEventListener('click', () => {
+      movie.media_type = 'movie'; // Tag it so the embed logic knows it's a movie
+     showDetails(movie);
       });
+
 
       card.appendChild(img);
       card.appendChild(title);
