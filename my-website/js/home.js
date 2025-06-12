@@ -325,3 +325,62 @@ const searchTMDB = debounce(async () => {
     container.appendChild(img);
   });
 }, 400);
+
+// ======================
+// 🇰🇷 Korean Movies Section
+// ======================
+
+const koreanMovieList = document.getElementById('korean-movie-list');
+const loadMoreKoreanBtn = document.getElementById('load-more-korean');
+let koreanPage = 1;
+
+// Replace this with your actual TMDB API key
+const tmdbApiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+
+async function loadKoreanMovies(genre = '') {
+  try {
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&with_original_language=ko&page=${koreanPage}${genre ? `&with_genres=${genre}` : ''}`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (!data.results || data.results.length === 0) {
+      loadMoreKoreanBtn.style.display = 'none';
+      return;
+    }
+
+    data.results.forEach(movie => {
+      const card = document.createElement('div');
+      card.classList.add('movie-card');
+      card.innerHTML = `
+        <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" />
+        <h3>${movie.title}</h3>
+        <p>⭐ ${movie.vote_average}</p>
+      `;
+
+      // Optional: Hook into your modal system if needed
+      card.addEventListener('click', () => {
+        openModalWithTMDB(movie.id);
+      });
+
+      koreanMovieList.appendChild(card);
+    });
+  } catch (error) {
+    console.error('Failed to load Korean movies:', error);
+  }
+}
+
+function filterByKoreanGenre(genreId) {
+  koreanPage = 1;
+  koreanMovieList.innerHTML = '';
+  loadKoreanMovies(genreId);
+}
+
+loadMoreKoreanBtn.addEventListener('click', () => {
+  koreanPage++;
+  const selectedGenre = document.getElementById('korean-genre-filter').value;
+  loadKoreanMovies(selectedGenre);
+});
+
+// Initial Korean movie load
+loadKoreanMovies();
+
