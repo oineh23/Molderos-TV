@@ -377,6 +377,12 @@ async function loadKoreanMovies(genre = '') {
     showDetails(movie);
   });
 
+      const info = document.createElement('div');
+  info.className = 'card-info';
+  info.appendChild(title);
+  info.appendChild(yearEl);      // ✅ Add year to info
+  info.appendChild(rating);
+
   const info = document.createElement('div');
   info.className = 'card-info';
   info.appendChild(title);
