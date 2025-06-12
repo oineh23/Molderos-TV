@@ -333,8 +333,6 @@ const searchTMDB = debounce(async () => {
 const koreanMovieList = document.getElementById('korean-movie-list');
 const loadMoreKoreanBtn = document.getElementById('load-more-korean');
 let koreanPage = 1;
-
-// Replace this with your actual TMDB API key
 const tmdbApiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 
 async function loadKoreanMovies(genre = '') {
@@ -349,34 +347,38 @@ async function loadKoreanMovies(genre = '') {
     }
 
     data.results.forEach(movie => {
-  const card = document.createElement('div');
-  card.classList.add('movie-card');
+      if (!movie.poster_path) return; // skip if no poster
 
-  const img = document.createElement('img');
-  img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
-  img.alt = movie.title;
+      const card = document.createElement('div');
+      card.classList.add('movie-card');
 
-  const title = document.createElement('h3');
-  title.textContent = movie.title;
+      const img = document.createElement('img');
+      img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+      img.alt = movie.title;
 
-  const rating = document.createElement('p');
-  rating.textContent = `⭐ ${movie.vote_average}`;
+      const title = document.createElement('h3');
+      title.textContent = movie.title;
 
-  const watchBtn = document.createElement('button');
-  watchBtn.textContent = 'Watch Now';
-  watchBtn.className = 'watch-button';
-  card.addEventListener('click', () => {
-  movie.media_type = 'movie'; // Tag it so the embed logic knows it's a movie
-  showDetails(movie);
-});
+      const rating = document.createElement('p');
+      rating.textContent = `⭐ ${movie.vote_average}`;
 
-  card.appendChild(img);
-  card.appendChild(title);
-  card.appendChild(rating);
-  card.appendChild(watchBtn);
+      const watchBtn = document.createElement('button');
+      watchBtn.textContent = 'Watch Now';
+      watchBtn.className = 'watch-button';
 
-  koreanMovieList.appendChild(card);
-});
+      // Only watch button opens modal
+      watchBtn.addEventListener('click', () => {
+        movie.media_type = 'movie';
+        showDetails(movie);
+      });
+
+      card.appendChild(img);
+      card.appendChild(title);
+      card.appendChild(rating);
+      card.appendChild(watchBtn);
+
+      koreanMovieList.appendChild(card);
+    });
 
   } catch (error) {
     console.error('Failed to load Korean movies:', error);
@@ -397,3 +399,4 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
+
