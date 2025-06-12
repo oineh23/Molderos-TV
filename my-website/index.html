@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,19 +46,6 @@
       e.preventDefault();
     }
   });
-</script>
-
-  <script>
-  const images = [
-    'url(assets/hero1.jpg)',
-    'url(assets/hero2.jpg)',
-    'url(assets/hero3.jpg)',
-    'url(assets/hero4.jpg)'
-  ];
-
-  const randomIndex = Math.floor(Math.random() * images.length);
-  const heroBackground = document.getElementById('hero-background');
-  heroBackground.style.backgroundImage = images[randomIndex];
 </script>
 
   <style>
@@ -142,6 +128,9 @@
       z-index: 2000;
     }
   }
+</style>
+
+  <style>  
     
   .load-more-container {
     margin-top: 30px;
@@ -191,9 +180,11 @@
       0 0 20px #0ff,
       1px 1px 0 #111;
   }
-} 
+}
+ 
 </style>
-  
+
+</style>
 <script>
   // Theme toggle logic
   document.addEventListener("DOMContentLoaded", () => {
@@ -240,14 +231,14 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero-section" id="hero">
-  <div class="hero-background" id="hero-background"></div>
-  <div class="hero-content">
-    <h1>Welcome to MOLDEROS-TV</h1>
-    <p>Stream Movies, TV Shows, Anime & More</p>
-  </div>
-</section>
-  
+  <section class="hero-section" id="banner">
+    <div class="hero-overlay">
+      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
+      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
+      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
+    </div>
+  </section>
+
   <!-- Main Content -->
   <main>
     <section class="row" id="movies-list-section">
