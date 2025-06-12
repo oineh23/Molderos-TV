@@ -329,7 +329,7 @@ select {
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 35vh;
+  height: 45vh;
   background: url('../images/WallpaperDog-20651295.jpg') no-repeat center center/cover;
   display: flex;
   align-items: center;
@@ -372,7 +372,7 @@ select {
 .hero-section {
   background: linear-gradient(to bottom, #000000c0, #000000c0), url('your-image.jpg') center/cover no-repeat;
   position: relative;
-  height: 100vh;
+  height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;
