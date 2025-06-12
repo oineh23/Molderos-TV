@@ -349,21 +349,35 @@ async function loadKoreanMovies(genre = '') {
     }
 
     data.results.forEach(movie => {
-      const card = document.createElement('div');
-      card.classList.add('movie-card');
-      card.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" />
-        <h3>${movie.title}</h3>
-        <p>⭐ ${movie.vote_average}</p>
-      `;
+  const card = document.createElement('div');
+  card.classList.add('movie-card');
 
-      // Optional: Hook into your modal system if needed
-      card.addEventListener('click', () => {
-  movie.media_type = 'movie'; // Tag it so the embed logic knows it's a movie
-  showDetails(movie);
+  const img = document.createElement('img');
+  img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+  img.alt = movie.title;
+
+  const title = document.createElement('h3');
+  title.textContent = movie.title;
+
+  const rating = document.createElement('p');
+  rating.textContent = `⭐ ${movie.vote_average}`;
+
+  const watchBtn = document.createElement('button');
+  watchBtn.textContent = 'Watch Now';
+  watchBtn.className = 'watch-button';
+  watchBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    openModalWithTMDB(movie.id);
+  });
+
+  card.appendChild(img);
+  card.appendChild(title);
+  card.appendChild(rating);
+  card.appendChild(watchBtn);
+
+  koreanMovieList.appendChild(card);
 });
-      koreanMovieList.appendChild(card);
-    });
+
   } catch (error) {
     console.error('Failed to load Korean movies:', error);
   }
