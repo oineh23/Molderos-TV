@@ -1,39 +1,66 @@
-import { IMG_URL } from './config.js';
+// modal.js
 
-let currentItem;
+const modal = document.getElementById('video-modal');
+const modalContent = document.getElementById('modal-content');
+const modalCloseBtn = document.getElementById('modal-close');
+const serverButtons = document.querySelectorAll('.server-btn');
+let currentIframe = null;
+let currentTitle = '';
+let currentId = '';
+let currentType = '';
 
-export function showDetails(item) {
-  currentItem = item;
-  document.getElementById('modal-title').textContent = item.title || item.name;
-  document.getElementById('modal-description').textContent = item.overview || 'No description available.';
-  document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
-  document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2)) || 'N/A';
-
-  changeServer();
-  document.getElementById('modal').style.display = 'flex';
-}
-
-export function closeModal() {
-  document.getElementById('modal').style.display = 'none';
-  document.getElementById('modal-video').src = '';
-}
-
-export function changeServer() {
-  const server = document.getElementById('server').value;
-  const type = currentItem.media_type === 'movie' ? 'movie' : 'tv';
-  let embedURL = '';
-
+// Generate video player URL for different servers
+function getServerUrl(server, id, type) {
   switch (server) {
-    case 'vidsrc.cc':
-      embedURL = `https://vidsrc.cc/v2/embed/${type}/${currentItem.id}`;
-      break;
-    case 'vidsrc.me':
-      embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${currentItem.id}`;
-      break;
-    case 'player.videasy.net':
-      embedURL = `https://player.videasy.net/${type}/${currentItem.id}`;
-      break;
+    case 'vidsrc':
+      return `https://vidsrc.to/embed/${type}/${id}`;
+    case 'vidsrcme':
+      return `https://vidsrc.me/embed/${type}?id=${id}`;
+    case 'videasy':
+      return `https://player.videasy.net/${type}/${id}`;
+    default:
+      return '';
   }
-
-  document.getElementById('modal-video').src = embedURL;
 }
+
+// Inject iframe into modal
+function loadIframe(server, id, type) {
+  const src = getServerUrl(server, id, type);
+  if (!src) return;
+
+  modalContent.innerHTML = `
+    <iframe src="${src}" frameborder="0" allowfullscreen></iframe>
+  `;
+}
+
+// Open modal with default server (vidsrc)
+export function openModal(id, type, title) {
+  currentId = id;
+  currentType = type;
+  currentTitle = title;
+
+  loadIframe('vidsrc', id, type);
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+// Close modal
+function closeModal() {
+  modal.classList.remove('show');
+  document.body.style.overflow = '';
+  modalContent.innerHTML = ''; // Clean up iframe
+}
+
+// Server button handlers
+serverButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const server = button.dataset.server;
+    loadIframe(server, currentId, currentType);
+  });
+});
+
+// Close modal on click
+modalCloseBtn.addEventListener('click', closeModal);
+window.addEventListener('click', (e) => {
+  if (e.target === modal) closeModal();
+});
