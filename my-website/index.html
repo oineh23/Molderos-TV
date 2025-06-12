@@ -205,16 +205,19 @@
 </script>
 
   <script>
-    function toggleSections() {
-  const section = document.getElementById("media-sections");
-  if (section) {
-    const isVisible = section.style.display === "block";
-    section.style.display = isVisible ? "none" : "block";
-    if (!isVisible) {
+  function toggleSections() {
+    const section = document.getElementById("media-sections");
+    const button = document.getElementById("exploreBtn");
+
+    if (section.classList.contains("hidden")) {
+      section.classList.remove("hidden");
       section.scrollIntoView({ behavior: "smooth" });
+      button.textContent = "Hide Sections";
+    } else {
+      section.classList.add("hidden");
+      button.textContent = "Explore Now";
     }
   }
-}
 </script>
 
 <body>
