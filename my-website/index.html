@@ -224,15 +224,33 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero-section" id="banner">
-    <div class="hero-overlay">
-      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
-      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
+  <!-- Hero Section with Owl Carousel -->
+<section class="hero-section" id="banner">
+  <div class="owl-carousel hero-carousel">
+    <div class="hero-slide" style="background-image: url('images/slider1.jpg');">
+      <div class="hero-overlay">
+        <h1>Discover the Top Trending Entertainment</h1>
+        <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
+        <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
+      </div>
     </div>
-  </section>
-
+    <div class="hero-slide" style="background-image: url('images/slider2.jpg');">
+      <div class="hero-overlay">
+        <h1>Stream Your Favorite Shows Anytime</h1>
+        <p class="subtitle">No limits. No ads. Just entertainment.</p>
+        <button onclick="scrollToTrending()" class="cta-button">Watch Now</button>
+      </div>
+    </div>
+    <div class="hero-slide" style="background-image: url('images/slider3.jpg');">
+      <div class="hero-overlay">
+        <h1>New Releases Every Week</h1>
+        <p class="subtitle">Korean Dramas, Pinoy Hits, and More</p>
+        <button onclick="scrollToTrending()" class="cta-button">Check It Out</button>
+      </div>
+    </div>
+  </div>
+</section>
+  
   <!-- Main Content -->
   <main>
     <section class="row" id="movies-list-section">
