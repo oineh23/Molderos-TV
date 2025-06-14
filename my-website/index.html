@@ -6,13 +6,6 @@
   <title>MOLDEROS-TV - Trending Movies & Shows</title>
 
   <!-- Styles -->
-  <!-- Owl Carousel CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-
-<!-- jQuery (must come before Owl Carousel JS) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
   <link rel="stylesheet" href="css/home.css" />
   <link rel="preload" href="css/home.css" as="style" />
   <link rel="preload" href="js/home.js" as="script" />
@@ -210,23 +203,6 @@
   });
 </script>
   
-  <!-- Owl Carousel JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-<script>
-  $(document).ready(function () {
-    $(".hero-carousel").owlCarousel({
-      items: 1,
-      loop: true,
-      autoplay: true,
-      autoplayTimeout: 5000,
-      autoplayHoverPause: true,
-      animateOut: "fadeOut",
-      dots: true
-    });
-  });
-</script>
-
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
@@ -254,24 +230,14 @@
     </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero-section" id="banner">
-  <div class="owl-carousel hero-carousel">
-    <div class="hero-slide" style="background-image: url('images/slider1.jpg');">
-      <div class="hero-overlay">
-        <h1>Discover the Top Trending Entertainment</h1>
-        <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
-        <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
-      </div>
+    <div class="hero-overlay">
+      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
+      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
+      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
     </div>
-    <div class="hero-slide" style="background-image: url('images/slider2.jpg');">
-      <div class="hero-overlay">
-        <h1>Stream Your Favorite Shows Anytime</h1>
-        <p class="subtitle">No limits. No ads. Just entertainment.</p>
-        <button onclick="scrollToTrending()" class="cta-button">Watch Now</button>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Main Content -->
   <main>
