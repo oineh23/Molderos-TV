@@ -834,25 +834,3 @@ body.light-mode .footer-links a:hover {
 .load-more-container button:hover {
   background-color: #e02e2e;
 }
-
-/* Gap for Vivamax Load More */
-.vivamax-load-more {
-  margin-top: 24px;  /* Adjust as needed */
-  margin-bottom: 40px; /* Optional extra space */
-}
-
-/* Gap for Korean Movies Load More */
-.korean-load-more {
-  margin-top: 24px;
-  margin-bottom: 40px;
-}
-
-@media (max-width: 768px) {
-  /* Mobile view adjustments */
-  .vivamax-section .load-more,
-  .korean-section .load-more {
-    margin-top: 16px; /* Adjust as needed */
-    margin-bottom: 40px; /* Increase or decrease this for spacing below */
-  }
-}
-
