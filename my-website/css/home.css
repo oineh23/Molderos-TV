@@ -846,3 +846,13 @@ body.light-mode .footer-links a:hover {
   margin-top: 24px;
   margin-bottom: 40px;
 }
+
+@media (max-width: 768px) {
+  /* Mobile view adjustments */
+  .vivamax-section .load-more,
+  .korean-section .load-more {
+    margin-top: 16px; /* Adjust as needed */
+    margin-bottom: 32px; /* Increase or decrease this for spacing below */
+  }
+}
+
