@@ -196,7 +196,24 @@
     }
   });
 </script>
-  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $(".hero-carousel").owlCarousel({
+      items: 1,
+      loop: true,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      autoplayHoverPause: true,
+      animateOut: "fadeOut",
+      dots: true,
+    });
+  });
+</script>
+
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
