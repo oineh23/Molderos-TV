@@ -367,6 +367,56 @@ select {
   background-color: #f40612;
 }
 
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+}
+
+.hero-carousel .hero-slide {
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  text-align: center;
+  color: #fff;
+  max-width: 90%;
+  margin: auto;
+}
+
+.hero-overlay h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.cta-button {
+  background: #00ffff;
+  border: none;
+  padding: 12px 24px;
+  color: #000;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #00cccc;
+}
+
 /* Genre Filter */
 .genre-filter {
   padding: 1rem 2rem;
