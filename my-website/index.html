@@ -297,7 +297,23 @@
     }
   });
 </script>
-  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $(".hero-carousel").owlCarousel({
+      items: 1,
+      loop: true,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      animateOut: 'fadeOut',
+      animateIn: 'fadeIn',
+      nav: false,
+      dots: true
+    });
+  });
+</script>
+
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
