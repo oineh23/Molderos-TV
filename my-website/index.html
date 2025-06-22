@@ -251,13 +251,41 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero-section" id="banner">
-    <div class="hero-overlay">
-      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
-      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
-    </div>
-  </section>
+  <section class="hero-section" id="banner" style="position: relative; height: 90vh; background: url('images/hero-banner.jpg') center/cover no-repeat;">
+  <div class="hero-overlay" style="
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    color: #fff;
+  ">
+    <h1 id="banner-title" style="font-size: 2.8rem; margin-bottom: 0.5em; animation: fadeInDown 1s;">
+      Discover the Top Trending Entertainment
+    </h1>
+    <p class="subtitle" style="font-size: 1.2rem; margin-bottom: 1.2em; animation: fadeIn 2s;">
+      Movies, TV Shows, and Anime – Updated Daily
+    </p>
+    <button onclick="scrollToTrending()" class="cta-button" style="
+      background-color: #00ffff;
+      color: #111;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+      animation: fadeInUp 1.5s;
+    ">
+      Explore Now
+    </button>
+  </div>
+</section>
 
   <!-- Main Content -->
   <main>
