@@ -104,7 +104,7 @@
     .modal-body,
     .modal-text,
     .server-selector {
-      display: none; /* Hide extra content for fullscreen effect */
+      display: none;
     }
 
     #modal-video {
@@ -117,15 +117,26 @@
       position: fixed;
       top: 15px;
       right: 15px;
-      font-size: 2.5rem;
+      font-size: 2.4rem;
       color: #ffffff;
-      background-color: rgba(0, 0, 0, 0.5);
-      border: none;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
-      padding: 5px 12px;
+      padding: 8px 16px;
       z-index: 3000;
       cursor: pointer;
       line-height: 1;
+      backdrop-filter: blur(6px);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .modal .close:hover {
+      transform: scale(1.1);
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .modal .close:active {
+      transform: scale(0.95);
     }
 
     .modal .close::before {
