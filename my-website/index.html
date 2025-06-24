@@ -288,7 +288,12 @@
       </select>
     </div>
   </div>
-  <div class="card-container" id="tvshows-list"></div>
+  <div style="position: relative;">
+  <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
+  <div class="scrollable-row" id="tvshows-list"></div>
+  <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
+</div>
+
 </section>
 
     <section class="row" id="anime-list-section">
