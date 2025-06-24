@@ -176,8 +176,62 @@
     }
   });
   </script>
+
+  <script>
+  let loadMode = localStorage.getItem('loadMode') || 'infinite';
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById('loadToggle');
+    if (toggle) toggle.value = loadMode;
+    if (loadMode === 'infinite') {
+      enableInfiniteScroll();
+    } else {
+      enablePagination();
+    }
+  });
+
+  function toggleLoadMode(mode) {
+    localStorage.setItem('loadMode', mode);
+    loadMode = mode;
+    if (mode === 'infinite') {
+      enableInfiniteScroll();
+    } else {
+      enablePagination();
+    }
+  }
+
+  function enableInfiniteScroll() {
+    document.querySelectorAll('.load-more-container').forEach(el => el.style.display = 'none');
+    window.addEventListener('scroll', infiniteScrollHandler);
+  }
+
+  function enablePagination() {
+    document.querySelectorAll('.load-more-container').forEach(el => el.style.display = 'block');
+    window.removeEventListener('scroll', infiniteScrollHandler);
+  }
+
+  function infiniteScrollHandler() {
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const nearBottom = document.body.offsetHeight - 200;
+    if (scrollPosition >= nearBottom) {
+      console.log('Auto-load triggered (simulate load)');
+      // loadMoreTrendingMovies(); // replace with actual function
+    }
+  }
+  </script>
+  
 </head>
 <body>
+  <div style="text-align: center; margin: 20px 0;">
+    <label style="font-weight: bold;">
+      🔁 Load Style:
+      <select id="loadToggle" onchange="toggleLoadMode(this.value)">
+        <option value="infinite">Infinite Scroll</option>
+        <option value="pagination">Pagination (Load More)</option>
+      </select>
+    </label>
+  </div>
+  
   <!-- Navbar -->
   <header class="nav-wrapper">
     <div class="container nav">
