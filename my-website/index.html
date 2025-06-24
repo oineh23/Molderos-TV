@@ -372,7 +372,12 @@
       </select>
     </div>
   </div>
-  <div class="vivamax-grid" id="korean-movie-list"></div>
+  <div style="position: relative;">
+  <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
+  <div class="scrollable-row" id="korean-movie-list"></div>
+  <button onclick="scrollRight('korean-movie-list')" class="scroll-btn right">▶</button>
+</div>
+
   <div class="load-more-container">
     <button id="load-more-korean">🎥 Load More</button>
   </div>
