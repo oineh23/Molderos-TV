@@ -296,7 +296,12 @@
 
 </section>
 
-    <section class="row" id="anime-list-section">
+    <div style="position: relative;">
+  <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
+  <div class="scrollable-row" id="anime-list"></div>
+  <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
+</div>
+
   <h2>🌸 Trending Anime</h2>
   <div class="card-container" id="anime-list"></div>
   <div class="load-more-container">
