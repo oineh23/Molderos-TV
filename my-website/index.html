@@ -344,7 +344,12 @@
       </select>
     </div>
   </div>
-  <div class="vivamax-grid" id="pinoy-movie-list"></div>
+  <div style="position: relative;">
+  <button onclick="scrollLeft('pinoy-movie-list')" class="scroll-btn left">◀</button>
+  <div class="scrollable-row" id="pinoy-movie-list"></div>
+  <button onclick="scrollRight('pinoy-movie-list')" class="scroll-btn right">▶</button>
+</div>
+
   <div class="load-more-container">
     <button id="load-more-pinoy">🎥 Load More</button>
   </div>
