@@ -264,7 +264,12 @@
     </div>
   </div>
 
-  <div class="card-container" id="movies-list"></div>
+  <div style="position: relative;">
+  <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
+  <div class="scrollable-row" id="movies-list"></div>
+  <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
+</div>
+      
 </section>
 
     <!-- Trending TV Shows Section -->
