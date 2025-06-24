@@ -25,20 +25,9 @@
 
   <script>
   document.addEventListener("keydown", function (e) {
-    // F12
-    if (e.key === "F12") {
-      e.preventDefault();
-    }
-
-    // Ctrl + Shift + I / J / C
-    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
-      e.preventDefault();
-    }
-
-    // Ctrl + U (View Source)
-    if (e.ctrlKey && e.key === "u") {
-      e.preventDefault();
-    }
+    if (e.key === "F12") e.preventDefault();
+    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) e.preventDefault();
+    if (e.ctrlKey && e.key === "u") e.preventDefault();
   });
 </script>
 
@@ -73,8 +62,6 @@
     color: var(--text-color);
   }
 
-    <style>
-  /* Fullscreen video modal styles for mobile and tablets */
   @media (max-width: 1024px) {
     .modal {
       position: fixed;
@@ -104,7 +91,7 @@
     .modal-body,
     .modal-text,
     .server-selector {
-      display: none; /* Hide extra content for fullscreen effect */
+      display: none;
     }
 
     #modal-video {
@@ -122,69 +109,62 @@
       z-index: 2000;
     }
   }
-</style>
 
-  <style>  
-    
   .load-more-container {
     margin-top: 30px;
     text-align: center;
   }
 
-    .logo {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #00ffff;
-  text-shadow:
-    0 0 5px #0ff,
-    0 0 10px #0ff,
-    0 0 20px #0ff,
-    0 0 40px #0ff,
-    2px 2px 0 #111;
-  animation: neonPulse 0.7s infinite ease-in-out;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-    [data-theme="light"] .logo {
-  color: #004466;
-  text-shadow:
-    1px 1px 0 #ccc,
-    2px 2px 3px #aaa;
-}
-
-    @keyframes neonPulse {
-  0%, 100% {
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #00ffff;
     text-shadow:
       0 0 5px #0ff,
       0 0 10px #0ff,
       0 0 20px #0ff,
       0 0 40px #0ff,
       2px 2px 0 #111;
+    animation: neonPulse 0.7s infinite ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
-  50% {
-    text-shadow:
-      0 0 2px #0ff,
-      0 0 4px #0ff,
-      0 0 10px #0ff,
-      0 0 20px #0ff,
-      1px 1px 0 #111;
-  }
-}
- 
-</style>
 
-</style>
-<script>
-  // Theme toggle logic
+  [data-theme="light"] .logo {
+    color: #004466;
+    text-shadow:
+      1px 1px 0 #ccc,
+      2px 2px 3px #aaa;
+  }
+
+  @keyframes neonPulse {
+    0%, 100% {
+      text-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff,
+        2px 2px 0 #111;
+    }
+    50% {
+      text-shadow:
+        0 0 2px #0ff,
+        0 0 4px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        1px 1px 0 #111;
+    }
+  }
+  </style>
+
+  <script>
   document.addEventListener("DOMContentLoaded", () => {
     const currentTheme = localStorage.getItem("theme") || "light";
     document.documentElement.setAttribute("data-theme", currentTheme);
-
     const toggleBtn = document.getElementById("theme-toggle");
     if (toggleBtn) {
       toggleBtn.addEventListener("click", () => {
@@ -195,16 +175,16 @@
       });
     }
   });
-</script>
-  
+  </script>
+</head>
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
     <div class="container nav">
-        <a href="#" class="logo">
-  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
-  MOLD<span class="main-color">EROS</span>-TV
-        </a>
+      <a href="#" class="logo">
+        <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+        MOLD<span class="main-color">EROS</span>-TV
+      </a>
       <input type="checkbox" id="menu-toggle" />
       <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
       <nav class="nav-links">
@@ -212,13 +192,7 @@
         <a href="#pinoy-movies">VMX</a>
         <a href="#tvshows-list">TV Shows</a>
         <a href="#anime-list">Anime</a>
-        <input 
-          type="text" 
-          class="search-bar" 
-          placeholder="Search..." 
-          onfocus="openSearchModal()" 
-          aria-label="Search"
-        />
+        <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" aria-label="Search" />
         <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
       </nav>
     </div>
@@ -235,153 +209,63 @@
 
   <!-- Main Content -->
   <main>
+    <!-- Trending Movies -->
     <section class="row" id="movies-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">🎬 Trending Movies</h2>
-    <div class="genre-filter">
-      <label for="genre-select">🎯 Filter by Genre:</label>
-      <select id="genre-select" onchange="filterByGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="27">Horror</option>
-        <option value="16">Animation</option>
-        <option value="10749">Romance</option>
-        <option value="878">Science Fiction</option>
-        <option value="10751">Family</option>
-        <option value="99">Documentary</option>
-        <option value="12">Adventure</option>
-        <option value="80">Crime</option>
-        <option value="9648">Mystery</option>
-        <option value="53">Thriller</option>
-        <option value="14">Fantasy</option>
-        <option value="36">History</option>
-        <option value="10402">Music</option>
-        <option value="10752">War</option>
-        <option value="37">Western</option>
-      </select>
-    </div>
-  </div>
+      <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <h2 style="margin: 0;">🎬 Trending Movies</h2>
+      </div>
+      <div style="position: relative;">
+        <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
+        <div class="scrollable-row" id="movies-list"></div>
+        <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
+      </div>
+    </section>
 
-  <div style="position: relative;">
-  <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
-  <div class="scrollable-row" id="movies-list"></div>
-  <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
-</div>
-      
-</section>
+    <!-- TV Shows + Anime -->
+    <section class="row" id="tvshows-list-section">
+      <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <h2 style="margin: 0;">📺 Trending TV Shows</h2>
+      </div>
+      <div style="position: relative;">
+        <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
+        <div class="scrollable-row" id="tvshows-list"></div>
+        <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
+      </div>
+      <h2>🌸 Trending Anime</h2>
+      <div style="position: relative;">
+        <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
+        <div class="scrollable-row" id="anime-list"></div>
+        <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
+      </div>
+    </section>
 
-    <!-- Trending TV Shows Section -->
-<section class="row" id="tvshows-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">📺 Trending TV Shows</h2>
-    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="tv-genre-filter">🎯 Filter by Genre:</label>
-      <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="10765">Sci-Fi</option>
-        <option value="16">Anime</option>
-      </select>
-    </div>
-  </div>
-  
-  <div style="position: relative;">
-  <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
-  <div class="scrollable-row" id="tvshows-list"></div>
-  <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
-</div>
+    <!-- Vivamax -->
+    <section class="section" id="pinoy-movies">
+      <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <h2 style="display: flex; align-items: center; gap: 5px; margin: 0;">
+          <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
+          Vivamax
+        </h2>
+      </div>
+      <div style="position: relative;">
+        <button onclick="scrollLeft('pinoy-movie-list')" class="scroll-btn left">◀</button>
+        <div class="scrollable-row" id="pinoy-movie-list"></div>
+        <button onclick="scrollRight('pinoy-movie-list')" class="scroll-btn right">▶</button>
+      </div>
+    </section>
 
-  <h2>🌸 Trending Anime</h2>
-  <div style="position: relative;">
-  <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
-  <div class="scrollable-row" id="anime-list"></div>
-  <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
-</div>
-  
-</section>
-
-    <!-- Vivamax / Pinoy Movies Section -->
-<section class="section" id="pinoy-movies">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="display: flex; align-items: center; gap: 5px; margin: 0;">
-      <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
-      Vivamax
-    </h2>
-    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="pinoy-genre-filter">🎯 Filter by Genre:</label>
-      <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
-        <option value="">All Genres</option>
-        <optgroup label="Popular Genres">
-          <option value="28">Action</option>
-          <option value="35">Comedy</option>
-          <option value="18">Drama</option>
-          <option value="10749">Romance</option>
-          <option value="80">Crime</option>
-          <option value="27">Horror</option>
-          <option value="10751">Family</option>
-<!-- START OF CLEANED SECTIONS -->
-
-<!-- 🎬 Trending Movies -->
-<section class="row" id="movies-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">🎬 Trending Movies</h2>
-  </div>
-  <div style="position: relative;">
-    <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="movies-list"></div>
-    <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
-  </div>
-</section>
-
-<!-- 📺 Trending TV Shows -->
-<section class="row" id="tvshows-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">📺 Trending TV Shows</h2>
-  </div>
-  <div style="position: relative;">
-    <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="tvshows-list"></div>
-    <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
-  </div>
-
-  <h2>🌸 Trending Anime</h2>
-  <div style="position: relative;">
-    <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="anime-list"></div>
-    <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
-  </div>
-</section>
-
-<!-- 🍿 Vivamax / Pinoy Movies -->
-<section class="section" id="pinoy-movies">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="display: flex; align-items: center; gap: 5px; margin: 0;">
-      <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
-      Vivamax
-    </h2>
-  </div>
-  <div style="position: relative;">
-    <button onclick="scrollLeft('pinoy-movie-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="pinoy-movie-list"></div>
-    <button onclick="scrollRight('pinoy-movie-list')" class="scroll-btn right">▶</button>
-  </div>
-</section>
-
-<!-- 🇰🇷 Korean Movies -->
-<section class="section" id="korean-movies">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">🇰🇷 Korean Movies</h2>
-  </div>
-  <div style="position: relative;">
-    <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="korean-movie-list"></div>
-    <button onclick="scrollRight('korean-movie-list')" class="scroll-btn right">▶</button>
-  </div>
-</section>
+    <!-- Korean Movies -->
+    <section class="section" id="korean-movies">
+      <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <h2 style="margin: 0;">🇰🇷 Korean Movies</h2>
+      </div>
+      <div style="position: relative;">
+        <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
+        <div class="scrollable-row" id="korean-movie-list"></div>
+        <button onclick="scrollRight('korean-movie-list')" class="scroll-btn right">▶</button>
+      </div>
+    </section>
+  </main>
 
 <!-- END OF CLEANED SECTIONS -->
     
