@@ -410,3 +410,12 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 // Initial Korean movie load
 loadKoreanMovies();
 
+function scrollLeft(id) {
+  const row = document.getElementById(id);
+  row.scrollBy({ left: -400, behavior: 'smooth' });
+}
+
+function scrollRight(id) {
+  const row = document.getElementById(id);
+  row.scrollBy({ left: 400, behavior: 'smooth' });
+}
