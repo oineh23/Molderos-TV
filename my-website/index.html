@@ -229,7 +229,87 @@
 [data-theme="light"] .anime-title { color: #cc6699; }
 [data-theme="light"] .vivamax-title { color: #992200; }
 [data-theme="light"] .korean-title { color: #336633; }
-  </style>
+
+  /* Existing styles above... */
+
+  .section-title-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .section-title {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+    animation: glowPulse 1.5s infinite alternate;
+  }
+
+  .section-title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 60%;
+    height: 3px;
+    border-radius: 2px;
+    animation: underlineGlow 1.5s infinite alternate;
+  }
+
+  /* Glow animation */
+  @keyframes glowPulse {
+    0% {
+      text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor;
+    }
+    100% {
+      text-shadow: 0 0 2px currentColor, 0 0 5px currentColor, 0 0 10px currentColor;
+    }
+  }
+
+  /* Underline animation */
+  @keyframes underlineGlow {
+    0% {
+      box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+    }
+    100% {
+      box-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
+    }
+  }
+
+  /* Section-specific colors */
+  .movies-title { color: #00ffff; }
+  .tv-title { color: #ffcc00; }
+  .anime-title { color: #ff69b4; }
+  .vivamax-title { color: #ff3300; }
+  .korean-title { color: #66ff66; }
+
+  .movies-title::after { background-color: #00ffff; }
+  .tv-title::after { background-color: #ffcc00; }
+  .anime-title::after { background-color: #ff69b4; }
+  .vivamax-title::after { background-color: #ff3300; }
+  .korean-title::after { background-color: #66ff66; }
+
+  /* Optional: override in light mode */
+  [data-theme="light"] .section-title {
+    animation: none;
+    text-shadow: none;
+  }
+
+  [data-theme="light"] .section-title::after {
+    animation: none;
+    background-color: currentColor;
+    box-shadow: none;
+  }
+</style>
 
   <script>
   document.addEventListener("DOMContentLoaded", () => {
