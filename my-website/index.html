@@ -401,7 +401,48 @@
       </div>
     </div>
   </footer>
-  
+
+  <script>
+  let currentMovieId = ""; // Store the movie ID globally
+
+  function openModalWithTMDB(movieId) {
+    currentMovieId = movieId;
+
+    const modal = document.getElementById("modal");
+    const iframe = document.getElementById("modal-video");
+    const server = document.getElementById("server").value;
+
+    iframe.src = generateServerURL(server, movieId);
+    modal.style.display = "flex";
+  }
+
+  function changeServer() {
+    const server = document.getElementById("server").value;
+    const iframe = document.getElementById("modal-video");
+    iframe.src = generateServerURL(server, currentMovieId);
+  }
+
+  function generateServerURL(server, movieId) {
+    switch (server) {
+      case "vidsrc.cc":
+        return `https://vidsrc.to/embed/movie/${movieId}`;
+      case "vidsrc.me":
+        return `https://vidsrc.me/embed/movie/${movieId}`;
+      case "player.videasy.net":
+        return `https://player.videasy.net/embed/movie/${movieId}`;
+      default:
+        return "";
+    }
+  }
+
+  function closeModal() {
+    const modal = document.getElementById("modal");
+    const iframe = document.getElementById("modal-video");
+    modal.style.display = "none";
+    iframe.src = ""; // Stop playback when closed
+  }
+</script>
+
 </body>
 
   <script>
