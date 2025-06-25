@@ -229,6 +229,33 @@
 [data-theme="light"] .anime-title { color: #cc6699; }
 [data-theme="light"] .vivamax-title { color: #992200; }
 [data-theme="light"] .korean-title { color: #336633; }
+
+    .section-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 60%;
+  height: 3px;
+  border-radius: 2px;
+  animation: underlineGlow 1.5s infinite alternate;
+}
+
+@keyframes underlineGlow {
+  0% {
+    box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+  }
+  100% {
+    box-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
+  }
+}
   </style>
 
   <script>
