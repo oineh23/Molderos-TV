@@ -362,8 +362,8 @@
   <main>
     <!-- Trending Movies -->
     <section class="row" id="movies-list-section">
-  <div class="trending-header">
-    <h2 class="section-title">🎬 Trending Movies</h2>
+  <div class="section-title-wrapper">
+    <h2 class="section-title movies-title">🎬 Trending Movies</h2>
   </div>
   <div style="position: relative;">
     <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
@@ -374,18 +374,19 @@
 
     <!-- TV Shows + Anime -->
     <section class="row" id="tvshows-list-section">
-      <section class="row" id="tvshows-list-section">
-  <div class="trending-header">
-    <h2 class="section-title">📺 Trending TV Shows</h2>
+  <div class="section-title-wrapper">
+    <h2 class="section-title tv-title">📺 Trending TV Shows</h2>
   </div>
   <div style="position: relative;">
     <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
     <div class="scrollable-row" id="tvshows-list"></div>
     <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
   </div>
+</section>
 
-        <div class="trending-header">
-    <h2 class="section-title">🌸 Trending Anime</h2>
+        <section class="row" id="anime-list-section">
+  <div class="section-title-wrapper">
+    <h2 class="section-title anime-title">🌸 Trending Anime</h2>
   </div>
   <div style="position: relative;">
     <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
@@ -396,9 +397,9 @@
 
     <!-- Vivamax -->
     <section class="section" id="pinoy-movies">
-  <div class="trending-header">
-    <h2 class="section-title">
-      <img src="images/images.jpg" alt="Vivamax" style="height: 40px; vertical-align: middle;" />
+  <div class="section-title-wrapper">
+    <h2 class="section-title vivamax-title">
+      <img src="images/images.jpg" alt="Vivamax" style="height: 40px; vertical-align: middle; margin-right: 8px;" />
       Vivamax
     </h2>
   </div>
@@ -411,8 +412,8 @@
 
     <!-- Korean Movies -->
     <section class="section" id="korean-movies">
-  <div class="trending-header">
-    <h2 class="section-title">🇰🇷 Korean Movies</h2>
+  <div class="section-title-wrapper">
+    <h2 class="section-title korean-title">🇰🇷 Korean Movies</h2>
   </div>
   <div style="position: relative;">
     <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
