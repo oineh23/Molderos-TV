@@ -327,7 +327,22 @@
       </div>
     </div>
   </footer>
-  
+
+  <!-- Scroll to Top Button -->
+<button id="scrollToTopBtn" class="scroll-to-top">↑</button>
+<script>
+  const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+  scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Optional: auto show/hide
+  // window.addEventListener("scroll", () => {
+  //   scrollToTopBtn.style.opacity = window.scrollY > 100 ? "1" : "0";
+  // });
+</script>
+
 </body>
 
   <script>
