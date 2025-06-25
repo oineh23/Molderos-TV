@@ -166,18 +166,18 @@
     /* ... existing styles ... */
   .section-title {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     margin: 20px auto;
     color: var(--text-color);
   }
     .section-title {
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   margin: 30px auto 20px;
   font-weight: bold;
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 1px;
-  animation: glowPulse 1s infinite alternate;
+  animation: glowPulse 1.5s infinite alternate;
 }
 
 @keyframes glowPulse {
@@ -229,85 +229,6 @@
 [data-theme="light"] .anime-title { color: #cc6699; }
 [data-theme="light"] .vivamax-title { color: #992200; }
 [data-theme="light"] .korean-title { color: #336633; }
-
-    .section-title {
-  position: relative;
-  display: inline-block;
-  padding-bottom: 10px;
-}
-
-.section-title::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  width: 60%;
-  height: 3px;
-  border-radius: 2px;
-  animation: underlineGlow 1s infinite alternate;
-}
-
-@keyframes underlineGlow {
-  0% {
-    box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
-  }
-  100% {
-    box-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
-  }
-}
-
-    .section-title-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-}
-
-.section-title {
-  position: relative;
-  display: inline-block;
-  text-align: center;
-  font-size: 1.8rem;
-  color: var(--text-color);
-  font-family: 'Orbitron', sans-serif;
-  font-weight: bold;
-  letter-spacing: 1px;
-  padding-bottom: 10px;
-  animation: glowPulse 1.5s infinite alternate;
-}
-
-.section-title::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  width: 60%;
-  height: 3px;
-  border-radius: 2px;
-  animation: underlineGlow 1.5s infinite alternate;
-}
-
-/* Keyframe Animations */
-@keyframes glowPulse {
-  0% {
-    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor;
-  }
-  100% {
-    text-shadow: 0 0 2px currentColor, 0 0 5px currentColor, 0 0 10px currentColor;
-  }
-}
-
-@keyframes underlineGlow {
-  0% {
-    box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
-  }
-  100% {
-    box-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
-  }
-}
   </style>
 
   <script>
