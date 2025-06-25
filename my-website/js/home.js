@@ -1,4 +1,4 @@
-// ========== CONFIG ==========
+// ====== CONFIGURATION ======
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
@@ -13,39 +13,41 @@ const genreMap = {
   10749: 'Romance',
 };
 
-// ========== STATE ==========
 let currentItem;
-let tvPage = 1;
+let tvShowsPage = 1;
 let currentAnimePage = 1;
 let pinoyPage = 1;
-let koreanPage = 1;
 let pinoyGenre = '';
 let tvGenre = '';
+let tvPage = 1;
+let koreanPage = 1;
 
-// ========== UTILITY ==========
-const getGenreName = id => genreMap[id] || 'Genre';
+// ====== HELPER FUNCTIONS ======
+function getGenreName(id) {
+  return genreMap[id] || 'Genre';
+}
 
-const debounce = (func, delay = 300) => {
+function debounce(func, delay = 300) {
   let timeout;
   return (...args) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(this, args), delay);
   };
-};
+}
 
-const fetchData = async (url) => {
+async function fetchData(url) {
   try {
     const res = await fetch(url);
     const data = await res.json();
     return data.results || [];
-  } catch (err) {
-    console.error('Fetch Error:', err);
+  } catch (error) {
+    console.error('Fetch error:', error);
     return [];
   }
-};
+}
 
-// ========== INIT ==========
-document.addEventListener("DOMContentLoaded", async () => {
+// ====== INIT FUNCTION ======
+async function init() {
   const [movies, tvShows, anime] = await Promise.all([
     fetchTrending('movie'),
     fetchTrending('tv'),
@@ -61,26 +63,29 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupPinoyControls();
   setupTVControls();
   loadKoreanMovies();
-});
+}
 
-// ========== DISPLAY ==========
-const displayBanner = (item) => {
-  if (!item) return;
+document.addEventListener("DOMContentLoaded", init);
+
+// ====== DISPLAY UTILITIES ======
+function displayBanner(item) {
   const banner = document.getElementById('banner');
+  if (!item) return;
   banner.style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
   document.getElementById('banner-title').textContent = item.title || item.name || 'Unknown Title';
-};
+}
 
-const displayList = (items, containerId) => {
+function displayList(items, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
   container.innerHTML = '';
   items.forEach(item => {
-    if (item.poster_path) container.appendChild(createCard(item));
+    if (!item.poster_path) return;
+    container.appendChild(createCard(item));
   });
-};
+}
 
-const createCard = (item) => {
+function createCard(item) {
   const card = document.createElement('div');
   card.className = 'card';
 
@@ -101,21 +106,30 @@ const createCard = (item) => {
   const info = document.createElement('div');
   info.className = 'card-info';
 
-  info.innerHTML = `
-    <h3>${item.title || item.name}</h3>
-    <p class="movie-year">📅 ${(item.release_date || item.first_air_date || '').slice(0, 4)}</p>
-    <p>⭐ ${item.vote_average?.toFixed(1)} / 10</p>
-  `;
+  const title = document.createElement('h3');
+  title.textContent = item.title || item.name;
+
+  const year = (item.release_date || item.first_air_date || '').slice(0, 4);
+  const yearEl = document.createElement('p');
+  yearEl.className = 'movie-year';
+  yearEl.textContent = year ? `📅 ${year}` : '';
+
+  const rating = document.createElement('p');
+  rating.textContent = `⭐ ${item.vote_average?.toFixed(1)} / 10`;
+
+  info.appendChild(title);
+  info.appendChild(yearEl);
+  info.appendChild(rating);
 
   card.append(genre, img, button, info);
   return card;
-};
+}
 
-// ========== API ==========
+// ====== API FETCHERS ======
 const fetchTrending = (type) =>
   fetchData(`${BASE_URL}/trending/${type}/week?api_key=${API_KEY}`);
 
-const fetchTrendingAnime = async () => {
+async function fetchTrendingAnime() {
   let allResults = [];
   for (let page = 1; page <= 3; page++) {
     const results = await fetchData(`${BASE_URL}/trending/tv/week?api_key=${API_KEY}&page=${page}`);
@@ -125,35 +139,37 @@ const fetchTrendingAnime = async () => {
     allResults = allResults.concat(filtered);
   }
   return allResults;
-};
+}
 
-// ========== GENRE FILTER ==========
 async function filterByGenre(genreId) {
   const url = genreId
     ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
     : `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`;
 
-  const spinner = document.getElementById('loading-spinner');
-  spinner.style.display = 'flex';
+  document.getElementById('loading-spinner').style.display = 'flex';
 
   const results = await fetchData(url);
   const container = document.getElementById('movies-list');
   container.innerHTML = '';
 
   results.forEach(movie => {
-    if (movie.poster_path) container.appendChild(createCard(movie));
+    if (!movie.poster_path) return;
+    movie.media_type = 'movie';
+    container.appendChild(createCard(movie));
   });
 
-  spinner.style.display = 'none';
+  document.getElementById('loading-spinner').style.display = 'none';
 }
 
-// ========== TV ==========
+// ====== TV SHOWS ======
 function setupTVControls() {
   const btn = document.getElementById('load-more-tvshows');
-  btn?.addEventListener('click', () => {
-    tvPage++;
-    fetchTrendingTVShows();
-  });
+  if (btn) {
+    btn.addEventListener('click', () => {
+      tvPage++;
+      fetchTrendingTVShows();
+    });
+  }
 }
 
 async function fetchTrendingTVShows(reset = false) {
@@ -168,30 +184,31 @@ async function fetchTrendingTVShows(reset = false) {
 
   const results = await fetchData(url);
   results.forEach(tv => {
-    if (tv.poster_path) container.appendChild(createCard(tv));
+    if (!tv.poster_path) return;
+    tv.media_type = 'tv';
+    container.appendChild(createCard(tv));
   });
 }
 
-// ========== ANIME ==========
+// ====== ANIME ======
+const animeList = document.getElementById("anime-list");
+
 async function fetchAnime(page = 1) {
-  const results = await fetchData(`${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=16&sort_by=popularity.desc&page=${page}`);
-  const animeList = document.getElementById("anime-list");
-  results.forEach(anime => animeList.appendChild(createCard(anime)));
-}
+  const url = `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=16&sort_by=popularity.desc&page=${page}`;
+  const results = await fetchData(url);
 
-// ========== PINOY ==========
-function setupPinoyControls() {
-  const genreSelect = document.getElementById('pinoy-genre-filter');
-  genreSelect?.addEventListener('change', () => {
-    pinoyGenre = genreSelect.value;
-    fetchPinoyMoviesPaginated(true);
+  results.forEach(anime => {
+    anime.media_type = 'tv';
+    animeList.appendChild(createCard(anime));
   });
 }
 
+// ====== PINOY MOVIES ======
 async function fetchPinoyMoviesPaginated(reset = false) {
   const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_origin_country=PH&with_original_language=tl&sort_by=popularity.desc&page=${pinoyPage}` +
-    (pinoyGenre ? `&with_genres=${pinoyGenre}` : '');
+              (pinoyGenre ? `&with_genres=${pinoyGenre}` : '');
 
+  const results = await fetchData(url);
   const container = document.getElementById('pinoy-movie-list');
   if (!container) return;
 
@@ -200,27 +217,23 @@ async function fetchPinoyMoviesPaginated(reset = false) {
     pinoyPage = 1;
   }
 
-  const results = await fetchData(url);
-  results.forEach(movie => container.appendChild(createCard(movie)));
+  results.forEach(movie => {
+    if (!movie.poster_path) return;
+    movie.media_type = 'movie';
+    container.appendChild(createCard(movie));
+  });
 }
 
-// ========== KOREAN ==========
-async function loadKoreanMovies(genre = '') {
-  const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_original_language=ko&page=${koreanPage}${genre ? `&with_genres=${genre}` : ''}`;
-  const results = await fetchData(url);
-  const container = document.getElementById('korean-movie-list');
-  if (!container) return;
+function setupPinoyControls() {
+  const genreSelect = document.getElementById('pinoy-genre-filter');
 
-  results.forEach(movie => container.appendChild(createCard(movie)));
+  genreSelect?.addEventListener('change', () => {
+    pinoyGenre = genreSelect.value;
+    fetchPinoyMoviesPaginated(true);
+  });
 }
 
-function filterByKoreanGenre(genreId) {
-  koreanPage = 1;
-  document.getElementById('korean-movie-list').innerHTML = '';
-  loadKoreanMovies(genreId);
-}
-
-// ========== MODAL ==========
+// ====== MODAL HANDLING ======
 function showDetails(item) {
   currentItem = item;
   document.getElementById('modal-title').textContent = item.title || item.name;
@@ -255,53 +268,127 @@ function changeServer() {
   document.getElementById('modal-video').src = embedURL;
 }
 
-const closeModal = () => {
+function closeModal() {
   document.getElementById('modal').style.display = 'none';
   document.getElementById('modal-video').src = '';
-};
+}
 
-// ========== SEARCH ==========
-const openSearchModal = () => {
+// ====== SEARCH MODAL ======
+function openSearchModal() {
   document.getElementById('search-modal').style.display = 'flex';
   document.getElementById('search-input').focus();
-};
+}
 
-const closeSearchModal = () => {
+function closeSearchModal() {
   document.getElementById('search-modal').style.display = 'none';
   document.getElementById('search-results').innerHTML = '';
-};
+}
 
 const searchTMDB = debounce(async () => {
   const query = document.getElementById('search-input').value.trim();
   const container = document.getElementById('search-results');
-  if (!query || !container) return (container.innerHTML = '');
+  if (!query || !container) {
+    container.innerHTML = '';
+    return;
+  }
 
   const results = await fetchData(`${BASE_URL}/search/multi?api_key=${API_KEY}&query=${encodeURIComponent(query)}`);
   container.innerHTML = '';
 
   results.forEach(item => {
     if (!item.poster_path) return;
+
     const img = document.createElement('img');
     img.src = `${IMG_URL}${item.poster_path}`;
-    img.alt = item.title || item.name;
+    img.alt = item.title || item.name || 'Search result';
     img.onclick = () => {
       closeSearchModal();
       showDetails(item);
     };
+
     container.appendChild(img);
   });
 }, 400);
 
-// ========== INFINITE SCROLL ==========
+// ====== KOREAN MOVIES ======
+const koreanMovieList = document.getElementById('korean-movie-list');
+
+async function loadKoreanMovies(genre = '') {
+  try {
+    const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_original_language=ko&page=${koreanPage}${genre ? `&with_genres=${genre}` : ''}`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (!data.results || data.results.length === 0) return;
+
+    data.results.forEach(movie => {
+      if (!movie.poster_path) return;
+
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const genre = document.createElement('span');
+      genre.className = 'genre-badge';
+      genre.textContent = getGenreName(movie.genre_ids?.[0]);
+
+      const img = document.createElement('img');
+      img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+      img.alt = movie.title;
+
+      const button = document.createElement('button');
+      button.className = 'watch-button';
+      button.textContent = 'Watch Now';
+      button.onclick = () => {
+        movie.media_type = 'movie';
+        showDetails(movie);
+      };
+
+      const info = document.createElement('div');
+      info.className = 'card-info';
+
+      const title = document.createElement('h3');
+      title.textContent = movie.title;
+
+      const year = (movie.release_date || '').slice(0, 4);
+      const yearEl = document.createElement('p');
+      yearEl.className = 'movie-year';
+      yearEl.textContent = year ? `📅 ${year}` : '';
+
+      const rating = document.createElement('p');
+      rating.textContent = `⭐ ${movie.vote_average?.toFixed(1)} / 10`;
+
+      info.appendChild(title);
+      info.appendChild(yearEl);
+      info.appendChild(rating);
+
+      card.append(genre, img, button, info);
+      koreanMovieList.appendChild(card);
+    });
+  } catch (error) {
+    console.error('Failed to load Korean movies:', error);
+  }
+}
+
+function filterByKoreanGenre(genreId) {
+  koreanPage = 1;
+  koreanMovieList.innerHTML = '';
+  loadKoreanMovies(genreId);
+}
+
+// ====== INFINITE SCROLL ======
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const docHeight = document.documentElement.scrollHeight;
+
+  if (scrollTop + windowHeight >= docHeight - 500) {
+    handleInfiniteScroll();
+  }
+});
+
 let isFetching = false;
 
-const isElementInViewport = el => {
-  if (!el) return false;
-  const rect = el.getBoundingClientRect();
-  return rect.top < window.innerHeight && rect.bottom >= 0;
-};
-
-const handleInfiniteScroll = () => {
+function handleInfiniteScroll() {
   if (isFetching) return;
   isFetching = true;
 
@@ -322,14 +409,22 @@ const handleInfiniteScroll = () => {
   } else {
     isFetching = false;
   }
-};
+}
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 500) {
-    handleInfiniteScroll();
-  }
-});
+function isElementInViewport(el) {
+  if (!el) return false;
+  const rect = el.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom >= 0;
+}
 
-// ========== SCROLL ROWS ==========
-const scrollLeft = id => document.getElementById(id)?.scrollBy({ left: -400, behavior: 'smooth' });
-const scrollRight = id => document.getElementById(id)?.scrollBy({ left: 400, behavior: 'smooth' });
+function scrollLeft(id) {
+  const row = document.getElementById(id);
+  if (!row) return;
+  row.scrollBy({ left: -400, behavior: 'smooth' });
+}
+
+function scrollRight(id) {
+  const row = document.getElementById(id);
+  if (!row) return;
+  row.scrollBy({ left: 400, behavior: 'smooth' });
+}
