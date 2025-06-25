@@ -230,7 +230,9 @@
 [data-theme="light"] .vivamax-title { color: #992200; }
 [data-theme="light"] .korean-title { color: #336633; }
 
-  /* Existing styles above... */
+<style>
+    
+  /* ...your existing styles above... */
 
   .section-title-wrapper {
     width: 100%;
@@ -245,7 +247,6 @@
     display: inline-block;
     text-align: center;
     font-size: 1.8rem;
-    color: var(--text-color);
     font-family: 'Orbitron', sans-serif;
     font-weight: bold;
     letter-spacing: 1px;
@@ -265,7 +266,6 @@
     animation: underlineGlow 1.5s infinite alternate;
   }
 
-  /* Glow animation */
   @keyframes glowPulse {
     0% {
       text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor;
@@ -275,7 +275,6 @@
     }
   }
 
-  /* Underline animation */
   @keyframes underlineGlow {
     0% {
       box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
@@ -285,7 +284,7 @@
     }
   }
 
-  /* Section-specific colors */
+  /* Unique glowing colors */
   .movies-title { color: #00ffff; }
   .tv-title { color: #ffcc00; }
   .anime-title { color: #ff69b4; }
@@ -298,7 +297,7 @@
   .vivamax-title::after { background-color: #ff3300; }
   .korean-title::after { background-color: #66ff66; }
 
-  /* Optional: override in light mode */
+  /* Light mode cleanup */
   [data-theme="light"] .section-title {
     animation: none;
     text-shadow: none;
