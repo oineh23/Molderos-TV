@@ -327,6 +327,70 @@
       </div>
     </div>
   </footer>
+
+  <script>
+  const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+  const BASE_URL = 'https://api.themoviedb.org/3';
+  const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+
+  const sectionMap = {
+    'movies-list': `${BASE_URL}/trending/movie/week`,
+    'tvshows-list': `${BASE_URL}/trending/tv/week`,
+    'anime-list': `${BASE_URL}/discover/tv?with_genres=16&with_original_language=ja`,
+    'pinoy-movie-list': `${BASE_URL}/discover/movie?region=PH&with_original_language=tl`,
+    'korean-movie-list': `${BASE_URL}/discover/movie?with_original_language=ko`
+  };
+
+  const sectionPage = {
+    'movies-list': 1,
+    'tvshows-list': 1,
+    'anime-list': 1,
+    'pinoy-movie-list': 1,
+    'korean-movie-list': 1
+  };
+
+  async function loadMore(sectionId) {
+    const container = document.getElementById(sectionId);
+    const page = sectionPage[sectionId]++;
+    const endpoint = sectionMap[sectionId] + `&api_key=${API_KEY}&page=${page}`;
+
+    try {
+      const res = await fetch(endpoint);
+      const data = await res.json();
+
+      data.results.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('movie-card');
+        card.innerHTML = `
+          <img src="${IMG_URL + item.poster_path}" alt="${item.title || item.name}">
+          <p>${item.title || item.name}</p>
+        `;
+        container.appendChild(card);
+      });
+    } catch (err) {
+      console.error(`Error loading more for ${sectionId}`, err);
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('data-section');
+        loadMore(id);
+      }
+    });
+  }, {
+    rootMargin: '0px 0px 300px 0px'
+  });
+
+  Object.keys(sectionMap).forEach(sectionId => {
+    loadMore(sectionId); // Initial load
+    const sentinel = document.createElement('div');
+    sentinel.setAttribute('data-section', sectionId);
+    document.getElementById(sectionId).after(sentinel);
+    observer.observe(sentinel);
+  });
+</script>
   
 </body>
 </html>
