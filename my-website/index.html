@@ -164,7 +164,13 @@
   display: none !important;
 }
     /* ... existing styles ... */
- .section-title {
+  .section-title {
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 20px auto;
+    color: var(--text-color);
+  }
+    .section-title {
   text-align: center;
   font-size: 1.8rem;
   margin: 30px auto 20px;
@@ -172,12 +178,6 @@
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 1px;
   animation: glowPulse 1.5s infinite alternate;
-}
-
- .section-title {
-  ...
-  display: inline-flex;
-  align-items: center;
 }
 
 @keyframes glowPulse {
@@ -229,86 +229,7 @@
 [data-theme="light"] .anime-title { color: #cc6699; }
 [data-theme="light"] .vivamax-title { color: #992200; }
 [data-theme="light"] .korean-title { color: #336633; }
-
-<style>
-    
-  /* ...your existing styles above... */
-
-  .section-title-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-  }
-
-  .section-title {
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    font-size: 1.8rem;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    letter-spacing: 1px;
-    padding-bottom: 10px;
-    animation: glowPulse 1.5s infinite alternate;
-  }
-
-  .section-title::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
-    width: 60%;
-    height: 3px;
-    border-radius: 2px;
-    animation: underlineGlow 1.5s infinite alternate;
-  }
-
-  @keyframes glowPulse {
-    0% {
-      text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor;
-    }
-    100% {
-      text-shadow: 0 0 2px currentColor, 0 0 5px currentColor, 0 0 10px currentColor;
-    }
-  }
-
-  @keyframes underlineGlow {
-    0% {
-      box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
-    }
-    100% {
-      box-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
-    }
-  }
-
-  /* Unique glowing colors */
-  .movies-title { color: #00ffff; }
-  .tv-title { color: #ffcc00; }
-  .anime-title { color: #ff69b4; }
-  .vivamax-title { color: #ff3300; }
-  .korean-title { color: #66ff66; }
-
-  .movies-title::after { background-color: #00ffff; }
-  .tv-title::after { background-color: #ffcc00; }
-  .anime-title::after { background-color: #ff69b4; }
-  .vivamax-title::after { background-color: #ff3300; }
-  .korean-title::after { background-color: #66ff66; }
-
-  /* Light mode cleanup */
-  [data-theme="light"] .section-title {
-    animation: none;
-    text-shadow: none;
-  }
-
-  [data-theme="light"] .section-title::after {
-    animation: none;
-    background-color: currentColor;
-    box-shadow: none;
-  }
-</style>
+  </style>
 
   <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -362,8 +283,8 @@
   <main>
     <!-- Trending Movies -->
     <section class="row" id="movies-list-section">
-  <div class="section-title-wrapper">
-    <h2 class="section-title movies-title">🎬 Trending Movies</h2>
+  <div class="trending-header">
+    <h2 class="section-title">🎬 Trending Movies</h2>
   </div>
   <div style="position: relative;">
     <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
@@ -374,19 +295,18 @@
 
     <!-- TV Shows + Anime -->
     <section class="row" id="tvshows-list-section">
-  <div class="section-title-wrapper">
-    <h2 class="section-title tv-title">📺 Trending TV Shows</h2>
+      <section class="row" id="tvshows-list-section">
+  <div class="trending-header">
+    <h2 class="section-title">📺 Trending TV Shows</h2>
   </div>
   <div style="position: relative;">
     <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
     <div class="scrollable-row" id="tvshows-list"></div>
     <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
   </div>
-</section>
 
-        <section class="row" id="anime-list-section">
-  <div class="section-title-wrapper">
-    <h2 class="section-title anime-title">🌸 Trending Anime</h2>
+        <div class="trending-header">
+    <h2 class="section-title">🌸 Trending Anime</h2>
   </div>
   <div style="position: relative;">
     <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
@@ -397,9 +317,9 @@
 
     <!-- Vivamax -->
     <section class="section" id="pinoy-movies">
-  <div class="section-title-wrapper">
-    <h2 class="section-title vivamax-title">
-      <img src="images/images.jpg" alt="Vivamax" style="height: 40px; vertical-align: middle; margin-right: 8px;" />
+  <div class="trending-header">
+    <h2 class="section-title">
+      <img src="images/images.jpg" alt="Vivamax" style="height: 40px; vertical-align: middle;" />
       Vivamax
     </h2>
   </div>
@@ -412,8 +332,8 @@
 
     <!-- Korean Movies -->
     <section class="section" id="korean-movies">
-  <div class="section-title-wrapper">
-    <h2 class="section-title korean-title">🇰🇷 Korean Movies</h2>
+  <div class="trending-header">
+    <h2 class="section-title">🇰🇷 Korean Movies</h2>
   </div>
   <div style="position: relative;">
     <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
