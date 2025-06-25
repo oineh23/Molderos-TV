@@ -163,6 +163,13 @@
 .scroll-btn.right {
   display: none !important;
 }
+    /* ... existing styles ... */
+  .section-title {
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 20px auto;
+    color: var(--text-color);
+  }
   </style>
 
   <script>
@@ -217,60 +224,64 @@
   <main>
     <!-- Trending Movies -->
     <section class="row" id="movies-list-section">
-      <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-        <h2 style="margin: 0;">🎬 Trending Movies</h2>
-      </div>
-      <div style="position: relative;">
-        <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
-        <div class="scrollable-row" id="movies-list"></div>
-        <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
-      </div>
-    </section>
+  <div class="trending-header">
+    <h2 class="section-title">🎬 Trending Movies</h2>
+  </div>
+  <div style="position: relative;">
+    <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
+    <div class="scrollable-row" id="movies-list"></div>
+    <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
+  </div>
+</section>
 
     <!-- TV Shows + Anime -->
     <section class="row" id="tvshows-list-section">
-      <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-        <h2 style="margin: 0;">📺 Trending TV Shows</h2>
-      </div>
-      <div style="position: relative;">
-        <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
-        <div class="scrollable-row" id="tvshows-list"></div>
-        <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
-      </div>
-      <h2>🌸 Trending Anime</h2>
-      <div style="position: relative;">
-        <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
-        <div class="scrollable-row" id="anime-list"></div>
-        <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
-      </div>
-    </section>
+      <section class="row" id="tvshows-list-section">
+  <div class="trending-header">
+    <h2 class="section-title">📺 Trending TV Shows</h2>
+  </div>
+  <div style="position: relative;">
+    <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
+    <div class="scrollable-row" id="tvshows-list"></div>
+    <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
+  </div>
+
+        <div class="trending-header">
+    <h2 class="section-title">🌸 Trending Anime</h2>
+  </div>
+  <div style="position: relative;">
+    <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
+    <div class="scrollable-row" id="anime-list"></div>
+    <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
+  </div>
+</section>
 
     <!-- Vivamax -->
     <section class="section" id="pinoy-movies">
-      <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-        <h2 style="display: flex; align-items: center; gap: 5px; margin: 0;">
-          <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
-          Vivamax
-        </h2>
-      </div>
-      <div style="position: relative;">
-        <button onclick="scrollLeft('pinoy-movie-list')" class="scroll-btn left">◀</button>
-        <div class="scrollable-row" id="pinoy-movie-list"></div>
-        <button onclick="scrollRight('pinoy-movie-list')" class="scroll-btn right">▶</button>
-      </div>
-    </section>
+  <div class="trending-header">
+    <h2 class="section-title">
+      <img src="images/images.jpg" alt="Vivamax" style="height: 40px; vertical-align: middle;" />
+      Vivamax
+    </h2>
+  </div>
+  <div style="position: relative;">
+    <button onclick="scrollLeft('pinoy-movie-list')" class="scroll-btn left">◀</button>
+    <div class="scrollable-row" id="pinoy-movie-list"></div>
+    <button onclick="scrollRight('pinoy-movie-list')" class="scroll-btn right">▶</button>
+  </div>
+</section>
 
     <!-- Korean Movies -->
     <section class="section" id="korean-movies">
-      <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-        <h2 style="margin: 0;">🇰🇷 Korean Movies</h2>
-      </div>
-      <div style="position: relative;">
-        <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
-        <div class="scrollable-row" id="korean-movie-list"></div>
-        <button onclick="scrollRight('korean-movie-list')" class="scroll-btn right">▶</button>
-      </div>
-    </section>
+  <div class="trending-header">
+    <h2 class="section-title">🇰🇷 Korean Movies</h2>
+  </div>
+  <div style="position: relative;">
+    <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
+    <div class="scrollable-row" id="korean-movie-list"></div>
+    <button onclick="scrollRight('korean-movie-list')" class="scroll-btn right">▶</button>
+  </div>
+</section>
   </main>
 
 <!-- END OF CLEANED SECTIONS -->
