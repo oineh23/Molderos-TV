@@ -194,6 +194,31 @@
   }
 }
 
+    .scroll-btn.left,
+.scroll-btn.right {
+  font-size: 16px; /* Smaller arrow size */
+  padding: 4px 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent dark bg */
+  color: #fff;
+  border: none;
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.scroll-btn.left {
+  left: 4px;
+}
+
+.scroll-btn.right {
+  right: 4px;
+}
+
 /* Unique colors per section */
 .movies-title {
   color: #00ffff; /* Cyan */
