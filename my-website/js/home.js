@@ -13,8 +13,8 @@ const genreMap = {
   10749: 'Romance',
 };
 
-let currentItem;
-let tvShowsPage = 1;
+// let currentItem; // ❌ unused
+// let tvShowsPage = 1; // ❌ unused
 let currentAnimePage = 1;
 let pinoyPage = 1;
 let pinoyGenre = '';
@@ -89,9 +89,9 @@ function createCard(item) {
   const card = document.createElement('div');
   card.className = 'card';
 
-  const genre = document.createElement('span');
-  genre.className = 'genre-badge';
-  genre.textContent = getGenreName(item.genre_ids?.[0]);
+  const genreBadge = document.createElement('span');
+  genreBadge.className = 'genre-badge';
+  genreBadge.textContent = getGenreName(item.genre_ids?.[0]);
 
   const img = document.createElement('img');
   img.src = `${IMG_URL}${item.poster_path}`;
@@ -121,7 +121,7 @@ function createCard(item) {
   info.appendChild(yearEl);
   info.appendChild(rating);
 
-  card.append(genre, img, button, info);
+  card.append(genreBadge, img, button, info);
   return card;
 }
 
@@ -141,6 +141,7 @@ async function fetchTrendingAnime() {
   return allResults;
 }
 
+// ====== FILTER BY GENRE (MOVIES ONLY) ======
 async function filterByGenre(genreId) {
   const url = genreId
     ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
@@ -226,7 +227,6 @@ async function fetchPinoyMoviesPaginated(reset = false) {
 
 function setupPinoyControls() {
   const genreSelect = document.getElementById('pinoy-genre-filter');
-
   genreSelect?.addEventListener('change', () => {
     pinoyGenre = genreSelect.value;
     fetchPinoyMoviesPaginated(true);
@@ -235,22 +235,23 @@ function setupPinoyControls() {
 
 // ====== MODAL HANDLING ======
 function showDetails(item) {
-  currentItem = item;
   document.getElementById('modal-title').textContent = item.title || item.name;
   document.getElementById('modal-description').textContent = item.overview || 'No description available.';
   document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
   document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2)) || 'N/A';
 
+  window.currentItem = item;
   changeServer();
   document.getElementById('modal').style.display = 'flex';
 }
 
 function changeServer() {
   const server = document.getElementById('server')?.value;
-  if (!server || !currentItem) return;
+  const item = window.currentItem;
+  if (!server || !item) return;
 
-  const type = currentItem.media_type === 'movie' ? 'movie' : 'tv';
-  const id = currentItem.id;
+  const type = item.media_type === 'movie' ? 'movie' : 'tv';
+  const id = item.id;
   let embedURL = '';
 
   switch (server) {
@@ -314,59 +315,16 @@ const searchTMDB = debounce(async () => {
 const koreanMovieList = document.getElementById('korean-movie-list');
 
 async function loadKoreanMovies(genre = '') {
-  try {
-    const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_original_language=ko&page=${koreanPage}${genre ? `&with_genres=${genre}` : ''}`;
-    const response = await fetch(url);
-    const data = await response.json();
+  const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_original_language=ko&page=${koreanPage}${genre ? `&with_genres=${genre}` : ''}`;
+  const results = await fetchData(url);
+  if (!results.length) return;
 
-    if (!data.results || data.results.length === 0) return;
+  results.forEach(movie => {
+    if (!movie.poster_path) return;
 
-    data.results.forEach(movie => {
-      if (!movie.poster_path) return;
-
-      const card = document.createElement('div');
-      card.className = 'card';
-
-      const genre = document.createElement('span');
-      genre.className = 'genre-badge';
-      genre.textContent = getGenreName(movie.genre_ids?.[0]);
-
-      const img = document.createElement('img');
-      img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
-      img.alt = movie.title;
-
-      const button = document.createElement('button');
-      button.className = 'watch-button';
-      button.textContent = 'Watch Now';
-      button.onclick = () => {
-        movie.media_type = 'movie';
-        showDetails(movie);
-      };
-
-      const info = document.createElement('div');
-      info.className = 'card-info';
-
-      const title = document.createElement('h3');
-      title.textContent = movie.title;
-
-      const year = (movie.release_date || '').slice(0, 4);
-      const yearEl = document.createElement('p');
-      yearEl.className = 'movie-year';
-      yearEl.textContent = year ? `📅 ${year}` : '';
-
-      const rating = document.createElement('p');
-      rating.textContent = `⭐ ${movie.vote_average?.toFixed(1)} / 10`;
-
-      info.appendChild(title);
-      info.appendChild(yearEl);
-      info.appendChild(rating);
-
-      card.append(genre, img, button, info);
-      koreanMovieList.appendChild(card);
-    });
-  } catch (error) {
-    console.error('Failed to load Korean movies:', error);
-  }
+    const card = createCard(movie);
+    koreanMovieList.appendChild(card);
+  });
 }
 
 function filterByKoreanGenre(genreId) {
