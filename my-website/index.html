@@ -347,7 +347,7 @@ function loadSectionByGenre(type, containerId, genreId) {
   
   <!-- Genre Filter -->
   <select id="genreFilter" class="genre-dropdown" onchange="filterByGenre(this.value)">
-    <option value="">Genre</option>
+    <option value="">Filter by Genre</option>
     <option value="28">Action</option>
     <option value="35">Comedy</option>
     <option value="18">Drama</option>
@@ -463,14 +463,7 @@ function loadSectionByGenre(type, containerId, genreId) {
           <option value="player.videasy.net">Player.Videasy.net</option>
         </select>
      </div>
-      <iframe
-  id="modal-video"
-  width="100%"
-  height="360"
-  frameborder="0"
-  allowfullscreen
-  onerror="handleVideoErrorFallback()"
-></iframe>
+      <iframe id="modal-video" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -540,62 +533,6 @@ function loadSectionByGenre(type, containerId, genreId) {
     modal.style.display = "none";
     iframe.src = ""; // Stop playback when closed
   }
-</script>
-
-  <script>
-let serverIndex = 0;
-const servers = ["vidsrc.cc", "vidsrc.me", "player.videasy.net"];
-
-function openModalWithTMDB(movieId) {
-  if (!movieId || isNaN(movieId)) {
-    alert("Invalid movie ID.");
-    return;
-  }
-
-  currentMovieId = movieId;
-  serverIndex = 0; // reset server index on new video
-
-  const modal = document.getElementById("modal");
-  const iframe = document.getElementById("modal-video");
-
-  const server = servers[serverIndex];
-  iframe.removeAttribute("srcdoc");
-  iframe.src = generateServerURL(server, movieId);
-  modal.style.display = "flex";
-}
-
-function changeServer() {
-  const selectedServer = document.getElementById("server").value;
-  serverIndex = servers.indexOf(selectedServer); // set index to match selected server
-  const iframe = document.getElementById("modal-video");
-
-  iframe.removeAttribute("srcdoc");
-  iframe.src = generateServerURL(selectedServer, currentMovieId);
-}
-
-function handleVideoErrorFallback() {
-  serverIndex++;
-
-  if (serverIndex < servers.length) {
-    const iframe = document.getElementById("modal-video");
-    const nextServer = servers[serverIndex];
-    iframe.removeAttribute("srcdoc");
-    iframe.src = generateServerURL(nextServer, currentMovieId);
-
-    // Update dropdown to match
-    document.getElementById("server").value = nextServer;
-  } else {
-    const iframe = document.getElementById("modal-video");
-    iframe.srcdoc = `
-      <style>
-        body { margin: 0; background: #000; color: #fff; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center; padding: 20px; }
-      </style>
-      <body>
-        ⚠️ <strong>No working server found.</strong><br/>Please try again later.
-      </body>
-    `;
-  }
-}
 </script>
 
 </body>
