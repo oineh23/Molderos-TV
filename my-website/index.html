@@ -346,15 +346,20 @@ function loadSectionByGenre(type, containerId, genreId) {
   <a href="index.html">Home</a>
   
   <!-- Genre Filter -->
-  <select id="genreFilter" class="genre-dropdown" onchange="filterByGenre(this.value)">
-    <option value="">Filter by Genre</option>
+  <!-- GLOBAL GENRE FILTER -->
+<div class="genre-filter-container" style="text-align:center; margin: 20px 0;">
+  <label for="globalGenreFilter" style="font-size: 1.2em;">Filter by Genre:</label>
+  <select id="globalGenreFilter" style="padding: 5px; font-size: 1em;">
+    <option value="">All Genres</option>
     <option value="28">Action</option>
     <option value="35">Comedy</option>
     <option value="18">Drama</option>
+    <option value="10752">War</option>
     <option value="27">Horror</option>
     <option value="10749">Romance</option>
-    <!-- Add more genres as needed -->
+    <!-- Add more as needed -->
   </select>
+</div>
 
   <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" aria-label="Search" />
   <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
