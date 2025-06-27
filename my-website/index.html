@@ -568,6 +568,94 @@ loadTrendingMovies(trendingPage);
   }
 </script>
 
+  <script>
+  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+
+  // Page trackers
+  const sectionPages = {
+    'movies-list': 1,
+    'tvshows-list': 1,
+    'anime-list': 1,
+    'pinoy-movie-list': 1,
+    'korean-movie-list': 1,
+  };
+
+  const sectionTypes = {
+    'movies-list': { type: 'movie', filter: 'trending' },
+    'tvshows-list': { type: 'tv', filter: 'trending' },
+    'anime-list': { type: 'movie', filter: 'anime' }, // Optional: adjust to real anime filter
+    'pinoy-movie-list': { type: 'movie', filter: 'vivamax' },
+    'korean-movie-list': { type: 'movie', filter: 'korean' },
+  };
+
+  const loadingState = {};
+
+  function loadSection(sectionId) {
+    if (loadingState[sectionId]) return;
+    loadingState[sectionId] = true;
+
+    const { type, filter } = sectionTypes[sectionId];
+    const page = sectionPages[sectionId]++;
+    let url = '';
+
+    if (filter === 'trending') {
+      url = `https://api.themoviedb.org/3/trending/${type}/week?api_key=${apiKey}&page=${page}`;
+    } else {
+      const regionMap = {
+        anime: 'JP',
+        vivamax: 'PH',
+        korean: 'KR'
+      };
+      url = `https://api.themoviedb.org/3/discover/${type}?api_key=${apiKey}&page=${page}&region=${regionMap[filter]}&with_original_language=${regionMap[filter].toLowerCase()}`;
+    }
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById(sectionId);
+        data.results.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'movie-card';
+          card.innerHTML = `
+            <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="${item.title || item.name}" />
+            <p>${item.title || item.name}</p>
+          `;
+          card.onclick = () => openModalWithTMDB(item.id);
+          container.appendChild(card);
+        });
+        loadingState[sectionId] = false;
+      })
+      .catch(err => {
+        console.error(`Failed to load ${sectionId}`, err);
+        loadingState[sectionId] = false;
+      });
+  }
+
+  // Scroll handler per section
+  function setupInfiniteScroll(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const sectionBottom = section.getBoundingClientRect().bottom + window.scrollY;
+
+      if (scrollY + windowHeight >= sectionBottom - 300) {
+        loadSection(sectionId);
+      }
+    });
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener("DOMContentLoaded", () => {
+    Object.keys(sectionPages).forEach(sectionId => {
+      loadSection(sectionId);           // Initial load
+      setupInfiniteScroll(sectionId);   // Setup infinite scroll
+    });
+  });
+</script>
+
 </body>
 
   <script>
