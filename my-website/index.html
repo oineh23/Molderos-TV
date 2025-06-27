@@ -158,28 +158,8 @@
         1px 1px 0 #111;
     }
   }
-    /* Make genre dropdowns compact & stack vertically on mobile */
-@media (max-width: 768px) {
-  .nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-  }
-
-  .genre-dropdown {
-    width: 100%;
-    margin: 0;
-    font-size: 14px;
-  }
-}
-
-/* Default desktop spacing */
-.genre-dropdown {
-  margin-left: 10px;
-  max-width: 160px;
-}
     
+   
     /* ... existing styles ... */
   .section-title {
     text-align: center;
@@ -350,34 +330,7 @@ function loadSectionByGenre(type, containerId, genreId) {
     });
 }
 </script>
-
   
-  <script>
-  function filterKoreanGenre(genreId) {
-    const container = document.getElementById('korean-movie-list');
-    container.innerHTML = '';
-
-    const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&with_original_language=ko`;
-
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        data.results.forEach(movie => {
-          const card = document.createElement('div');
-          card.className = 'movie-card';
-          card.innerHTML = `
-            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-            <p>${movie.title}</p>
-          `;
-          card.onclick = () => openModalWithTMDB(movie.id);
-          container.appendChild(card);
-        });
-      })
-      .catch(err => console.error('Korean filter failed:', err));
-  }
-</script>
-
 </head>
 <body>
   <!-- Navbar -->
@@ -391,28 +344,8 @@ function loadSectionByGenre(type, containerId, genreId) {
       <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
       <nav class="nav-links">
   <a href="index.html">Home</a>
-
-  <!-- Vivamax Genre Filter -->
-  <select id="vivamaxGenreFilter" class="genre-dropdown" onchange="filterVivamaxGenre(this.value)">
-    <option value="">Vivamax Genre</option>
-    <option value="28">Action</option>
-    <option value="35">Comedy</option>
-    <option value="18">Drama</option>
-    <option value="27">Horror</option>
-    <option value="10749">Romance</option>
-  </select>
-
-  <!-- Korean Movies Genre Filter -->
-  <select id="koreanGenreFilter" class="genre-dropdown" onchange="filterKoreanGenre(this.value)">
-    <option value="">Korean Genre</option>
-    <option value="28">Action</option>
-    <option value="35">Comedy</option>
-    <option value="18">Drama</option>
-    <option value="27">Horror</option>
-    <option value="10749">Romance</option>
-  </select>
-
-  <!-- Global Genre Filter (optional) -->
+  
+  <!-- Genre Filter -->
   <select id="genreFilter" class="genre-dropdown" onchange="filterByGenre(this.value)">
     <option value="">Filter by Genre</option>
     <option value="28">Action</option>
@@ -420,6 +353,7 @@ function loadSectionByGenre(type, containerId, genreId) {
     <option value="18">Drama</option>
     <option value="27">Horror</option>
     <option value="10749">Romance</option>
+    <!-- Add more genres as needed -->
   </select>
 
   <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" aria-label="Search" />
