@@ -270,40 +270,49 @@
   </style>
 
   <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const genreSelect = document.getElementById("genreSelect");
-
-  genreSelect.addEventListener("change", () => {
-    const genreId = genreSelect.value;
-    updateAllSectionsByGenre(genreId);
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+    const toggleBtn = document.getElementById("theme-toggle");
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
+      });
+    }
   });
-});
+  </script>
 
-function updateAllSectionsByGenre(genreId) {
-  const sections = [
-    { type: 'movie', containerId: 'movies-list' },
-    { type: 'tv', containerId: 'tvshows-list' },
-    { type: 'movie', containerId: 'anime-list' },
-    { type: 'movie', containerId: 'pinoy-movie-list' },
-    { type: 'movie', containerId: 'korean-movie-list' },
-  ];
+  <script>
+function filterByGenre(genreId) {
+  // Clear all sections before loading new content
+  document.getElementById('movies-list').innerHTML = '';
+  document.getElementById('tvshows-list').innerHTML = '';
+  document.getElementById('anime-list').innerHTML = '';
+  document.getElementById('pinoy-movie-list').innerHTML = '';
+  document.getElementById('korean-movie-list').innerHTML = '';
 
-  sections.forEach(section => {
-    document.getElementById(section.containerId).innerHTML = '';
-    loadSectionByGenre(section.type, section.containerId, genreId);
-  });
+  // Now reload each section with selected genre
+  loadSectionByGenre('movie', 'movies-list', genreId); // Trending Movies
+  loadSectionByGenre('tv', 'tvshows-list', genreId);   // TV Shows
+  loadSectionByGenre('movie', 'anime-list', genreId);  // Anime (you can adjust this)
+  loadSectionByGenre('movie', 'pinoy-movie-list', genreId); // Vivamax
+  loadSectionByGenre('movie', 'korean-movie-list', genreId); // Korean
 }
 
+// TMDB genre filter loader
 function loadSectionByGenre(type, containerId, genreId) {
   const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-  let url = `https://api.themoviedb.org/3/discover/${type}?api_key=${apiKey}&sort_by=popularity.desc&page=1`;
-  if (genreId) url += `&with_genres=${genreId}`;
+  const url = `https://api.themoviedb.org/3/discover/${type}?api_key=${apiKey}&with_genres=${genreId}`;
 
   fetch(url)
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById(containerId);
       if (!container) return;
+      container.innerHTML = '';
 
       data.results.forEach(movie => {
         const card = document.createElement('div');
@@ -316,10 +325,12 @@ function loadSectionByGenre(type, containerId, genreId) {
         container.appendChild(card);
       });
     })
-    .catch(err => console.error(`Failed to load ${type} for genre ${genreId}`, err));
+    .catch(err => {
+      console.error(`Failed to load ${type} for genre ${genreId}`, err);
+    });
 }
 </script>
-
+  
 </head>
 <body>
   <!-- Navbar -->
