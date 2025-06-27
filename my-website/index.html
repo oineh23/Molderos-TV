@@ -158,8 +158,28 @@
         1px 1px 0 #111;
     }
   }
+    /* Make genre dropdowns compact & stack vertically on mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .genre-dropdown {
+    width: 100%;
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+/* Default desktop spacing */
+.genre-dropdown {
+  margin-left: 10px;
+  max-width: 160px;
+}
     
-   
     /* ... existing styles ... */
   .section-title {
     text-align: center;
