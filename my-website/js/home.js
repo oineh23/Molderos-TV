@@ -428,3 +428,49 @@ function scrollRight(id) {
   if (!row) return;
   row.scrollBy({ left: 400, behavior: 'smooth' });
 }
+
+let tvPage = 1, animePage = 1, pinoyPage = 1, koreanPage = 1;
+
+document.getElementById("loadMoreTVBtn").addEventListener("click", () => {
+  tvPage++;
+  loadMoreItems('tv', 'tvshows-list', tvPage);
+});
+
+document.getElementById("loadMoreAnimeBtn").addEventListener("click", () => {
+  animePage++;
+  loadMoreItems('movie', 'anime-list', animePage);
+});
+
+document.getElementById("loadMorePinoyBtn").addEventListener("click", () => {
+  pinoyPage++;
+  loadMoreItems('movie', 'pinoy-movie-list', pinoyPage);
+});
+
+document.getElementById("loadMoreKoreanBtn").addEventListener("click", () => {
+  koreanPage++;
+  loadMoreItems('movie', 'korean-movie-list', koreanPage);
+});
+
+function loadMoreItems(type, containerId, page) {
+  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+  const url = `https://api.themoviedb.org/3/trending/${type}/week?api_key=${apiKey}&page=${page}`;
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      data.results.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'movie-card';
+        card.innerHTML = `
+          <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="${item.title || item.name}" />
+          <p>${item.title || item.name}</p>
+        `;
+        card.onclick = () => openModalWithTMDB(item.id);
+        container.appendChild(card);
+      });
+    })
+    .catch(err => console.error(`Error loading more for ${containerId}:`, err));
+}
