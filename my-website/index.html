@@ -329,6 +329,32 @@ function loadSectionByGenre(type, containerId, genreId) {
       console.error(`Failed to load ${type} for genre ${genreId}`, err);
     });
 }
+    document.getElementById('globalGenreFilter').addEventListener('change', function () {
+  const selectedGenre = this.value;
+  applyGlobalGenreFilter(selectedGenre);
+});
+
+function applyGlobalGenreFilter(genreId) {
+  const allSections = ['trending', 'tvshows', 'anime', 'vivamax', 'korean'];
+
+  allSections.forEach(section => {
+    const container = document.getElementById(`${section}-content`);
+    if (container) {
+      const cards = container.querySelectorAll('.movie-card');
+      cards.forEach(card => {
+        const cardGenres = card.dataset.genreIds || '';
+        const genreArray = cardGenres.split(',').map(g => g.trim());
+
+        if (!genreId || genreArray.includes(genreId)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  });
+}
+
 </script>
   
 </head>
