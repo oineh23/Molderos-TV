@@ -286,56 +286,48 @@
   </script>
 
   <script>
-const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-const BASE_URL = 'https://api.themoviedb.org/3';
-const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-
 function filterByGenre(genreId) {
-  if (!genreId) return; // Do nothing if "Filter by Genre" default selected
+  // Clear all sections before loading new content
+  document.getElementById('movies-list').innerHTML = '';
+  document.getElementById('tvshows-list').innerHTML = '';
+  document.getElementById('anime-list').innerHTML = '';
+  document.getElementById('pinoy-movie-list').innerHTML = '';
+  document.getElementById('korean-movie-list').innerHTML = '';
 
-  // Clear all movie containers
-  const containers = [
-    'movies-list',
-    'tvshows-list',
-    'anime-list',
-    'pinoy-movie-list',
-    'korean-movie-list'
-  ];
-
-  containers.forEach(id => {
-    const container = document.getElementById(id);
-    if (container) container.innerHTML = '';
-  });
-
-  // Load genre-specific results per section
-  loadContentByGenre('movie', 'movies-list', genreId);          // Trending Movies
-  loadContentByGenre('tv', 'tvshows-list', genreId);            // TV Shows
-  loadContentByGenre('movie', 'anime-list', genreId);           // Anime
-  loadContentByGenre('movie', 'pinoy-movie-list', genreId);     // Vivamax
-  loadContentByGenre('movie', 'korean-movie-list', genreId);    // Korean
+  // Now reload each section with selected genre
+  loadSectionByGenre('movie', 'movies-list', genreId); // Trending Movies
+  loadSectionByGenre('tv', 'tvshows-list', genreId);   // TV Shows
+  loadSectionByGenre('movie', 'anime-list', genreId);  // Anime (you can adjust this)
+  loadSectionByGenre('movie', 'pinoy-movie-list', genreId); // Vivamax
+  loadSectionByGenre('movie', 'korean-movie-list', genreId); // Korean
 }
 
-function loadContentByGenre(type, containerId, genreId) {
-  const url = `${BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genreId}&sort_by=popularity.desc`;
+// TMDB genre filter loader
+function loadSectionByGenre(type, containerId, genreId) {
+  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+  const url = `https://api.themoviedb.org/3/discover/${type}?api_key=${apiKey}&with_genres=${genreId}`;
 
   fetch(url)
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById(containerId);
       if (!container) return;
+      container.innerHTML = '';
 
-      data.results.forEach(item => {
+      data.results.forEach(movie => {
         const card = document.createElement('div');
         card.className = 'movie-card';
         card.innerHTML = `
-          <img src="${IMG_URL}${item.poster_path}" alt="${item.title || item.name}" />
-          <p>${item.title || item.name}</p>
+          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title || movie.name}" />
+          <p>${movie.title || movie.name}</p>
         `;
-        card.onclick = () => openModalWithTMDB(item.id);
+        card.onclick = () => openModalWithTMDB(movie.id);
         container.appendChild(card);
       });
     })
-    .catch(err => console.error('Failed to fetch genre content', err));
+    .catch(err => {
+      console.error(`Failed to load ${type} for genre ${genreId}`, err);
+    });
 }
 </script>
   
