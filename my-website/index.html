@@ -346,15 +346,17 @@ function loadSectionByGenre(type, containerId, genreId) {
   <a href="index.html">Home</a>
   
   <!-- Genre Filter -->
-  <select id="genreFilter" class="genre-dropdown" onchange="filterByGenre(this.value)">
-    <option value="">Filter by Genre</option>
-    <option value="28">Action</option>
-    <option value="35">Comedy</option>
-    <option value="18">Drama</option>
-    <option value="27">Horror</option>
-    <option value="10749">Romance</option>
-    <!-- Add more genres as needed -->
-  </select>
+  <select id="genreSelect" class="genre-dropdown">
+  <option value="">All Genres</option>
+  <option value="28">Action</option>
+  <option value="35">Comedy</option>
+  <option value="18">Drama</option>
+  <option value="27">Horror</option>
+  <option value="10749">Romance</option>
+  <option value="10752">War</option>
+  <option value="16">Animation</option>
+  <option value="10751">Family</option>
+</select>
 
   <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" aria-label="Search" />
   <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
