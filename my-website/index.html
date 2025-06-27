@@ -330,6 +330,39 @@ function loadSectionByGenre(type, containerId, genreId) {
     });
 }
 </script>
+
+  <script>
+let trendingPage = 1;
+
+document.getElementById("trending-next").addEventListener("click", () => {
+  trendingPage++;
+  loadTrendingMovies(trendingPage);
+});
+
+function loadTrendingMovies(page) {
+  const apiKey = 'YOUR_TMDB_API_KEY'; // Replace this with your actual TMDB API key
+  const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${page}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById("trending-movies");
+      data.results.forEach(movie => {
+        const movieCard = document.createElement("div");
+        movieCard.classList.add("movie-card");
+        movieCard.innerHTML = `
+          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+          <h4>${movie.title}</h4>
+        `;
+        container.appendChild(movieCard);
+      });
+    })
+    .catch(error => console.error("Error loading more movies:", error));
+}
+
+// Initial load
+loadTrendingMovies(trendingPage);
+</script>
   
 </head>
 <body>
