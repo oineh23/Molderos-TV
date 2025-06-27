@@ -329,6 +329,52 @@ function loadSectionByGenre(type, containerId, genreId) {
       console.error(`Failed to load ${type} for genre ${genreId}`, err);
     });
 }
+    document.addEventListener('DOMContentLoaded', () => {
+  const loadMoreConfig = [
+    {
+      id: 'loadMoreMoviesBtn',
+      action: async () => {
+        currentPage++;
+        const moreMovies = await fetchTrending('movie');
+        displayList(moreMovies, 'movies-list');
+      },
+    },
+    {
+      id: 'loadMoreTVBtn',
+      action: () => {
+        tvPage++;
+        fetchTrendingTVShows();
+      },
+    },
+    {
+      id: 'loadMoreAnimeBtn',
+      action: () => {
+        currentAnimePage++;
+        fetchAnime(currentAnimePage);
+      },
+    },
+    {
+      id: 'loadMorePinoyBtn',
+      action: () => {
+        pinoyPage++;
+        fetchPinoyMoviesPaginated();
+      },
+    },
+    {
+      id: 'loadMoreKoreanBtn',
+      action: () => {
+        koreanPage++;
+        const selectedGenre = document.getElementById('korean-genre-filter')?.value || '';
+        loadKoreanMovies(selectedGenre);
+      },
+    },
+  ];
+
+  loadMoreConfig.forEach(({ id, action }) => {
+    const btn = document.getElementById(id);
+    if (btn) btn.addEventListener('click', action);
+  });
+});
 </script>
   
 </head>
