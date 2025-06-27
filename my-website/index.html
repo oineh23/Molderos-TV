@@ -344,8 +344,28 @@ function loadSectionByGenre(type, containerId, genreId) {
       <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
       <nav class="nav-links">
   <a href="index.html">Home</a>
-  
-  <!-- Genre Filter -->
+
+  <!-- Vivamax Genre Filter -->
+  <select id="vivamaxGenreFilter" class="genre-dropdown" onchange="filterVivamaxGenre(this.value)">
+    <option value="">Vivamax Genre</option>
+    <option value="28">Action</option>
+    <option value="35">Comedy</option>
+    <option value="18">Drama</option>
+    <option value="27">Horror</option>
+    <option value="10749">Romance</option>
+  </select>
+
+  <!-- Korean Movies Genre Filter -->
+  <select id="koreanGenreFilter" class="genre-dropdown" onchange="filterKoreanGenre(this.value)">
+    <option value="">Korean Genre</option>
+    <option value="28">Action</option>
+    <option value="35">Comedy</option>
+    <option value="18">Drama</option>
+    <option value="27">Horror</option>
+    <option value="10749">Romance</option>
+  </select>
+
+  <!-- Global Genre Filter (optional) -->
   <select id="genreFilter" class="genre-dropdown" onchange="filterByGenre(this.value)">
     <option value="">Filter by Genre</option>
     <option value="28">Action</option>
@@ -353,7 +373,6 @@ function loadSectionByGenre(type, containerId, genreId) {
     <option value="18">Drama</option>
     <option value="27">Horror</option>
     <option value="10749">Romance</option>
-    <!-- Add more genres as needed -->
   </select>
 
   <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" aria-label="Search" />
