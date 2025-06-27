@@ -13,6 +13,8 @@ const genreMap = {
   10749: 'Romance',
 };
 
+let moviePage = 1;
+let movieGenre = '';
 let currentAnimePage = 1;
 let pinoyPage = 1;
 let pinoyGenre = '';
@@ -172,7 +174,6 @@ function setupTVControls() {
 }
 
 async function fetchTrendingTVShows(reset = false) {
-  const url = `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=${tvGenre}&sort_by=popularity.desc&page=${tvPage}`;
   const container = document.getElementById('tvshows-list');
   if (!container) return;
 
@@ -181,11 +182,32 @@ async function fetchTrendingTVShows(reset = false) {
     tvPage = 1;
   }
 
+  const url = `${BASE_URL}/discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&page=${tvPage}${tvGenre ? `&with_genres=${tvGenre}` : ''}`;
   const results = await fetchData(url);
+
   results.forEach(tv => {
     if (!tv.poster_path) return;
     tv.media_type = 'tv';
     container.appendChild(createCard(tv));
+  });
+}
+
+async function fetchTrendingMoviesPaginated(reset = false) {
+  const container = document.getElementById('movies-list');
+  if (!container) return;
+
+  if (reset) {
+    moviePage = 1;
+    container.innerHTML = '';
+  }
+
+  const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=${moviePage}${movieGenre ? `&with_genres=${movieGenre}` : ''}`;
+  const results = await fetchData(url);
+
+  results.forEach(movie => {
+    if (!movie.poster_path) return;
+    movie.media_type = 'movie';
+    container.appendChild(createCard(movie));
   });
 }
 
