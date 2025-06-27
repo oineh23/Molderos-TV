@@ -330,7 +330,34 @@ function loadSectionByGenre(type, containerId, genreId) {
     });
 }
 </script>
+
   
+  <script>
+  function filterKoreanGenre(genreId) {
+    const container = document.getElementById('korean-movie-list');
+    container.innerHTML = '';
+
+    const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&with_original_language=ko`;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        data.results.forEach(movie => {
+          const card = document.createElement('div');
+          card.className = 'movie-card';
+          card.innerHTML = `
+            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+            <p>${movie.title}</p>
+          `;
+          card.onclick = () => openModalWithTMDB(movie.id);
+          container.appendChild(card);
+        });
+      })
+      .catch(err => console.error('Korean filter failed:', err));
+  }
+</script>
+
 </head>
 <body>
   <!-- Navbar -->
