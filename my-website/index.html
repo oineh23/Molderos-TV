@@ -379,10 +379,10 @@ function loadSectionByGenre(type, containerId, genreId) {
     <h2 class="section-title">🎬 Trending Movies</h2>
   </div>
   <div style="position: relative;">
-    <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="movies-list"></div>
-    <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
-  </div>
+  <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
+  <div class="scrollable-row" id="movies-list" data-page="1" data-type="movie" data-category="trending"></div>
+  <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
+</div>
 </section>
 
     <!-- TV Shows + Anime -->
@@ -392,19 +392,19 @@ function loadSectionByGenre(type, containerId, genreId) {
     <h2 class="section-title">📺 Trending TV Shows</h2>
   </div>
   <div style="position: relative;">
-    <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="tvshows-list"></div>
-    <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
-  </div>
+  <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
+  <div class="scrollable-row" id="tvshows-list" data-page="1" data-type="tv" data-category="trending"></div>
+  <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
+</div>
 
         <div class="trending-header">
     <h2 class="section-title">🌸 Trending Anime</h2>
   </div>
   <div style="position: relative;">
-    <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="anime-list"></div>
-    <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
-  </div>
+  <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
+  <div class="scrollable-row" id="anime-list" data-page="1" data-type="movie" data-category="anime"></div>
+  <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
+</div>
 </section>
 
     <!-- Vivamax -->
@@ -416,10 +416,10 @@ function loadSectionByGenre(type, containerId, genreId) {
 </h2>
   </div>
   <div style="position: relative;">
-    <button onclick="scrollLeft('pinoy-movie-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="pinoy-movie-list"></div>
-    <button onclick="scrollRight('pinoy-movie-list')" class="scroll-btn right">▶</button>
-  </div>
+  <button onclick="scrollLeft('pinoy-movie-list')" class="scroll-btn left">◀</button>
+  <div class="scrollable-row" id="pinoy-movie-list" data-page="1" data-type="movie" data-category="vivamax"></div>
+  <button onclick="scrollRight('pinoy-movie-list')" class="scroll-btn right">▶</button>
+</div>
 </section>
 
     <!-- Korean Movies -->
@@ -428,10 +428,10 @@ function loadSectionByGenre(type, containerId, genreId) {
     <h2 class="section-title">🇰🇷 Korean Movies</h2>
   </div>
   <div style="position: relative;">
-    <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="korean-movie-list"></div>
-    <button onclick="scrollRight('korean-movie-list')" class="scroll-btn right">▶</button>
-  </div>
+  <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
+  <div class="scrollable-row" id="korean-movie-list" data-page="1" data-type="movie" data-category="korean"></div>
+  <button onclick="scrollRight('korean-movie-list')" class="scroll-btn right">▶</button>
+</div>
 </section>
   </main>
 
