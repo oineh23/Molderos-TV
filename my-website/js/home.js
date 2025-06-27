@@ -353,16 +353,21 @@ window.addEventListener('scroll', () => {
 function handleInfiniteScroll() {
   if (isFetching) return;
 
+  const movieListEl = document.getElementById("movies-list");
+  const tvListEl = document.getElementById("tvshows-list");
   const animeListEl = document.getElementById("anime-list");
   const pinoyListEl = document.getElementById("pinoy-movie-list");
   const koreanListEl = document.getElementById("korean-movie-list");
 
-  console.log('Scroll triggered');
-  console.log('Anime In View:', isElementInViewport(animeListEl));
-  console.log('Pinoy In View:', isElementInViewport(pinoyListEl));
-  console.log('Korean In View:', isElementInViewport(koreanListEl));
-
-  if (isElementInViewport(animeListEl)) {
+  if (isElementInViewport(movieListEl)) {
+    isFetching = true;
+    moviePage++;
+    fetchTrendingMoviesPaginated().finally(() => isFetching = false);
+  } else if (isElementInViewport(tvListEl)) {
+    isFetching = true;
+    tvPage++;
+    fetchTrendingTVShows().finally(() => isFetching = false);
+  } else if (isElementInViewport(animeListEl)) {
     isFetching = true;
     currentAnimePage++;
     fetchAnime(currentAnimePage).finally(() => isFetching = false);
