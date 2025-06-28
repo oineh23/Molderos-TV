@@ -195,6 +195,28 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .trending-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.trending-header h2 {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.trending-header .genre-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
 </style>
 
 <script>
@@ -254,7 +276,7 @@
   <!-- Main Content -->
   <main>
     <section class="row" id="movies-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+  <div class="trending-header">
     <h2 style="margin: 0;">🎬 Trending Movies</h2>
     <div class="genre-filter">
       <label for="genre-select">🎯 Filter by Genre:</label>
