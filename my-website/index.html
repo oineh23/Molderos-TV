@@ -21,387 +21,194 @@
       event.preventDefault();
       alert("Right-click is disabled on this page.");
     });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "F12") e.preventDefault();
+      if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) e.preventDefault();
+      if (e.ctrlKey && e.key === "u") e.preventDefault();
+    });
   </script>
 
-  <script>
-  document.addEventListener("keydown", function (e) {
-    // F12
-    if (e.key === "F12") {
-      e.preventDefault();
-    }
-
-    // Ctrl + Shift + I / J / C
-    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
-      e.preventDefault();
-    }
-
-    // Ctrl + U (View Source)
-    if (e.ctrlKey && e.key === "u") {
-      e.preventDefault();
-    }
-  });
-</script>
-
   <style>
-  :root {
-    --bg-color: #ffffff;
-    --text-color: #000000;
-    --nav-bg: #f0f0f0;
-  }
-
-  [data-theme="dark"] {
-    --bg-color: #121212;
-    --text-color: #ffffff;
-    --nav-bg: #1e1e1e;
-  }
-
-  body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  .nav-wrapper {
-    background-color: var(--nav-bg);
-    transition: background-color 0.3s ease;
-  }
-
-  .theme-toggle {
-    cursor: pointer;
-    font-size: 1.4rem;
-    margin-left: 15px;
-    color: var(--text-color);
-  }
-
-    <style>
-  /* Fullscreen video modal styles for mobile and tablets */
-  @media (max-width: 1024px) {
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      padding: 0;
-      background-color: rgba(0, 0, 0, 0.95);
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --nav-bg: #f0f0f0;
     }
 
-    .modal-content {
-      width: 100vw;
-      height: 100vh;
-      padding: 0;
-      margin: 0;
-      border-radius: 0;
-      background: #000;
-      display: flex;
-      flex-direction: column;
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --nav-bg: #1e1e1e;
     }
 
-    .modal-body,
-    .modal-text,
-    .server-selector {
-      display: none; /* Hide extra content for fullscreen effect */
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    #modal-video {
-      width: 100vw;
-      height: 100vh;
-      border: none;
+    .nav-wrapper {
+      background-color: var(--nav-bg);
+      transition: background-color 0.3s ease;
     }
 
-    .modal .close {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 2rem;
-      color: #fff;
-      z-index: 2000;
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      margin-left: 15px;
+      color: var(--text-color);
     }
-  }
-</style>
-
-  <style>  
-    
-  .load-more-container {
-    margin-top: 30px;
-    text-align: center;
-  }
 
     .logo {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #00ffff;
-  text-shadow:
-    0 0 5px #0ff,
-    0 0 10px #0ff,
-    0 0 20px #0ff,
-    0 0 40px #0ff,
-    2px 2px 0 #111;
-  animation: neonPulse 0.7s infinite ease-in-out;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-    [data-theme="light"] .logo {
-  color: #004466;
-  text-shadow:
-    1px 1px 0 #ccc,
-    2px 2px 3px #aaa;
-}
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #00ffff;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 2px 2px 0 #111;
+      animation: neonPulse 0.7s infinite ease-in-out;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
 
     @keyframes neonPulse {
-  0%, 100% {
-    text-shadow:
-      0 0 5px #0ff,
-      0 0 10px #0ff,
-      0 0 20px #0ff,
-      0 0 40px #0ff,
-      2px 2px 0 #111;
-  }
-  50% {
-    text-shadow:
-      0 0 2px #0ff,
-      0 0 4px #0ff,
-      0 0 10px #0ff,
-      0 0 20px #0ff,
-      1px 1px 0 #111;
-  }
-}
- 
-</style>
-
-</style>
-<script>
-  // Theme toggle logic
-  document.addEventListener("DOMContentLoaded", () => {
-    const currentTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.setAttribute("data-theme", currentTheme);
-
-    const toggleBtn = document.getElementById("theme-toggle");
-    if (toggleBtn) {
-      toggleBtn.addEventListener("click", () => {
-        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-        toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
-      });
+      0%, 100% {
+        text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 2px 2px 0 #111;
+      }
+      50% {
+        text-shadow: 0 0 2px #0ff, 0 0 4px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 1px 1px 0 #111;
+      }
     }
-  });
-</script>
-  
+
+    .menu-button {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      background-color: #e50914;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .menu-content {
+      display: none;
+      position: fixed;
+      top: 130px;
+      right: 20px;
+      background-color: #141414;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .menu-content a {
+      display: block;
+      color: #fff;
+      padding: 12px 20px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .menu-content a:hover {
+      background-color: #e50914;
+    }
+
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), #000), url('hero-image.jpg') center/cover no-repeat;
+      color: #fff;
+      display: flex;
+      align-items: flex-end;
+      padding: 60px 40px;
+    }
+
+    .hero-overlay {
+      max-width: 600px;
+    }
+
+    .hero-overlay h1 {
+      font-size: 3em;
+      margin-bottom: 0.3em;
+    }
+
+    .hero-overlay p {
+      font-size: 1.2em;
+      color: #ccc;
+    }
+
+    .cta-button {
+      margin-top: 1.2em;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #e50914;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menuContent");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    window.onclick = function (event) {
+      if (!event.target.matches('.menu-button')) {
+        const dropdowns = document.getElementsByClassName("menu-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+          const openDropdown = dropdowns[i];
+          if (openDropdown.style.display === "block") {
+            openDropdown.style.display = "none";
+          }
+        }
+      }
+    };
+  </script>
+</head>
 <body>
-  <!-- Navbar -->
   <header class="nav-wrapper">
     <div class="container nav">
-        <a href="#" class="logo">
-  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
-  MOLD<span class="main-color">EROS</span>-TV
-        </a>
-      <input type="checkbox" id="menu-toggle" />
-      <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <a href="#" class="logo">
+        <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+        MOLD<span class="main-color">EROS</span>-TV
+      </a>
       <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <input 
-          type="text" 
-          class="search-bar" 
-          placeholder="Search..." 
-          onfocus="openSearchModal()" 
-          aria-label="Search"
-        />
+        <a href="#">Home</a>
+        <input type="text" class="search-bar" placeholder="Search..." aria-label="Search" />
         <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <button class="menu-button" onclick="toggleMenu()">Menu</button>
+  <div id="menuContent" class="menu-content">
+    <a href="#trending-movies">Trending Movies</a>
+    <a href="#trending-tv">Trending TV Shows</a>
+    <a href="#trending-anime">Trending Anime</a>
+    <a href="#vivamax">Vivamax</a>
+    <a href="#korean-movies">Korean Movies</a>
+  </div>
+
   <section class="hero-section" id="banner">
     <div class="hero-overlay">
       <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime â€“ Updated Daily</p>
+      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
       <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
     </div>
   </section>
 
-  <!-- Main Content -->
-  <main>
-    <section class="row" id="movies-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">ðŸŽ¬ Trending Movies</h2>
-    <div class="genre-filter">
-      <label for="genre-select">ðŸŽ¯ Filter by Genre:</label>
-      <select id="genre-select" onchange="filterByGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="27">Horror</option>
-        <option value="16">Animation</option>
-        <option value="10749">Romance</option>
-        <option value="878">Science Fiction</option>
-        <option value="10751">Family</option>
-        <option value="99">Documentary</option>
-        <option value="12">Adventure</option>
-        <option value="80">Crime</option>
-        <option value="9648">Mystery</option>
-        <option value="53">Thriller</option>
-        <option value="14">Fantasy</option>
-        <option value="36">History</option>
-        <option value="10402">Music</option>
-        <option value="10752">War</option>
-        <option value="37">Western</option>
-      </select>
-    </div>
-  </div>
+  <!-- Main content removed as requested -->
 
-  <div class="card-container" id="movies-list"></div>
-</section>
-
-    <!-- Trending TV Shows Section -->
-<section class="row" id="tvshows-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">ðŸ“º Trending TV Shows</h2>
-    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="tv-genre-filter">ðŸŽ¯ Filter by Genre:</label>
-      <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="10765">Sci-Fi</option>
-        <option value="16">Anime</option>
-      </select>
-    </div>
-  </div>
-  <div class="card-container" id="tvshows-list"></div>
-</section>
-
-    <section class="row" id="anime-list-section">
-  <h2>ðŸŒ¸ Trending Anime</h2>
-  <div class="card-container" id="anime-list"></div>
-  <div class="load-more-container">
-    <button id="load-more-anime">ðŸŽ¥ Load More</button>
-  </div>
-</section>
-
-    <!-- Vivamax / Pinoy Movies Section -->
-<section class="section" id="pinoy-movies">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="display: flex; align-items: center; gap: 5px; margin: 0;">
-      <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
-      Vivamax
-    </h2>
-    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="pinoy-genre-filter">ðŸŽ¯ Filter by Genre:</label>
-      <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
-        <option value="">All Genres</option>
-        <optgroup label="Popular Genres">
-          <option value="28">Action</option>
-          <option value="35">Comedy</option>
-          <option value="18">Drama</option>
-          <option value="10749">Romance</option>
-          <option value="80">Crime</option>
-          <option value="27">Horror</option>
-          <option value="10751">Family</option>
-          <option value="16">Animation</option>
-        </optgroup>
-        <optgroup label="Other Genres">
-          <option value="99">Documentary</option>
-          <option value="10402">Music</option>
-          <option value="9648">Mystery</option>
-          <option value="878">Science Fiction</option>
-          <option value="10752">War</option>
-          <option value="37">Western</option>
-          <option value="36">History</option>
-          <option value="14">Fantasy</option>
-          <option value="53">Thriller</option>
-        </optgroup>
-      </select>
-    </div>
-  </div>
-  <div class="vivamax-grid" id="pinoy-movie-list"></div>
-  <div class="load-more-container">
-    <button id="load-more-pinoy">ðŸŽ¥ Load More</button>
-  </div>
-</section>
-
-    <!-- Korean Movies Section -->
-<section class="section" id="korean-movies">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">ðŸ‡°ðŸ‡· Korean Movies</h2>
-    <div class="genre-filter">
-      <label for="korean-genre-filter">ðŸŽ¯ Filter by Genre:</label>
-      <select id="korean-genre-filter" onchange="filterByKoreanGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="10749">Romance</option>
-        <option value="27">Horror</option>
-        <option value="80">Crime</option>
-      </select>
-    </div>
-  </div>
-  <div class="vivamax-grid" id="korean-movie-list"></div>
-  <div class="load-more-container">
-    <button id="load-more-korean">ðŸŽ¥ Load More</button>
-  </div>
-</section>
-  </main>
-
-  <!-- Loading Spinner -->
-  <div class="loading-spinner" id="loading-spinner" style="display: none;">
-    <i class="fas fa-spinner fa-spin"></i>
-    <span>Loading content...</span>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
-      <div class="modal-body">
-        <img id="modal-image" src="" alt="Movie poster" />
-        <div class="modal-text">
-          <h2 id="modal-title"></h2>
-          <div class="stars" id="modal-rating"></div>
-          <p id="modal-description"></p>
-        </div>
-      </div>
-      <div class="server-selector">
-        <label for="server">Change Server:</label>
-        <select id="server" onchange="changeServer()">
-          <option value="vidsrc.cc">Vidsrc.cc</option>
-          <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Player.Videasy.net</option>
-        </select>
-     </div>
-      <iframe id="modal-video" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <!-- Search Modal -->
-<div class="search-modal" id="search-modal">
-  <div class="search-modal-box">
-    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
-    <input 
-      type="text" 
-      id="search-input" 
-      placeholder="Search movies, TV shows, or anime..." 
-      oninput="searchTMDB()" 
-      aria-label="Search input"
-    />
-    <div class="results" id="search-results"></div>
-  </div>
-</div>
-
-    <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
@@ -412,6 +219,5 @@
       </div>
     </div>
   </footer>
-  
 </body>
 </html>
