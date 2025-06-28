@@ -178,54 +178,7 @@
  
 </style>
 
-  <style>
-.menu-dropdown {
-  position: relative;
-  display: inline-block;
-  margin-left: 20px;
-}
-
-.menu-button {
-  background-color: #e50914;
-  color: white;
-  padding: 10px 15px;
-  font-size: 14px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.menu-button i {
-  margin-right: 6px;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #1e1e1e;
-  min-width: 180px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-  border-radius: 8px;
-  z-index: 10;
-}
-
-.dropdown-content a {
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 14px;
-}
-
-.dropdown-content a:hover {
-  background-color: #333;
-}
-
-.menu-dropdown:hover .dropdown-content {
-  display: block;
-}
 </style>
-
 <script>
   // Theme toggle logic
   document.addEventListener("DOMContentLoaded", () => {
@@ -252,22 +205,23 @@
   <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
   MOLD<span class="main-color">EROS</span>-TV
         </a>
-      <a href="#" class="logo">
-  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
-  MOLD<span class="main-color">EROS</span>-TV
-</a>
-
-<!-- Dropdown Menu Button -->
-<div class="menu-dropdown">
-  <button class="menu-button"><i class="fas fa-bars"></i> Menu</button>
-  <div class="dropdown-content">
-    <a href="#movies-list-section">🎬 Trending Movies</a>
-    <a href="#tvshows-list-section">📺 Trending TV Shows</a>
-    <a href="#anime-list-section">🌸 Trending Anime</a>
-    <a href="#pinoy-movies">🇵🇭 Vivamax</a>
-    <a href="#korean-movies">🇰🇷 Korean Movies</a>
-  </div>
-</div>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#pinoy-movies">VMX</a>
+        <a href="#tvshows-list">TV Shows</a>
+        <a href="#anime-list">Anime</a>
+        <input 
+          type="text" 
+          class="search-bar" 
+          placeholder="Search..." 
+          onfocus="openSearchModal()" 
+          aria-label="Search"
+        />
+        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
+      </nav>
+    </div>
   </header>
 
   <!-- Hero Section -->
