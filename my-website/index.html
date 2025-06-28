@@ -110,7 +110,9 @@
     }
 
     .menu-content a {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       color: #fff;
       padding: 12px 20px;
       text-decoration: none;
@@ -192,11 +194,11 @@
 
   <button class="menu-button" onclick="toggleMenu()">Menu</button>
   <div id="menuContent" class="menu-content">
-    <a href="#trending-movies">Trending Movies</a>
-    <a href="#trending-tv">Trending TV Shows</a>
-    <a href="#trending-anime">Trending Anime</a>
-    <a href="#vivamax">Vivamax</a>
-    <a href="#korean-movies">Korean Movies</a>
+    <a href="#trending-movies"><i class="fas fa-film"></i> Trending Movies</a>
+    <a href="#trending-tv"><i class="fas fa-tv"></i> Trending TV Shows</a>
+    <a href="#trending-anime"><i class="fas fa-dragon"></i> Trending Anime</a>
+    <a href="#vivamax"><i class="fas fa-fire"></i> Vivamax</a>
+    <a href="#korean-movies"><i class="fas fa-globe-asia"></i> Korean Movies</a>
   </div>
 
   <section class="hero-section" id="banner">
@@ -206,8 +208,6 @@
       <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
     </div>
   </section>
-
-  <!-- Main content removed as requested -->
 
   <footer class="footer">
     <div class="footer-content">
