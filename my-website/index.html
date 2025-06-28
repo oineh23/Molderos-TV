@@ -2,250 +2,162 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOLDEROS-TV - Trending Movies & Shows</title>
-
-  <!-- Styles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MOLDEROS-TV - Netflix Style</title>
   <link rel="stylesheet" href="css/home.css" />
-  <link rel="preload" href="css/home.css" as="style" />
-  <link rel="preload" href="js/home.js" as="script" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <script defer src="js/home.js"></script>
-
-  <script>
-    document.addEventListener('contextmenu', function(event) {
-      event.preventDefault();
-      alert("Right-click is disabled on this page.");
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "F12") e.preventDefault();
-      if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) e.preventDefault();
-      if (e.ctrlKey && e.key === "u") e.preventDefault();
-    });
-  </script>
-
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #000000;
-      --nav-bg: #f0f0f0;
-    }
-
-    [data-theme="dark"] {
-      --bg-color: #121212;
-      --text-color: #ffffff;
-      --nav-bg: #1e1e1e;
-    }
-
     body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .nav-wrapper {
-      background-color: var(--nav-bg);
-      transition: background-color 0.3s ease;
-    }
-
-    .theme-toggle {
-      cursor: pointer;
-      font-size: 1.4rem;
-      margin-left: 15px;
-      color: var(--text-color);
-    }
-
-    .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #00ffff;
-      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 2px 2px 0 #111;
-      animation: neonPulse 0.7s infinite ease-in-out;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    @keyframes neonPulse {
-      0%, 100% {
-        text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 2px 2px 0 #111;
-      }
-      50% {
-        text-shadow: 0 0 2px #0ff, 0 0 4px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 1px 1px 0 #111;
-      }
-    }
-
-    .menu-button {
-      position: fixed;
-      top: 80px;
-      right: 20px;
-      background-color: #e50914;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
       color: #fff;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-      z-index: 1001;
     }
 
-    .menu-content {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      height: 100vh;
-      width: 260px;
-      background-color: #141414;
-      border-left: 2px solid #e50914;
-      padding-top: 80px;
-      transition: right 0.3s ease;
+    header {
+      background-color: #000;
+      padding: 1rem 2rem;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
       z-index: 1000;
     }
 
-    .menu-content.show {
-      right: 0;
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #e50914;
     }
 
-    .menu-content .close-menu {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 24px;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .menu-content a {
+    nav {
       display: flex;
-      align-items: center;
-      gap: 10px;
+      gap: 1rem;
+    }
+
+    nav a {
       color: #fff;
-      padding: 15px 25px;
       text-decoration: none;
-      font-size: 16px;
+      padding: 0.5rem;
       transition: background 0.3s;
     }
 
-    .menu-content a:hover {
+    nav a:hover {
       background-color: #e50914;
-    }
-
-    .hero-section {
-      position: relative;
-      height: 100vh;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), #000), url('hero-image.jpg') center/cover no-repeat;
-      color: #fff;
-      display: flex;
-      align-items: flex-end;
-      padding: 60px 40px;
-    }
-
-    .hero-overlay {
-      max-width: 600px;
-    }
-
-    .hero-overlay h1 {
-      font-size: 3em;
-      margin-bottom: 0.3em;
-    }
-
-    .hero-overlay p {
-      font-size: 1.2em;
-      color: #ccc;
-    }
-
-    .cta-button {
-      margin-top: 1.2em;
-      padding: 10px 20px;
-      font-size: 1em;
-      background-color: #e50914;
-      color: #fff;
-      border: none;
       border-radius: 5px;
-      cursor: pointer;
     }
 
-    @media screen and (max-width: 768px) {
-      .menu-content {
-        width: 100vw;
-      }
+    .hero {
+      padding: 80px 20px;
+      text-align: center;
+      background: url('https://image.tmdb.org/t/p/original/your-hero-image.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-size: cover;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    .section {
+      padding: 60px 20px;
+    }
+
+    .section h2 {
+      margin-bottom: 20px;
+    }
+
+    .hidden-section {
+      display: none;
+    }
+
+    .visible-section {
+      display: block;
     }
   </style>
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("menuContent");
-      menu.classList.toggle("show");
-    }
-
-    function closeMenu() {
-      const menu = document.getElementById("menuContent");
-      menu.classList.remove("show");
-    }
-
-    window.onclick = function (event) {
-      const menu = document.getElementById("menuContent");
-      if (!event.target.closest(".menu-content") && !event.target.matches(".menu-button")) {
-        closeMenu();
-      }
-    };
-  </script>
 </head>
 <body>
-  <header class="nav-wrapper">
-    <div class="container nav">
-      <a href="#" class="logo">
-        <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
-        MOLD<span class="main-color">EROS</span>-TV
-      </a>
-      <nav class="nav-links">
-        <a href="#">Home</a>
-        <input type="text" class="search-bar" placeholder="Search..." aria-label="Search" />
-        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
-      </nav>
-    </div>
+
+  <!-- Header with Menu -->
+  <header>
+    <div class="logo">MOLDEROS-TV</div>
+    <nav>
+      <a href="#trending-movies">Trending Movies</a>
+      <a href="#trending-tv">Trending TV Shows</a>
+      <a href="#trending-anime">Trending Anime</a>
+      <a href="#vivamax">Vivamax</a>
+      <a href="#korean-movies">Korean Movies</a>
+    </nav>
   </header>
 
-  <button class="menu-button" onclick="toggleMenu()">☰</button>
-  <div id="menuContent" class="menu-content">
-    <span class="close-menu" onclick="closeMenu()">&times;</span>
-    <a href="#trending-movies"><i class="fas fa-film"></i> Trending Movies</a>
-    <a href="#trending-tv"><i class="fas fa-tv"></i> Trending TV Shows</a>
-    <a href="#trending-anime"><i class="fas fa-dragon"></i> Trending Anime</a>
-    <a href="#vivamax"><i class="fas fa-fire"></i> Vivamax</a>
-    <a href="#korean-movies"><i class="fas fa-globe-asia"></i> Korean Movies</a>
-  </div>
-
-  <section class="hero-section" id="banner">
-    <div class="hero-overlay">
-      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
-      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
-    </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to MOLDEROS-TV</h1>
+    <p>Stream trending movies, TV shows, anime, and more.</p>
   </section>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Disclaimer</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-  </footer>
+  <!-- Trending Movies -->
+  <section id="trending-movies" class="section hidden-section">
+    <h2>Trending Movies</h2>
+    <!-- Movie cards go here -->
+  </section>
+
+  <!-- Trending TV Shows -->
+  <section id="trending-tv" class="section hidden-section">
+    <h2>Trending TV Shows</h2>
+    <!-- TV show cards go here -->
+  </section>
+
+  <!-- Trending Anime -->
+  <section id="trending-anime" class="section hidden-section">
+    <h2>Trending Anime</h2>
+    <!-- Anime cards go here -->
+  </section>
+
+  <!-- Vivamax -->
+  <section id="vivamax" class="section hidden-section">
+    <h2>Vivamax</h2>
+    <!-- Vivamax content -->
+  </section>
+
+  <!-- Korean Movies -->
+  <section id="korean-movies" class="section hidden-section">
+    <h2>Korean Movies</h2>
+    <!-- Korean movie cards go here -->
+  </section>
+
+  <script>
+    // Show only the selected section when a menu item is clicked
+    const navLinks = document.querySelectorAll("nav a");
+    const sections = document.querySelectorAll(".section");
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute("href").substring(1);
+
+        sections.forEach(section => {
+          section.classList.add("hidden-section");
+          section.classList.remove("visible-section");
+        });
+
+        const targetSection = document.getElementById(targetId);
+        targetSection.classList.remove("hidden-section");
+        targetSection.classList.add("visible-section");
+
+        // Smooth scroll to section
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
 </body>
 </html>
