@@ -21,25 +21,13 @@
       event.preventDefault();
       alert("Right-click is disabled on this page.");
     });
-  </script>
 
-  <script>
   document.addEventListener("keydown", function (e) {
-    // F12
-    if (e.key === "F12") {
-      e.preventDefault();
-    }
-
-    // Ctrl + Shift + I / J / C
-    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
-      e.preventDefault();
-    }
-
-    // Ctrl + U (View Source)
-    if (e.ctrlKey && e.key === "u") {
-      e.preventDefault();
-    }
+    if (e.key === "F12") e.preventDefault();
+    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) e.preventDefault();
+    if (e.ctrlKey && e.key === "u") e.preventDefault();
   });
+
 </script>
 
   <style>
@@ -73,8 +61,6 @@
     color: var(--text-color);
   }
 
-    <style>
-  /* Fullscreen video modal styles for mobile and tablets */
   @media (max-width: 1024px) {
     .modal {
       position: fixed;
@@ -104,7 +90,7 @@
     .modal-body,
     .modal-text,
     .server-selector {
-      display: none; /* Hide extra content for fullscreen effect */
+      display: none;
     }
 
     #modal-video {
@@ -122,69 +108,171 @@
       z-index: 2000;
     }
   }
-</style>
 
-  <style>  
-    
   .load-more-container {
     margin-top: 30px;
     text-align: center;
   }
 
-    .logo {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #00ffff;
-  text-shadow:
-    0 0 5px #0ff,
-    0 0 10px #0ff,
-    0 0 20px #0ff,
-    0 0 40px #0ff,
-    2px 2px 0 #111;
-  animation: neonPulse 0.7s infinite ease-in-out;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-    [data-theme="light"] .logo {
-  color: #004466;
-  text-shadow:
-    1px 1px 0 #ccc,
-    2px 2px 3px #aaa;
-}
-
-    @keyframes neonPulse {
-  0%, 100% {
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #00ffff;
     text-shadow:
       0 0 5px #0ff,
       0 0 10px #0ff,
       0 0 20px #0ff,
       0 0 40px #0ff,
       2px 2px 0 #111;
+    animation: neonPulse 0.7s infinite ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
-  50% {
+
+  [data-theme="light"] .logo {
+    color: #004466;
     text-shadow:
-      0 0 2px #0ff,
-      0 0 4px #0ff,
-      0 0 10px #0ff,
-      0 0 20px #0ff,
-      1px 1px 0 #111;
+      1px 1px 0 #ccc,
+      2px 2px 3px #aaa;
+  }
+
+  @keyframes neonPulse {
+    0%, 100% {
+      text-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff,
+        2px 2px 0 #111;
+    }
+    50% {
+      text-shadow:
+        0 0 2px #0ff,
+        0 0 4px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        1px 1px 0 #111;
+    }
+  }
+    
+   
+    /* ... existing styles ... */
+  .section-title {
+    text-align: center;
+    font-size: 6rem;
+    margin: 20px auto;
+    color: var(--text-color);
+  }
+    .section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 30px auto 20px;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  animation: glowPulse 1s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    text-shadow:
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 30px currentColor;
+  }
+  to {
+    text-shadow:
+      0 0 2px currentColor,
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor;
   }
 }
- 
-</style>
+    .genre-dropdown {
+  padding: 6px 10px;
+  margin: 0 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+  cursor: pointer;
+}
 
-</style>
-<script>
-  // Theme toggle logic
+[data-theme="light"] .genre-dropdown {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+    .scroll-btn.left,
+.scroll-btn.right {
+  font-size: 16px; /* Smaller arrow size */
+  padding: 4px 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent dark bg */
+  color: #fff;
+  border: none;
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.scroll-btn.left {
+  left: 4px;
+}
+
+.scroll-btn.right {
+  right: 4px;
+}
+
+/* Unique colors per section */
+.movies-title {
+  color: #00ffff; /* Cyan */
+}
+
+.tv-title {
+  color: #ffcc00; /* Yellow/Gold */
+}
+
+.anime-title {
+  color: #ff69b4; /* Hot Pink */
+}
+
+.vivamax-title {
+  color: #ff3300; /* Red-Orange */
+}
+
+.korean-title {
+  color: #66ff66; /* Neon Green */
+}
+
+/* Optional: adjust light mode */
+[data-theme="light"] .section-title {
+  animation: none;
+  text-shadow: none;
+}
+
+[data-theme="light"] .movies-title { color: #005577; }
+[data-theme="light"] .tv-title { color: #886600; }
+[data-theme="light"] .anime-title { color: #cc6699; }
+[data-theme="light"] .vivamax-title { color: #992200; }
+[data-theme="light"] .korean-title { color: #336633; }
+  </style>
+
+  <script>
   document.addEventListener("DOMContentLoaded", () => {
     const currentTheme = localStorage.getItem("theme") || "light";
     document.documentElement.setAttribute("data-theme", currentTheme);
-
     const toggleBtn = document.getElementById("theme-toggle");
     if (toggleBtn) {
       toggleBtn.addEventListener("click", () => {
@@ -195,32 +283,82 @@
       });
     }
   });
+  </script>
+
+  <script>
+function filterByGenre(genreId) {
+  // Clear all sections before loading new content
+  document.getElementById('movies-list').innerHTML = '';
+  document.getElementById('tvshows-list').innerHTML = '';
+  document.getElementById('anime-list').innerHTML = '';
+  document.getElementById('pinoy-movie-list').innerHTML = '';
+  document.getElementById('korean-movie-list').innerHTML = '';
+
+  // Now reload each section with selected genre
+  loadSectionByGenre('movie', 'movies-list', genreId); // Trending Movies
+  loadSectionByGenre('tv', 'tvshows-list', genreId);   // TV Shows
+  loadSectionByGenre('movie', 'anime-list', genreId);  // Anime (you can adjust this)
+  loadSectionByGenre('movie', 'pinoy-movie-list', genreId); // Vivamax
+  loadSectionByGenre('movie', 'korean-movie-list', genreId); // Korean
+}
+
+// TMDB genre filter loader
+function loadSectionByGenre(type, containerId, genreId) {
+  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+  const url = `https://api.themoviedb.org/3/discover/${type}?api_key=${apiKey}&with_genres=${genreId}`;
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+
+      data.results.forEach(movie => {
+        const card = document.createElement('div');
+        card.className = 'movie-card';
+        card.innerHTML = `
+          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title || movie.name}" />
+          <p>${movie.title || movie.name}</p>
+        `;
+        card.onclick = () => openModalWithTMDB(movie.id);
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error(`Failed to load ${type} for genre ${genreId}`, err);
+    });
+}
 </script>
   
+</head>
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
     <div class="container nav">
-        <a href="#" class="logo">
-  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
-  MOLD<span class="main-color">EROS</span>-TV
-        </a>
+      <a href="#" class="logo">
+        <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+        MOLD<span class="main-color">EROS</span>-TV
+      </a>
       <input type="checkbox" id="menu-toggle" />
       <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
       <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="#pinoy-movies">VMX</a>
-        <a href="#tvshows-list">TV Shows</a>
-        <a href="#anime-list">Anime</a>
-        <input 
-          type="text" 
-          class="search-bar" 
-          placeholder="Search..." 
-          onfocus="openSearchModal()" 
-          aria-label="Search"
-        />
-        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
-      </nav>
+  <a href="index.html">Home</a>
+  
+  <!-- Genre Filter -->
+  <select id="genreFilter" class="genre-dropdown" onchange="filterByGenre(this.value)">
+    <option value="">Filter by Genre</option>
+    <option value="28">Action</option>
+    <option value="35">Comedy</option>
+    <option value="18">Drama</option>
+    <option value="27">Horror</option>
+    <option value="10749">Romance</option>
+    <!-- Add more genres as needed -->
+  </select>
+
+  <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" aria-label="Search" />
+  <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
+</nav>
     </div>
   </header>
 
@@ -228,136 +366,76 @@
   <section class="hero-section" id="banner">
     <div class="hero-overlay">
       <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime 鈥� Updated Daily</p>
+      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
       <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
     </div>
   </section>
 
   <!-- Main Content -->
   <main>
+    <!-- Trending Movies -->
     <section class="row" id="movies-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">馃幀 Trending Movies</h2>
-    <div class="genre-filter">
-      <label for="genre-select">馃幆 Filter by Genre:</label>
-      <select id="genre-select" onchange="filterByGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="27">Horror</option>
-        <option value="16">Animation</option>
-        <option value="10749">Romance</option>
-        <option value="878">Science Fiction</option>
-        <option value="10751">Family</option>
-        <option value="99">Documentary</option>
-        <option value="12">Adventure</option>
-        <option value="80">Crime</option>
-        <option value="9648">Mystery</option>
-        <option value="53">Thriller</option>
-        <option value="14">Fantasy</option>
-        <option value="36">History</option>
-        <option value="10402">Music</option>
-        <option value="10752">War</option>
-        <option value="37">Western</option>
-      </select>
-    </div>
+  <div class="trending-header">
+    <h2 class="section-title">🎬 Trending Movies</h2>
   </div>
-
-  <div class="card-container" id="movies-list"></div>
-</section>
-
-    <!-- Trending TV Shows Section -->
-<section class="row" id="tvshows-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">馃摵 Trending TV Shows</h2>
-    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="tv-genre-filter">馃幆 Filter by Genre:</label>
-      <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="10765">Sci-Fi</option>
-        <option value="16">Anime</option>
-      </select>
-    </div>
-  </div>
-  <div class="card-container" id="tvshows-list"></div>
-</section>
-
-    <section class="row" id="anime-list-section">
-  <h2>馃尭 Trending Anime</h2>
-  <div class="card-container" id="anime-list"></div>
-  <div class="load-more-container">
-    <button id="load-more-anime">馃帴 Load More</button>
+  <div style="position: relative;">
+    <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
+    <div class="scrollable-row" id="movies-list"></div>
+    <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
   </div>
 </section>
 
-    <!-- Vivamax / Pinoy Movies Section -->
-<section class="section" id="pinoy-movies">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="display: flex; align-items: center; gap: 5px; margin: 0;">
-      <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
-      Vivamax
-    </h2>
-    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="pinoy-genre-filter">馃幆 Filter by Genre:</label>
-      <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
-        <option value="">All Genres</option>
-        <optgroup label="Popular Genres">
-          <option value="28">Action</option>
-          <option value="35">Comedy</option>
-          <option value="18">Drama</option>
-          <option value="10749">Romance</option>
-          <option value="80">Crime</option>
-          <option value="27">Horror</option>
-          <option value="10751">Family</option>
-          <option value="16">Animation</option>
-        </optgroup>
-        <optgroup label="Other Genres">
-          <option value="99">Documentary</option>
-          <option value="10402">Music</option>
-          <option value="9648">Mystery</option>
-          <option value="878">Science Fiction</option>
-          <option value="10752">War</option>
-          <option value="37">Western</option>
-          <option value="36">History</option>
-          <option value="14">Fantasy</option>
-          <option value="53">Thriller</option>
-        </optgroup>
-      </select>
-    </div>
+    <!-- TV Shows + Anime -->
+    <section class="row" id="tvshows-list-section">
+      <section class="row" id="tvshows-list-section">
+  <div class="trending-header">
+    <h2 class="section-title">📺 Trending TV Shows</h2>
   </div>
-  <div class="vivamax-grid" id="pinoy-movie-list"></div>
-  <div class="load-more-container">
-    <button id="load-more-pinoy">馃帴 Load More</button>
+  <div style="position: relative;">
+    <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
+    <div class="scrollable-row" id="tvshows-list"></div>
+    <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
+  </div>
+
+        <div class="trending-header">
+    <h2 class="section-title">🌸 Trending Anime</h2>
+  </div>
+  <div style="position: relative;">
+    <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
+    <div class="scrollable-row" id="anime-list"></div>
+    <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
   </div>
 </section>
 
-    <!-- Korean Movies Section -->
-<section class="section" id="korean-movies">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">馃嚢馃嚪 Korean Movies</h2>
-    <div class="genre-filter">
-      <label for="korean-genre-filter">馃幆 Filter by Genre:</label>
-      <select id="korean-genre-filter" onchange="filterByKoreanGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="10749">Romance</option>
-        <option value="27">Horror</option>
-        <option value="80">Crime</option>
-      </select>
-    </div>
+    <!-- Vivamax -->
+    <section class="section" id="pinoy-movies">
+  <div class="trending-header">
+    <h2 class="section-title" style="display: flex; align-items: center; justify-content: center; gap: 7px;">
+  <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
+  Vivamax
+</h2>
   </div>
-  <div class="vivamax-grid" id="korean-movie-list"></div>
-  <div class="load-more-container">
-    <button id="load-more-korean">馃帴 Load More</button>
+  <div style="position: relative;">
+    <button onclick="scrollLeft('pinoy-movie-list')" class="scroll-btn left">◀</button>
+    <div class="scrollable-row" id="pinoy-movie-list"></div>
+    <button onclick="scrollRight('pinoy-movie-list')" class="scroll-btn right">▶</button>
+  </div>
+</section>
+
+    <!-- Korean Movies -->
+    <section class="section" id="korean-movies">
+  <div class="trending-header">
+    <h2 class="section-title">🇰🇷 Korean Movies</h2>
+  </div>
+  <div style="position: relative;">
+    <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
+    <div class="scrollable-row" id="korean-movie-list"></div>
+    <button onclick="scrollRight('korean-movie-list')" class="scroll-btn right">▶</button>
   </div>
 </section>
   </main>
+
+<!-- END OF CLEANED SECTIONS -->
 
   <!-- Loading Spinner -->
   <div class="loading-spinner" id="loading-spinner" style="display: none;">
@@ -415,6 +493,57 @@
       </div>
     </div>
   </footer>
-  
+
+  <script>
+  let currentMovieId = ""; // Store the movie ID globally
+
+  function openModalWithTMDB(movieId) {
+    currentMovieId = movieId;
+
+    const modal = document.getElementById("modal");
+    const iframe = document.getElementById("modal-video");
+    const server = document.getElementById("server").value;
+
+    iframe.src = generateServerURL(server, movieId);
+    modal.style.display = "flex";
+  }
+
+  function changeServer() {
+    const server = document.getElementById("server").value;
+    const iframe = document.getElementById("modal-video");
+    iframe.src = generateServerURL(server, currentMovieId);
+  }
+
+  function generateServerURL(server, movieId) {
+    switch (server) {
+      case "vidsrc.cc":
+        return `https://vidsrc.to/embed/movie/${movieId}`;
+      case "vidsrc.me":
+        return `https://vidsrc.me/embed/movie/${movieId}`;
+      case "player.videasy.net":
+        return `https://player.videasy.net/embed/movie/${movieId}`;
+      default:
+        return "";
+    }
+  }
+
+  function closeModal() {
+    const modal = document.getElementById("modal");
+    const iframe = document.getElementById("modal-video");
+    modal.style.display = "none";
+    iframe.src = ""; // Stop playback when closed
+  }
+</script>
+
 </body>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("modal");
+    if (modal) {
+      modal.style.display = "none"; // Ensure modal is hidden at start
+    }
+  });
+</script>
+
 </html>
