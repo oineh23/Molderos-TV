@@ -20,6 +20,7 @@ let pinoyPage = 1;
 let pinoyGenre = '';
 let tvGenre = '';
 let tvPage = 1;
+let koreanPage = 1;
 
 // ====== HELPER FUNCTIONS ======
 function getGenreName(id) {
@@ -61,7 +62,9 @@ async function init() {
   fetchPinoyMoviesPaginated();
   setupPinoyControls();
   setupTVControls();
+  loadKoreanMovies();
 }
+
 document.addEventListener("DOMContentLoaded", init);
 
 // ====== DISPLAY UTILITIES ======
@@ -106,7 +109,6 @@ function createCard(item) {
   const title = document.createElement('h3');
   title.textContent = item.title || item.name;
 
-  // === Add Movie/TV Year ===
   const year = (item.release_date || item.first_air_date || '').slice(0, 4);
   const yearEl = document.createElement('p');
   yearEl.className = 'movie-year';
@@ -116,7 +118,7 @@ function createCard(item) {
   rating.textContent = `⭐ ${item.vote_average?.toFixed(1)} / 10`;
 
   info.appendChild(title);
-  info.appendChild(yearEl); // <- Add year here
+  info.appendChild(yearEl);
   info.appendChild(rating);
 
   card.append(genre, img, button, info);
@@ -190,7 +192,6 @@ async function fetchTrendingTVShows(reset = false) {
 
 // ====== ANIME ======
 const animeList = document.getElementById("anime-list");
-const loadMoreAnimeBtn = document.getElementById("load-more-anime");
 
 async function fetchAnime(page = 1) {
   const url = `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=16&sort_by=popularity.desc&page=${page}`;
@@ -201,11 +202,6 @@ async function fetchAnime(page = 1) {
     animeList.appendChild(createCard(anime));
   });
 }
-
-loadMoreAnimeBtn?.addEventListener("click", () => {
-  currentAnimePage++;
-  fetchAnime(currentAnimePage);
-});
 
 // ====== PINOY MOVIES ======
 async function fetchPinoyMoviesPaginated(reset = false) {
@@ -230,23 +226,11 @@ async function fetchPinoyMoviesPaginated(reset = false) {
 
 function setupPinoyControls() {
   const genreSelect = document.getElementById('pinoy-genre-filter');
-  const loadMoreBtn = document.getElementById('load-more-pinoy');
 
   genreSelect?.addEventListener('change', () => {
     pinoyGenre = genreSelect.value;
     fetchPinoyMoviesPaginated(true);
   });
-
-  loadMoreBtn?.addEventListener('click', () => {
-    pinoyPage++;
-    fetchPinoyMoviesPaginated();
-  });
-}
-
-function scrollPinoyMovies(direction) {
-  const slider = document.getElementById('pinoy-movie-list');
-  if (!slider) return;
-  slider.scrollLeft += slider.offsetWidth * 0.8 * direction;
 }
 
 // ====== MODAL HANDLING ======
@@ -326,70 +310,60 @@ const searchTMDB = debounce(async () => {
   });
 }, 400);
 
-// ======================
-// 🇰🇷 Korean Movies Section
-// ======================
-
+// ====== KOREAN MOVIES ======
 const koreanMovieList = document.getElementById('korean-movie-list');
-const loadMoreKoreanBtn = document.getElementById('load-more-korean');
-let koreanPage = 1;
-const tmdbApiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 
 async function loadKoreanMovies(genre = '') {
   try {
-    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&with_original_language=ko&page=${koreanPage}${genre ? `&with_genres=${genre}` : ''}`;
+    const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_original_language=ko&page=${koreanPage}${genre ? `&with_genres=${genre}` : ''}`;
     const response = await fetch(url);
     const data = await response.json();
 
-    if (!data.results || data.results.length === 0) {
-      loadMoreKoreanBtn.style.display = 'none';
-      return;
-    }
+    if (!data.results || data.results.length === 0) return;
 
     data.results.forEach(movie => {
-  if (!movie.poster_path) return;
+      if (!movie.poster_path) return;
 
-  const card = document.createElement('div');
-  card.className = 'card'; // Use same style as other cards
+      const card = document.createElement('div');
+      card.className = 'card';
 
-  const genre = document.createElement('span');
-  genre.className = 'genre-badge';
-  genre.textContent = getGenreName(movie.genre_ids?.[0]); // optional: add genre name
+      const genre = document.createElement('span');
+      genre.className = 'genre-badge';
+      genre.textContent = getGenreName(movie.genre_ids?.[0]);
 
-  const img = document.createElement('img');
-  img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
-  img.alt = movie.title;
+      const img = document.createElement('img');
+      img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+      img.alt = movie.title;
 
-  const button = document.createElement('button');
-  button.className = 'watch-button';
-  button.textContent = 'Watch Now';
-  button.onclick = () => {
-    movie.media_type = 'movie';
-    showDetails(movie);
-  };
+      const button = document.createElement('button');
+      button.className = 'watch-button';
+      button.textContent = 'Watch Now';
+      button.onclick = () => {
+        movie.media_type = 'movie';
+        showDetails(movie);
+      };
 
-  const info = document.createElement('div');
-  info.className = 'card-info';
+      const info = document.createElement('div');
+      info.className = 'card-info';
 
-  const title = document.createElement('h3');
-  title.textContent = movie.title;
+      const title = document.createElement('h3');
+      title.textContent = movie.title;
 
-  const year = (movie.release_date || '').slice(0, 4);
-  const yearEl = document.createElement('p');
-  yearEl.className = 'movie-year';
-  yearEl.textContent = year ? `📅 ${year}` : '';
+      const year = (movie.release_date || '').slice(0, 4);
+      const yearEl = document.createElement('p');
+      yearEl.className = 'movie-year';
+      yearEl.textContent = year ? `📅 ${year}` : '';
 
-  const rating = document.createElement('p');
-  rating.textContent = `⭐ ${movie.vote_average?.toFixed(1)} / 10`;
+      const rating = document.createElement('p');
+      rating.textContent = `⭐ ${movie.vote_average?.toFixed(1)} / 10`;
 
-  info.appendChild(title);
-  info.appendChild(yearEl);
-  info.appendChild(rating);
+      info.appendChild(title);
+      info.appendChild(yearEl);
+      info.appendChild(rating);
 
-  card.append(genre, img, button, info); // Keep same order as other cards
-  koreanMovieList.appendChild(card);
-});
-
+      card.append(genre, img, button, info);
+      koreanMovieList.appendChild(card);
+    });
   } catch (error) {
     console.error('Failed to load Korean movies:', error);
   }
@@ -401,11 +375,56 @@ function filterByKoreanGenre(genreId) {
   loadKoreanMovies(genreId);
 }
 
-loadMoreKoreanBtn.addEventListener('click', () => {
-  koreanPage++;
-  const selectedGenre = document.getElementById('korean-genre-filter').value;
-  loadKoreanMovies(selectedGenre);
+// ====== INFINITE SCROLL ======
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const docHeight = document.documentElement.scrollHeight;
+
+  if (scrollTop + windowHeight >= docHeight - 500) {
+    handleInfiniteScroll();
+  }
 });
 
-// Initial Korean movie load
-loadKoreanMovies();
+let isFetching = false;
+
+function handleInfiniteScroll() {
+  if (isFetching) return;
+  isFetching = true;
+
+  const animeListEl = document.getElementById("anime-list");
+  const pinoyListEl = document.getElementById("pinoy-movie-list");
+  const koreanListEl = document.getElementById("korean-movie-list");
+
+  if (isElementInViewport(animeListEl)) {
+    currentAnimePage++;
+    fetchAnime(currentAnimePage).finally(() => isFetching = false);
+  } else if (isElementInViewport(pinoyListEl)) {
+    pinoyPage++;
+    fetchPinoyMoviesPaginated().finally(() => isFetching = false);
+  } else if (isElementInViewport(koreanListEl)) {
+    koreanPage++;
+    const selectedGenre = document.getElementById('korean-genre-filter')?.value || '';
+    loadKoreanMovies(selectedGenre).finally(() => isFetching = false);
+  } else {
+    isFetching = false;
+  }
+}
+
+function isElementInViewport(el) {
+  if (!el) return false;
+  const rect = el.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom >= 0;
+}
+
+function scrollLeft(id) {
+  const row = document.getElementById(id);
+  if (!row) return;
+  row.scrollBy({ left: -400, behavior: 'smooth' });
+}
+
+function scrollRight(id) {
+  const row = document.getElementById(id);
+  if (!row) return;
+  row.scrollBy({ left: 400, behavior: 'smooth' });
+}
