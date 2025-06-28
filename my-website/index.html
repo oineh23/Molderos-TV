@@ -30,6 +30,10 @@
   </script>
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     :root {
       --bg-color: #ffffff;
       --text-color: #000000;
@@ -94,7 +98,7 @@
       border-radius: 6px;
       font-size: 16px;
       cursor: pointer;
-      z-index: 1000;
+      z-index: 1001;
     }
 
     .menu-content {
@@ -109,11 +113,20 @@
       transition: right 0.3s ease;
       display: flex;
       flex-direction: column;
-      z-index: 999;
+      z-index: 1000;
     }
 
     .menu-content.show {
       right: 0;
+    }
+
+    .menu-content .close-menu {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      color: #fff;
+      cursor: pointer;
     }
 
     .menu-content a {
@@ -178,10 +191,15 @@
       menu.classList.toggle("show");
     }
 
+    function closeMenu() {
+      const menu = document.getElementById("menuContent");
+      menu.classList.remove("show");
+    }
+
     window.onclick = function (event) {
       const menu = document.getElementById("menuContent");
-      if (!event.target.matches('.menu-button') && !menu.contains(event.target)) {
-        menu.classList.remove("show");
+      if (!event.target.closest(".menu-content") && !event.target.matches(".menu-button")) {
+        closeMenu();
       }
     };
   </script>
@@ -201,8 +219,9 @@
     </div>
   </header>
 
-  <button class="menu-button" onclick="toggleMenu()">Menu</button>
+  <button class="menu-button" onclick="toggleMenu()">☰</button>
   <div id="menuContent" class="menu-content">
+    <span class="close-menu" onclick="closeMenu()">&times;</span>
     <a href="#trending-movies"><i class="fas fa-film"></i> Trending Movies</a>
     <a href="#trending-tv"><i class="fas fa-tv"></i> Trending TV Shows</a>
     <a href="#trending-anime"><i class="fas fa-dragon"></i> Trending Anime</a>
