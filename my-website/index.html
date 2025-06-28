@@ -73,6 +73,7 @@
     color: var(--text-color);
   }
 
+    <style>
   /* Fullscreen video modal styles for mobile and tablets */
   @media (max-width: 1024px) {
     .modal {
@@ -121,6 +122,9 @@
       z-index: 2000;
     }
   }
+</style>
+
+  <style>  
     
   .load-more-container {
     margin-top: 30px;
@@ -171,208 +175,10 @@
       1px 1px 0 #111;
   }
 }
-    .movie-title {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--text-color);
-}
+ 
 </style>
 
-  
-<style>
-  .movie-title {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--text-color);
-  }
-
-  .movie-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .trending-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.trending-header h2 {
-  font-size: 1.8rem;
-  color: var(--text-color);
-  margin: 0;
-}
-
-.trending-header .genre-filter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-  .trending-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-  margin: 2rem 0;
-}
-
-.trending-header h2 {
-  font-size: 2rem;
-  margin: 0;
-  color: var(--text-color);
-}
-
-.trending-header .genre-filter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-@media (min-width: 600px) {
-  .trending-header {
-    flex-direction: row;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .trending-header .genre-filter {
-    flex-direction: row;
-  }
-}
-
-  .trending-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-  margin: 2rem 0;
-}
-
-.trending-header h2 {
-  font-size: 2rem;
-  margin: 0;
-  color: var(--text-color);
-}
-
-  .trending-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin: 2rem 0;
-}
-
-.trending-header h2 {
-  font-size: 2.2rem;
-  margin: 0;
-  font-family: 'Orbitron', sans-serif;
-}
-
-/* === Section-Specific Effects === */
-
-.trending-movies-header h2 {
-  background: linear-gradient(90deg, #00ffff, #0099ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-  animation: glowMovies 2s infinite alternate;
-}
-
-.trending-tv-header h2 {
-  background: linear-gradient(90deg, #ffcc00, #ff6600);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 8px rgba(255, 165, 0, 0.5);
-  animation: glowTV 2s infinite alternate;
-.trending-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin: 2rem 0;
-}
-
-.trending-header h2 {
-  font-size: 2.2rem;
-  margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-fill-color: transparent;
-}
-
-/* === Section-Specific Glowing Effects === */
-
-.trending-movies-header h2 {
-  background: linear-gradient(90deg, #00ffff, #0099ff);
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
-  animation: glowMovies 2s infinite alternate;
-}
-
-.trending-tv-header h2 {
-  background: linear-gradient(90deg, #ffcc00, #ff6600);
-  text-shadow: 0 0 8px rgba(255, 165, 0, 0.6);
-  animation: glowTV 2s infinite alternate;
-}
-
-.trending-anime-header h2 {
-  background: linear-gradient(90deg, #ff66cc, #9966ff, #66ffff);
-  text-shadow: 0 0 10px rgba(255, 102, 204, 0.7);
-  animation: glowAnime 2s infinite alternate;
-}
-
-.trending-vivamax-header h2 {
-  background: linear-gradient(90deg, #ff3366, #ff9933);
-  text-shadow: 0 0 8px rgba(255, 51, 102, 0.6);
-  animation: glowVivamax 2s infinite alternate;
-}
-
-.trending-korean-header h2 {
-  background: linear-gradient(90deg, #66ccff, #003366);
-  text-shadow: 0 0 8px rgba(102, 204, 255, 0.6);
-  animation: glowKorean 2s infinite alternate;
-}
-
-/* === Glowing Animations === */
-@keyframes glowMovies {
-  0% { text-shadow: 0 0 5px rgba(0, 255, 255, 0.4); }
-  100% { text-shadow: 0 0 20px rgba(0, 153, 255, 0.8); }
-}
-
-@keyframes glowTV {
-  0% { text-shadow: 0 0 5px rgba(255, 204, 0, 0.4); }
-  100% { text-shadow: 0 0 20px rgba(255, 102, 0, 0.8); }
-}
-
-@keyframes glowAnime {
-  0% { text-shadow: 0 0 5px rgba(255, 102, 204, 0.4); }
-  100% { text-shadow: 0 0 20px rgba(153, 102, 255, 0.8); }
-}
-
-@keyframes glowVivamax {
-  0% { text-shadow: 0 0 5px rgba(255, 51, 102, 0.4); }
-  100% { text-shadow: 0 0 20px rgba(255, 153, 51, 0.8); }
-}
-
-@keyframes glowKorean {
-  0% { text-shadow: 0 0 5px rgba(102, 204, 255, 0.4); }
-  100% { text-shadow: 0 0 20px rgba(0, 51, 102, 0.8); }
-}
 </style>
-
 <script>
   // Theme toggle logic
   document.addEventListener("DOMContentLoaded", () => {
@@ -422,7 +228,7 @@
   <section class="hero-section" id="banner">
     <div class="hero-overlay">
       <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
+      <p class="subtitle">Movies, TV Shows, and Anime 鈥� Updated Daily</p>
       <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
     </div>
   </section>
@@ -430,10 +236,10 @@
   <!-- Main Content -->
   <main>
     <section class="row" id="movies-list-section">
-  <div class="trending-header">
-    <h2>🎬 Trending Movies</h2>
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">馃幀 Trending Movies</h2>
     <div class="genre-filter">
-      <label for="genre-select">🎯 Filter by Genre:</label>
+      <label for="genre-select">馃幆 Filter by Genre:</label>
       <select id="genre-select" onchange="filterByGenre(this.value)">
         <option value="">All</option>
         <option value="28">Action</option>
@@ -464,9 +270,9 @@
     <!-- Trending TV Shows Section -->
 <section class="row" id="tvshows-list-section">
   <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">📺 Trending TV Shows</h2>
+    <h2 style="margin: 0;">馃摵 Trending TV Shows</h2>
     <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="tv-genre-filter">🎯 Filter by Genre:</label>
+      <label for="tv-genre-filter">馃幆 Filter by Genre:</label>
       <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
         <option value="">All</option>
         <option value="28">Action</option>
@@ -481,12 +287,10 @@
 </section>
 
     <section class="row" id="anime-list-section">
-  <div class="trending-header">
-    <h2>🌸 Trending Anime</h2>
-  </div>
+  <h2>馃尭 Trending Anime</h2>
   <div class="card-container" id="anime-list"></div>
   <div class="load-more-container">
-    <button id="load-more-anime">🎥 Load More</button>
+    <button id="load-more-anime">馃帴 Load More</button>
   </div>
 </section>
 
@@ -498,7 +302,7 @@
       Vivamax
     </h2>
     <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="pinoy-genre-filter">🎯 Filter by Genre:</label>
+      <label for="pinoy-genre-filter">馃幆 Filter by Genre:</label>
       <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
         <option value="">All Genres</option>
         <optgroup label="Popular Genres">
@@ -509,445 +313,50 @@
           <option value="80">Crime</option>
           <option value="27">Horror</option>
           <option value="10751">Family</option>
-ChatGPT
-You said:
-can you help me please edit my HTML CODE i want to make Menu Button that inside Trending Movies, Trending Tv shows, Trending Anime, Vivamax and Korean Movies. please insert to my HTML CODE 
-ChatGPT said:
-Sure! I’ll help you create a Netflix-style collapsible menu with a Menu button that toggles the list items inside:
-
-Trending Movies
-
-Trending TV Shows
-
-Trending Anime
-
-Vivamax
-
-Korean Movies
-
-I'll insert it inside your existing HTML layout. Here's a full example of how you can implement this inside your MOLDEROS-TV HTML:
-
-✅ Edited HTML with Menu Button and Dropdown
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOLDEROS-TV - Trending Movies & Shows</title>
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/home.css" />
-  <style>
-    /* Basic menu button and dropdown styles */
-    .menu-container {
-      position: relative;
-      display: inline-block;
-      margin: 20px;
-    }
-
-    .menu-button {
-      background-color: #e50914;
-      color: white;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .menu-dropdown {
-      display: none;
-      position: absolute;
-      background-color: #1e1e1e;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-      border-radius: 8px;
-      padding: 10px 0;
-      z-index: 1;
-      min-width: 200px;
-    }
-
-    .menu-dropdown a {
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      display: block;
-      font-size: 15px;
-      transition: background 0.2s ease;
-    }
-
-    .menu-dropdown a:hover {
-      background-color: #333;
-    }
-  </style>
-
-  <script>
-    function toggleMenu() {
-      const dropdown = document.getElementById("menuDropdown");
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-
-    // Optional: Hide menu when clicking outside
-    window.onclick = function(event) {
-      if (!event.target.matches('.menu-button')) {
-        const dropdowns = document.getElementsByClassName("menu-dropdown");
-        for (let i = 0; i < dropdowns.length; i++) {
-          const openDropdown = dropdowns[i];
-          if (openDropdown.style.display === "block") {
-            openDropdown.style.display = "none";
-          }
-        }
-      }
-    };
-  </script>
-</head>
-<body>
-
-  <!-- MENU BUTTON SECTION -->
-  <div class="menu-container">
-    <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
-    <div id="menuDropdown" class="menu-dropdown">
-      <a href="#trending-movies">🎬 Trending Movies</a>
-      <a href="#trending-tv">📺 Trending TV Shows</a>
-      <a href="#trending-anime">🧧 Trending Anime</a>
-      <a href="#vivamax">🔥 Vivamax</a>
-      <a href="#korean-movies">🇰🇷 Korean Movies</a>
+          <option value="16">Animation</option>
+        </optgroup>
+        <optgroup label="Other Genres">
+          <option value="99">Documentary</option>
+          <option value="10402">Music</option>
+          <option value="9648">Mystery</option>
+          <option value="878">Science Fiction</option>
+          <option value="10752">War</option>
+          <option value="37">Western</option>
+          <option value="36">History</option>
+          <option value="14">Fantasy</option>
+          <option value="53">Thriller</option>
+        </optgroup>
+      </select>
     </div>
   </div>
+  <div class="vivamax-grid" id="pinoy-movie-list"></div>
+  <div class="load-more-container">
+    <button id="load-more-pinoy">馃帴 Load More</button>
+  </div>
+</section>
 
-  <!-- Example Sections -->
-  <section id="trending-movies">
-    <h2>Trending Movies</h2>
-    <!-- Your movie cards here -->
-  </section>
-
-  <section id="trending-tv">
-    <h2>Trending TV Shows</h2>
-    <!-- Your TV show cards here -->
-  </section>
-
-  <section id="trending-anime">
-    <h2>Trending Anime</h2>
-    <!-- Your Anime cards here -->
-  </section>
-
-  <section id="vivamax">
-    <h2>Vivamax</h2>
-    <!-- Your Vivamax content here -->
-  </section>
-
-  <section id="korean-movies">
-    <h2>Korean Movies</h2>
-    <!-- Your Korean movies content here -->
-  </section>
-
-</body>
-</html>
-✅ Features:
-Mobile/tablet-friendly.
-
-Dropdown closes when clicking outside.
-
-Smooth styling that matches Netflix-style red/black themes.
-
-Anchored sections you can scroll to directly.
-
-Would you like the menu to be always visible on large screens (like a sidebar), or keep it as a dropdown for all screen sizes? I can help upgrade it further based on your layout direction.
-
-You said:
-can you write to my HTML 
-ChatGPT said:
-Absolutely! Here's your full MOLDEROS-TV HTML with the Menu Button + Sections fully integrated directly into your code.
-
-✅ Final Integrated HTML:
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOLDEROS-TV - Trending Movies & Shows</title>
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/home.css" />
-  <link rel="preload" href="css/home.css" as="style" />
-  <style>
-    /* Menu Button Styles */
-    .menu-container {
-      position: relative;
-      display: inline-block;
-      margin: 20px;
-      z-index: 100;
-    }
-
-    .menu-button {
-      background-color: #e50914;
-      color: white;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .menu-dropdown {
-      display: none;
-      position: absolute;
-      background-color: #1e1e1e;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-      border-radius: 8px;
-      padding: 10px 0;
-      z-index: 99;
-      min-width: 200px;
-    }
-
-    .menu-dropdown a {
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      display: block;
-      font-size: 15px;
-      transition: background 0.2s ease;
-    }
-
-    .menu-dropdown a:hover {
-      background-color: #333;
-    }
-
-    section {
-      padding: 40px 20px;
-    }
-
-    h2 {
-      color: white;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    body {
-      background-color: #000;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-  </style>
-  <script>
-    function toggleMenu() {
-      const dropdown = document.getElementById("menuDropdown");
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-
-    window.onclick = function(event) {
-      if (!event.target.matches('.menu-button')) {
-        const dropdowns = document.getElementsByClassName("menu-dropdown");
-        for (let i = 0; i < dropdowns.length; i++) {
-          const openDropdown = dropdowns[i];
-          if (openDropdown.style.display === "block") {
-            openDropdown.style.display = "none";
-          }
-        }
-      }
-    };
-  </script>
-</head>
-<body>
-
-  <!-- MENU BUTTON -->
-  <div class="menu-container">
-    <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
-    <div id="menuDropdown" class="menu-dropdown">
-      <a href="#trending-movies">🎬 Trending Movies</a>
-      <a href="#trending-tv">📺 Trending TV Shows</a>
-      <a href="#trending-anime">🧧 Trending Anime</a>
-      <a href="#vivamax">🔥 Vivamax</a>
-      <a href="#korean-movies">🇰🇷 Korean Movies</a>
+    <!-- Korean Movies Section -->
+<section class="section" id="korean-movies">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">馃嚢馃嚪 Korean Movies</h2>
+    <div class="genre-filter">
+      <label for="korean-genre-filter">馃幆 Filter by Genre:</label>
+      <select id="korean-genre-filter" onchange="filterByKoreanGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="10749">Romance</option>
+        <option value="27">Horror</option>
+        <option value="80">Crime</option>
+      </select>
     </div>
   </div>
-
-  <!-- CONTENT SECTIONS -->
-  <section id="trending-movies">
-    <h2>🎬 Trending Movies</h2>
-    <!-- Insert trending movies cards here -->
-  </section>
-
-  <section id="trending-tv">
-    <h2>📺 Trending TV Shows</h2>
-    <!-- Insert trending TV shows cards here -->
-  </section>
-
-  <section id="trending-anime">
-    <h2>🧧 Trending Anime</h2>
-    <!-- Insert trending anime cards here -->
-  </section>
-
-  <section id="vivamax">
-    <h2>🔥 Vivamax</h2>
-    <!-- Insert Vivamax movies here -->
-  </section>
-
-  <section id="korean-movies">
-    <h2>🇰🇷 Korean Movies</h2>
-    <!-- Insert Korean movie cards here -->
-  </section>
-
-</body>
-</html>
-✅ What to do next:
-
-Add your movie cards/content inside each section.
-
-Update section IDs in the menu if you rename any.
-
-Place this inside your existing project files (home.html and home.css) and test on phone, tablet, and PC.
-
-Would you like me to enhance the menu into a sidebar or sliding drawer on mobile for a more Netflix-style layout?
-
-You said:
-can you insert full code to my HTML 
-ChatGPT said:
-Sure! Here's your full MOLDEROS-TV HTML page with the Netflix-style Menu Button inserted directly into the structure — ready to use, with no extra work needed from your end.
-
-✅ Full HTML with Menu Button and Sections Embedded
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOLDEROS-TV - Trending Movies & Shows</title>
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/home.css" />
-  <link rel="preload" href="css/home.css" as="style" />
-  <style>
-    
-    /* Basic reset and layout */
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-
-    h2 {
-      font-size: 24px;
-      color: #fff;
-      padding-left: 20px;
-    }
-
-    section {
-      padding: 40px 20px;
-    }
-
-    /* Menu Button Styles */
-    .menu-container {
-      position: relative;
-      display: inline-block;
-      margin: 20px;
-      z-index: 100;
-    }
-
-    .menu-button {
-      background-color: #e50914;
-      color: white;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .menu-dropdown {
-      display: none;
-      position: absolute;
-      background-color: #1e1e1e;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-      border-radius: 8px;
-      padding: 10px 0;
-      z-index: 99;
-      min-width: 200px;
-    }
-
-    .menu-dropdown a {
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      display: block;
-      font-size: 15px;
-      transition: background 0.2s ease;
-    }
-
-    .menu-dropdown a:hover {
-      background-color: #333;
-    }
-  </style>
-
-  <script>
-    function toggleMenu() {
-      const dropdown = document.getElementById("menuDropdown");
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-
-    window.onclick = function(event) {
-      if (!event.target.matches('.menu-button')) {
-        const dropdowns = document.getElementsByClassName("menu-dropdown");
-        for (let i = 0; i < dropdowns.length; i++) {
-          const openDropdown = dropdowns[i];
-          if (openDropdown.style.display === "block") {
-            openDropdown.style.display = "none";
-          }
-        }
-      }
-    };
-  </script>
-</head>
-<body>
-
-  <!-- MENU BUTTON -->
-  <div class="menu-container">
-    <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
-    <div id="menuDropdown" class="menu-dropdown">
-      <a href="#trending-movies">🎬 Trending Movies</a>
-      <a href="#trending-tv">📺 Trending TV Shows</a>
-      <a href="#trending-anime">🧧 Trending Anime</a>
-      <a href="#vivamax">🔥 Vivamax</a>
-      <a href="#korean-movies">🇰🇷 Korean Movies</a>
-    </div>
+  <div class="vivamax-grid" id="korean-movie-list"></div>
+  <div class="load-more-container">
+    <button id="load-more-korean">馃帴 Load More</button>
   </div>
-
-  <!-- CONTENT SECTIONS -->
-
-  <section id="trending-movies">
-    <h2>🎬 Trending Movies</h2>
-    <!-- Trending Movies content/cards go here -->
-    <div class="card-container">
-      <!-- Example: <div class="card">Movie 1</div> -->
-    </div>
-  </section>
-
-  <section id="trending-tv">
-    <h2>📺 Trending TV Shows</h2>
-    <!-- Trending TV Shows content/cards go here -->
-    <div class="card-container"></div>
-  </section>
-
-  <section id="trending-anime">
-    <h2>🧧 Trending Anime</h2>
-    <!-- Trending Anime content/cards go here -->
-    <div class="card-container"></div>
-  </section>
-
-  <section id="vivamax">
-    <h2>🔥 Vivamax</h2>
-    <!-- Vivamax content/cards go here -->
-    <div class="card-container"></div>
-  </section>
-
-  <section id="korean-movies">
-    <h2>🇰🇷 Korean Movies</h2>
-    <!-- Korean Movies content/cards go here -->
-    <div class="card-container"></div>
-  </section>
+</section>
   </main>
 
   <!-- Loading Spinner -->
