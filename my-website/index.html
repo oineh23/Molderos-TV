@@ -300,6 +300,40 @@ function filterByGenre(genreId) {
   loadSectionByGenre('movie', 'anime-list', genreId);  // Anime (you can adjust this)
   loadSectionByGenre('movie', 'pinoy-movie-list', genreId); // Vivamax
   loadSectionByGenre('movie', 'korean-movie-list', genreId); // Korean
+
+  .season-episode-selector {
+  padding: 10px;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+#seasonSelect {
+  padding: 6px 10px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.episode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 8px;
+}
+
+.episode-grid button {
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.episode-grid button:hover {
+  background: #00ffff;
+  color: #000;
+  font-weight: bold;
 }
 
 // TMDB genre filter loader
