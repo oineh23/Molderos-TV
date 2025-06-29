@@ -5,410 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MOLDEROS-TV - Trending Movies & Shows</title>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/home.css" />
-  <link rel="preload" href="css/home.css" as="style" />
-  <link rel="preload" href="js/home.js" as="script" />
+  <!-- Optimized Styles -->
+  <link rel="preload" href="css/home.css" as="style">
+  <link rel="stylesheet" href="css/home.css">
   <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-pZyoHyG1b8..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <script defer src="js/home.js"></script>
 
-  <script>
-    document.addEventListener('contextmenu', function(event) {
-      event.preventDefault();
-      alert("Right-click is disabled on this page.");
-    });
-
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "F12") e.preventDefault();
-    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) e.preventDefault();
-    if (e.ctrlKey && e.key === "u") e.preventDefault();
-  });
-
-</script>
-
+  <!-- Theme Styles -->
   <style>
-  :root {
-    --bg-color: #ffffff;
-    --text-color: #000000;
-    --nav-bg: #f0f0f0;
-  }
-
-  [data-theme="dark"] {
-    --bg-color: #121212;
-    --text-color: #ffffff;
-    --nav-bg: #1e1e1e;
-  }
-
-  body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  .nav-wrapper {
-    background-color: var(--nav-bg);
-    transition: background-color 0.3s ease;
-  }
-
-  .theme-toggle {
-    cursor: pointer;
-    font-size: 1.4rem;
-    margin-left: 15px;
-    color: var(--text-color);
-  }
-
-  @media (max-width: 1024px) {
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      padding: 0;
-      background-color: rgba(0, 0, 0, 0.95);
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --nav-bg: #f0f0f0;
     }
-
-    .modal-content {
-      width: 100vw;
-      height: 100vh;
-      padding: 0;
-      margin: 0;
-      border-radius: 0;
-      background: #000;
-      display: flex;
-      flex-direction: column;
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --nav-bg: #1e1e1e;
     }
-
-    .modal-body,
-    .modal-text,
-    .server-selector {
-      display: none;
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
     }
-
-    #modal-video {
-      width: 100vw;
-      height: 100vh;
-      border: none;
+    .nav-wrapper {
+      background-color: var(--nav-bg);
     }
-
-    .modal .close {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 2rem;
-      color: #fff;
-      z-index: 2000;
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      margin-left: 15px;
+      color: var(--text-color);
     }
-  }
-
-  .load-more-container {
-    margin-top: 30px;
-    text-align: center;
-  }
-
-  .logo {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: #00ffff;
-    text-shadow:
-      0 0 5px #0ff,
-      0 0 10px #0ff,
-      0 0 20px #0ff,
-      0 0 40px #0ff,
-      2px 2px 0 #111;
-    animation: neonPulse 0.7s infinite ease-in-out;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  [data-theme="light"] .logo {
-    color: #004466;
-    text-shadow:
-      1px 1px 0 #ccc,
-      2px 2px 3px #aaa;
-  }
-
-  @keyframes neonPulse {
-    0%, 100% {
-      text-shadow:
-        0 0 5px #0ff,
-        0 0 10px #0ff,
-        0 0 20px #0ff,
-        0 0 40px #0ff,
-        2px 2px 0 #111;
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #00ffff;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+      animation: neonPulse 0.7s ease-in-out infinite;
     }
-    50% {
-      text-shadow:
-        0 0 2px #0ff,
-        0 0 4px #0ff,
-        0 0 10px #0ff,
-        0 0 20px #0ff,
-        1px 1px 0 #111;
+    @keyframes neonPulse {
+      0%, 100% {
+        text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+      }
+      50% {
+        text-shadow: 0 0 2px #0ff, 0 0 4px #0ff;
+      }
     }
-  }
-    
-   
-    /* ... existing styles ... */
-  .section-title {
-    text-align: center;
-    font-size: 6rem;
-    margin: 20px auto;
-    color: var(--text-color);
-  }
-    .section-title {
-  text-align: center;
-  font-size: 1.8rem;
-  margin: 30px auto 20px;
-  font-weight: bold;
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
-  animation: glowPulse 1s infinite alternate;
-}
-
-@keyframes glowPulse {
-  from {
-    text-shadow:
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 30px currentColor;
-  }
-  to {
-    text-shadow:
-      0 0 2px currentColor,
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 15px currentColor;
-  }
-}
-    .genre-dropdown {
-  padding: 6px 10px;
-  margin: 0 15px;
-  font-size: 14px;
-  border-radius: 4px;
-  background-color: #222;
-  color: #fff;
-  border: 1px solid #444;
-  cursor: pointer;
-}
-
-[data-theme="light"] .genre-dropdown {
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #ccc;
-}
-
-    .scroll-btn.left,
-.scroll-btn.right {
-  font-size: 16px; /* Smaller arrow size */
-  padding: 4px 8px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent dark bg */
-  color: #fff;
-  border: none;
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
-  z-index: 10;
-  cursor: pointer;
-}
-
-.scroll-btn.left {
-  left: 4px;
-}
-
-.scroll-btn.right {
-  right: 4px;
-}
-
-/* Unique colors per section */
-.movies-title {
-  color: #00ffff; /* Cyan */
-}
-
-.tv-title {
-  color: #ffcc00; /* Yellow/Gold */
-}
-
-.anime-title {
-  color: #ff69b4; /* Hot Pink */
-}
-
-.vivamax-title {
-  color: #ff3300; /* Red-Orange */
-}
-
-.korean-title {
-  color: #66ff66; /* Neon Green */
-}
-
-/* Optional: adjust light mode */
-[data-theme="light"] .section-title {
-  animation: none;
-  text-shadow: none;
-}
-
-[data-theme="light"] .movies-title { color: #005577; }
-[data-theme="light"] .tv-title { color: #886600; }
-[data-theme="light"] .anime-title { color: #cc6699; }
-[data-theme="light"] .vivamax-title { color: #992200; }
-[data-theme="light"] .korean-title { color: #336633; }
+    @media (max-width: 1024px) {
+      .modal {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        display: flex; justify-content: center; align-items: center;
+        z-index: 1000;
+      }
+      .modal-content { width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; }
+      .modal-body, .modal-text, .server-selector { display: none; }
+      #modal-video { width: 100%; height: 100%; border: none; }
+      .modal .close { position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #fff; }
+    }
   </style>
 
+  <!-- Theme Toggle Script -->
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const currentTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.setAttribute("data-theme", currentTheme);
-    const toggleBtn = document.getElementById("theme-toggle");
-    if (toggleBtn) {
-      toggleBtn.addEventListener("click", () => {
-        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-        toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
-      });
-    }
-  });
-  </script>
-
-  <script>
-function filterByGenre(genreId) {
-  // Clear all sections before loading new content
-  document.getElementById('movies-list').innerHTML = '';
-  document.getElementById('tvshows-list').innerHTML = '';
-  document.getElementById('anime-list').innerHTML = '';
-  document.getElementById('pinoy-movie-list').innerHTML = '';
-  document.getElementById('korean-movie-list').innerHTML = '';
-
-  // Now reload each section with selected genre
-  loadSectionByGenre('movie', 'movies-list', genreId); // Trending Movies
-  loadSectionByGenre('tv', 'tvshows-list', genreId);   // TV Shows
-  loadSectionByGenre('movie', 'anime-list', genreId);  // Anime (you can adjust this)
-  loadSectionByGenre('movie', 'pinoy-movie-list', genreId); // Vivamax
-  loadSectionByGenre('movie', 'korean-movie-list', genreId); // Korean
-}
-
-// TMDB genre filter loader
-function loadSectionByGenre(type, containerId, genreId) {
-  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-  const url = `https://api.themoviedb.org/3/discover/${type}?api_key=${apiKey}&with_genres=${genreId}`;
-
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      container.innerHTML = '';
-
-      data.results.forEach(movie => {
-        const card = document.createElement('div');
-        card.className = 'movie-card';
-        card.innerHTML = `
-          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title || movie.name}" />
-          <p>${movie.title || movie.name}</p>
-        `;
-        card.onclick = () => openModalWithTMDB(movie.id);
-        container.appendChild(card);
-      });
-    })
-    .catch(err => {
-      console.error(`Failed to load ${type} for genre ${genreId}`, err);
+    document.addEventListener("DOMContentLoaded", () => {
+      const currentTheme = localStorage.getItem("theme") || "light";
+      document.documentElement.setAttribute("data-theme", currentTheme);
+      const toggleBtn = document.getElementById("theme-toggle");
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          document.documentElement.setAttribute("data-theme", newTheme);
+          localStorage.setItem("theme", newTheme);
+          toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
+        });
+      }
     });
-}
-    document.addEventListener('DOMContentLoaded', () => {
-  const loadMoreConfig = [
-    {
-      id: 'loadMoreMoviesBtn',
-      action: async () => {
-        currentPage++;
-        const moreMovies = await fetchTrending('movie');
-        displayList(moreMovies, 'movies-list');
-      },
-    },
-    {
-      id: 'loadMoreTVBtn',
-      action: () => {
-        tvPage++;
-        fetchTrendingTVShows();
-      },
-    },
-    {
-      id: 'loadMoreAnimeBtn',
-      action: () => {
-        currentAnimePage++;
-        fetchAnime(currentAnimePage);
-      },
-    },
-    {
-      id: 'loadMorePinoyBtn',
-      action: () => {
-        pinoyPage++;
-        fetchPinoyMoviesPaginated();
-      },
-    },
-    {
-      id: 'loadMoreKoreanBtn',
-      action: () => {
-        koreanPage++;
-        const selectedGenre = document.getElementById('korean-genre-filter')?.value || '';
-        loadKoreanMovies(selectedGenre);
-      },
-    },
-  ];
-
-  loadMoreConfig.forEach(({ id, action }) => {
-    const btn = document.getElementById(id);
-    if (btn) btn.addEventListener('click', action);
-  });
-});
-</script>
-  
+  </script>
+  <script defer src="js/home.js"></script>
 </head>
+
 <body>
-  <!-- Navbar -->
   <header class="nav-wrapper">
     <div class="container nav">
-      <a href="#" class="logo">
-        <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
-        MOLD<span class="main-color">EROS</span>-TV
-      </a>
+      <a href="#" class="logo"><i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i> MOLD<span class="main-color">EROS</span>-TV</a>
       <input type="checkbox" id="menu-toggle" />
       <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
       <nav class="nav-links">
-  <a href="index.html">Home</a>
-  
-  <!-- Genre Filter -->
-  <select id="genreFilter" class="genre-dropdown" onchange="filterByGenre(this.value)">
-    <option value="">Filter by Genre</option>
-    <option value="28">Action</option>
-    <option value="35">Comedy</option>
-    <option value="18">Drama</option>
-    <option value="27">Horror</option>
-    <option value="10749">Romance</option>
-    <!-- Add more genres as needed -->
-  </select>
-
-  <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" aria-label="Search" />
-  <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
-</nav>
+        <a href="index.html">Home</a>
+        <select id="genreFilter" class="genre-dropdown" onchange="filterByGenre(this.value)">
+          <option value="">Filter by Genre</option>
+          <option value="28">Action</option>
+          <option value="35">Comedy</option>
+          <option value="18">Drama</option>
+          <option value="27">Horror</option>
+          <option value="10749">Romance</option>
+        </select>
+        <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" aria-label="Search" />
+        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
+      </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero-section" id="banner">
     <div class="hero-overlay">
       <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
@@ -417,39 +119,19 @@ function loadSectionByGenre(type, containerId, genreId) {
     </div>
   </section>
 
-  <!-- Main Content -->
   <main>
-    <!-- Trending Movies -->
+    <!-- Section placeholders to be filled dynamically by JS -->
     <section class="row" id="movies-list-section">
-  <div class="trending-header">
-    <h2 class="section-title">🎬 Trending Movies</h2>
-  </div>
-  <div style="position: relative;">
-    <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="movies-list"></div>
-    <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
-  </div>
-      <div class="load-more-container">
-    <button id="loadMoreMoviesBtn">Load More</button>
-  </div>
-</section>
+      <div class="trending-header"><h2 class="section-title movies-title">🎬 Trending Movies</h2></div>
+      <div class="scroll-wrapper">
+        <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
+        <div class="scrollable-row" id="movies-list"></div>
+        <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
+      </div>
+      <div class="load-more-container"><button id="loadMoreMoviesBtn">Load More</button></div>
+    </section>
 
-    <!-- TV Shows + Anime -->
-    <section class="row" id="tvshows-list-section">
-      <section class="row" id="tvshows-list-section">
-  <div class="trending-header">
-    <h2 class="section-title">📺 Trending TV Shows</h2>
-  </div>
-  <div style="position: relative;">
-    <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
-    <div class="scrollable-row" id="tvshows-list"></div>
-    <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
-  </div>
-        <div class="load-more-container">
-    <button id="loadMoreTVBtn">Load More</button>
-  </div>
-
-        <div class="trending-header">
+    <div class="trending-header">
     <h2 class="section-title">🌸 Trending Anime</h2>
   </div>
   <div style="position: relative;">
@@ -493,57 +175,29 @@ function loadSectionByGenre(type, containerId, genreId) {
       <div class="load-more-container">
     <button id="loadMoreKoreanBtn">Load More</button>
   </div>
-</section>
+    <!-- Repeat sections for TV Shows, Anime, Vivamax, Korean with same structure -->
+    <!-- These will be populated by JS after page load -->
   </main>
 
-<!-- END OF CLEANED SECTIONS -->
-
-  <!-- Loading Spinner -->
   <div class="loading-spinner" id="loading-spinner" style="display: none;">
-    <i class="fas fa-spinner fa-spin"></i>
-    <span>Loading content...</span>
+    <i class="fas fa-spinner fa-spin"></i><span>Loading content...</span>
   </div>
 
-  <!-- Modal -->
   <div class="modal" id="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
-      <div class="modal-body">
-        <img id="modal-image" src="" alt="Movie poster" />
-        <div class="modal-text">
-          <h2 id="modal-title"></h2>
-          <div class="stars" id="modal-rating"></div>
-          <p id="modal-description"></p>
-        </div>
-      </div>
-      <div class="server-selector">
-        <label for="server">Change Server:</label>
-        <select id="server" onchange="changeServer()">
-          <option value="vidsrc.cc">Vidsrc.cc</option>
-          <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Player.Videasy.net</option>
-        </select>
-     </div>
-      <iframe id="modal-video" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
+      <span class="close" onclick="closeModal()">&times;</span>
+      <iframe id="modal-video" width="100%" height="360" frameborder="0" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 
-  <!-- Search Modal -->
-<div class="search-modal" id="search-modal">
-  <div class="search-modal-box">
-    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
-    <input 
-      type="text" 
-      id="search-input" 
-      placeholder="Search movies, TV shows, or anime..." 
-      oninput="searchTMDB()" 
-      aria-label="Search input"
-    />
-    <div class="results" id="search-results"></div>
+  <div class="search-modal" id="search-modal">
+    <div class="search-modal-box">
+      <span class="close" onclick="closeSearchModal()">&times;</span>
+      <input type="text" id="search-input" placeholder="Search movies, TV shows, or anime..." oninput="searchTMDB()" aria-label="Search input" />
+      <div class="results" id="search-results"></div>
+    </div>
   </div>
-</div>
 
-    <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
@@ -554,57 +208,5 @@ function loadSectionByGenre(type, containerId, genreId) {
       </div>
     </div>
   </footer>
-
-  <script>
-  let currentMovieId = ""; // Store the movie ID globally
-
-  function openModalWithTMDB(movieId) {
-    currentMovieId = movieId;
-
-    const modal = document.getElementById("modal");
-    const iframe = document.getElementById("modal-video");
-    const server = document.getElementById("server").value;
-
-    iframe.src = generateServerURL(server, movieId);
-    modal.style.display = "flex";
-  }
-
-  function changeServer() {
-    const server = document.getElementById("server").value;
-    const iframe = document.getElementById("modal-video");
-    iframe.src = generateServerURL(server, currentMovieId);
-  }
-
-  function generateServerURL(server, movieId) {
-    switch (server) {
-      case "vidsrc.cc":
-        return `https://vidsrc.to/embed/movie/${movieId}`;
-      case "vidsrc.me":
-        return `https://vidsrc.me/embed/movie/${movieId}`;
-      case "player.videasy.net":
-        return `https://player.videasy.net/embed/movie/${movieId}`;
-      default:
-        return "";
-    }
-  }
-
-  function closeModal() {
-    const modal = document.getElementById("modal");
-    const iframe = document.getElementById("modal-video");
-    modal.style.display = "none";
-    iframe.src = ""; // Stop playback when closed
-  }
-</script>
-
 </body>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("modal");
-    if (modal) {
-      modal.style.display = "none"; // Ensure modal is hidden at start
-    }
-  });
-</script>
-
 </html>
