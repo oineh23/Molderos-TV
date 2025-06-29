@@ -263,8 +263,7 @@
   </style>
 
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const currentTheme = localStorage.getItem("theme") || "light";
+    
     document.documentElement.setAttribute("data-theme", currentTheme);
     const toggleBtn = document.getElementById("theme-toggle");
     if (toggleBtn) {
@@ -276,9 +275,7 @@
       });
     }
   });
-  </script>
 
-  <script>
 function filterByGenre(genreId) {
   // Clear all sections before loading new content
   document.getElementById('movies-list').innerHTML = '';
@@ -322,9 +319,6 @@ function loadSectionByGenre(type, containerId, genreId) {
       console.error(`Failed to load ${type} for genre ${genreId}`, err);
     });
 }
-    document.addEventListener('DOMContentLoaded', () => {
-  const loadMoreConfig = [
-    {
       id: 'loadMoreMoviesBtn',
       action: async () => {
         currentPage++;
