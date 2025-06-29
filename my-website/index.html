@@ -375,6 +375,45 @@ function loadSectionByGenre(type, containerId, genreId) {
     if (btn) btn.addEventListener('click', action);
   });
 });
+
+    let currentPage = 1;
+
+async function fetchTrending(type = 'movie', page = currentPage) {
+  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+  const url = `https://api.themoviedb.org/3/trending/${type}/day?api_key=${apiKey}&page=${page}`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.results;
+  } catch (err) {
+    console.error("Error fetching trending movies:", err);
+    return [];
+  }
+}
+
+function displayList(movies, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  movies.forEach(movie => {
+    const card = document.createElement('div');
+    card.className = 'movie-card';
+    card.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title || movie.name}" />
+      <p>${movie.title || movie.name}</p>
+    `;
+    card.onclick = () => openModalWithTMDB(movie.id);
+    container.appendChild(card);
+  });
+}
+
+// Load initial movies
+document.addEventListener("DOMContentLoaded", async () => {
+  const initialMovies = await fetchTrending('movie', 1);
+  displayList(initialMovies, 'movies-list');
+});
+
 </script>
   
 </head>
