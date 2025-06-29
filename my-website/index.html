@@ -329,177 +329,8 @@ function loadSectionByGenre(type, containerId, genreId) {
       console.error(`Failed to load ${type} for genre ${genreId}`, err);
     });
 }
-    document.addEventListener('DOMContentLoaded', () => {
-  const loadMoreConfig = [
-    {
-      id: 'loadMoreMoviesBtn',
-      action: async () => {
-        currentPage++;
-        const moreMovies = await fetchTrending('movie');
-        displayList(moreMovies, 'movies-list');
-      },
-    },
-    {
-      id: 'loadMoreTVBtn',
-      action: () => {
-        tvPage++;
-        fetchTrendingTVShows();
-      },
-    },
-    {
-      id: 'loadMoreAnimeBtn',
-      action: () => {
-        currentAnimePage++;
-        fetchAnime(currentAnimePage);
-      },
-    },
-    {
-      id: 'loadMorePinoyBtn',
-      action: () => {
-        pinoyPage++;
-        fetchPinoyMoviesPaginated();
-      },
-    },
-    {
-      id: 'loadMoreKoreanBtn',
-      action: () => {
-        koreanPage++;
-        const selectedGenre = document.getElementById('korean-genre-filter')?.value || '';
-        loadKoreanMovies(selectedGenre);
-      },
-    },
-  ];
-
-  loadMoreConfig.forEach(({ id, action }) => {
-    const btn = document.getElementById(id);
-    if (btn) btn.addEventListener('click', action);
-  });
-});
 </script>
-
-  <script>
-fu<style>
-  .scrollable-row {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    gap: 10px;
-    padding: 10px 0;
-  }
-
-  .movie-card {
-    flex: 0 0 auto;
-    width: 180px;
-    height: 280px;
-    background-color: #111;
-    border-radius: 8px;
-    overflow: hidden;
-    color: white;
-    text-align: center;
-  }
-
-  .movie-card img {
-    width: 100%;
-    height: 80%;
-    object-fit: cover;
-  }
-
-  .movie-card p {
-    margin: 8px 0;
-    font-size: 14px;
-  }
-</style>
-
-<!-- ✅ Scroll Fix CSS -->
-<style>
-  .scrollable-row {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    gap: 10px;
-    padding: 10px 0;
-  }
-
-  .movie-card {
-    flex: 0 0 auto;
-    width: 160px;
-    height: 240px;
-    background-color: #111;
-    border-radius: 8px;
-    overflow: hidden;
-    color: white;
-    text-align: center;
-  }
-
-  .movie-card img {
-    width: 100%;
-    height: 80%;
-    object-fit: cover;
-  }
-
-  .movie-card p {
-    margin: 8px 0;
-    font-size: 14px;
-  }
-</style>
-
-<!-- ✅ Scroll Functions -->
-<script>
-  function scrollLeft(containerId) {
-    const container = document.getElementById(containerId);
-    if (container) {
-      container.scrollLeft -= 300;
-    } else {
-      console.error(`Container #${containerId} not found`);
-    }
-  }
-
-  function scrollRight(containerId) {
-    const container = document.getElementById(containerId);
-    if (container) {
-      container.scrollLeft += 300;
-    } else {
-      console.error(`Container #${containerId} not found`);
-    }
-  }
-</script>
-
-<!-- ✅ Movies Section -->
-<div style="position: relative;">
-  <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
-  <div class="scrollable-row" id="movies-list"></div>
-  <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
-</div>
-
-<!-- ✅ TV Shows Section -->
-<div style="position: relative;">
-  <button onclick="scrollLeft('tvshows-list')" class="scroll-btn left">◀</button>
-  <div class="scrollable-row" id="tvshows-list"></div>
-  <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
-</div>
-
-<!-- ✅ Anime Section -->
-<div style="position: relative;">
-  <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
-  <div class="scrollable-row" id="anime-list"></div>
-  <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
-</div>
-
-<!-- ✅ Vivamax Section -->
-<div style="position: relative;">
-  <button onclick="scrollLeft('pinoy-movie-list')" class="scroll-btn left">◀</button>
-  <div class="scrollable-row" id="pinoy-movie-list"></div>
-  <button onclick="scrollRight('pinoy-movie-list')" class="scroll-btn right">▶</button>
-</div>
-
-<!-- ✅ Korean Movies Section -->
-<div style="position: relative;">
-  <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
-  <div class="scrollable-row" id="korean-movie-list"></div>
-  <button onclick="scrollRight('korean-movie-list')" class="scroll-btn right">▶</button>
-</div>
- 
+  
 </head>
 <body>
   <!-- Navbar -->
@@ -552,9 +383,6 @@ fu<style>
     <div class="scrollable-row" id="movies-list"></div>
     <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
   </div>
-      <div class="load-more-container">
-    <button id="loadMoreMoviesBtn">Load More</button>
-  </div>
 </section>
 
     <!-- TV Shows + Anime -->
@@ -568,9 +396,6 @@ fu<style>
     <div class="scrollable-row" id="tvshows-list"></div>
     <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
   </div>
-        <div class="load-more-container">
-    <button id="loadMoreTVBtn">Load More</button>
-  </div>
 
         <div class="trending-header">
     <h2 class="section-title">🌸 Trending Anime</h2>
@@ -579,9 +404,6 @@ fu<style>
     <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
     <div class="scrollable-row" id="anime-list"></div>
     <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
-  </div>
-        <div class="load-more-container">
-    <button id="loadMoreAnimeBtn">Load More</button>
   </div>
 </section>
 
@@ -598,9 +420,6 @@ fu<style>
     <div class="scrollable-row" id="pinoy-movie-list"></div>
     <button onclick="scrollRight('pinoy-movie-list')" class="scroll-btn right">▶</button>
   </div>
-      <div class="load-more-container">
-    <button id="loadMorePinoyBtn">Load More</button>
-  </div>
 </section>
 
     <!-- Korean Movies -->
@@ -612,9 +431,6 @@ fu<style>
     <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
     <div class="scrollable-row" id="korean-movie-list"></div>
     <button onclick="scrollRight('korean-movie-list')" class="scroll-btn right">▶</button>
-  </div>
-      <div class="load-more-container">
-    <button id="loadMoreKoreanBtn">Load More</button>
   </div>
 </section>
   </main>
