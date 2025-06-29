@@ -637,21 +637,31 @@ function playEpisode(season, episode) {
   let currentMovieId = ""; // Store the movie ID globally
 
   function openModalWithTMDB(movieId) {
-    currentMovieId = movieId;
+  currentMovieId = movieId;
 
-    const modal = document.getElementById("modal");
-    const iframe = document.getElementById("modal-video");
-    const server = document.getElementById("server").value;
+  const modal = document.getElementById("modal");
+  const iframe = document.getElementById("modal-video");
+  const server = document.getElementById("server").value;
 
-    iframe.src = generateServerURL(server, movieId);
-    modal.style.display = "flex";
-  }
+  iframe.src = generateServerURL(server, movieId);
+  modal.style.display = "flex";
 
-  function changeServer() {
-    const server = document.getElementById("server").value;
-    const iframe = document.getElementById("modal-video");
-    iframe.src = generateServerURL(server, currentMovieId);
-  }
+  // Detect media type: try TV first, fallback to movie
+  fetch(`https://api.themoviedb.org/3/tv/${movieId}?api_key=b8c2d0fa80cd79b5d28d9fe2853806bb`)
+    .then(res => {
+      if (res.status === 200) return res.json();
+      else throw new Error("Not a TV show");
+    })
+    .then(tvData => {
+      if (tvData.seasons && tvData.seasons.length > 0) {
+        document.querySelector('.season-episode-selector').style.display = 'block';
+        loadSeasons(tvData.seasons);
+      }
+    })
+    .catch(() => {
+      document.querySelector('.season-episode-selector').style.display = 'none';
+    });
+}
 
   function generateServerURL(server, movieId) {
     switch (server) {
