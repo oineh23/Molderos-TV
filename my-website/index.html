@@ -143,246 +143,42 @@
     0 0 40px #0ff,
     2px 2px 0 #111;
   animation: neonPulse 0.7s infinite ease-in-out;
-<style>
-  :root {
-    --bg-color: #ffffff;
-    --text-color: #000000;
-    --nav-bg: #f0f0f0;
-  }
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 
-  [data-theme="dark"] {
-    --bg-color: #121212;
-    --text-color: #ffffff;
-    --nav-bg: #1e1e1e;
-  }
+    [data-theme="light"] .logo {
+  color: #004466;
+  text-shadow:
+    1px 1px 0 #ccc,
+    2px 2px 3px #aaa;
+}
 
-  body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  .nav-wrapper {
-    background-color: var(--nav-bg);
-    transition: background-color 0.3s ease;
-  }
-
-  .theme-toggle {
-    cursor: pointer;
-    font-size: 1.4rem;
-    margin-left: 15px;
-    color: var(--text-color);
-  }
-
-  @media (max-width: 1024px) {
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      padding: 0;
-      background-color: rgba(0, 0, 0, 0.95);
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      width: 100vw;
-      height: 100vh;
-      padding: 0;
-      margin: 0;
-      border-radius: 0;
-      background: #000;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .modal-body,
-    .modal-text,
-    .server-selector {
-      display: none;
-    }
-
-    #modal-video {
-      width: 100vw;
-      height: 100vh;
-      border: none;
-    }
-
-    .modal .close {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 2rem;
-      color: #fff;
-      z-index: 2000;
-    }
-  }
-
-  .load-more-container {
-    margin-top: 30px;
-    text-align: center;
-  }
-
-  .logo {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: #00ffff;
+    @keyframes neonPulse {
+  0%, 100% {
     text-shadow:
       0 0 5px #0ff,
       0 0 10px #0ff,
       0 0 20px #0ff,
       0 0 40px #0ff,
       2px 2px 0 #111;
-    animation: neonPulse 0.7s infinite ease-in-out;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
   }
-
-  [data-theme="light"] .logo {
-    color: #004466;
+  50% {
     text-shadow:
-      1px 1px 0 #ccc,
-      2px 2px 3px #aaa;
-  }
-
-  @keyframes neonPulse {
-    0%, 100% {
-      text-shadow:
-        0 0 5px #0ff,
-        0 0 10px #0ff,
-        0 0 20px #0ff,
-        0 0 40px #0ff,
-        2px 2px 0 #111;
-    }
-    50% {
-      text-shadow:
-        0 0 2px #0ff,
-        0 0 4px #0ff,
-        0 0 10px #0ff,
-        0 0 20px #0ff,
-        1px 1px 0 #111;
-    }
-  }
-    
-   
-    /* ... existing styles ... */
-  .section-title {
-    text-align: center;
-    font-size: 6rem;
-    margin: 20px auto;
-    color: var(--text-color);
-  }
-    .section-title {
-  text-align: center;
-  font-size: 1.8rem;
-  margin: 30px auto 20px;
-  font-weight: bold;
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
-  animation: glowPulse 1s infinite alternate;
-}
-
-@keyframes glowPulse {
-  from {
-    text-shadow:
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 30px currentColor;
-  }
-  to {
-    text-shadow:
-      0 0 2px currentColor,
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 15px currentColor;
+      0 0 2px #0ff,
+      0 0 4px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
+      1px 1px 0 #111;
   }
 }
-    .genre-dropdown {
-  padding: 6px 10px;
-  margin: 0 15px;
-  font-size: 14px;
-  border-radius: 4px;
-  background-color: #222;
-  color: #fff;
-  border: 1px solid #444;
-  cursor: pointer;
-}
-
-[data-theme="light"] .genre-dropdown {
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #ccc;
-}
-
-    .scroll-btn.left,
-.scroll-btn.right {
-  font-size: 16px; /* Smaller arrow size */
-  padding: 4px 8px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent dark bg */
-  color: #fff;
-  border: none;
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
-  z-index: 10;
-  cursor: pointer;
-}
-
-.scroll-btn.left {
-  left: 4px;
-}
-
-.scroll-btn.right {
-  right: 4px;
-}
-
-/* Unique colors per section */
-.movies-title {
-  color: #00ffff; /* Cyan */
-}
-
-.tv-title {
-  color: #ffcc00; /* Yellow/Gold */
-}
-
-.anime-title {
-  color: #ff69b4; /* Hot Pink */
-}
-
-.vivamax-title {
-  color: #ff3300; /* Red-Orange */
-}
-
-.korean-title {
-  color: #66ff66; /* Neon Green */
-}
-
-/* Optional: adjust light mode */
-[data-theme="light"] .section-title {
-  animation: none;
-  text-shadow: none;
-}
-
-[data-theme="light"] .movies-title { color: #005577; }
-[data-theme="light"] .tv-title { color: #886600; }
-[data-theme="light"] .anime-title { color: #cc6699; }
-[data-theme="light"] .vivamax-title { color: #992200; }
-[data-theme="light"] .korean-title { color: #336633; }
+ 
+</style>
 
 </style>
-  
 <script>
   // Theme toggle logic
   document.addEventListener("DOMContentLoaded", () => {
@@ -432,7 +228,7 @@
   <section class="hero-section" id="banner">
     <div class="hero-overlay">
       <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
+      <p class="subtitle">Movies, TV Shows, and Anime â€“ Updated Daily</p>
       <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
     </div>
   </section>
@@ -441,9 +237,9 @@
   <main>
     <section class="row" id="movies-list-section">
   <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">🎬 Trending Movies</h2>
+    <h2 style="margin: 0;">ðŸŽ¬ Trending Movies</h2>
     <div class="genre-filter">
-      <label for="genre-select">🎯 Filter by Genre:</label>
+      <label for="genre-select">ðŸŽ¯ Filter by Genre:</label>
       <select id="genre-select" onchange="filterByGenre(this.value)">
         <option value="">All</option>
         <option value="28">Action</option>
@@ -474,9 +270,9 @@
     <!-- Trending TV Shows Section -->
 <section class="row" id="tvshows-list-section">
   <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">📺 Trending TV Shows</h2>
+    <h2 style="margin: 0;">ðŸ“º Trending TV Shows</h2>
     <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="tv-genre-filter">🎯 Filter by Genre:</label>
+      <label for="tv-genre-filter">ðŸŽ¯ Filter by Genre:</label>
       <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
         <option value="">All</option>
         <option value="28">Action</option>
@@ -491,10 +287,10 @@
 </section>
 
     <section class="row" id="anime-list-section">
-  <h2>🌸 Trending Anime</h2>
+  <h2>ðŸŒ¸ Trending Anime</h2>
   <div class="card-container" id="anime-list"></div>
   <div class="load-more-container">
-    <button id="load-more-anime">🎥 Load More</button>
+    <button id="load-more-anime">ðŸŽ¥ Load More</button>
   </div>
 </section>
 
@@ -506,7 +302,7 @@
       Vivamax
     </h2>
     <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
-      <label for="pinoy-genre-filter">🎯 Filter by Genre:</label>
+      <label for="pinoy-genre-filter">ðŸŽ¯ Filter by Genre:</label>
       <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
         <option value="">All Genres</option>
         <optgroup label="Popular Genres">
@@ -535,16 +331,16 @@
   </div>
   <div class="vivamax-grid" id="pinoy-movie-list"></div>
   <div class="load-more-container">
-    <button id="load-more-pinoy">🎥 Load More</button>
+    <button id="load-more-pinoy">ðŸŽ¥ Load More</button>
   </div>
 </section>
 
     <!-- Korean Movies Section -->
 <section class="section" id="korean-movies">
   <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">🇰🇷 Korean Movies</h2>
+    <h2 style="margin: 0;">ðŸ‡°ðŸ‡· Korean Movies</h2>
     <div class="genre-filter">
-      <label for="korean-genre-filter">🎯 Filter by Genre:</label>
+      <label for="korean-genre-filter">ðŸŽ¯ Filter by Genre:</label>
       <select id="korean-genre-filter" onchange="filterByKoreanGenre(this.value)">
         <option value="">All</option>
         <option value="28">Action</option>
@@ -558,7 +354,7 @@
   </div>
   <div class="vivamax-grid" id="korean-movie-list"></div>
   <div class="load-more-container">
-    <button id="load-more-korean">🎥 Load More</button>
+    <button id="load-more-korean">ðŸŽ¥ Load More</button>
   </div>
 </section>
   </main>
@@ -608,55 +404,17 @@
   </div>
 </div>
 
-     <script>
-  let currentMovieId = ""; // Store the movie ID globally
-
-  function openModalWithTMDB(movieId) {
-    currentMovieId = movieId;
-
-    const modal = document.getElementById("modal");
-    const iframe = document.getElementById("modal-video");
-    const server = document.getElementById("server").value;
-
-    iframe.src = generateServerURL(server, movieId);
-    modal.style.display = "flex";
-  }
-
-  function changeServer() {
-    const server = document.getElementById("server").value;
-    const iframe = document.getElementById("modal-video");
-    iframe.src = generateServerURL(server, currentMovieId);
-  }
-
-  function generateServerURL(server, movieId) {
-    switch (server) {
-      case "vidsrc.cc":
-        return `https://vidsrc.to/embed/movie/${movieId}`;
-      case "vidsrc.me":
-        return `https://vidsrc.me/embed/movie/${movieId}`;
-      case "player.videasy.net":
-        return `https://player.videasy.net/embed/movie/${movieId}`;
-      default:
-        return "";
-    }
-  }
-
-  function closeModal() {
-    const modal = document.getElementById("modal");
-    const iframe = document.getElementById("modal-video");
-    modal.style.display = "none";
-    iframe.src = ""; // Stop playback when closed
-  }
-</script>
-
+    <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Disclaimer</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+  
 </body>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("modal");
-    if (modal) {
-      modal.style.display = "none"; // Ensure modal is hidden at start
-    }
-  });
-</script>
 </html>
