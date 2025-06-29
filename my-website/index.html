@@ -375,8 +375,20 @@ function loadSectionByGenre(type, containerId, genreId) {
   <main>
     <!-- Trending Movies -->
     <section class="row" id="movies-list-section">
-  <div class="trending-header">
-    <h2 class="section-title">🎬 Trending Movies</h2>
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h2 class="section-title movies-title">🎬 Trending Movies</h2>
+    <button onclick="alert('Menu clicked!')" class="menu-button" style="
+      padding: 6px 14px;
+      font-size: 14px;
+      border: none;
+      background-color: #00ffff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    ">
+      Menu
+    </button>
   </div>
   <div style="position: relative;">
     <button onclick="scrollLeft('movies-list')" class="scroll-btn left">◀</button>
