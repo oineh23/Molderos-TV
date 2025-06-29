@@ -682,17 +682,6 @@ function playEpisode(season, episode) {
     modal.style.display = "none";
     iframe.src = ""; // Stop playback when closed
   }
-</script>
-
-</body>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("modal");
-    if (modal) {
-      modal.style.display = "none"; // Ensure modal is hidden at start
-    }
-  });
 
     function loadSeasons(seasons) {
   const select = document.getElementById("seasonSelect");
@@ -727,6 +716,19 @@ function playEpisode(season, episode) {
   const server = document.getElementById("server").value;
   iframe.src = `https://vidsrc.to/embed/tv/${currentMovieId}/${season}/${episode}`;
 }
+
+</script>
+
+</body>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("modal");
+    if (modal) {
+      modal.style.display = "none"; // Ensure modal is hidden at start
+    }
+  });
+
 </script>
 
 </html>
