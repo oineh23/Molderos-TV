@@ -409,6 +409,40 @@ function loadSectionByGenre(type, containerId, genreId) {
     if (btn) btn.addEventListener('click', action);
   });
 });
+
+  function loadSeasons(seasons) {
+  const select = document.getElementById("seasonSelect");
+  select.innerHTML = '';
+  seasons.forEach((season, index) => {
+    const option = document.createElement("option");
+    option.value = season.season_number;
+    option.textContent = season.name || `Season ${index + 1}`;
+    select.appendChild(option);
+  });
+  loadEpisodes(seasons[0].season_number); // Auto-load first season
+}
+
+function loadEpisodes(seasonNumber) {
+  const episodeList = document.getElementById("episodeList");
+  episodeList.innerHTML = '';
+
+  // Sample data — Replace with API call
+  const totalEpisodes = 10; // Example
+  for (let i = 1; i <= totalEpisodes; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = `E${i}`;
+    btn.onclick = () => playEpisode(seasonNumber, i);
+    episodeList.appendChild(btn);
+  }
+}
+
+function playEpisode(season, episode) {
+  const iframe = document.getElementById("modal-video");
+  const server = document.getElementById("server").value;
+  const id = currentMovieId;
+  // Sample logic — You need real embed URLs per episode
+  iframe.src = `https://vidsrc.to/embed/tv/${id}/${season}/${episode}`;
+}
 </script>
   
 </head>
