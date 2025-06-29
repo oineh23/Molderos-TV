@@ -376,7 +376,29 @@ function loadSectionByGenre(type, containerId, genreId) {
   });
 });
 </script>
-  
+
+  <script>
+function scrollLeft(containerId) {
+  const container = document.getElementById(containerId);
+  if (container) {
+    container.scrollBy({
+      left: -300,
+      behavior: 'smooth'
+    });
+  }
+}
+
+function scrollRight(containerId) {
+  const container = document.getElementById(containerId);
+  if (container) {
+    container.scrollBy({
+      left: 300,
+      behavior: 'smooth'
+    });
+  }
+}
+</script>
+ 
 </head>
 <body>
   <!-- Navbar -->
