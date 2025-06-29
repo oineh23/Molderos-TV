@@ -1,4 +1,3 @@
-
 // ====== CONFIGURATION ======
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -113,10 +112,10 @@ function createCard(item) {
   const year = (item.release_date || item.first_air_date || '').slice(0, 4);
   const yearEl = document.createElement('p');
   yearEl.className = 'movie-year';
-  yearEl.textContent = year ? `📅 ${year}` : '';
+  yearEl.textContent = year ? `ЁЯУЕ ${year}` : '';
 
   const rating = document.createElement('p');
-  rating.textContent = `⭐ ${item.vote_average?.toFixed(1)} / 10`;
+  rating.textContent = `тнР ${item.vote_average?.toFixed(1)} / 10`;
 
   info.appendChild(title);
   info.appendChild(yearEl);
@@ -240,7 +239,7 @@ function showDetails(item) {
   document.getElementById('modal-title').textContent = item.title || item.name;
   document.getElementById('modal-description').textContent = item.overview || 'No description available.';
   document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
-  document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2)) || 'N/A';
+  document.getElementById('modal-rating').innerHTML = 'тШЕ'.repeat(Math.round(item.vote_average / 2)) || 'N/A';
 
   changeServer();
   document.getElementById('modal').style.display = 'flex';
@@ -353,10 +352,10 @@ async function loadKoreanMovies(genre = '') {
       const year = (movie.release_date || '').slice(0, 4);
       const yearEl = document.createElement('p');
       yearEl.className = 'movie-year';
-      yearEl.textContent = year ? `📅 ${year}` : '';
+      yearEl.textContent = year ? `ЁЯУЕ ${year}` : '';
 
       const rating = document.createElement('p');
-      rating.textContent = `⭐ ${movie.vote_average?.toFixed(1)} / 10`;
+      rating.textContent = `тнР ${movie.vote_average?.toFixed(1)} / 10`;
 
       info.appendChild(title);
       info.appendChild(yearEl);
