@@ -517,6 +517,16 @@ function loadSectionByGenre(type, containerId, genreId) {
         </div>
       </div>
       <div class="server-selector">
+        <div class="season-episode-selector">
+  <label for="seasonSelect">Select Season:</label>
+  <select id="seasonSelect" onchange="loadEpisodes(this.value)">
+    <!-- Populated dynamically -->
+  </select>
+
+  <div id="episodeList" class="episode-grid">
+    <!-- Episodes will appear here -->
+  </div>
+</div>
         <label for="server">Change Server:</label>
         <select id="server" onchange="changeServer()">
           <option value="vidsrc.cc">Vidsrc.cc</option>
