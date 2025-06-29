@@ -21,13 +21,6 @@
       event.preventDefault();
       alert("Right-click is disabled on this page.");
     });
-
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "F12") e.preventDefault();
-    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) e.preventDefault();
-    if (e.ctrlKey && e.key === "u") e.preventDefault();
-  });
-
 </script>
 
   <style>
