@@ -693,6 +693,40 @@ function playEpisode(season, episode) {
       modal.style.display = "none"; // Ensure modal is hidden at start
     }
   });
+
+    function loadSeasons(seasons) {
+  const select = document.getElementById("seasonSelect");
+  select.innerHTML = '';
+  seasons.forEach((season) => {
+    const option = document.createElement("option");
+    option.value = season.season_number;
+    option.textContent = season.name || `Season ${season.season_number}`;
+    select.appendChild(option);
+  });
+  loadEpisodes(seasons[0].season_number);
+}
+
+function loadEpisodes(seasonNumber) {
+  const episodeList = document.getElementById("episodeList");
+  episodeList.innerHTML = '';
+
+  fetch(`https://api.themoviedb.org/3/tv/${currentMovieId}/season/${seasonNumber}?api_key=b8c2d0fa80cd79b5d28d9fe2853806bb`)
+    .then(res => res.json())
+    .then(data => {
+      data.episodes.forEach(ep => {
+        const btn = document.createElement("button");
+        btn.textContent = `E${ep.episode_number}`;
+        btn.onclick = () => playEpisode(seasonNumber, ep.episode_number);
+        episodeList.appendChild(btn);
+      });
+    });
+}
+
+function playEpisode(season, episode) {
+  const iframe = document.getElementById("modal-video");
+  const server = document.getElementById("server").value;
+  iframe.src = `https://vidsrc.to/embed/tv/${currentMovieId}/${season}/${episode}`;
+}
 </script>
 
 </html>
