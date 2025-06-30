@@ -470,8 +470,41 @@ function renderSeriesCard(series) {
 }
 
 function openModalWithSeries(series) {
-  // You can customize this to show a modal of all parts
-  alert(`Series clicked: ${series.name}`);
+  const modal = document.getElementById("modal");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDescription = document.getElementById("modal-description");
+  const modalImage = document.getElementById("modal-image");
+  const seriesParts = document.getElementById("series-parts");
+  const modalVideo = document.getElementById("modal-video");
+
+  modalTitle.textContent = series.name;
+  modalDescription.textContent = series.overview || "Movie collection";
+  modalImage.src = `https://image.tmdb.org/t/p/w500${series.poster_path || series.parts[0]?.poster_path}`;
+  seriesParts.innerHTML = "";
+
+  // Clear iframe video
+  modalVideo.src = "";
+
+  // Add each movie in the series
+  series.parts.forEach(movie => {
+    const part = document.createElement("div");
+    part.classList.add("series-part");
+
+    part.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" />
+      <p>${movie.title}</p>
+    `;
+
+    part.addEventListener("click", () => {
+      // Load video into iframe
+      const videoUrl = `https://vidsrc.to/embed/movie/${movie.id}`;
+      modalVideo.src = videoUrl;
+    });
+
+    seriesParts.appendChild(part);
+  });
+
+  modal.style.display = "flex";
 }
 
 // Load initial series
