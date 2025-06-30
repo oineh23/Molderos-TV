@@ -409,3 +409,76 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
+
+// ===== MOVIE SERIES SECTION =====
+const seriesContainer = document.getElementById("series-list");
+const loadMoreSeriesBtn = document.getElementById("load-more-series");
+
+const seriesCollectionIds = [
+  1241,    // Harry Potter
+  9485,    // Fast & Furious
+  10,      // Star Wars
+  328,     // Jurassic Park
+  86311,   // The Conjuring
+  453993,  // The Kingsman
+  529892,  // The Kissing Booth
+  404609,  // To All the Boys
+  131635,  // Twilight Saga
+];
+
+let currentSeriesIndex = 0;
+const seriesPerPage = 3;
+
+function loadMovieSeries() {
+  const slice = seriesCollectionIds.slice(currentSeriesIndex, currentSeriesIndex + seriesPerPage);
+  slice.forEach(collectionId => {
+    fetch(`https://api.themoviedb.org/3/collection/${collectionId}?api_key=YOUR_API_KEY`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.parts && data.parts.length > 0) {
+          renderSeriesCard(data);
+        }
+      })
+      .catch(err => console.error("Error loading series:", err));
+  });
+
+  currentSeriesIndex += seriesPerPage;
+  if (currentSeriesIndex >= seriesCollectionIds.length) {
+    loadMoreSeriesBtn.style.display = "none";
+  }
+}
+
+function renderSeriesCard(series) {
+  const firstPoster = series.parts[0]?.poster_path;
+  const seriesCard = document.createElement("div");
+  seriesCard.classList.add("card");
+
+  seriesCard.innerHTML = `
+    <img src="https://image.tmdb.org/t/p/w500${firstPoster}" alt="${series.name}" loading="lazy" />
+    <div class="card-body">
+      <h3 class="card-title">${series.name}</h3>
+      <p class="card-overview">${series.overview || 'A movie series collection.'}</p>
+    </div>
+  `;
+
+  // Optional: click to open modal or more details
+  seriesCard.addEventListener("click", () => {
+    openModalWithSeries(series);
+  });
+
+  seriesContainer.appendChild(seriesCard);
+}
+
+function openModalWithSeries(series) {
+  // You can customize this to show a modal of all parts
+  alert(`Series clicked: ${series.name}`);
+}
+
+// Load initial series
+loadMovieSeries();
+
+// Load More Button
+if (loadMoreSeriesBtn) {
+  loadMoreSeriesBtn.addEventListener("click", loadMovieSeries);
+}
+
