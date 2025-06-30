@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,37 +127,6 @@
     z-index: 2000;
   }
 }
-    .landscape-warning {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #000;
-  color: #fff;
-  width: 100vw;
-  height: 100vh;
-  z-index: 3000;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.2rem;
-}
-
-@media screen and (orientation: portrait) and (max-width: 768px) {
-  .landscape-warning {
-    display: flex;
-  }
-
-  .modal {
-    display: none !important;
-  }
-}
-
-    <div class="landscape-warning" id="landscape-warning">
-  🔄 Please rotate your device to landscape mode for the best viewing experience.
-</div>
-
 </style>
 
   <style>  
@@ -230,24 +200,6 @@
       });
     }
   });
-
-  function checkOrientation() {
-  const warning = document.getElementById('landscape-warning');
-  const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-
-  if (isPortrait && window.innerWidth <= 768) {
-    warning.style.display = 'flex';
-    document.getElementById('modal').style.display = 'none';
-  } else {
-    warning.style.display = 'none';
-    document.getElementById('modal').style.display = 'flex';
-  }
-}
-
-window.addEventListener('orientationchange', checkOrientation);
-window.addEventListener('resize', checkOrientation);
-document.addEventListener('DOMContentLoaded', checkOrientation);
-
 </script>
   
 <body>
