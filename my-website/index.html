@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -321,67 +322,6 @@
   gap: 10px;
 }
 
-    /* Section Header Styling */
-.section-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin: 40px 0 25px;
-  animation: fadeInUp 0.8s ease both;
-}
-
-.section-header h2 {
-  font-size: 2rem;
-  margin-bottom: 8px;
-  color: var(--text-color);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Decorative Underline */
-.section-header::after {
-  content: "";
-  width: 60px;
-  height: 3px;
-  background-color: #00ffff;
-  margin-top: 10px;
-  border-radius: 2px;
-}
-
-/* Genre Filter */
-.genre-filter {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.genre-filter label {
-  font-weight: bold;
-  color: var(--text-color);
-}
-
-.genre-filter select {
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-
-/* Fade In Animation */
-@keyframes fadeInUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 </style>
 
 <script>
@@ -502,14 +442,31 @@ function closeModal() {
 
   <!-- Main Content -->
   <main>
-  <!-- Trending Movies -->
   <section class="row" id="movies-list-section">
     <div class="section-header">
-      <h2><i class="fas fa-film"></i> Trending Movies</h2>
+      <h2>🎬 Trending Movies</h2>
       <div class="genre-filter">
         <label for="genre-select">🎯 Filter by Genre:</label>
         <select id="genre-select" onchange="filterByGenre(this.value)">
-          <!-- options -->
+          <option value="">All</option>
+          <option value="28">Action</option>
+          <option value="35">Comedy</option>
+          <option value="18">Drama</option>
+          <option value="27">Horror</option>
+          <option value="16">Animation</option>
+          <option value="10749">Romance</option>
+          <option value="878">Science Fiction</option>
+          <option value="10751">Family</option>
+          <option value="99">Documentary</option>
+          <option value="12">Adventure</option>
+          <option value="80">Crime</option>
+          <option value="9648">Mystery</option>
+          <option value="53">Thriller</option>
+          <option value="14">Fantasy</option>
+          <option value="36">History</option>
+          <option value="10402">Music</option>
+          <option value="10752">War</option>
+          <option value="37">Western</option>
         </select>
       </div>
     </div>
@@ -519,11 +476,16 @@ function closeModal() {
   <!-- Trending TV Shows -->
   <section class="row" id="tvshows-list-section">
     <div class="section-header">
-      <h2><i class="fas fa-tv"></i> Trending TV Shows</h2>
+      <h2>📺 Trending TV Shows</h2>
       <div class="genre-filter">
         <label for="tv-genre-filter">🎯 Filter by Genre:</label>
         <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
-          <!-- options -->
+          <option value="">All</option>
+          <option value="28">Action</option>
+          <option value="35">Comedy</option>
+          <option value="18">Drama</option>
+          <option value="10765">Sci-Fi</option>
+          <option value="16">Anime</option>
         </select>
       </div>
     </div>
@@ -533,7 +495,7 @@ function closeModal() {
   <!-- Trending Anime -->
   <section class="row" id="anime-list-section">
     <div class="section-header">
-      <h2><i class="fas fa-star"></i> Trending Anime</h2>
+      <h2>🌸 Trending Anime</h2>
     </div>
     <div class="card-container" id="anime-list"></div>
     <div class="load-more-container">
@@ -544,11 +506,35 @@ function closeModal() {
   <!-- Vivamax / Pinoy Movies -->
   <section class="section" id="pinoy-movies">
     <div class="section-header">
-      <h2><img src="images/images.jpg" alt="Vivamax" style="height: 35px; border-radius: 4px;" /> Vivamax</h2>
+      <h2 style="display: flex; align-items: center; gap: 5px;">
+        <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
+        Vivamax
+      </h2>
       <div class="genre-filter">
         <label for="pinoy-genre-filter">🎯 Filter by Genre:</label>
         <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
-          <!-- options -->
+          <option value="">All Genres</option>
+          <optgroup label="Popular Genres">
+            <option value="28">Action</option>
+            <option value="35">Comedy</option>
+            <option value="18">Drama</option>
+            <option value="10749">Romance</option>
+            <option value="80">Crime</option>
+            <option value="27">Horror</option>
+            <option value="10751">Family</option>
+            <option value="16">Animation</option>
+          </optgroup>
+          <optgroup label="Other Genres">
+            <option value="99">Documentary</option>
+            <option value="10402">Music</option>
+            <option value="9648">Mystery</option>
+            <option value="878">Science Fiction</option>
+            <option value="10752">War</option>
+            <option value="37">Western</option>
+            <option value="36">History</option>
+            <option value="14">Fantasy</option>
+            <option value="53">Thriller</option>
+          </optgroup>
         </select>
       </div>
     </div>
@@ -561,11 +547,17 @@ function closeModal() {
   <!-- Korean Movies -->
   <section class="section" id="korean-movies">
     <div class="section-header">
-      <h2><i class="fas fa-globe-asia"></i> Korean Movies</h2>
+      <h2>🇰🇷 Korean Movies</h2>
       <div class="genre-filter">
         <label for="korean-genre-filter">🎯 Filter by Genre:</label>
         <select id="korean-genre-filter" onchange="filterByKoreanGenre(this.value)">
-          <!-- options -->
+          <option value="">All</option>
+          <option value="28">Action</option>
+          <option value="35">Comedy</option>
+          <option value="18">Drama</option>
+          <option value="10749">Romance</option>
+          <option value="27">Horror</option>
+          <option value="80">Crime</option>
         </select>
       </div>
     </div>
