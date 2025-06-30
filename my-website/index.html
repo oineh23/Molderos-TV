@@ -214,6 +214,7 @@
       <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
       <nav class="nav-links">
         <a href="index.html">Home</a>
+        <a href="#series-list-section">Movie Series</a>
         <a href="#pinoy-movies">VMX</a>
         <a href="#tvshows-list">TV Shows</a>
         <a href="#anime-list">Anime</a>
@@ -270,6 +271,29 @@
   </div>
 
   <div class="card-container" id="movies-list"></div>
+</section>
+
+    <!-- Movie Series Section -->
+<section class="row" id="series-list-section">
+  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h2 style="margin: 0;">📽️ Movie Series</h2>
+    <div class="genre-filter" style="display: flex; align-items: center; gap: 10px;">
+      <label for="series-genre-filter">🎯 Filter by Genre:</label>
+      <select id="series-genre-filter" onchange="filterBySeriesGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="12">Adventure</option>
+        <option value="14">Fantasy</option>
+        <option value="878">Science Fiction</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-container" id="series-list"></div>
+  <div class="load-more-container">
+    <button id="load-more-series">🎥 Load More</button>
+  </div>
 </section>
 
     <!-- Trending TV Shows Section -->
