@@ -237,45 +237,6 @@
     }
   });
 </script>
-
-  <script>
-    const servers = [
-      "https://vidsrc.cc/embed/movie/12345",
-      "https://vidsrc.me/embed/movie/12345",
-      "https://player.videasy.net/embed/movie/12345"
-    ];
-
-    let currentServerIndex = 0;
-    const iframe = document.getElementById("videoPlayer");
-
-    function tryNextServer() {
-      if (currentServerIndex < servers.length) {
-        iframe.src = servers[currentServerIndex];
-        currentServerIndex++;
-      } else {
-        alert("All servers failed to load. Please try again later.");
-      }
-    }
-
-    // Try the first server
-    tryNextServer();
-
-    // Detect load failure using timeout (because iframe onerror doesn't work for cross-origin)
-    function checkIframeLoad() {
-      const timeout = setTimeout(() => {
-        console.warn("Server failed, trying next...");
-        tryNextServer();
-        checkIframeLoad(); // try again
-      }, 5000); // Wait 5 seconds before switching
-
-      iframe.onload = function () {
-        clearTimeout(timeout);
-        console.log("Loaded successfully:", iframe.src);
-      };
-    }
-
-    checkIframeLoad();
-  </script>
   
 <body>
   <!-- Navbar -->
