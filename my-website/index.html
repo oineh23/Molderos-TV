@@ -74,14 +74,15 @@
   }
 
     <style>
-  /* Fullscreen video modal styles for mobile and tablets */
-  @media (max-width: 1024px) {
+  /* --- Fullscreen video modal styles for mobile and tablets --- */
+@media (max-width: 1024px) {
   .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+    padding: 0;
     background-color: rgba(0, 0, 0, 0.95);
     z-index: 1000;
     display: flex;
@@ -105,7 +106,7 @@
   .modal-body,
   .modal-text,
   .server-selector {
-    display: none;
+    display: none; /* Hide non-video content for fullscreen effect */
   }
 
   #modal-video {
