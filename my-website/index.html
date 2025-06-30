@@ -180,6 +180,28 @@
       1px 1px 0 #111;
   }
 }
+    .series-parts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.series-parts-grid .series-part {
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+}
+
+.series-parts-grid img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.series-parts-grid img:hover {
+  transform: scale(1.05);
+}
  
 </style>
 
