@@ -298,6 +298,87 @@
   margin: 10px 0 0;
   color: var(--text-color);
 }
+    .hero-section {
+  position: relative;
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+}
+
+.hero-overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 25%, rgba(0, 0, 0, 0.2) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 3rem;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-watch,
+.btn-info {
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.3s ease;
+}
+
+.btn-watch {
+  background-color: #e50914;
+  color: white;
+}
+
+.btn-info {
+  background-color: rgba(109, 109, 110, 0.7);
+  color: white;
+}
+
+.btn-watch:hover,
+.btn-info:hover {
+  opacity: 0.85;
+  transform: scale(1.03);
+}
+
+@media screen and (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-description {
+    font-size: 1rem;
+  }
+  .hero-section {
+    height: 70vh;
+  }
+}
 </style>
 
 <script>
@@ -408,13 +489,18 @@ function closeModal() {
   </header>
 
   <!-- Hero Section -->
-  <section class="hero-section" id="banner">
-    <div class="hero-overlay">
-      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
-      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
-      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
+  <section class="hero-section" id="banner" style="background-image: url('https://image.tmdb.org/t/p/original/qJ2tW6WMUDux911r6m7haRef0WH.jpg');">
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <h1 class="hero-title">The Dark Knight</h1>
+      <p class="hero-description">A hero can be anyone. Even a man doing something as simple as putting a coat around a young boy’s shoulders to let him know the world hadn’t ended.</p>
+      <div class="hero-buttons">
+        <button class="btn-watch" onclick="openModal('155')"><i class="fa fa-play"></i> Watch Now</button>
+        <button class="btn-info"><i class="fa fa-info-circle"></i> More Info</button>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Main Content -->
   <main>
