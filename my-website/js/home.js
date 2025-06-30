@@ -291,41 +291,28 @@ function closeModal() {
 }
 
 // ====== SEARCH MODAL ======
-function openSearchModal() {
-  document.getElementById('search-modal').style.display = 'flex';
-  document.getElementById('search-input').focus();
-}
-
-function closeSearchModal() {
-  document.getElementById('search-modal').style.display = 'none';
-  document.getElementById('search-results').innerHTML = '';
-}
-
-const searchTMDB = debounce(async () => {
-  const query = document.getElementById('search-input').value.trim();
+function renderSearchResults(results) {
   const container = document.getElementById('search-results');
-  if (!query || !container) {
-    container.innerHTML = '';
-    return;
-  }
-
-  const results = await fetchData(`${BASE_URL}/search/multi?api_key=${API_KEY}&query=${encodeURIComponent(query)}`);
   container.innerHTML = '';
 
   results.forEach(item => {
-    if (!item.poster_path) return;
+    const card = document.createElement('div');
+    card.classList.add('search-card');
 
-    const img = document.createElement('img');
-    img.src = `${IMG_URL}${item.poster_path}`;
-    img.alt = item.title || item.name || 'Search result';
-    img.onclick = () => {
-      closeSearchModal();
-      showDetails(item);
-    };
+    const title = item.title || item.name || 'Untitled';
+    const imageUrl = item.poster_path 
+      ? `https://image.tmdb.org/t/p/w300${item.poster_path}`
+      : 'https://via.placeholder.com/300x450?text=No+Image';
 
-    container.appendChild(img);
+    card.innerHTML = `
+      <img src="${imageUrl}" alt="${title}" />
+      <h3>${title}</h3>
+      <button class="watch-btn" onclick="openModal(${item.id})">▶ Watch</button>
+    `;
+
+    container.appendChild(card);
   });
-}, 400);
+}
 
 // ======================
 // 🇰🇷 Korean Movies Section
