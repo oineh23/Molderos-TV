@@ -432,7 +432,7 @@ const seriesPerPage = 3;
 function loadMovieSeries() {
   const slice = seriesCollectionIds.slice(currentSeriesIndex, currentSeriesIndex + seriesPerPage);
   slice.forEach(collectionId => {
-    fetch(`https://api.themoviedb.org/3/collection/${collectionId}?api_key=YOUR_API_KEY`)
+    fetch(`https://api.themoviedb.org/3/collection/${collectionId}?api_key=b8c2d0fa80cd79b5d28d9fe2853806bb`)
       .then(res => res.json())
       .then(data => {
         if (data.parts && data.parts.length > 0) {
