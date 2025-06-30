@@ -216,106 +216,10 @@
       1px 1px 0 #111;
   }
 }
-    /* --- Search Modal Styling --- */
-.search-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 9999;
-  display: none;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 40px 20px;
-  overflow-y: auto;
-}
-
-.search-modal-content {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.search-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 2rem;
-  color: #fff;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-#search-input {
-  width: 100%;
-  padding: 14px 20px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: none;
-  margin-bottom: 30px;
-  background-color: #fff;
-  color: #000;
-}
-
-[data-theme="dark"] #search-input {
-  background-color: #222;
-  color: #fff;
-  border: 1px solid #444;
-}
-
-/* Search results styling */
-.search-results {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-}
-
-.search-card {
-  background-color: var(--nav-bg);
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
-  padding: 10px;
-  transition: transform 0.2s ease;
-  cursor: pointer;
-}
-
-.search-card:hover {
-  transform: scale(1.05);
-}
-
-.search-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-}
-
-.search-card h3 {
-  font-size: 0.95rem;
-  margin: 10px 0 0;
-  color: var(--text-color);
-}
-    .search-card .watch-btn {
-  margin-top: 10px;
-  background-color: #e50914;
-  color: #fff;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.search-card .watch-btn:hover {
-  background-color: #b81d24;
-}
+ 
 </style>
-  
+
+</style>
 <script>
   // Theme toggle logic
   document.addEventListener("DOMContentLoaded", () => {
@@ -591,18 +495,17 @@ function closeModal() {
 </div>
 
   <!-- Search Modal -->
-<!-- Search Modal -->
 <div class="search-modal" id="search-modal">
-  <div class="search-modal-content">
-    <button class="search-close" onclick="closeSearchModal()" aria-label="Close">&times;</button>
+  <div class="search-modal-box">
+    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
     <input 
       type="text" 
       id="search-input" 
-      placeholder="🔍 Search movies, TV shows, or anime..." 
+      placeholder="Search movies, TV shows, or anime..." 
       oninput="searchTMDB()" 
       aria-label="Search input"
     />
-    <div class="search-results" id="search-results"></div>
+    <div class="results" id="search-results"></div>
   </div>
 </div>
 
