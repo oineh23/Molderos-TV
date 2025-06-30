@@ -382,29 +382,13 @@
           <p id="modal-description"></p>
         </div>
       </div>
-      <div class="modal-controls" style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
-  <!-- Server Selector -->
-  <div class="server-selector">
-    <label for="server">Change Server:</label>
-    <select id="server" onchange="changeServer()">
-      <option value="vidsrc.cc">Vidsrc.cc</option>
-      <option value="vidsrc.me">Vidsrc.me</option>
-      <option value="player.videasy.net">Player.Videasy.net</option>
-    </select>
-  </div>
-
-  <!-- Season Selector -->
-  <div class="season-selector">
-    <label for="season-select">Season:</label>
-    <select id="season-select" onchange="handleSeasonChange(this.value)">
-      <option value="1">Season 1</option>
-      <option value="2">Season 2</option>
-      <option value="3">Season 3</option>
-      <!-- Add more seasons as needed -->
-    </select>
-  </div>
-</div>
-</div>
+      <div class="server-selector">
+        <label for="server">Change Server:</label>
+        <select id="server" onchange="changeServer()">
+          <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
+          <option value="player.videasy.net">Player.Videasy.net</option>
+        </select>
      </div>
       <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
     </div>
