@@ -388,7 +388,34 @@ function closeModal() {
   document.getElementById('modal-video').src = '';
 }
 
-    async function searchTMDB() {
+    const genreMap = {
+  28: 'Action',
+  12: 'Adventure',
+  16: 'Animation',
+  35: 'Comedy',
+  80: 'Crime',
+  99: 'Documentary',
+  18: 'Drama',
+  10751: 'Family',
+  14: 'Fantasy',
+  36: 'History',
+  27: 'Horror',
+  10402: 'Music',
+  9648: 'Mystery',
+  10749: 'Romance',
+  878: 'Sci-Fi',
+  10770: 'TV Movie',
+  53: 'Thriller',
+  10752: 'War',
+  37: 'Western',
+  10759: 'Action & Adventure',
+  10765: 'Sci-Fi & Fantasy',
+  10766: 'Soap',
+  10767: 'Talk',
+  10768: 'War & Politics'
+};
+    
+async function searchTMDB() {
   const query = document.getElementById("search-input").value.trim();
   const searchResultsContainer = document.getElementById("search-results");
 
@@ -400,10 +427,10 @@ function closeModal() {
   searchResultsContainer.innerHTML = `<div style="color:white;">🔍 Searching for "${query}"...</div>`;
 
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=b8c2d0fa80cd79b5d28d9fe2853806bb&query=${encodeURIComponent(query)}`);
+    const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=YOUR_API_KEY&query=${encodeURIComponent(query)}`);
     const data = await response.json();
 
-    searchResultsContainer.innerHTML = ""; // Clear old results
+    searchResultsContainer.innerHTML = "";
 
     if (!data.results || data.results.length === 0) {
       searchResultsContainer.innerHTML = "<p style='color:white;'>No results found.</p>";
@@ -417,16 +444,21 @@ function closeModal() {
       const releaseDate = item.release_date || item.first_air_date || "";
       const year = releaseDate ? releaseDate.split("-")[0] : "N/A";
       const image = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
+      const rating = item.vote_average ? item.vote_average.toFixed(1) : "N/A";
+      const genres = item.genre_ids
+        ? item.genre_ids.map(id => genreMap[id]).filter(Boolean).slice(0, 2).join(', ')
+        : "Unknown";
 
       const card = document.createElement("div");
       card.classList.add("search-card");
-      card.onclick = () => openModal(item.id); // Reuse your modal system
+      card.onclick = () => openModal(item.id);
 
       card.innerHTML = `
         <img src="${image}" alt="${title}" />
         <div class="info">
           <h4>${title}</h4>
-          <p>Release: ${year}</p>
+          <p>🎬 ${genres}</p>
+          <p>📅 ${year} &nbsp; ⭐ ${rating}</p>
         </div>
       `;
 
