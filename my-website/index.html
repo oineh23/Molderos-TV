@@ -117,7 +117,7 @@
 
   .logo {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
+    font-size: 1.7rem;
     font-weight: 700;
     color: #00ffff;
     text-shadow:
@@ -159,14 +159,11 @@
         1px 1px 0 #111;
     }
   }
-    .scroll-btn.left,
-.scroll-btn.right {
-  display: none !important;
-}
+   
     /* ... existing styles ... */
   .section-title {
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 6rem;
     margin: 20px auto;
     color: var(--text-color);
   }
@@ -177,7 +174,7 @@
   font-weight: bold;
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 1px;
-  animation: glowPulse 1.5s infinite alternate;
+  animation: glowPulse 1s infinite alternate;
 }
 
 @keyframes glowPulse {
@@ -195,6 +192,31 @@
       0 0 10px currentColor,
       0 0 15px currentColor;
   }
+}
+
+    .scroll-btn.left,
+.scroll-btn.right {
+  font-size: 16px; /* Smaller arrow size */
+  padding: 4px 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent dark bg */
+  color: #fff;
+  border: none;
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.scroll-btn.left {
+  left: 4px;
+}
+
+.scroll-btn.right {
+  right: 4px;
 }
 
 /* Unique colors per section */
@@ -401,7 +423,48 @@
       </div>
     </div>
   </footer>
-  
+
+  <script>
+  let currentMovieId = ""; // Store the movie ID globally
+
+  function openModalWithTMDB(movieId) {
+    currentMovieId = movieId;
+
+    const modal = document.getElementById("modal");
+    const iframe = document.getElementById("modal-video");
+    const server = document.getElementById("server").value;
+
+    iframe.src = generateServerURL(server, movieId);
+    modal.style.display = "flex";
+  }
+
+  function changeServer() {
+    const server = document.getElementById("server").value;
+    const iframe = document.getElementById("modal-video");
+    iframe.src = generateServerURL(server, currentMovieId);
+  }
+
+  function generateServerURL(server, movieId) {
+    switch (server) {
+      case "vidsrc.cc":
+        return `https://vidsrc.to/embed/movie/${movieId}`;
+      case "vidsrc.me":
+        return `https://vidsrc.me/embed/movie/${movieId}`;
+      case "player.videasy.net":
+        return `https://player.videasy.net/embed/movie/${movieId}`;
+      default:
+        return "";
+    }
+  }
+
+  function closeModal() {
+    const modal = document.getElementById("modal");
+    const iframe = document.getElementById("modal-video");
+    modal.style.display = "none";
+    iframe.src = ""; // Stop playback when closed
+  }
+</script>
+
 </body>
 
   <script>
