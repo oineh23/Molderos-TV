@@ -21,13 +21,14 @@
       event.preventDefault();
       alert("Right-click is disabled on this page.");
     });
+  </script>
 
+  <script>
   document.addEventListener("keydown", function (e) {
     if (e.key === "F12") e.preventDefault();
     if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) e.preventDefault();
     if (e.ctrlKey && e.key === "u") e.preventDefault();
   });
-
 </script>
 
   <style>
@@ -116,7 +117,7 @@
 
   .logo {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #00ffff;
     text-shadow:
@@ -158,12 +159,14 @@
         1px 1px 0 #111;
     }
   }
-    
-   
+    .scroll-btn.left,
+.scroll-btn.right {
+  display: none !important;
+}
     /* ... existing styles ... */
   .section-title {
     text-align: center;
-    font-size: 5rem;
+    font-size: 1.6rem;
     margin: 20px auto;
     color: var(--text-color);
   }
@@ -174,7 +177,7 @@
   font-weight: bold;
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 1px;
-  animation: glowPulse 1s infinite alternate;
+  animation: glowPulse 1.5s infinite alternate;
 }
 
 @keyframes glowPulse {
@@ -192,47 +195,6 @@
       0 0 10px currentColor,
       0 0 15px currentColor;
   }
-}
-    .genre-dropdown {
-  padding: 6px 10px;
-  margin: 0 15px;
-  font-size: 14px;
-  border-radius: 4px;
-  background-color: #222;
-  color: #fff;
-  border: 1px solid #444;
-  cursor: pointer;
-}
-
-[data-theme="light"] .genre-dropdown {
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #ccc;
-}
-
-    .scroll-btn.left,
-.scroll-btn.right {
-  font-size: 16px; /* Smaller arrow size */
-  padding: 4px 8px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent dark bg */
-  color: #fff;
-  border: none;
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
-  z-index: 10;
-  cursor: pointer;
-}
-
-.scroll-btn.left {
-  left: 4px;
-}
-
-.scroll-btn.right {
-  right: 4px;
 }
 
 /* Unique colors per section */
@@ -285,97 +247,6 @@
   });
   </script>
 
-  <script>
-function filterByGenre(genreId) {
-  // Clear all sections before loading new content
-  document.getElementById('movies-list').innerHTML = '';
-  document.getElementById('tvshows-list').innerHTML = '';
-  document.getElementById('anime-list').innerHTML = '';
-  document.getElementById('pinoy-movie-list').innerHTML = '';
-  document.getElementById('korean-movie-list').innerHTML = '';
-
-  // Now reload each section with selected genre
-  loadSectionByGenre('movie', 'movies-list', genreId); // Trending Movies
-  loadSectionByGenre('tv', 'tvshows-list', genreId);   // TV Shows
-  loadSectionByGenre('movie', 'anime-list', genreId);  // Anime (you can adjust this)
-  loadSectionByGenre('movie', 'pinoy-movie-list', genreId); // Vivamax
-  loadSectionByGenre('movie', 'korean-movie-list', genreId); // Korean
-}
-
-// TMDB genre filter loader
-function loadSectionByGenre(type, containerId, genreId) {
-  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-  const url = `https://api.themoviedb.org/3/discover/${type}?api_key=${apiKey}&with_genres=${genreId}`;
-
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      container.innerHTML = '';
-
-      data.results.forEach(movie => {
-        const card = document.createElement('div');
-        card.className = 'movie-card';
-        card.innerHTML = `
-          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title || movie.name}" />
-          <p>${movie.title || movie.name}</p>
-        `;
-        card.onclick = () => openModalWithTMDB(movie.id);
-        container.appendChild(card);
-      });
-    })
-    .catch(err => {
-      console.error(`Failed to load ${type} for genre ${genreId}`, err);
-    });
-}
-    document.addEventListener('DOMContentLoaded', () => {
-  const loadMoreConfig = [
-    {
-      id: 'loadMoreMoviesBtn',
-      action: async () => {
-        currentPage++;
-        const moreMovies = await fetchTrending('movie');
-        displayList(moreMovies, 'movies-list');
-      },
-    },
-    {
-      id: 'loadMoreTVBtn',
-      action: () => {
-        tvPage++;
-        fetchTrendingTVShows();
-      },
-    },
-    {
-      id: 'loadMoreAnimeBtn',
-      action: () => {
-        currentAnimePage++;
-        fetchAnime(currentAnimePage);
-      },
-    },
-    {
-      id: 'loadMorePinoyBtn',
-      action: () => {
-        pinoyPage++;
-        fetchPinoyMoviesPaginated();
-      },
-    },
-    {
-      id: 'loadMoreKoreanBtn',
-      action: () => {
-        koreanPage++;
-        const selectedGenre = document.getElementById('korean-genre-filter')?.value || '';
-        loadKoreanMovies(selectedGenre);
-      },
-    },
-  ];
-
-  loadMoreConfig.forEach(({ id, action }) => {
-    const btn = document.getElementById(id);
-    if (btn) btn.addEventListener('click', action);
-  });
-});
-</script>
   
 </head>
 <body>
@@ -389,22 +260,13 @@ function loadSectionByGenre(type, containerId, genreId) {
       <input type="checkbox" id="menu-toggle" />
       <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
       <nav class="nav-links">
-  <a href="index.html">Home</a>
-  
-  <!-- Genre Filter -->
-  <select id="genreFilter" class="genre-dropdown" onchange="filterByGenre(this.value)">
-    <option value="">Filter by Genre</option>
-    <option value="28">Action</option>
-    <option value="35">Comedy</option>
-    <option value="18">Drama</option>
-    <option value="27">Horror</option>
-    <option value="10749">Romance</option>
-    <!-- Add more genres as needed -->
-  </select>
-
-  <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" aria-label="Search" />
-  <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
-</nav>
+        <a href="index.html">Home</a>
+        <a href="#pinoy-movies">VMX</a>
+        <a href="#tvshows-list">TV Shows</a>
+        <a href="#anime-list">Anime</a>
+        <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" aria-label="Search" />
+        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
+      </nav>
     </div>
   </header>
 
@@ -429,9 +291,6 @@ function loadSectionByGenre(type, containerId, genreId) {
     <div class="scrollable-row" id="movies-list"></div>
     <button onclick="scrollRight('movies-list')" class="scroll-btn right">▶</button>
   </div>
-      <div class="load-more-container">
-    <button id="loadMoreMoviesBtn">Load More</button>
-  </div>
 </section>
 
     <!-- TV Shows + Anime -->
@@ -445,9 +304,6 @@ function loadSectionByGenre(type, containerId, genreId) {
     <div class="scrollable-row" id="tvshows-list"></div>
     <button onclick="scrollRight('tvshows-list')" class="scroll-btn right">▶</button>
   </div>
-        <div class="load-more-container">
-    <button id="loadMoreTVBtn">Load More</button>
-  </div>
 
         <div class="trending-header">
     <h2 class="section-title">🌸 Trending Anime</h2>
@@ -456,9 +312,6 @@ function loadSectionByGenre(type, containerId, genreId) {
     <button onclick="scrollLeft('anime-list')" class="scroll-btn left">◀</button>
     <div class="scrollable-row" id="anime-list"></div>
     <button onclick="scrollRight('anime-list')" class="scroll-btn right">▶</button>
-  </div>
-        <div class="load-more-container">
-    <button id="loadMoreAnimeBtn">Load More</button>
   </div>
 </section>
 
@@ -475,9 +328,6 @@ function loadSectionByGenre(type, containerId, genreId) {
     <div class="scrollable-row" id="pinoy-movie-list"></div>
     <button onclick="scrollRight('pinoy-movie-list')" class="scroll-btn right">▶</button>
   </div>
-      <div class="load-more-container">
-    <button id="loadMorePinoyBtn">Load More</button>
-  </div>
 </section>
 
     <!-- Korean Movies -->
@@ -489,9 +339,6 @@ function loadSectionByGenre(type, containerId, genreId) {
     <button onclick="scrollLeft('korean-movie-list')" class="scroll-btn left">◀</button>
     <div class="scrollable-row" id="korean-movie-list"></div>
     <button onclick="scrollRight('korean-movie-list')" class="scroll-btn right">▶</button>
-  </div>
-      <div class="load-more-container">
-    <button id="loadMoreKoreanBtn">Load More</button>
   </div>
 </section>
   </main>
@@ -554,48 +401,7 @@ function loadSectionByGenre(type, containerId, genreId) {
       </div>
     </div>
   </footer>
-
-  <script>
-  let currentMovieId = ""; // Store the movie ID globally
-
-  function openModalWithTMDB(movieId) {
-    currentMovieId = movieId;
-
-    const modal = document.getElementById("modal");
-    const iframe = document.getElementById("modal-video");
-    const server = document.getElementById("server").value;
-
-    iframe.src = generateServerURL(server, movieId);
-    modal.style.display = "flex";
-  }
-
-  function changeServer() {
-    const server = document.getElementById("server").value;
-    const iframe = document.getElementById("modal-video");
-    iframe.src = generateServerURL(server, currentMovieId);
-  }
-
-  function generateServerURL(server, movieId) {
-    switch (server) {
-      case "vidsrc.cc":
-        return `https://vidsrc.to/embed/movie/${movieId}`;
-      case "vidsrc.me":
-        return `https://vidsrc.me/embed/movie/${movieId}`;
-      case "player.videasy.net":
-        return `https://player.videasy.net/embed/movie/${movieId}`;
-      default:
-        return "";
-    }
-  }
-
-  function closeModal() {
-    const modal = document.getElementById("modal");
-    const iframe = document.getElementById("modal-video");
-    modal.style.display = "none";
-    iframe.src = ""; // Stop playback when closed
-  }
-</script>
-
+  
 </body>
 
   <script>
