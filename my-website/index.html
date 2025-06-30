@@ -400,7 +400,7 @@ function closeModal() {
   searchResultsContainer.innerHTML = `<div style="color:white;">🔍 Searching for "${query}"...</div>`;
 
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=YOUR_API_KEY&query=${encodeURIComponent(query)}`);
+    const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=b8c2d0fa80cd79b5d28d9fe2853806bb&query=${encodeURIComponent(query)}`);
     const data = await response.json();
 
     searchResultsContainer.innerHTML = ""; // Clear old results
