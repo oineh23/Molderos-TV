@@ -387,6 +387,57 @@ function closeModal() {
   document.getElementById('modal').style.display = 'none';
   document.getElementById('modal-video').src = '';
 }
+
+    async function searchTMDB() {
+  const query = document.getElementById("search-input").value.trim();
+  const searchResultsContainer = document.getElementById("search-results");
+
+  if (!query) {
+    searchResultsContainer.innerHTML = "<p style='color:white;'>Please enter a search term.</p>";
+    return;
+  }
+
+  searchResultsContainer.innerHTML = `<div style="color:white;">🔍 Searching for "${query}"...</div>`;
+
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=YOUR_API_KEY&query=${encodeURIComponent(query)}`);
+    const data = await response.json();
+
+    searchResultsContainer.innerHTML = ""; // Clear old results
+
+    if (!data.results || data.results.length === 0) {
+      searchResultsContainer.innerHTML = "<p style='color:white;'>No results found.</p>";
+      return;
+    }
+
+    data.results.forEach(item => {
+      if (!item.poster_path) return;
+
+      const title = item.title || item.name || "Untitled";
+      const releaseDate = item.release_date || item.first_air_date || "";
+      const year = releaseDate ? releaseDate.split("-")[0] : "N/A";
+      const image = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
+
+      const card = document.createElement("div");
+      card.classList.add("search-card");
+      card.onclick = () => openModal(item.id); // Reuse your modal system
+
+      card.innerHTML = `
+        <img src="${image}" alt="${title}" />
+        <div class="info">
+          <h4>${title}</h4>
+          <p>Release: ${year}</p>
+        </div>
+      `;
+
+      searchResultsContainer.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error("Search error:", error);
+    searchResultsContainer.innerHTML = "<p style='color:red;'>An error occurred. Please try again later.</p>";
+  }
+}
 </script>
   
 <body>
