@@ -1,0 +1,2 @@
+// Anime Script
+fetchAnime();

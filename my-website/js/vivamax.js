@@ -1,0 +1,2 @@
+// Vivamax Movies Script
+fetchVivamaxMovies();

@@ -1,0 +1,2 @@
+// Korean Movies Script
+fetchKoreanMovies();
