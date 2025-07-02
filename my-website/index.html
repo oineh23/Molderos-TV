@@ -3,39 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOLDEROS-TV - Home</title>
+  <title>MOLDEROS-TV - Trending Movies & Shows</title>
+
+  <!-- Styles -->
   <link rel="stylesheet" href="css/home.css" />
+  <link rel="preload" href="css/home.css" as="style" />
+  <link rel="preload" href="js/home.js" as="script" />
+  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
-</head>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <script defer src="js/home.js"></script>
+  
 <body>
+  <!-- Navbar -->
   <header class="nav-wrapper">
     <div class="container nav">
-      <a href="#" class="logo">
-        <i class='bx bx-movie-play bx-tada main-color'></i>
-        MOLD<span class="main-color">EROS</span>-TV
-      </a>
+        <a href="#" class="logo">
+  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+  MOLD<span class="main-color">EROS</span>-TV
+        </a>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
       <nav class="nav-links">
         <a href="index.html">Home</a>
-        <a href="trending.html">Trending</a>
-        <a href="vivamax.html">Vivamax</a>
-        <a href="tvshows.html">TV Shows</a>
-        <a href="anime.html">Anime</a>
+        <input 
+          type="text" 
+          class="search-bar" 
+          placeholder="Search..." 
+          onfocus="openSearchModal()" 
+          aria-label="Search"
+        />
+        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
       </nav>
     </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero-section" id="banner">
     <div class="hero-overlay">
-      <h1>Welcome to MOLDEROS-TV</h1>
-      <p>Click below to explore your favorite categories</p>
-      <div class="explore-grid">
-        <a href="trending.html" class="preview-card">🔥 Trending</a>
-        <a href="tvshows.html" class="preview-card">📺 TV Shows</a>
-        <a href="anime.html" class="preview-card">🎌 Anime</a>
-        <a href="vivamax.html" class="preview-card">🇵🇭 Vivamax</a>
-      </div>
+      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
+      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
+      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
     </div>
   </section>
+
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" id="loading-spinner" style="display: none;">
+    <i class="fas fa-spinner fa-spin"></i>
+    <span>Loading content...</span>
+  </div>
+
+ <!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="custom-close-button" onclick="closeModal()" aria-label="Close Video">
+  <i class="fas fa-times"></i>
+</button>
+    <div class="modal-body">
+      <img id="modal-image" src="" alt="Movie poster" />
+      <div class="modal-text">
+        <h2 id="modal-title"></h2>
+        <div class="stars" id="modal-rating"></div>
+        <p id="modal-description"></p>
+      </div>
+    </div>
+    <div class="server-selector">
+      <label for="server">Change Server:</label>
+      <select id="server" onchange="changeServer()">
+        <option value="vidsrc.cc">Vidsrc.cc</option>
+        <option value="vidsrc.me">Vidsrc.me</option>
+        <option value="player.videasy.net">Player.Videasy.net</option>
+      </select>
+   </div>
+    <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+  </div>
+</div>
+
+  <!-- Search Modal -->
+<!-- Search Modal -->
+<div class="search-modal" id="search-modal">
+  <div class="search-modal-content">
+    <button class="search-close" onclick="closeSearchModal()" aria-label="Close">&times;</button>
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="🔍 Search movies, TV shows, or anime..." 
+      oninput="searchTMDB()" 
+      aria-label="Search input"
+    />
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+    <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Disclaimer</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+  
 </body>
 </html>
