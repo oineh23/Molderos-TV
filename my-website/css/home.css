@@ -596,13 +596,7 @@ main {
 
 /* Footer */
 footer {
-  background-color: #141414;
-  ...
-}
-
-body.light-mode footer {
-  background-color: #f1f1f1;
-  color: #555;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .footer-links {
