@@ -1,35 +1,40 @@
-// ====== PINOY MOVIES ======
-async function fetchPinoyMoviesPaginated(reset = false) {
-  const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_origin_country=PH&with_original_language=tl&sort_by=popularity.desc&page=${pinoyPage}` +
-              (pinoyGenre ? `&with_genres=${pinoyGenre}` : '');
+const pinoyMovieList = document.getElementById("pinoy-movie-list");
+const loadMorePinoyBtn = document.getElementById("load-more-pinoy");
+const pinoyGenreFilter = document.getElementById("pinoy-genre-filter");
 
-  const results = await fetchData(url);
-  const container = document.getElementById('pinoy-movie-list');
-  if (!container) return;
+let pinoyPage = 1;
+let selectedPinoyGenre = "";
 
-  if (reset) {
-    container.innerHTML = '';
-    pinoyPage = 1;
-  }
+const TMDB_API_KEY = "b8c2d0fa80cd79b5d28d9fe2853806bb"; // Replace with your real key
 
-  results.forEach(movie => {
-    if (!movie.poster_path) return;
-    movie.media_type = 'movie';
-    container.appendChild(createCard(movie));
-  });
+function fetchPinoyMovies() {
+  const genreParam = selectedPinoyGenre ? `&with_genres=${selectedPinoyGenre}` : "";
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=${pinoyPage}${genreParam}&region=PH`)
+    .then(res => res.json())
+    .then(data => {
+      data.results.forEach(movie => {
+        const card = document.createElement("div");
+        card.className = "search-card";
+        card.innerHTML = `
+          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+          <h3>${movie.title}</h3>
+        `;
+        pinoyMovieList.appendChild(card);
+      });
+    })
+    .catch(err => console.error("Error loading Pinoy movies:", err));
 }
 
-function setupPinoyControls() {
-  const genreSelect = document.getElementById('pinoy-genre-filter');
-  const loadMoreBtn = document.getElementById('load-more-pinoy');
+loadMorePinoyBtn.addEventListener("click", () => {
+  pinoyPage++;
+  fetchPinoyMovies();
+});
 
-  genreSelect?.addEventListener('change', () => {
-    pinoyGenre = genreSelect.value;
-    fetchPinoyMoviesPaginated(true);
-  });
-
-  loadMoreBtn?.addEventListener('click', () => {
-    pinoyPage++;
-    fetchPinoyMoviesPaginated();
-  });
+function filterByPinoyGenre(genreId) {
+  selectedPinoyGenre = genreId;
+  pinoyPage = 1;
+  pinoyMovieList.innerHTML = "";
+  fetchPinoyMovies();
 }
+
+fetchPinoyMovies();
