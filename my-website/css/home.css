@@ -617,6 +617,25 @@ footer {
   text-decoration: underline;
 }
 
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+}
+
+/* Dark/Light mode variables */
+:root {
+  --footer-bg: #f0f0f0;
+  --footer-text: #333;
+}
+
+body.dark-mode {
+  --footer-bg: #111;
+  --footer-text: #ccc;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .modal-body {
