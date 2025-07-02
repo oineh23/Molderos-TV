@@ -599,18 +599,11 @@ footer {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-footer.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+.footer {
   background-color: #141414;
-  color: #aaa;
+  padding: 1.5rem 2rem;
   text-align: center;
-  padding: 1rem 0;
-  font-size: 0.9rem;
-  z-index: 1000;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #aaa;
 }
 
 .footer-links {
