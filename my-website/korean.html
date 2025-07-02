@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Korean Movies - MOLDEROS-TV</title>
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <script defer src="js/home.js"></script>
+</head>
+<body>
+<header class="nav-wrapper">
+  <div class="container nav">
+    <a href="index.html" class="logo">
+      <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+      MOLD<span class="main-color">EROS</span>-TV
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="trending.html">Trending</a>
+      <a href="tvshows.html">TV Shows</a>
+      <a href="anime.html">Anime</a>
+      <a href="vivamax.html">Vivamax</a>
+      <a href="korean.html">Korean</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="section" id="korean-movies">
+  <div class="section-header">
+    <h2>🇰🇷 Korean Movies</h2>
+    <div class="genre-filter">
+      <label for="korean-genre-filter">🎯 Filter by Genre:</label>
+      <select id="korean-genre-filter" onchange="filterByKoreanGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="10749">Romance</option>
+        <option value="27">Horror</option>
+        <option value="80">Crime</option>
+      </select>
+    </div>
+  </div>
+  <div class="vivamax-grid" id="korean-movie-list"></div>
+  <div class="load-more-container">
+    <button id="load-more-korean">🎥 Load More</button>
+  </div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

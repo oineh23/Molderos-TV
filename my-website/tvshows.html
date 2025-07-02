@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trending TV Shows - MOLDEROS-TV</title>
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <script defer src="js/home.js"></script>
+</head>
+<body>
+<header class="nav-wrapper">
+  <div class="container nav">
+    <a href="index.html" class="logo">
+      <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+      MOLD<span class="main-color">EROS</span>-TV
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="trending.html">Trending</a>
+      <a href="tvshows.html">TV Shows</a>
+      <a href="anime.html">Anime</a>
+      <a href="vivamax.html">Vivamax</a>
+      <a href="korean.html">Korean</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="row" id="tvshows-list-section">
+  <div class="section-header">
+    <h2>📺 Trending TV Shows</h2>
+    <div class="genre-filter">
+      <label for="tv-genre-filter">🎯 Filter by Genre:</label>
+      <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
+        <option value="">All</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="10765">Sci-Fi</option>
+        <option value="16">Anime</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-container" id="tvshows-list"></div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>
