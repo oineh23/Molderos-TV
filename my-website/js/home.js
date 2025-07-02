@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", init);
 // ====== DISPLAY UTILITIES ======
 function displayBanner(item) {
   const banner = document.getElementById('banner');
-  if (!item) return;
+  if (!item || !banner) return;
   banner.style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
   document.getElementById('banner-title').textContent = item.title || item.name || 'Unknown Title';
 }
