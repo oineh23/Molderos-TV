@@ -610,9 +610,8 @@ footer.footer {
 }
 
 /* Footer for Light Mode */
-body.light-mode footer.footer {
-  background-color: #f1f1f1;
-  color: #555;
+footer {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .footer-links {
