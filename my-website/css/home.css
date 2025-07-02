@@ -595,6 +595,10 @@ main {
 }
 
 /* Footer */
+footer {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 footer.footer {
   position: fixed;
   bottom: 0;
@@ -606,11 +610,6 @@ footer.footer {
   padding: 1rem 0;
   font-size: 0.9rem;
   z-index: 1000;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Footer for Light Mode */
-footer {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
