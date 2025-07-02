@@ -379,92 +379,7 @@
     opacity: 1;
   }
 }
-    
-.hero-slider {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background-color: #000;
-}
 
-.slider-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  z-index: 1;
-}
-
-.slide.active {
-  opacity: 1;
-  z-index: 2;
-}
-
-.slide-content {
-  position: absolute;
-  bottom: 20%;
-  left: 5%;
-  max-width: 600px;
-  color: #fff;
-  text-shadow: 2px 2px 10px #000;
-}
-
-.slide-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-
-.slide-content p {
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-  max-width: 90%;
-}
-
-.slide-content .btn {
-  background-color: #00ffff;
-  color: #000;
-  padding: 10px 20px;
-  margin-right: 10px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-.slide-content .btn:hover {
-  background-color: #0ff;
-  transform: scale(1.05);
-}
-
-.slider-arrows {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  z-index: 10;
-}
-
-.slider-arrows button {
-  background: rgba(0,0,0,0.6);
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-}
 
 </style>
 
@@ -550,76 +465,6 @@ function closeModal() {
   document.getElementById('modal-video').src = '';
 }
 </script>
-
-  <script>
-const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-const BASE_URL = 'https://api.themoviedb.org/3';
-const IMG_URL = 'https://image.tmdb.org/t/p/original';
-
-const sliderContainer = document.getElementById('hero-slider');
-let slides = [];
-let currentSlide = 0;
-
-async function fetchMovie(url) {
-  const res = await fetch(url);
-  const data = await res.json();
-  return data.results[0]; // top result
-}
-
-async function buildHeroSlides() {
-  const endpoints = [
-    { url: `${BASE_URL}/trending/movie/day?api_key=${API_KEY}`, label: '🔥 Trending' },
-    { url: `${BASE_URL}/discover/movie?api_key=${API_KEY}&region=PH&sort_by=popularity.desc`, label: '🔥 Vivamax Style' },
-    { url: `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_original_language=ko`, label: '🇰🇷 Korean' },
-    { url: `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=16&with_keywords=210024`, label: '🌸 Anime' },
-    { url: `${BASE_URL}/trending/tv/day?api_key=${API_KEY}`, label: '📺 TV Show' }
-  ];
-
-  for (const item of endpoints) {
-    const movie = await fetchMovie(item.url);
-    if (!movie) continue;
-
-    const title = movie.title || movie.name || 'Untitled';
-    const desc = movie.overview || '';
-    const img = movie.backdrop_path || movie.poster_path;
-
-    const slide = document.createElement('div');
-    slide.className = 'slide';
-    slide.style.backgroundImage = `url(${IMG_URL + img})`;
-    slide.innerHTML = `
-      <div class="slide-content">
-        <h2>${item.label}: ${title}</h2>
-        <p>${desc.length > 150 ? desc.slice(0, 150) + '...' : desc}</p>
-        <a href="javascript:void(0)" class="btn" onclick="openModal('${movie.id}')">▶ Watch Now</a>
-        <a href="#movies-list-section" class="btn">More Info</a>
-      </div>
-    `;
-    sliderContainer.appendChild(slide);
-    slides.push(slide);
-  }
-
-  if (slides.length > 0) slides[0].classList.add('active');
-}
-
-function showSlide(index) {
-  slides.forEach((s, i) => s.classList.toggle('active', i === index));
-  currentSlide = index;
-}
-
-document.getElementById('next').onclick = () => {
-  showSlide((currentSlide + 1) % slides.length);
-};
-
-document.getElementById('prev').onclick = () => {
-  showSlide((currentSlide - 1 + slides.length) % slides.length);
-};
-
-setInterval(() => {
-  showSlide((currentSlide + 1) % slides.length);
-}, 6000);
-
-document.addEventListener('DOMContentLoaded', buildHeroSlides);
-</script>
   
 <body>
   
@@ -653,15 +498,6 @@ document.addEventListener('DOMContentLoaded', buildHeroSlides);
     </div>
   </div>
 </header>
-
-  <section class="hero-slider">
-  <div class="slider-container" id="hero-slider"></div>
-
-  <div class="slider-arrows">
-    <button id="prev">&#10094;</button>
-    <button id="next">&#10095;</button>
-  </div>
-</section>
   
   <!-- Hero Section -->
 <section class="hero">
