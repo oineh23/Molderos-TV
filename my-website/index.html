@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -380,31 +381,6 @@
   }
 }
 
-    .movie-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.movie-card {
-  width: 160px;
-  background: var(--nav-bg);
-  border-radius: 10px;
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.2s ease;
-}
-
-.movie-card:hover {
-  transform: scale(1.05);
-}
-
-.movie-card img {
-  width: 100%;
-  height: auto;
-}
 
 </style>
 
@@ -490,21 +466,7 @@ function closeModal() {
   document.getElementById('modal-video').src = '';
 }
 </script>
-
   
-  <script>
-  function filterGenre(genre) {
-    const cards = document.querySelectorAll('.movie-card');
-    cards.forEach(card => {
-      if (genre === 'all') {
-        card.style.display = 'inline-block';
-      } else {
-        card.style.display = card.classList.contains(genre) ? 'inline-block' : 'none';
-      }
-    });
-  }
-</script>
-
 <body>
   <!-- Navbar -->
   <header class="nav-wrapper">
@@ -597,54 +559,6 @@ function closeModal() {
     <div class="search-results" id="search-results"></div>
   </div>
 </div>
-
-    <!-- Genre Filter -->
-<section class="section-header">
-  <h2><i class="fas fa-film"></i> Filter by Genre</h2>
-  <div class="genre-filter">
-    <button onclick="filterGenre('all')">All</button>
-    <button onclick="filterGenre('korean')">Korean</button>
-    <button onclick="filterGenre('vivamax')">Vivamax</button>
-    <button onclick="filterGenre('anime')">Anime</button>
-    <button onclick="filterGenre('trending')">Trending</button>
-    <button onclick="filterGenre('tvshow')">TV Shows</button>
-  </div>
-</section>
-
-<!-- Combined Movie Section -->
-<section id="all-movies" class="movie-grid">
-  <!-- Korean -->
-  <div class="movie-card korean">
-    <img src="img/korean-movie.jpg" alt="Korean Movie">
-    <p>Korean Movie Title</p>
-  </div>
-
-  <!-- Vivamax -->
-  <div class="movie-card vivamax">
-    <img src="img/vivamax-movie.jpg" alt="Vivamax Movie">
-    <p>Vivamax Movie Title</p>
-  </div>
-
-  <!-- Anime -->
-  <div class="movie-card anime">
-    <img src="img/anime.jpg" alt="Anime Title">
-    <p>Anime Title</p>
-  </div>
-
-  <!-- Trending -->
-  <div class="movie-card trending">
-    <img src="img/trending.jpg" alt="Trending">
-    <p>Trending Title</p>
-  </div>
-
-  <!-- TV Show -->
-  <div class="movie-card tvshow">
-    <img src="img/tvshow.jpg" alt="TV Show">
-    <p>TV Show Title</p>
-  </div>
-
-  <!-- Add more cards with correct genre classes -->
-</section>
 
     <!-- Footer -->
   <footer class="footer">
