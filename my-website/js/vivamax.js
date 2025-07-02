@@ -1,5 +1,3 @@
-// js/vivamax.js
-
 const pinoyMovieList = document.getElementById("pinoy-movie-list");
 const loadMorePinoyBtn = document.getElementById("load-more-pinoy");
 const pinoyGenreFilter = document.getElementById("pinoy-genre-filter");
@@ -45,5 +43,3 @@ function filterByPinoyGenre(genreId) {
 
 // Load first batch
 fetchPinoyMovies();
-// Vivamax Movies Script
-fetchVivamaxMovies();
