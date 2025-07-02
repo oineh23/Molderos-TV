@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const movieList = document.getElementById("vivamax-movie-list");
 
-  fetch('https://api.themoviedb.org/3/discover/movie?region=PH&with_original_language=tl&api_key=YOUR_API_KEY')
+  fetch('https://api.themoviedb.org/3/discover/movie?region=PH&with_original_language=tl&api_key=b8c2d0fa80cd79b5d28d9fe2853806bb')
     .then(res => res.json())
     .then(data => {
       movieList.innerHTML = data.results.map(movie => `
