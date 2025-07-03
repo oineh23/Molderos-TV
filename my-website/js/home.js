@@ -409,3 +409,55 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
+
+let currentPage = 1;
+
+async function loadTrendingMovies(page = 1, genre = "") {
+  const url = genre
+    ? `https://api.themoviedb.org/3/discover/movie?api_key=b8c2d0fa80cd79b5d28d9fe2853806bb&with_genres=${genre}&page=${page}`
+    : `https://api.themoviedb.org/3/trending/movie/day?api_key=b8c2d0fa80cd79b5d28d9fe2853806bb&page=${page}`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    const container = document.getElementById("movies-list");
+
+    data.results.forEach(movie => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
+        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+        <h3>${movie.title}</h3>
+      `;
+      container.appendChild(card);
+    });
+
+    // Hide button if last page reached
+    if (page >= data.total_pages) {
+      document.getElementById("load-more-btn").style.display = "none";
+    }
+  } catch (error) {
+    console.error("Error loading movies:", error);
+  }
+}
+
+// Load first page
+document.addEventListener("DOMContentLoaded", () => {
+  loadTrendingMovies(currentPage);
+});
+
+// Load more on button click
+document.getElementById("load-more-btn").addEventListener("click", () => {
+  currentPage++;
+  const selectedGenre = document.getElementById("genre-select").value;
+  loadTrendingMovies(currentPage, selectedGenre);
+});
+
+// Optional: genre filtering resets page
+function filterByGenre(genre) {
+  currentPage = 1;
+  document.getElementById("movies-list").innerHTML = ""; // Clear current
+  document.getElementById("load-more-btn").style.display = "block"; // Reset button
+  loadTrendingMovies(currentPage, genre);
+}
+
