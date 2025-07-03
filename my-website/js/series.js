@@ -1,5 +1,5 @@
 const seriesContainer = document.getElementById('series-container');
-const apiKey = 'YOUR_TMDB_API_KEY'; // Replace with your TMDb API Key
+const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDb API Key
 
 const fetchSeries = async () => {
   try {
