@@ -410,3 +410,34 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
+
+const loadMoreTrendingBtn = document.getElementById('load-more-trending');
+
+async function fetchTrendingMovies(page = 1, reset = false) {
+  const url = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&page=${page}`;
+  const results = await fetchData(url);
+  const container = document.getElementById('movies-list');
+
+  if (reset) {
+    container.innerHTML = '';
+    trending = 1;
+  }
+
+  results.forEach(movie => {
+    if (!movie.poster_path) return;
+    movie.media_type = 'movie';
+    container.appendChild(createCard(movie));
+  });
+
+  // Hide button if no more results
+  if (!results.length || results.length < 20) {
+    loadMoreTrendingBtn.style.display = 'none';
+  } else {
+    loadMoreTrendingBtn.style.display = 'block';
+  }
+}
+
+loadMoreTrendingBtn?.addEventListener('click', () => {
+  trending++;
+  await fetchTrendingMovies(); // replaces displayList(movies, 'movies-list');
+});
