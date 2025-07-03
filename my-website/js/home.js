@@ -20,7 +20,6 @@ let pinoyPage = 1;
 let pinoyGenre = '';
 let tvGenre = '';
 let tvPage = 1;
-let trendingPage = 1;
 
 // ====== HELPER FUNCTIONS ======
 function getGenreName(id) {
@@ -55,7 +54,7 @@ async function init() {
   ]);
 
   displayBanner(movies[Math.floor(Math.random() * movies.length)]);
-  fetchTrendingMovies();
+  await fetchTrendingMovies(); // Load trending movies with pagination
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
 
@@ -140,10 +139,24 @@ async function fetchTrendingAnime() {
   return allResults;
 }
 
-async function filterByGenre(genreId) {
-  currentGenre = genreId;
-  trending = 1;
-  fetchTrendingMovies(trending, genreId, true);
+async function filterByGenre() {
+  const url = genreId
+    ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
+    : `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`;
+
+  document.getElementById('loading-spinner').style.display = 'flex';
+
+  const results = await fetchData(url);
+  const container = document.getElementById('movies-list');
+  container.innerHTML = '';
+
+  results.forEach(movie => {
+    if (!movie.poster_path) return;
+    movie.media_type = 'movie';
+    container.appendChild(createCard(movie));
+  });
+
+  document.getElementById('loading-spinner').style.display = 'none';
 }
 
 // ====== TV SHOWS ======
@@ -402,10 +415,13 @@ let trendingPage = 1;
 let currentTrendingGenre = '';
 
 const loadMoreTrendingBtn = document.getElementById('load-more-trending');
-loadMoreTrendingBtn?.addEventListener('click', () => {
-  trendingPage++;
-  fetchTrendingMovies(currentTrendingGenre, trendingPage);
-});
+
+if (loadMoreTrendingBtn) {
+  loadMoreTrendingBtn.addEventListener('click', () => {
+    trendingPage++;
+    fetchTrendingMovies(currentTrendingGenre, trendingPage);
+  });
+}
 
 async function fetchTrendingMovies(genreId = '', page = 1) {
   const url = genreId
@@ -414,25 +430,18 @@ async function fetchTrendingMovies(genreId = '', page = 1) {
 
   const movies = await fetchData(url);
   const container = document.getElementById('movies-list');
+  if (page === 1) container.innerHTML = ''; // clear only for first page
+
   movies.forEach(movie => {
     if (!movie.poster_path) return;
     movie.media_type = 'movie';
     container.appendChild(createCard(movie));
   });
+
+  // Optional: hide button if fewer results returned (end of pages)
+  if (movies.length < 20) {
+    loadMoreTrendingBtn.style.display = 'none';
+  } else {
+    loadMoreTrendingBtn.style.display = 'block';
+  }
 }
-
-// Modify filterByGenre to reset list and page
-async function filterByGenre(genreId) {
-  trendingPage = 1;
-  currentTrendingGenre = genreId;
-  document.getElementById('loading-spinner').style.display = 'flex';
-
-  const container = document.getElementById('movies-list');
-  container.innerHTML = '';
-
-  await fetchTrendingMovies(genreId, trendingPage);
-
-  document.getElementById('loading-spinner').style.display = 'none';
-}
-
-
