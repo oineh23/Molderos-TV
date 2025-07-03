@@ -139,22 +139,15 @@ async function fetchTrendingAnime() {
   return allResults;
 }
 
-async function filterByGenre() {
-  const url = genreId
-    ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
-    : `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`;
-
+async function filterByGenre(genreId) {
+  trendingPage = 1;
+  currentTrendingGenre = genreId;
   document.getElementById('loading-spinner').style.display = 'flex';
 
-  const results = await fetchData(url);
   const container = document.getElementById('movies-list');
   container.innerHTML = '';
 
-  results.forEach(movie => {
-    if (!movie.poster_path) return;
-    movie.media_type = 'movie';
-    container.appendChild(createCard(movie));
-  });
+  await fetchTrendingMovies(genreId, trendingPage);
 
   document.getElementById('loading-spinner').style.display = 'none';
 }
