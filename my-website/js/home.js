@@ -20,6 +20,7 @@ let pinoyPage = 1;
 let pinoyGenre = '';
 let tvGenre = '';
 let tvPage = 1;
+let trendingPage = 1;
 
 // ====== HELPER FUNCTIONS ======
 function getGenreName(id) {
