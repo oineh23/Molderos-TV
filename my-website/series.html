@@ -12,11 +12,6 @@
   <header class="navbar">
     <div class="logo">MOLDEROS-TV</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="vivamax.html">Vivamax</a>
-      <a href="korean.html">Korean</a>
-      <a href="tvshows.html">TV Shows</a>
-      <a href="anime.html">Anime</a>
       <a href="series.html" class="active">Movie Series</a>
     </nav>
   </header>
@@ -37,17 +32,64 @@
     <div id="series-container" class="card-container"></div>
   </section>
 
-  <!-- Modal (reuses your existing modal style) -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <iframe id="video-frame" src="" frameborder="0" allowfullscreen></iframe>
-    </div>
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" id="loading-spinner" style="display: none;">
+    <i class="fas fa-spinner fa-spin"></i>
+    <span>Loading content...</span>
   </div>
 
-  <!-- Footer -->
+ <!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="custom-close-button" onclick="closeModal()" aria-label="Close Video">
+  <i class="fas fa-times"></i>
+</button>
+    <div class="modal-body">
+      <img id="modal-image" src="" alt="Movie poster" />
+      <div class="modal-text">
+        <h2 id="modal-title"></h2>
+        <div class="stars" id="modal-rating"></div>
+        <p id="modal-description"></p>
+      </div>
+    </div>
+    <div class="server-selector">
+      <label for="server">Change Server:</label>
+      <select id="server" onchange="changeServer()">
+        <option value="vidsrc.cc">Vidsrc.cc</option>
+        <option value="vidsrc.me">Vidsrc.me</option>
+        <option value="player.videasy.net">Player.Videasy.net</option>
+      </select>
+   </div>
+    <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+  </div>
+</div>
+
+  <!-- Search Modal -->
+<!-- Search Modal -->
+<div class="search-modal" id="search-modal">
+  <div class="search-modal-content">
+    <button class="search-close" onclick="closeSearchModal()" aria-label="Close">&times;</button>
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="🔍 Search movies, TV shows, or anime..." 
+      oninput="searchTMDB()" 
+      aria-label="Search input"
+    />
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+    <!-- Footer -->
   <footer class="footer">
-    <p>© 2025 MOLDEROS-TV. All rights reserved.</p>
+    <div class="footer-content">
+      <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Disclaimer</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
   </footer>
 
   <!-- Scripts -->
