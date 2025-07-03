@@ -20,7 +20,6 @@ let pinoyPage = 1;
 let pinoyGenre = '';
 let tvGenre = '';
 let tvPage = 1;
-let trending = 1;
 
 // ====== HELPER FUNCTIONS ======
 function getGenreName(id) {
@@ -55,7 +54,7 @@ async function init() {
   ]);
 
   displayBanner(movies[Math.floor(Math.random() * movies.length)]);
-  fetchTrendingMovies();
+  displayList(movies, 'movies-list');
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
 
@@ -141,10 +140,9 @@ async function fetchTrendingAnime() {
 }
 
 async function filterByGenre(genreId) {
-  currentGenre = genreId;
-  trending = 1;
-  fetchTrendingMovies(trending, genreId, true);
-}
+  const url = genreId
+    ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
+    : `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`;
 
   document.getElementById('loading-spinner').style.display = 'flex';
 
@@ -411,34 +409,3 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
-
-const loadMoreTrendingBtn = document.getElementById('load-more-trending');
-
-async function fetchTrendingMovies(page = 1, reset = false) {
-  const url = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&page=${page}`;
-  const results = await fetchData(url);
-  const container = document.getElementById('movies-list');
-
-  if (reset) {
-    container.innerHTML = '';
-    trending = 1;
-  }
-
-  results.forEach(movie => {
-    if (!movie.poster_path) return;
-    movie.media_type = 'movie';
-    container.appendChild(createCard(movie));
-  });
-
-  // Hide button if no more results
-  if (!results.length || results.length < 20) {
-    loadMoreTrendingBtn.style.display = 'none';
-  } else {
-    loadMoreTrendingBtn.style.display = 'block';
-  }
-}
-
-loadMoreTrendingBtn?.addEventListener('click', () => {
-  trending++;
-  fetchTrendingMovies(trending);
-});
