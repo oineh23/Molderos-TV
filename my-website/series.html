@@ -2,248 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOLDEROS-TV - Trending Movies & Shows</title>
-
-  <!-- Styles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Series - MOLDEROS-TV</title>
   <link rel="stylesheet" href="css/home.css" />
-  <link rel="preload" href="css/home.css" as="style" />
-  <link rel="preload" href="js/home.js" as="script" />
-  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <script defer src="js/home.js"></script>
-  
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-    header {
-      background: #111;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      font-size: 20px;
-      color: #ff4c4c;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #ff4c4c;
-    }
-    .filter-container {
-      text-align: center;
-      margin: 20px;
-    }
-    select {
-      padding: 8px 12px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: none;
-    }
-    .series-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .series-card {
-      background-color: #111;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.3s;
-      cursor: pointer;
-    }
-    .series-card:hover {
-      transform: scale(1.05);
-    }
-    .series-card img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-    }
-    .series-title {
-      padding: 10px;
-      font-size: 14px;
-      text-align: center;
-      font-weight: bold;
-    }
-    .pagination {
-      text-align: center;
-      margin: 20px;
-    }
-    .pagination button {
-      background-color: #222;
-      color: #fff;
-      border: none;
-      padding: 10px 16px;
-      margin: 0 5px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .pagination button:hover {
-      background-color: #444;
-    }
-
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 99;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal iframe {
-      width: 90vw;
-      max-width: 800px;
-      height: 60vh;
-      border: none;
-      border-radius: 10px;
-    }
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 30px;
-      color: #fff;
-      cursor: pointer;
-      font-weight: bold;
-    }
-  </style>
 </head>
-<body>
-
-  <!-- Header / Navigation -->
-  <header>
-    <h1><strong>MOLDEROS-TV</strong></h1>
+<body class="dark-mode">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">MOLDEROS-TV</div>
     <nav>
-      <a href="series.html" style="color: #ff4c4c;">Series</a>
+      <a href="index.html">Home</a>
+      <a href="vivamax.html">Vivamax</a>
+      <a href="korean.html">Korean</a>
+      <a href="tvshows.html">TV Shows</a>
+      <a href="anime.html">Anime</a>
+      <a href="series.html" class="active">Movie Series</a>
     </nav>
   </header>
 
-  <h2 style="text-align:center; margin-top: 20px;">🔥 Popular TV Series</h2>
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Movie Series</h1>
+      <p>Explore binge-worthy series and franchises</p>
+    </div>
+  </section>
 
-  <!-- Genre Filter -->
-  <div class="filter-container">
-    <select id="genreSelect">
-      <option value="">All Genres</option>
-    </select>
-  </div>
+  <!-- Movie Series Section -->
+  <section class="section">
+    <div class="section-header">
+      <h2>Popular Movie Series</h2>
+    </div>
+    <div id="series-container" class="card-container"></div>
+  </section>
 
-  <!-- TV Series Grid -->
-  <div id="series" class="series-container"></div>
-
-  <!-- Pagination -->
-  <div class="pagination">
-    <button id="prevPage">Previous</button>
-    <span id="currentPage">1</span>
-    <button id="nextPage">Next</button>
-  </div>
-
-  <!-- Modal Trailer -->
+  <!-- Modal (reuses your existing modal style) -->
   <div id="modal" class="modal">
-    <span class="modal-close" onclick="closeModal()">&times;</span>
-    <iframe id="trailer" src="" allowfullscreen></iframe>
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <iframe id="video-frame" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 MOLDEROS-TV. All rights reserved.</p>
+  </footer>
 
   <!-- Scripts -->
-  <script>
-    const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-    const BASE_URL = 'https://api.themoviedb.org/3';
-    const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-
-    let currentPage = 1;
-    let currentGenre = '';
-
-    document.getElementById('prevPage').addEventListener('click', () => {
-      if (currentPage > 1) {
-        currentPage--;
-        fetchSeries();
-      }
-    });
-
-    document.getElementById('nextPage').addEventListener('click', () => {
-      currentPage++;
-      fetchSeries();
-    });
-
-    document.getElementById('genreSelect').addEventListener('change', (e) => {
-      currentGenre = e.target.value;
-      currentPage = 1;
-      fetchSeries();
-    });
-
-    async function fetchGenres() {
-      const res = await fetch(${BASE_URL}/genre/tv/list?api_key=${API_KEY}&language=en-US);
-      const data = await res.json();
-      const select = document.getElementById('genreSelect');
-      data.genres.forEach(g => {
-        const opt = document.createElement('option');
-        opt.value = g.id;
-        opt.textContent = g.name;
-        select.appendChild(opt);
-      });
-    }
-
-    async function fetchSeries() {
-      const url = ${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&page=${currentPage}&with_genres=${currentGenre};
-      const res = await fetch(url);
-      const data = await res.json();
-      displaySeries(data.results);
-      document.getElementById('currentPage').textContent = currentPage;
-    }
-
-    function displaySeries(series) {
-      const container = document.getElementById('series');
-      container.innerHTML = '';
-      series.forEach(tv => {
-        const card = document.createElement('div');
-        card.classList.add('series-card');
-        card.innerHTML = `
-          <img src="${IMG_URL + tv.poster_path}" alt="${tv.name}" />
-          <div class="series-title">${tv.name}</div>
-        `;
-        card.addEventListener('click', () => playTrailer(tv.id));
-        container.appendChild(card);
-      });
-    }
-
-    async function playTrailer(tvId) {
-      const res = await fetch(${BASE_URL}/tv/${tvId}/videos?api_key=${API_KEY});
-      const data = await res.json();
-      const trailer = data.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');
-      if (trailer) {
-        document.getElementById('trailer').src = https://www.youtube.com/embed/${trailer.key}?autoplay=1;
-        document.getElementById('modal').style.display = 'flex';
-      } else {
-        alert('Trailer not available.');
-      }
-    }
-
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-      document.getElementById('trailer').src = '';
-    }
-
-    // Init
-    fetchGenres();
-    fetchSeries();
-  </script>
-
+  <script src="js/series.js"></script>
 </body>
 </html>
