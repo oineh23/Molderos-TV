@@ -465,22 +465,6 @@ function closeModal() {
   document.getElementById('modal-video').src = '';
 }
 </script>
-
-<script>
-  const trailers = [
-    "qEVUtrk8_B4",   // John Wick 4
-    "avz06PDqDbM",   // Mission Impossible 7
-    "aOb15GVFZxU",   // Fast X
-    "19ikl8vy4zs",   // The Equalizer 3
-    "Y274jZs5s7s",   // Extraction 2
-    "wGz1oR7v6UU"    // The Fall Guy
-  ];
-
-  const randomTrailer = trailers[Math.floor(Math.random() * trailers.length)];
-  const videoUrl = `https://www.youtube.com/embed/${randomTrailer}?autoplay=1&mute=1&controls=0&loop=1&playlist=${randomTrailer}&modestbranding=1&showinfo=0`;
-
-  document.getElementById("hero-video").src = videoUrl;
-</script>
   
 <body>
   
@@ -612,6 +596,22 @@ function closeModal() {
       </div>
     </div>
   </footer>
-  
+
+    <script>
+  const trailers = [
+    "qEVUtrk8_B4",   // John Wick 4
+    "avz06PDqDbM",   // Mission Impossible 7
+    "aOb15GVFZxU",   // Fast X
+    "19ikl8vy4zs",   // The Equalizer 3
+    "Y274jZs5s7s",   // Extraction 2
+    "wGz1oR7v6UU"    // The Fall Guy
+  ];
+
+  const randomTrailer = trailers[Math.floor(Math.random() * trailers.length)];
+  const videoUrl = `https://www.youtube.com/embed/${randomTrailer}?autoplay=1&mute=1&controls=0&loop=1&playlist=${randomTrailer}&modestbranding=1&showinfo=0`;
+
+  document.getElementById("hero-video").src = videoUrl;
+</script>
+    
 </body>
 </html>
