@@ -54,7 +54,7 @@ async function init() {
   ]);
 
   displayBanner(movies[Math.floor(Math.random() * movies.length)]);
-  displayList(movies, 'movies-list');
+  fetchTrendingMovies();
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
 
@@ -140,23 +140,9 @@ async function fetchTrendingAnime() {
 }
 
 async function filterByGenre(genreId) {
-  const url = genreId
-    ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
-    : `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`;
-
-  document.getElementById('loading-spinner').style.display = 'flex';
-
-  const results = await fetchData(url);
-  const container = document.getElementById('movies-list');
-  container.innerHTML = '';
-
-  results.forEach(movie => {
-    if (!movie.poster_path) return;
-    movie.media_type = 'movie';
-    container.appendChild(createCard(movie));
-  });
-
-  document.getElementById('loading-spinner').style.display = 'none';
+  currentGenre = genreId;
+  trending = 1;
+  fetchTrendingMovies(trending, genreId, true);
 }
 
 // ====== TV SHOWS ======
@@ -409,3 +395,39 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
+
+// ====== TRENDING MOVIES ======
+const loadMoreTrendingBtn = document.getElementById('load-more-trending');
+
+async function fetchTrendingMovies(page = 1, genreId = '', reset = false) {
+  const url = genreId
+    ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${page}`
+    : `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&page=${page}`;
+
+  const container = document.getElementById('movies-list');
+  if (!container) return;
+
+  if (reset) {
+    container.innerHTML = '';
+    trending = 1;
+  }
+
+  const results = await fetchData(url);
+  results.forEach(movie => {
+    if (!movie.poster_path) return;
+    movie.media_type = 'movie';
+    container.appendChild(createCard(movie));
+  });
+
+  if (!results.length || results.length < 20) {
+    loadMoreTrendingBtn.style.display = 'none';
+  } else {
+    loadMoreTrendingBtn.style.display = 'block';
+  }
+}
+
+loadMoreTrendingBtn?.addEventListener('click', () => {
+  trending++;
+  fetchTrendingMovies(trending, currentGenre);
+});
+
