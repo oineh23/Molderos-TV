@@ -439,5 +439,5 @@ async function fetchTrendingMovies(page = 1, reset = false) {
 
 loadMoreTrendingBtn?.addEventListener('click', () => {
   trending++;
-  await fetchTrendingMovies(); // replaces displayList(movies, 'movies-list');
+  fetchTrendingMovies(trending);
 });
