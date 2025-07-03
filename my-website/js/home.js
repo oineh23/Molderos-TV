@@ -20,6 +20,7 @@ let pinoyPage = 1;
 let pinoyGenre = '';
 let tvGenre = '';
 let tvPage = 1;
+let TrendingMovies = 1;
 
 // ====== HELPER FUNCTIONS ======
 function getGenreName(id) {
@@ -409,68 +410,3 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
-
-const apiKey = "b8c2d0fa80cd79b5d28d9fe2853806bb"; // <-- Replace this with your actual TMDB API Key
-let currentPage = 1;
-let currentGenre = "";
-
-// Fetch and display movies
-async function loadTrendingMovies(page = 1, genre = "") {
-  const url = genre
-    ? `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genre}&page=${page}`
-    : `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&page=${page}`;
-
-  try {
-    document.getElementById("loading-spinner").style.display = "block";
-
-    const response = await fetch(url);
-    const data = await response.json();
-
-    const container = document.getElementById("movies-list");
-
-    data.results.forEach(movie => {
-      const card = document.createElement("div");
-      card.classList.add("card");
-      card.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-        <h3>${movie.title}</h3>
-      `;
-      container.appendChild(card);
-    });
-
-    // Hide Load More if last page
-    if (page >= data.total_pages) {
-      document.getElementById("load-more-btn").style.display = "none";
-    } else {
-      document.getElementById("load-more-btn").style.display = "block";
-    }
-
-  } catch (error) {
-    console.error("❌ Error loading movies:", error);
-  } finally {
-    document.getElementById("loading-spinner").style.display = "none";
-  }
-}
-
-// Initial load
-document.addEventListener("DOMContentLoaded", () => {
-  loadTrendingMovies(currentPage);
-});
-
-// Load more on button click
-document.getElementById("load-more-btn").addEventListener("click", () => {
-  currentPage++;
-  loadTrendingMovies(currentPage, currentGenre);
-});
-
-// Genre filter handler
-function filterByGenre(genre) {
-  currentGenre = genre;
-  currentPage = 1;
-
-  // Clear old results
-  document.getElementById("movies-list").innerHTML = "";
-  document.getElementById("load-more-btn").style.display = "block";
-
-  loadTrendingMovies(currentPage, currentGenre);
-}
