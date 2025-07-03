@@ -55,7 +55,7 @@ async function init() {
   ]);
 
   displayBanner(movies[Math.floor(Math.random() * movies.length)]);
-  displayList(movies, 'movies-list');
+  fetchTrendingMovies();
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
 
@@ -141,9 +141,10 @@ async function fetchTrendingAnime() {
 }
 
 async function filterByGenre(genreId) {
-  const url = genreId
-    ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
-    : `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`;
+  currentGenre = genreId;
+  trending = 1;
+  fetchTrendingMovies(trending, genreId, true);
+}
 
   document.getElementById('loading-spinner').style.display = 'flex';
 
