@@ -54,7 +54,7 @@ async function init() {
   ]);
 
   displayBanner(movies[Math.floor(Math.random() * movies.length)]);
-  await fetchTrendingMovies(); // Load trending movies with pagination
+  displayList(movies, 'movies-list');
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
 
@@ -140,14 +140,21 @@ async function fetchTrendingAnime() {
 }
 
 async function filterByGenre(genreId) {
-  trendingPage = 1;
-  currentTrendingGenre = genreId;
+  const url = genreId
+    ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
+    : `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`;
+
   document.getElementById('loading-spinner').style.display = 'flex';
 
+  const results = await fetchData(url);
   const container = document.getElementById('movies-list');
   container.innerHTML = '';
 
-  await fetchTrendingMovies(genreId, trendingPage);
+  results.forEach(movie => {
+    if (!movie.poster_path) return;
+    movie.media_type = 'movie';
+    container.appendChild(createCard(movie));
+  });
 
   document.getElementById('loading-spinner').style.display = 'none';
 }
@@ -402,39 +409,3 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
-
-// ====== LOAD MORE TRENDING MOVIES ======
-let trendingPage = 1;
-let currentTrendingGenre = '';
-
-const loadMoreTrendingBtn = document.getElementById('load-more-trending');
-
-if (loadMoreTrendingBtn) {
-  loadMoreTrendingBtn.addEventListener('click', () => {
-    trendingPage++;
-    fetchTrendingMovies(currentTrendingGenre, trendingPage);
-  });
-}
-
-async function fetchTrendingMovies(genreId = '', page = 1) {
-  const url = genreId
-    ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&sort_by=popularity.desc&page=${page}`
-    : `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&page=${page}`;
-
-  const movies = await fetchData(url);
-  const container = document.getElementById('movies-list');
-  if (page === 1) container.innerHTML = ''; // clear only for first page
-
-  movies.forEach(movie => {
-    if (!movie.poster_path) return;
-    movie.media_type = 'movie';
-    container.appendChild(createCard(movie));
-  });
-
-  // Optional: hide button if fewer results returned (end of pages)
-  if (movies.length < 20) {
-    loadMoreTrendingBtn.style.display = 'none';
-  } else {
-    loadMoreTrendingBtn.style.display = 'block';
-  }
-}
