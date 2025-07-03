@@ -396,38 +396,42 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 // Initial Korean movie load
 loadKoreanMovies();
 
-// ====== TRENDING MOVIES ======
-const loadMoreTrendingBtn = document.getElementById('load-more-trending');
+// ====== LOAD MORE TRENDING MOVIES ======
+let trendingPage = 1;
+let currentTrendingGenre = '';
 
-async function fetchTrendingMovies(page = 1, genreId = '', reset = false) {
+const loadMoreTrendingBtn = document.getElementById('load-more-trending');
+loadMoreTrendingBtn?.addEventListener('click', () => {
+  trendingPage++;
+  fetchTrendingMovies(currentTrendingGenre, trendingPage);
+});
+
+async function fetchTrendingMovies(genreId = '', page = 1) {
   const url = genreId
-    ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${page}`
+    ? `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&sort_by=popularity.desc&page=${page}`
     : `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&page=${page}`;
 
+  const movies = await fetchData(url);
   const container = document.getElementById('movies-list');
-  if (!container) return;
-
-  if (reset) {
-    container.innerHTML = '';
-    trending = 1;
-  }
-
-  const results = await fetchData(url);
-  results.forEach(movie => {
+  movies.forEach(movie => {
     if (!movie.poster_path) return;
     movie.media_type = 'movie';
     container.appendChild(createCard(movie));
   });
-
-  if (!results.length || results.length < 20) {
-    loadMoreTrendingBtn.style.display = 'none';
-  } else {
-    loadMoreTrendingBtn.style.display = 'block';
-  }
 }
 
-loadMoreTrendingBtn?.addEventListener('click', () => {
-  trending++;
-  fetchTrendingMovies(trending, currentGenre);
-});
+// Modify filterByGenre to reset list and page
+async function filterByGenre(genreId) {
+  trendingPage = 1;
+  currentTrendingGenre = genreId;
+  document.getElementById('loading-spinner').style.display = 'flex';
+
+  const container = document.getElementById('movies-list');
+  container.innerHTML = '';
+
+  await fetchTrendingMovies(genreId, trendingPage);
+
+  document.getElementById('loading-spinner').style.display = 'none';
+}
+
 
