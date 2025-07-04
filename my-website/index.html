@@ -613,6 +613,26 @@ function closeModal() {
     });
   }
 </script>
+
+    <script>
+  // Function to open the search modal
+  function openSearchModal() {
+    document.getElementById('searchModal').classList.add('active');
+  }
+
+  // Function to close the search modal
+  function closeSearchModal() {
+    document.getElementById('searchModal').classList.remove('active');
+  }
+
+  // Optional: Close modal when pressing Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+      closeSearchModal();
+    }
+  });
+</script>
+
   
 </body>
 </html>
