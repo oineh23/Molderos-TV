@@ -546,30 +546,40 @@ function closeModal() {
   </div>
 
  <!-- Modal -->
+<!-- Modal -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <button class="custom-close-button" onclick="closeModal()" aria-label="Close Video">
-  <i class="fas fa-times"></i>
-</button>
-    <div class="modal-body">
-      <img id="modal-image" src="" alt="Movie poster" />
-      <div class="modal-text">
-        <h2 id="modal-title"></h2>
-        <div class="stars" id="modal-rating"></div>
-        <p id="modal-description"></p>
-      </div>
+      <i class="fas fa-times"></i>
+    </button>
+
+    <!-- Video Player -->
+    <iframe id="modal-video" src="https://player.videasy.net/embed/tt3896198" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+
+    <!-- Choose Server Buttons -->
+    <div class="server-buttons" style="margin-top: 15px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+      <button onclick="changeEmbed('https://player.videasy.net/embed/tt3896198')">Server 1 (Videasy)</button>
+      <button onclick="changeEmbed('https://vidsrc.in/embed/tt3896198')">Server 2 (Vidsrc)</button>
+      <button onclick="changeEmbed('https://embed.su/embed/tt3896198')">Server 3 (Embed.su)</button>
+      <button onclick="changeEmbed('https://moviesapi.club/embed/tt3896198')">Server 4 (MoviesAPI)</button>
+      <button onclick="changeEmbed('https://111movies.com/embed/tt3896198')">Server 5 (111Movies)</button>
     </div>
-    <div class="server-selector">
-      <label for="server">Change Server:</label>
-      <select id="server" onchange="changeServer()">
-        <option value="vidsrc.cc">Vidsrc.cc</option>
-        <option value="vidsrc.me">Vidsrc.me</option>
-        <option value="player.videasy.net">Player.Videasy.net</option>
-      </select>
-   </div>
-    <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
   </div>
 </div>
+
+  <script>
+  function changeEmbed(url) {
+    document.getElementById('modal-video').src = url;
+  }
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+    document.getElementById('modal-video').src = '';
+  }
+
+  // Optional: test modal opening
+  // document.getElementById('modal').style.display = 'flex';
+</script>
 
   <!-- Search Modal -->
 <!-- Search Modal -->
