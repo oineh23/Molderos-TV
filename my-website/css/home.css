@@ -664,8 +664,13 @@ main {
 }
 
 /* Footer */
-footer {
-  transition: background-color 0.3s ease, color 0.3s ease;
+.footer {
+  color: black;
+}
+
+.footer a {
+  color: black;
+  text-decoration: none; /* Optional: remove underline */
 }
 
 .footer {
