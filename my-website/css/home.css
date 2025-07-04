@@ -663,25 +663,24 @@ main {
   display: flex;
 }
 
-/* Light mode (default) */
+/* Footer */
 .footer {
-  color: black;
+  background-color: none;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  color: #aaa;
 }
 
-.footer a {
-  color: black;
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.footer-links a:hover {
+  color: #fff;
   text-decoration: none;
-}
-
-/* Dark mode — using prefers-color-scheme */
-@media (prefers-color-scheme: dark) {
-  .footer {
-    color: white;
-  }
-
-  .footer a {
-    color: white;
-  }
 }
 
 /* Dark mode — using prefers-color-scheme */
