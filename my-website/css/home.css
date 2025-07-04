@@ -665,15 +665,7 @@ main {
 
 /* Footer */
 .footer {
-  color: black;
-}
-
-.footer a {
-  color: black;
-  text-decoration: none; /* Optional: remove underline */
-}
-
-.footer {
+  background-color: #141414;
   padding: 1.5rem 2rem;
   text-align: center;
   color: #aaa;
@@ -684,6 +676,11 @@ main {
   justify-content: center;
   gap: 1.5rem;
   margin-top: 0.5rem;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
 /* Dark/Light mode variables */
