@@ -403,6 +403,27 @@
 </script>
 
   <script>
+function fetchMovieInfo(movieId) {
+  const apiKey = 'acbb1b71'; // Your OMDb API key
+  const url = `https://www.omdbapi.com/?i=${movieId}&apikey=${apiKey}`;
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      if (data.Response === "True") {
+        document.getElementById('modal-title').textContent = `${data.Title} (${data.Year})`;
+        document.getElementById('modal-description').textContent = data.Plot;
+        document.getElementById('modal-image').src = data.Poster;
+        document.getElementById('modal-rating').innerHTML = `⭐ ${data.imdbRating}/10`;
+      } else {
+        console.warn("❌ Movie not found in OMDb:", data.Error);
+      }
+    })
+    .catch(err => console.error("❌ OMDb API fetch failed:", err));
+}
+</script>
+
+  <script>
 const serverList = [
   { name: "Vidsrc.cc", base: "https://vidsrc.cc/embed/movie/" },
   { name: "Vidsrc.me", base: "https://vidsrc.me/embed/movie/" },
@@ -423,6 +444,7 @@ function openModal(movieId) {
   document.getElementById('modal').style.display = 'flex';
   populateServerSelector();
   tryServer(currentServerIndex);
+  fetchMovieInfo(movieId);
 }
 
 function tryServer(index) {
