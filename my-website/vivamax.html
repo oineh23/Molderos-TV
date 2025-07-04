@@ -406,14 +406,37 @@
 const serverList = [
   'vidsrc.cc',
   'vidsrc.me',
-  'player.videasy.net'
+  'player.videasy.net',
+  'embed.su',
+  'moviesapi.club',
+  '111movies.com'
 ];
 
 let currentServerIndex = 0;
-let currentMovieId = ''; // this should be set when opening modal
+let currentMovieId = ''; // e.g. 'tt3896198'
 let tryTimeout = null;
 
+function getEmbedURL(server, movieId) {
+  switch (server) {
+    case 'vidsrc.cc':
+    case 'vidsrc.me':
+      return `https://${server}/embed/movie/${movieId}`;
+    case 'player.videasy.net':
+    case 'embed.su':
+    case 'moviesapi.club':
+    case '111movies.com':
+      return `https://${server}/embed/${movieId}`;
+    default:
+      return '';
+  }
+}
+
 function openModal(movieId) {
+  if (!movieId) {
+    alert("Movie ID is missing!");
+    return;
+  }
+
   currentMovieId = movieId;
   currentServerIndex = 0;
   document.getElementById('modal').style.display = 'flex';
@@ -432,24 +455,20 @@ function tryServer(index) {
 
   const server = serverList[index];
   const iframe = document.getElementById('modal-video');
-  iframe.src = `https://${server}/embed/movie/${currentMovieId}`;
+  iframe.src = getEmbedURL(server, currentMovieId);
 
-  // Wait and try next if the server refuses to connect
   tryTimeout = setTimeout(() => {
-    // Try to access contentWindow - if cross-origin or fails, switch server
     try {
       const doc = iframe.contentDocument || iframe.contentWindow.document;
-      // Check if it's about:blank (likely blocked or empty)
       if (!doc || doc.location.href === "about:blank") {
         console.warn(`❌ ${server} returned blank. Trying next...`);
         tryServer(index + 1);
       }
     } catch (e) {
-      // Most likely a CORS restriction or blocked
       console.warn(`❌ ${server} refused connection. Trying next...`);
       tryServer(index + 1);
     }
-  }, 4000); // Wait 4s before checking if it failed
+  }, 4000);
 }
 
 function changeServer() {
@@ -457,7 +476,7 @@ function changeServer() {
   const select = document.getElementById('server');
   const selectedServer = select.value;
   const iframe = document.getElementById('modal-video');
-  iframe.src = `https://${selectedServer}/embed/movie/${currentMovieId}`;
+  iframe.src = getEmbedURL(selectedServer, currentMovieId);
 }
 
 function closeModal() {
@@ -562,10 +581,13 @@ function closeModal() {
     <div class="server-selector">
       <label for="server">Change Server:</label>
       <select id="server" onchange="changeServer()">
-        <option value="vidsrc.cc">Vidsrc.cc</option>
-        <option value="vidsrc.me">Vidsrc.me</option>
-        <option value="player.videasy.net">Player.Videasy.net</option>
-      </select>
+  <option value="vidsrc.cc">Vidsrc.cc</option>
+  <option value="vidsrc.me">Vidsrc.me</option>
+  <option value="player.videasy.net">Videasy</option>
+  <option value="embed.su">Embed.su</option>
+  <option value="moviesapi.club">MoviesAPI</option>
+  <option value="111movies.com">111Movies</option>
+</select>
    </div>
     <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
   </div>
