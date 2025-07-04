@@ -403,46 +403,21 @@
 </script>
 
   <script>
-function fetchMovieInfo(movieId) {
-  const apiKey = 'acbb1b71'; // Your OMDb API key
-  const url = `https://www.omdbapi.com/?i=${movieId}&apikey=${apiKey}`;
-
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      if (data.Response === "True") {
-        document.getElementById('modal-title').textContent = `${data.Title} (${data.Year})`;
-        document.getElementById('modal-description').textContent = data.Plot;
-        document.getElementById('modal-image').src = data.Poster;
-        document.getElementById('modal-rating').innerHTML = `⭐ ${data.imdbRating}/10`;
-      } else {
-        console.warn("❌ Movie not found in OMDb:", data.Error);
-      }
-    })
-    .catch(err => console.error("❌ OMDb API fetch failed:", err));
-}
-</script>
-
-  <script>
 const serverList = [
-  { name: "Videasy", base: "https://player.videasy.net/embed/" },
-  { name: "Vidsrc.in", base: "https://vidsrc.in/embed/movie/" },
-  { name: "Embed.su", base: "https://embed.su/embed/" },
-  { name: "MoviesAPI", base: "https://moviesapi.club/embed/" },
-  { name: "111Movies", base: "https://111movies.com/embed/" }
+  'vidsrc.cc',
+  'vidsrc.me',
+  'player.videasy.net'
 ];
 
 let currentServerIndex = 0;
-let currentMovieId = '';
+let currentMovieId = ''; // this should be set when opening modal
 let tryTimeout = null;
 
 function openModal(movieId) {
   currentMovieId = movieId;
   currentServerIndex = 0;
   document.getElementById('modal').style.display = 'flex';
-  populateServerSelector();
   tryServer(currentServerIndex);
-  fetchMovieInfo(movieId);
 }
 
 function tryServer(index) {
@@ -457,28 +432,32 @@ function tryServer(index) {
 
   const server = serverList[index];
   const iframe = document.getElementById('modal-video');
-  iframe.src = `${server.base}${currentMovieId}?autoplay=1`;
+  iframe.src = `https://${server}/embed/movie/${currentMovieId}`;
 
+  // Wait and try next if the server refuses to connect
   tryTimeout = setTimeout(() => {
+    // Try to access contentWindow - if cross-origin or fails, switch server
     try {
       const doc = iframe.contentDocument || iframe.contentWindow.document;
+      // Check if it's about:blank (likely blocked or empty)
       if (!doc || doc.location.href === "about:blank") {
-        console.warn(`❌ ${server.name} returned blank. Trying next...`);
+        console.warn(`❌ ${server} returned blank. Trying next...`);
         tryServer(index + 1);
       }
     } catch (e) {
-      console.warn(`❌ ${server.name} refused connection. Trying next...`);
+      // Most likely a CORS restriction or blocked
+      console.warn(`❌ ${server} refused connection. Trying next...`);
       tryServer(index + 1);
     }
-  }, 4000);
+  }, 4000); // Wait 4s before checking if it failed
 }
 
 function changeServer() {
   clearTimeout(tryTimeout);
   const select = document.getElementById('server');
-  const selectedUrl = select.value;
+  const selectedServer = select.value;
   const iframe = document.getElementById('modal-video');
-  iframe.src = `${selectedUrl}${currentMovieId}?autoplay=1`;
+  iframe.src = `https://${selectedServer}/embed/movie/${currentMovieId}`;
 }
 
 function closeModal() {
@@ -486,21 +465,8 @@ function closeModal() {
   document.getElementById('modal').style.display = 'none';
   document.getElementById('modal-video').src = '';
 }
-
-// Populate server selector dynamically
-function populateServerSelector() {
-  const selector = document.getElementById('server');
-  selector.innerHTML = ''; // Clear existing
-
-  serverList.forEach(server => {
-    const option = document.createElement('option');
-    option.value = server.base;
-    option.textContent = server.name;
-    selector.appendChild(option);
-  });
-}
 </script>
-
+  
 <body>
   
   <!-- Navbar -->
@@ -592,8 +558,10 @@ function populateServerSelector() {
     <div class="server-selector">
       <label for="server">Change Server:</label>
       <select id="server" onchange="changeServer()">
-  <!-- Dynamically populated via JS -->
-</select>
+        <option value="vidsrc.cc">Vidsrc.cc</option>
+        <option value="vidsrc.me">Vidsrc.me</option>
+        <option value="player.videasy.net">Player.Videasy.net</option>
+      </select>
    </div>
     <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
   </div>
