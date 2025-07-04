@@ -368,64 +368,6 @@
   border-radius: 6px;
   font-size: 1rem;
 }
-    .modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.9);
-}
-
-.modal-content {
-  position: relative;
-  margin: 5% auto;
-  width: 90%;
-  max-width: 960px;
-  background: #000;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.close-button {
-  color: white;
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  font-size: 30px;
-  cursor: pointer;
-}
-
-.video-container {
-  position: relative;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.server-select {
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.server-select select {
-  padding: 8px 12px;
-  font-size: 16px;
-  border-radius: 6px;
-  background-color: #1c1c1c;
-  color: white;
-  border: none;
-}
 
 /* Fade In Animation */
 @keyframes fadeInUp {
@@ -599,27 +541,29 @@ function closeModal() {
     <span>Loading content...</span>
   </div>
 
- <!-- Modal Video Player -->
-<div id="videoModal" class="modal">
+ <!-- Modal -->
+<div class="modal" id="modal">
   <div class="modal-content">
-    <span class="close-button" onclick="closeModal()">&times;</span>
-    
-    <!-- Server Selection -->
-    <div class="server-select">
-      <label for="server">Choose Server:</label>
+    <button class="custom-close-button" onclick="closeModal()" aria-label="Close Video">
+  <i class="fas fa-times"></i>
+</button>
+    <div class="modal-body">
+      <img id="modal-image" src="" alt="Movie poster" />
+      <div class="modal-text">
+        <h2 id="modal-title"></h2>
+        <div class="stars" id="modal-rating"></div>
+        <p id="modal-description"></p>
+      </div>
+    </div>
+    <div class="server-selector">
+      <label for="server">Change Server:</label>
       <select id="server" onchange="changeServer()">
-        <option value="https://player.videasy.net/embed/YOUR_MOVIE_ID">Videasy</option>
-        <option value="https://vidsrc.in/embed/YOUR_MOVIE_ID">Vidsrc</option>
-        <option value="https://embed.su/embed/YOUR_MOVIE_ID">Embed.su</option>
-        <option value="https://moviesapi.club/embed/YOUR_MOVIE_ID">MoviesAPI</option>
-        <option value="https://111movies.com/embed/YOUR_MOVIE_ID">111Movies</option>
+        <option value="vidsrc.cc">Vidsrc.cc</option>
+        <option value="vidsrc.me">Vidsrc.me</option>
+        <option value="player.videasy.net">Player.Videasy.net</option>
       </select>
-    </div>
-
-    <!-- Embedded Player -->
-    <div class="video-container">
-      <iframe id="videoPlayer" src="https://player.videasy.net/embed/acbb1b71" allowfullscreen></iframe>
-    </div>
+   </div>
+    <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
   </div>
 </div>
 
@@ -665,41 +609,6 @@ function closeModal() {
     });
   }
 </script>
-
-    <script>
-function openModal(movieId) {
-  // You can dynamically change the video src based on movieId
-  const defaultServer = `https://player.videasy.net/embed/${movieId}`;
-  document.getElementById("videoPlayer").src = defaultServer;
-
-  // Update server options with movieId
-  const serverSelect = document.getElementById("server");
-  const servers = [
-    `https://player.videasy.net/embed/${movieId}`,
-    `https://vidsrc.in/embed/${movieId}`,
-    `https://embed.su/embed/${movieId}`,
-    `https://moviesapi.club/embed/${movieId}`,
-    `https://111movies.com/embed/${movieId}`,
-  ];
-
-  serverSelect.innerHTML = servers.map((url, i) => {
-    const name = url.split("/")[2]; // Get domain
-    return `<option value="${url}">${name}</option>`;
-  }).join("");
-
-  document.getElementById("videoModal").style.display = "block";
-}
-
-function closeModal() {
-  document.getElementById("videoModal").style.display = "none";
-  document.getElementById("videoPlayer").src = ""; // Stop video
-}
-
-function changeServer() {
-  const server = document.getElementById("server").value;
-  document.getElementById("videoPlayer").src = server;
-}
-</script>
-
+  
 </body>
 </html>
