@@ -686,19 +686,6 @@ main {
   margin-top: 0.5rem;
 }
 
-.footer-links a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-
-.site-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  background-color: var(--footer-bg);
-  color: var(--footer-text);
-}
-
 /* Dark/Light mode variables */
 :root {
   --footer-bg: #f0f0f0;
