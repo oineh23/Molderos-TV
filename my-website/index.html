@@ -543,25 +543,27 @@ function closeModal() {
     <span>Loading content...</span>
   </div>
 
- <!-- Modal -->
-<div class="modal-content">
-  <button class="custom-close-button" onclick="closeModal()" aria-label="Close Video">
-    <i class="fas fa-times"></i>
-  </button>
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="custom-close-button" onclick="closeModal()" aria-label="Close Video">
+      <i class="fas fa-times"></i>
+    </button>
 
-  <iframe id="modal-video" src="https://player.videasy.net/embed/acbb1b71" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    <!-- Video Player -->
+    <iframe id="modal-video" src="https://player.videasy.net/embed/tt3896198" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
 
-  <!-- Choose Server Buttons -->
-  <div class="server-buttons" style="margin-top: 15px; text-align: center;">
-    <button onclick="changeEmbed('https://player.videasy.net/embed/acbb1b71')">Server 1 (Videasy)</button>
-    <button onclick="changeEmbed('https://vidsrc.in/embed/acbb1b71')">Server 2 (Vidsrc)</button>
-    <button onclick="changeEmbed('https://embed.su/embed/acbb1b71')">Server 3 (Embed.su)</button>
-    <button onclick="changeEmbed('https://moviesapi.club/embed/acbb1b71')">Server 4 (MoviesAPI)</button>
-    <button onclick="changeEmbed('https://111movies.com/embed/acbb1b71')">Server 5 (111Movies)</button>
+    <!-- Choose Server Buttons -->
+    <div class="server-buttons" style="margin-top: 15px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+      <button onclick="changeEmbed('https://player.videasy.net/embed/tt3896198')">Server 1 (Videasy)</button>
+      <button onclick="changeEmbed('https://vidsrc.in/embed/tt3896198')">Server 2 (Vidsrc)</button>
+      <button onclick="changeEmbed('https://embed.su/embed/tt3896198')">Server 3 (Embed.su)</button>
+      <button onclick="changeEmbed('https://moviesapi.club/embed/tt3896198')">Server 4 (MoviesAPI)</button>
+      <button onclick="changeEmbed('https://111movies.com/embed/tt3896198')">Server 5 (111Movies)</button>
+    </div>
   </div>
 </div>
 
-  <!-- Search Modal -->
 <!-- Search Modal -->
 <div class="search-modal" id="search-modal">
   <div class="search-modal-content">
@@ -606,11 +608,17 @@ function closeModal() {
 
     <script>
   function changeEmbed(url) {
-    const iframe = document.getElementById('modal-video');
-    iframe.src = url;
+    document.getElementById('modal-video').src = url;
   }
-</script>
 
-  
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+    document.getElementById('modal-video').src = '';
+  }
+
+  // Optional: test modal opening
+  // document.getElementById('modal').style.display = 'flex';
+</script>
+ 
 </body>
 </html>
