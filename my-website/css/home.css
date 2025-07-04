@@ -663,34 +663,23 @@ main {
   display: flex;
 }
 
-/* Footer */
+/* Default = light mode */
 .footer {
-  padding: 1.5rem 2rem;
-  text-align: center;
-  color: #aaa;
+  color: black;
 }
 
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 0.5rem;
+.footer a {
+  color: black;
+  text-decoration: none;
 }
 
-.footer-links a:hover {
-  color: #fff;
-  text-decoration: underline;
+/* When dark mode is active — assuming body.dark-mode */
+body.dark-mode .footer {
+  color: white;
 }
 
-/* Dark mode — using prefers-color-scheme */
-@media (prefers-color-scheme: dark) {
-  .footer {
-    color: white;
-  }
-
-  .footer a {
-    color: white;
-  }
+body.dark-mode .footer a {
+  color: white;
 }
 
 /* Responsive Design */
