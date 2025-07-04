@@ -572,17 +572,18 @@ function closeModal() {
 
   <!-- Search Modal -->
 <!-- Search Modal -->
-<div class="search-modal" id="search-modal">
-  <div class="search-modal-content">
-    <button class="search-close" onclick="closeSearchModal()" aria-label="Close">&times;</button>
-    <input 
-      type="text" 
-      id="search-input" 
-      placeholder="🔍 Search movies, TV shows, or anime..." 
-      oninput="searchTMDB()" 
-      aria-label="Search input"
-    />
-    <div class="search-results" id="search-results"></div>
+<div class="search-modal" id="searchModal">
+  <span class="close" onclick="closeSearchModal()">&times;</span>
+  <input type="text" placeholder="Search for movies, TV shows..." id="searchInput" />
+  <div class="results" id="searchResults">
+    <!-- JS will inject search result items here -->
+    <!-- Example: -->
+    <!--
+    <div class="result-item">
+      <img src="images/sample.jpg" alt="Movie Title">
+      <div class="title">Movie Title</div>
+    </div>
+    -->
   </div>
 </div>
 
