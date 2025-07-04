@@ -663,25 +663,6 @@ main {
   display: flex;
 }
 
-/* Footer */
-.footer {
-  padding: 1.5rem 2rem;
-  text-align: center;
-  color: #aaa;
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 0.5rem;
-}
-
-.footer-links a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-
 /* Light mode (default) */
 .footer {
   color: black;
@@ -690,6 +671,17 @@ main {
 .footer a {
   color: black;
   text-decoration: none;
+}
+
+/* Dark mode — using prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  .footer {
+    color: white;
+  }
+
+  .footer a {
+    color: white;
+  }
 }
 
 /* Dark mode — using prefers-color-scheme */
