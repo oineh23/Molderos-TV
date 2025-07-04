@@ -665,7 +665,6 @@ main {
 
 /* Footer */
 .footer {
-  background-color: none;
   padding: 1.5rem 2rem;
   text-align: center;
   color: #aaa;
@@ -680,7 +679,7 @@ main {
 
 .footer-links a:hover {
   color: #fff;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 /* Dark mode — using prefers-color-scheme */
