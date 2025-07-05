@@ -31095,12 +31095,4 @@
    		return exportTo.gowatch
    	});
    	else innerGlobal.gowatch = exportTo.gowatch
-
-// Get the sidebar and button
-const sidebar = document.getElementById('sidebar');
-const openButton = document.getElementById('open-button');
-
-// When button is clicked, toggle the 'open' class
-openButton.addEventListener('click', () => {
-  sidebar.classList.toggle('open');
    })();
