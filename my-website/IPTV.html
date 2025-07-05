@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>IPTV</title>
-    <link rel="shorcut icon" type="x-icon" href="image/live.png">
-    <link rel="stylesheet" href="css/display.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8" />
+  <title>IPTV</title>
+  <link rel="shortcut icon" type="image/x-icon" href="image/live.png" />
+  <link rel="stylesheet" href="css/display.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+</head>
 <body>
-    <div id="container-ott">
-        <div class="container">
-            <div class="ott-container" id="video-ott">
-                <video id="drm-player" class="ott-player" controls autoplay></video>
-            </div>
-        </div>
-        <div class="channel-ott closed" id="sidebar">
-            <h2>IPTV</h2>
-            <input type="text" id="search-bar" placeholder="Search">
-            <div class="channel-sbr">
-                <ul id="channels"></ul>
-            </div>
-        </div>
-        <button id="open-button" class="open-btn"><i class="fa fa-television"></i></button>
-    </div>
-    <script src="js/browser.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/script.js"></script>
+  <div class="container-ott">
+    <!-- Sidebar -->
+    <aside class="sidebar closed" id="sidebar">
+      <h1 class="logo">IPTV</h1>
+      <input
+        type="text"
+        id="search-bar"
+        placeholder="Search channels..."
+        class="search-bar"
+      />
+      <ul id="channels" class="channel-list"></ul>
+    </aside>
+
+    <!-- Video player -->
+    <main class="video-container">
+      <video
+        id="drm-player"
+        class="ott-player"
+        controls
+        autoplay
+      ></video>
+      <button id="open-button" class="open-btn">
+        <i class="fa fa-bars"></i>
+      </button>
+    </main>
+  </div>
+
+  <script src="js/browser.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
