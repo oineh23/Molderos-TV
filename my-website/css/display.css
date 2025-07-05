@@ -304,9 +304,6 @@ body,
 [class~="ott-player"] {
   left: 50%;
 }
-[class~="ott-player"] {
-  transform: translate(-50%, -50%);
-}
 .circle,
 .fill,
 [class~="mask"],
