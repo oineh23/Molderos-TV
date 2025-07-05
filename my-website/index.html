@@ -442,7 +442,7 @@
 
 .hero-section {
   position: relative;
-  height: 90vh;
+  height: 100vh; /* Fullscreen */
   overflow: hidden;
 }
 
@@ -450,38 +450,51 @@
   position: relative;
   height: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   display: flex;
   align-items: center;
+  transition: background 0.5s ease;
 }
 
 .hero-content {
-  background: rgba(0, 0, 0, 0.6);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 20%, transparent 100%);
   color: #fff;
   padding: 2rem;
-  max-width: 500px;
+  max-width: 600px;
   margin-left: 2rem;
   border-radius: 10px;
+  animation: fadeInUp 1s ease;
 }
 
 .hero-content h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  line-height: 1.4;
 }
 
 .hero-content .btn {
   display: inline-block;
   margin-top: 1rem;
-  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 1.8rem;
   background-color: red;
-  color: #fff;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
   border-radius: 5px;
   text-decoration: none;
+  transition: background 0.3s ease;
+}
+.hero-content .btn:hover {
+  background-color: #c40000;
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-  color: #fff;
+@keyframes fadeInUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
 }
 </style>
 
@@ -803,17 +816,18 @@ async function loadHeroSlides(region = 'PH') {
   if (swiperInstance) swiperInstance.destroy(true, true); // remove previous instance
 
   swiperInstance = new Swiper(".heroSwiper", {
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-}
+  loop: true,
+  effect: 'fade', // ✅ fade like Netflix
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+
 
 // Event listener: when user selects a new country
 countrySelect.addEventListener('change', () => {
