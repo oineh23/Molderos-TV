@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -381,8 +382,8 @@
   }
 }
 
-/* Simple styling for the modal */
-  #warningModal { 
+
+    #warningModal { 
   display: none; 
   position: fixed; 
   z-index: 1000; 
@@ -436,7 +437,6 @@
   background: #dc3545;
   color: white;
 }
-
 </style>
 
 <script>
@@ -542,13 +542,13 @@ function closeModal() {
       <a href="anime.html">Anime</a>
       <a href="korean.html">Korean</a>
       <a href="vivamax.html">VMX</a>
-      <a href="IPTV.html" id="iptvLink">IPTV</a>
+      <a href="IPTV.html">IPTv</a>
 
-  <!-- Modal -->
+      <!-- Modal -->
   <div id="warningModal">
     <div id="warningContent">
-      <h2>PLEASE MAKE SURE LANDSCAPE YOUR PHONE WHEN USING IPTV⚠️</h2>
-      <p>Do you want to continue?</p>
+      <h2>⚠️ WARNING</h2>
+      <p>You are about to open the IPTV page. Do you want to continue?</p>
       <button class="modal-btn continue-btn" id="continueBtn">Continue</button>
       <button class="modal-btn cancel-btn" id="cancelBtn">Cancel</button>
     </div>
@@ -706,16 +706,6 @@ function closeModal() {
       }
     });
   </script>
-
-    <script>
-  function showModal() {
-    document.getElementById('warningModal').style.display = 'flex';
-  }
-
-  function closeModal() {
-    document.getElementById('warningModal').style.display = 'none';
-  }
-</script>
   
 </body>
 </html>
