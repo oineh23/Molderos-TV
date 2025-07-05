@@ -17,7 +17,7 @@
   flex-direction: row;
 }
 [class~="container"] {
-  height: 100vh;
+  height: 50vh;
 }
 [class~="ott-container"] {
   flex: 1;
