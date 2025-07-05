@@ -1,5 +1,7 @@
 #container-ott {
   display: none;
+  width: 380vw;
+  height: 120vh;
 }
 [class~="ott-container"],
 [class~="channel-ott"],
@@ -597,4 +599,7 @@ h2 {
 }
 [class~="social-icon"]:hover {
   color: #1da1f2;
+}
+#container-ott.ott {
+  display: block;
 }
