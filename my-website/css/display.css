@@ -1,3 +1,115 @@
+
+/* Netflix-style dark theme */
+body {
+  margin: 0;
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-ott {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #141414;
+  padding: 20px;
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: #e50914;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.channel-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.channel-list li {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.channel-list li:hover {
+  background: #333;
+}
+
+.video-container {
+  flex: 1;
+  position: relative;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ott-player {
+  width: 90%;
+  max-width: 1200px;
+  height: auto;
+  border-radius: 8px;
+  background: #000;
+}
+
+.open-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #e50914;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s ease;
+}
+
+.open-btn:hover {
+  background: #f40612;
+}
+
+/* Sidebar open style */
+#sidebar.open {
+  transform: translateX(0);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    height: 100%;
+    z-index: 100;
+  }
+
+  .video-container {
+    width: 100%;
+  }
+}
+
 #container-ott {
   display: none;
 }
