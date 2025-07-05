@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script defer src="js/home.js"></script>
 
   <script>
@@ -433,11 +434,50 @@
   }
 }
 
-#countrySelect {
-  border-radius: 6px;
-  background: #111;
-  color: white;
-  border: 1px solid #444;
+<style>
+    
+.hero-section {
+  position: relative;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: relative;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 2rem;
+  max-width: 500px;
+  margin-left: 2rem;
+  border-radius: 10px;
+}
+
+.hero-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content .btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background-color: red;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
 }
 </style>
 
@@ -555,18 +595,6 @@ function closeModal() {
     </div>
   </div>
       
-      <div style="padding: 1rem; text-align: center;">
-  <label for="countrySelect" style="font-weight: bold; color: white;">Choose Country:</label>
-  <select id="countrySelect" style="padding: 0.5rem; font-size: 1rem;">
-    <option value="PH">🇵🇭 Philippines</option>
-    <option value="US">🇺🇸 USA</option>
-    <option value="KR">🇰🇷 Korea</option>
-    <option value="JP">🇯🇵 Japan</option>
-    <option value="IN">🇮🇳 India</option>
-    <option value="TH">🇹🇭 Thailand</option>
-  </select>
-</div>
-      
       <input 
         type="text" 
         class="search-bar" 
@@ -580,35 +608,15 @@ function closeModal() {
 </header>
   
   <!-- Hero Section -->
-<section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
-  <!-- Fullscreen YouTube Video -->
-  <iframe
-  id="hero-video"
-  src="https://www.youtube.com/embed/qEVUtrk8_B4?autoplay=1&mute=1&controls=0&loop=1&playlist=qEVUtrk8_B4&enablejsapi=1"
-  frameborder="0"
-  allow="autoplay; encrypted-media"
-  allowfullscreen
-  style="
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 380vw;
-    height: 120vh;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-    pointer-events: none;
-  "
-></iframe>
+<section class="hero-section">
+  <div class="swiper heroSwiper">
+    <div class="swiper-wrapper" id="hero-slider-wrapper">
+      <!-- Slides will be inserted dynamically here -->
+    </div>
 
-  <!-- Overlay -->
-  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1;"></div>
-
-  <!-- Hero Content -->
-  <div class="hero-content" style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; color: #fff;">
-    <h1 class="hero-title" style="font-size: 2rem; font-weight: bold; text-shadow: 0 0 10px #0ff;">NONSTOP ACTION</h1>
-    <p class="hero-description" style="max-width: 600px; margin: 20px auto; font-size: 1.2rem; color: #ccc;">
-      Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
-    </p>
+    <!-- Navigation Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
 </section>
 
@@ -720,63 +728,44 @@ function closeModal() {
     });
   </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script>
-const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // ← Replace this!
+const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMAGE_BASE = 'https://image.tmdb.org/t/p/original';
-const sliderWrapper = document.getElementById('hero-slider-wrapper');
-let swiperInstance = null;
 
-const countrySelect = document.getElementById('countrySelect');
-
-function getEndpoints(region) {
-  return [
-    { url: `/movie/popular?region=${region}`, label: `Popular in ${region}` },
-    { url: `/trending/movie/week?region=${region}`, label: `Trending Movies (${region})` },
-    { url: `/movie/top_rated?region=${region}`, label: `Top Rated Movies (${region})` },
-    { url: `/discover/tv?with_origin_country=${region}`, label: `TV Shows from ${region}` }
-  ];
+async function fetchPopularMovies() {
+  const res = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`);
+  const data = await res.json();
+  return data.results.slice(0, 5); // Limit to 5 movies
 }
 
-async function fetchAndAddSlide(endpoint) {
-  try {
-    const res = await fetch(`${BASE_URL}${endpoint.url}&api_key=${API_KEY}&language=en-US`);
-    const data = await res.json();
-    const items = data.results;
-    if (!items || items.length === 0) return;
+function createSlide(movie) {
+  const slide = document.createElement('div');
+  slide.className = 'swiper-slide hero-slide';
+  slide.style.backgroundImage = `url('${IMAGE_BASE + movie.backdrop_path}')`;
 
-    const item = items[Math.floor(Math.random() * items.length)];
-    const title = item.title || item.name || 'No Title';
-    const desc = item.overview ? item.overview.slice(0, 150) + '...' : 'No description available';
-    const bg = item.backdrop_path ? IMAGE_BASE + item.backdrop_path : '';
-
-    const slide = document.createElement('div');
-    slide.className = 'swiper-slide hero-slide';
-    slide.style.backgroundImage = `url('${bg}')`;
-    slide.innerHTML = `
-      <div class="hero-content">
-        <h2>${title}</h2>
-        <p>${desc}</p>
-        <a href="#" class="btn">Watch Now</a>
-        <small style="opacity: 0.7">${endpoint.label}</small>
-      </div>
-    `;
-    sliderWrapper.appendChild(slide);
-  } catch (err) {
-    console.error('Failed to fetch:', endpoint.url, err);
-  }
+  slide.innerHTML = `
+    <div class="hero-content">
+      <h2>${movie.title}</h2>
+      <p>${movie.overview.substring(0, 150)}...</p>
+      <a href="#" class="btn">Watch Now</a>
+    </div>
+  `;
+  return slide;
 }
 
-async function loadHeroSlides(region = 'PH') {
-  sliderWrapper.innerHTML = ''; // clear previous slides
-  const endpoints = getEndpoints(region);
-  for (const endpoint of endpoints) {
-    await fetchAndAddSlide(endpoint);
-  }
+async function loadHeroSlider() {
+  const wrapper = document.getElementById('hero-slider-wrapper');
+  const movies = await fetchPopularMovies();
 
-  if (swiperInstance) swiperInstance.destroy(true, true); // remove previous instance
+  movies.forEach(movie => {
+    const slide = createSlide(movie);
+    wrapper.appendChild(slide);
+  });
 
-  swiperInstance = new Swiper(".heroSwiper", {
+  new Swiper(".heroSwiper", {
     loop: true,
     autoplay: {
       delay: 5000,
@@ -789,16 +778,9 @@ async function loadHeroSlides(region = 'PH') {
   });
 }
 
-// Event listener: when user selects a new country
-countrySelect.addEventListener('change', () => {
-  const selected = countrySelect.value;
-  loadHeroSlides(selected);
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  loadHeroSlides(); // default PH
-});
+document.addEventListener('DOMContentLoaded', loadHeroSlider);
 </script>
+
 
   
 </body>
