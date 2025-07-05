@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="css/display.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
-    <div class="ott-container">
-  <div class="ott-player-wrapper">
-    <iframe class="ott-player" src="https://cignalplaytv.vercel.app" frameborder="0" allowfullscreen></iframe>
-  </div>
-</div>
+    <div id="container-ott">
+        <div class="container">
+            <div class="ott-container" id="video-ott">
+                <video id="drm-player" class="ott-player" controls autoplay></video>
+            </div>
+        </div>
         <div class="channel-ott closed" id="sidebar">
-            <h2>MOLDEROS-IPTV</h2>
+            <h2>IPTV</h2>
             <input type="text" id="search-bar" placeholder="Search">
             <div class="channel-sbr">
                 <ul id="channels"></ul>
