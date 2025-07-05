@@ -563,294 +563,37 @@ function closeModal() {
 </header>
   
   <!-- Hero Section -->
-<!-- Hero Section -->
-<section class="hero-section">
-  <h2 class="section-title">Hero Picks</h2>
-
-  <div class="hero-sliders">
-    <div id="popular-movies" class="hero-slider"></div>
-    <div id="trending-series" class="hero-slider"></div>
-    <div id="trending-movies" class="hero-slider"></div>
-    <div id="top-rated-movies" class="hero-slider"></div>
-    <div id="top-rated-series" class="hero-slider"></div>
-  </div>
-</section>
-
-<!-- Styles (add to your CSS) -->
-<style>
-  .hero-section {
-    padding: 2rem;
-    background: #000;
-    color: #fff;
-  }
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  .hero-slider {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-  }
-  .hero-slider::-webkit-scrollbar {
-    display: none;
-  }
-  .hero-card {
-    min-width: 200px;
-    background: #111;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px #333;
-  }
-  .hero-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-  }
-  .hero-card h4 {
-    padding: 0.5rem;
-    font-size: 1rem;
-  }
-</style>
-
-<!-- JS (insert before </body>) -->
-<script>
-  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-  const baseURL = 'https://api.themoviedb.org/3';
-  const imageURL = 'https://image.tmdb.org/t/p/w500';
-
-  const endpoints = {
-    'popular-movies': `${baseURL}/movie/popular?api_key=${apiKey}`,
-    'trending-series': `${baseURL}/trending/tv/week?api_key=${apiKey}`,
-    'trending-movies': `${baseURL}/trending/movie/week?api_key=${apiKey}`,
-    'top-rated-movies': `${baseURL}/movie/top_rated?api_key=${apiKey}`,
-    'top-rated-series': `${baseURL}/tv/top_rated?api_key=${apiKey}`,
-  };
-
-  async function loadHeroSlider(containerId, url) {
-    const res = await fetch(url);
-    const data = await res.json();
-    const container = document.getElementById(containerId);
-
-    data.results.slice(0, 10).forEach(item => {
-      const title = item.title || item.name;
-      const image = item.poster_path || item.backdrop_path;
-<section class="hero-section">
-  <h2 class="section-title">Hero Picks</h2>
-
-  <div class="hero-category" id="popular-movies-container">
-    <h3>Popular Movies</h3>
-    <div class="slider-wrapper">
-      <button class="nav prev">&#8249;</button>
-      <div id="popular-movies" class="hero-slider"></div>
-      <button class="nav next">&#8250;</button>
-    </div>
-  </div>
-
-  <div class="hero-category" id="trending-series-container">
-    <h3>Trending Series</h3>
-    <div class="slider-wrapper">
-      <button class="nav prev">&#8249;</button>
-      <div id="trending-series" class="hero-slider"></div>
-      <button class="nav next">&#8250;</button>
-    </div>
-  </div>
-
-  <div class="hero-category" id="trending-movies-container">
-    <h3>Trending Movies</h3>
-    <div class="slider-wrapper">
-      <button class="nav prev">&#8249;</button>
-      <div id="trending-movies" class="hero-slider"></div>
-      <button class="nav next">&#8250;</button>
-    </div>
-  </div>
-
-  <div class="hero-category" id="top-rated-movies-container">
-    <h3>Top Rated Movies</h3>
-    <div class="slider-wrapper">
-      <button class="nav prev">&#8249;</button>
-      <div id="top-rated-movies" class="hero-slider"></div>
-      <button class="nav next">&#8250;</button>
-    </div>
-  </div>
-
-  <div class="hero-category" id="top-rated-series-container">
-    <h3>Top Rated Series</h3>
-    <div class="slider-wrapper">
-      <button class="nav prev">&#8249;</button>
-      <div id="top-rated-series" class="hero-slider"></div>
-      <button class="nav next">&#8250;</button>
-    </div>
-  </div>
-</section>
-
-<!-- Trailer Modal -->
-<div id="trailerModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <iframe id="trailerPlayer" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
-  </div>
-</div>
-
-<style>
-  .hero-section {
-    padding: 2rem;
-    background-color: #000;
-    color: #fff;
-  }
-  .hero-category {
-    margin-bottom: 2rem;
-  }
-  .hero-category h3 {
-    font-size: 1.5rem;
-    margin: 0.5rem 0;
-  }
-  .slider-wrapper {
-    position: relative;
-  }
-  .hero-slider {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 1rem;
-  }
-  .hero-card {
-    flex: 0 0 auto;
-    width: 180px;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #111;
-    cursor: pointer;
-  }
-  .hero-card img {
-    width: 100%;
-    height: 270px;
-    object-fit: cover;
-  }
-  .hero-card h4 {
-    padding: 0.5rem;
-    font-size: 0.95rem;
-  }
-  .nav {
+<section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
+  <!-- Fullscreen YouTube Video -->
+  <iframe
+  id="hero-video"
+  src="https://www.youtube.com/embed/qEVUtrk8_B4?autoplay=1&mute=1&controls=0&loop=1&playlist=qEVUtrk8_B4&enablejsapi=1"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+  style="
     position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.6);
-    border: none;
-    color: white;
-    font-size: 2rem;
-    z-index: 2;
-    cursor: pointer;
-    padding: 0 10px;
-  }
-  .nav.prev {
-    left: 0;
-  }
-  .nav.next {
-    right: 0;
-  }
+    top: 50%;
+    left: 50%;
+    width: 380vw;
+    height: 120vh;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+  "
+></iframe>
 
-  /* Modal */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    padding-top: 60px;
-    left: 0; top: 0; width: 100%; height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.9);
-  }
-  .modal-content {
-    margin: auto;
-    width: 80%;
-    max-width: 900px;
-  }
-  .close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-</style>
+  <!-- Overlay -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1;"></div>
 
-<script>
-  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-  const imageURL = 'https://image.tmdb.org/t/p/w500';
-
-  const endpoints = {
-    'popular-movies': `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`,
-    'trending-series': `https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`,
-    'trending-movies': `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`,
-    'top-rated-movies': `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`,
-    'top-rated-series': `https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}`
-  };
-
-  function scrollSlider(button, direction) {
-    const slider = button.parentElement.querySelector('.hero-slider');
-    slider.scrollBy({ left: direction * 300, behavior: 'smooth' });
-  }
-
-  function addNavButtons() {
-    document.querySelectorAll('.slider-wrapper').forEach(wrapper => {
-      const prev = wrapper.querySelector('.prev');
-      const next = wrapper.querySelector('.next');
-      prev.onclick = () => scrollSlider(prev, -1);
-      next.onclick = () => scrollSlider(next, 1);
-    });
-  }
-
-  function openModal(trailerUrl) {
-    document.getElementById('trailerPlayer').src = trailerUrl;
-    document.getElementById('trailerModal').style.display = 'block';
-  }
-
-  function closeModal() {
-    const modal = document.getElementById('trailerModal');
-    const iframe = document.getElementById('trailerPlayer');
-    modal.style.display = 'none';
-    iframe.src = '';
-  }
-
-  async function getTrailer(type, id) {
-    const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${apiKey}`);
-    const data = await res.json();
-    const trailer = data.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');
-    if (trailer) {
-      openModal(`https://www.youtube.com/embed/${trailer.key}?autoplay=1`);
-    }
-  }
-
-  async function loadSlider(containerId, url, mediaType = 'movie') {
-    const res = await fetch(url);
-    const data = await res.json();
-    const container = document.getElementById(containerId);
-
-    data.results.slice(0, 10).forEach(item => {
-      const title = item.title || item.name;
-      const img = item.poster_path || item.backdrop_path;
-      const card = document.createElement('div');
-      card.classList.add('hero-card');
-      card.innerHTML = `
-        <img src="${imageURL}${img}" alt="${title}" />
-        <h4>${title}</h4>
-      `;
-      card.onclick = () => getTrailer(mediaType, item.id);
-      container.appendChild(card);
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    loadSlider('popular-movies', endpoints['popular-movies'], 'movie');
-    loadSlider('trending-series', endpoints['trending-series'], 'tv');
-    loadSlider('trending-movies', endpoints['trending-movies'], 'movie');
-    loadSlider('top-rated-movies', endpoints['top-rated-movies'], 'movie');
-    loadSlider('top-rated-series', endpoints['top-rated-series'], 'tv');
-    addNavButtons();
-  });
-</script>
+  <!-- Hero Content -->
+  <div class="hero-content" style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; color: #fff;">
+    <h1 class="hero-title" style="font-size: 2rem; font-weight: bold; text-shadow: 0 0 10px #0ff;">NONSTOP ACTION</h1>
+    <p class="hero-description" style="max-width: 600px; margin: 20px auto; font-size: 1.2rem; color: #ccc;">
+      Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
+    </p>
+  </div>
+</section>
 
   <!-- Main Content -->
   <main>
