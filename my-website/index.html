@@ -15,6 +15,7 @@
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script defer src="js/home.js"></script>
 
   <script>
@@ -591,6 +592,67 @@ function closeModal() {
 }
 </style>
 
+  <style>
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+  background: linear-gradient(to right, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0));
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-content h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.hero-content button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: #e50914;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: white;
+}
+</style>
+
 <body>
   
   <!-- Navbar -->
@@ -636,28 +698,9 @@ function closeModal() {
   
   <!-- Hero Section -->
 <section class="hero swiper mySwiper">
-  <div class="swiper-wrapper">
-    <!-- Slide 1 -->
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/original/your-image1.jpg" alt="Movie 1">
-      <div class="hero-content">
-        <h2>Popular Movie Title 1</h2>
-        <p>Action, Adventure - 2025</p>
-        <button>Watch Now</button>
-      </div>
-    </div>
-
-    <!-- Slide 2 -->
-    <div class="swiper-slide">
-      <img src="https://image.tmdb.org/t/p/original/your-image2.jpg" alt="Movie 2">
-      <div class="hero-content">
-        <h2>Popular Movie Title 2</h2>
-        <p>Drama, Mystery - 2025</p>
-        <button>Watch Now</button>
-      </div>
-    </div>
-
-    <!-- Add more slides here -->
+<section class="hero swiper mySwiper">
+  <div class="swiper-wrapper" id="hero-slider">
+    <!-- Slides will be inserted here dynamically -->
   </div>
 
   <!-- Arrows -->
@@ -776,6 +819,50 @@ function closeModal() {
     <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  
+<script>
+  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDB API key
+  const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
+  const imageBase = 'https://image.tmdb.org/t/p/original';
+
+  fetch(apiURL)
+    .then(response => response.json())
+    .then(data => {
+      const slider = document.getElementById('hero-slider');
+      const movies = data.results.slice(0, 5); // First 5 popular movies
+      movies.forEach(movie => {
+        const slide = document.createElement('div');
+        slide.classList.add('swiper-slide');
+        slide.innerHTML = `
+          <img src="${imageBase}${movie.backdrop_path}" alt="${movie.title}">
+          <div class="hero-content">
+            <h2>${movie.title}</h2>
+            <p>${movie.overview.slice(0, 100)}...</p>
+            <button onclick="openModal('${movie.id}')">Watch Now</button>
+          </div>
+        `;
+        slider.appendChild(slide);
+      });
+
+      new Swiper(".mySwiper", {
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        effect: "fade",
+        speed: 800,
+      });
+    });
+
+  function openModal(movieId) {
+    // Add modal logic or redirect here
+    alert("Play movie ID: " + movieId);
+  }
+</script>
+    
 </body>
 </html>
