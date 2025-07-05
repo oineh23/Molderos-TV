@@ -518,33 +518,6 @@ function closeModal() {
   document.getElementById('modal-video').src = '';
 }
 </script>
-
-  <script>
-  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-  const baseImgUrl = 'https://image.tmdb.org/t/p/original';
-  const heroImage = document.getElementById('hero-image');
-  const heroTitle = document.getElementById('hero-title');
-  const heroDescription = document.getElementById('hero-description');
-  const watchNowBtn = document.getElementById('watch-now-btn');
-
-  async function fetchHeroMovie() {
-    const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`);
-    const data = await res.json();
-    const movie = data.results[0]; // Top trending movie
-
-    heroImage.src = baseImgUrl + movie.backdrop_path;
-    heroTitle.textContent = movie.title || movie.name;
-    heroDescription.textContent = movie.overview;
-
-    // Optional: Link to a modal player
-    watchNowBtn.addEventListener('click', () => {
-      window.location.href = `/watch.html?id=${movie.id}&type=movie`; // or open modal
-    });
-  }
-
-  fetchHeroMovie();
-</script>
-
   
 <body>
   
@@ -589,19 +562,36 @@ function closeModal() {
   </div>
 </header>
   
-  <section class="hero" id="hero">
-  <div class="hero-bg">
-    <div class="overlay"></div>
-    <img id="hero-image" class="hero-image" src="" alt="Hero Background" />
-  </div>
+  <!-- Hero Section -->
+<section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
+  <!-- Fullscreen YouTube Video -->
+  <iframe
+  id="hero-video"
+  src="https://www.youtube.com/embed/qEVUtrk8_B4?autoplay=1&mute=1&controls=0&loop=1&playlist=qEVUtrk8_B4&enablejsapi=1"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+  style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 380vw;
+    height: 120vh;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+  "
+></iframe>
 
-  <div class="hero-content">
-    <h1 id="hero-title" class="hero-title"></h1>
-    <p id="hero-description" class="hero-description"></p>
-    <div class="hero-buttons">
-      <button class="btn primary" id="watch-now-btn">▶ Watch Now</button>
-      <button class="btn secondary">+ My List</button>
-    </div>
+  <!-- Overlay -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+
+  <!-- Hero Content -->
+  <div class="hero-content" style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; color: #fff;">
+    <h1 class="hero-title" style="font-size: 2rem; font-weight: bold; text-shadow: 0 0 10px #0ff;">NONSTOP ACTION</h1>
+    <p class="hero-description" style="max-width: 600px; margin: 20px auto; font-size: 1.2rem; color: #ccc;">
+      Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
+    </p>
   </div>
 </section>
 
