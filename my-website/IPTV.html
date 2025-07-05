@@ -33,6 +33,38 @@
       font-size: 18px;
       cursor: pointer;
     }
+    /* Optional: Fullscreen override on small landscape devices */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  .modal-content {
+    width: 100vw;
+    height: 100vh;
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+}
+    .custom-close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-close-button:hover {
+  background-color: rgba(255, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.custom-close-button i {
+  pointer-events: none;
+}
   </style>
 </head>
 <body>
