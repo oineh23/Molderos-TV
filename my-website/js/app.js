@@ -37,13 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			window.location.href = 'https://cignalplaytv.vercel.app/'
 		}
 	};
-	devtools();
-	window.addEventListener('resize', devtools);
-	document.documentElement.addEventListener('click', function() {
-		if (!document.fullscreenElement) {
-			document.documentElement.requestFullscreen().catch(err => {})
-		}
-	});
 
 	function checkOrientation() {
 		if (window.innerHeight > window.innerWidth) {
