@@ -598,3 +598,27 @@ h2 {
 [class~="social-icon"]:hover {
   color: #1da1f2;
 }
+
+.ott-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+  background: #000;
+}
+
+.ott-player-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.ott-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
