@@ -487,7 +487,17 @@ function closeModal() {
       <a href="anime.html">Anime</a>
       <a href="korean.html">Korean</a>
       <a href="vivamax.html">VMX</a>
-      <a href="IPTV.html">IPTv</a>
+      <a href="IPTV.html" id="iptvLink">IPTV</a>
+
+  <!-- Modal -->
+  <div id="warningModal">
+    <div id="warningContent">
+      <h2>⚠️ WARNING</h2>
+      <p>You are about to open the IPTV page. Do you want to continue?</p>
+      <button class="modal-btn continue-btn" id="continueBtn">Continue</button>
+      <button class="modal-btn cancel-btn" id="cancelBtn">Cancel</button>
+    </div>
+  </div>
       
       <input 
         type="text" 
@@ -610,6 +620,37 @@ function closeModal() {
     });
   }
 </script>
+
+    <script>
+    const iptvLink = document.getElementById('iptvLink');
+    const warningModal = document.getElementById('warningModal');
+    const continueBtn = document.getElementById('continueBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    let targetHref = '';
+
+    iptvLink.addEventListener('click', function(event) {
+      event.preventDefault(); // stop link immediately
+      targetHref = iptvLink.href; // store link
+      warningModal.style.display = 'block'; // show modal
+    });
+
+    continueBtn.addEventListener('click', function() {
+      warningModal.style.display = 'none';
+      window.location.href = targetHref; // go to link
+    });
+
+    cancelBtn.addEventListener('click', function() {
+      warningModal.style.display = 'none'; // just close modal
+    });
+
+    // Optional: Close modal if clicked outside content
+    window.addEventListener('click', function(e) {
+      if (e.target === warningModal) {
+        warningModal.style.display = 'none';
+      }
+    });
+  </script>
   
 </body>
 </html>
