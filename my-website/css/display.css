@@ -1,13 +1,6 @@
 #container-ott {
   display: none;
-  width: 50vw;
-  height: 50vh;
 }
-
-#container-ott.ott {
-  display: block;
-}
-
 [class~="ott-container"],
 [class~="channel-ott"],
 [class~="container"] {
@@ -17,7 +10,7 @@
   flex-direction: row;
 }
 [class~="container"] {
-  height: 50vh;
+  height: 100vh;
 }
 [class~="ott-container"] {
   flex: 1;
