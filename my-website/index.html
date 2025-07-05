@@ -14,8 +14,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script defer src="js/home.js"></script>
 
   <script>
@@ -520,139 +518,7 @@ function closeModal() {
   document.getElementById('modal-video').src = '';
 }
 </script>
-
-  <script>
-  var swiper = new Swiper(".mySwiper", {
-    loop: true,
-    autoplay: {
-      delay: 5000, // 5 seconds
-      disableOnInteraction: false,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    effect: "fade", // Optional: fade effect like Netflix
-    speed: 800,     // Transition speed
-  });
-</script>
-
   
-  <style>
-.hero {
-  position: relative;
-  width: 100%;
-  height: 80vh;
-  overflow: hidden;
-}
-
-.swiper-slide {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-content {
-  position: absolute;
-  bottom: 20%;
-  left: 5%;
-  color: white;
-  z-index: 10;
-  max-width: 500px;
-}
-
-.hero-content h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.hero-content p {
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
-
-.hero-content button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background: #e50914;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-  color: white;
-}
-</style>
-
-  <style>
-.hero {
-  position: relative;
-  width: 100%;
-  height: 80vh;
-  overflow: hidden;
-}
-
-.swiper-slide {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  color: white;
-}
-
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 40px;
-  background: linear-gradient(to right, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0));
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.hero-content h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.hero-content p {
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
-
-.hero-content button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background: #e50914;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-  color: white;
-}
-</style>
-
 <body>
   
   <!-- Navbar -->
@@ -678,7 +544,7 @@ function closeModal() {
       <div id="warningModal">
       <div id="warningContent">
       <h2>⚠️WARNING⚠️</h2>
-      <p>Run Only in Landscape Mode. Do you want to continue?</p>
+      <p>Switch to Landscape Mode. Do you want to continue?</p>
       <button class="modal-btn continue-btn" id="continueBtn">Continue</button>
       <button class="modal-btn cancel-btn" id="cancelBtn">Cancel</button>
     </div>
@@ -697,15 +563,36 @@ function closeModal() {
 </header>
   
   <!-- Hero Section -->
-<section class="hero swiper mySwiper">
-<section class="hero swiper mySwiper">
-  <div class="swiper-wrapper" id="hero-slider">
-    <!-- Slides will be inserted here dynamically -->
-  </div>
+<section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
+  <!-- Fullscreen YouTube Video -->
+  <iframe
+  id="hero-video"
+  src="https://www.youtube.com/embed/qEVUtrk8_B4?autoplay=1&mute=1&controls=0&loop=1&playlist=qEVUtrk8_B4&enablejsapi=1"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+  style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 380vw;
+    height: 120vh;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+  "
+></iframe>
 
-  <!-- Arrows -->
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
+  <!-- Overlay -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+
+  <!-- Hero Content -->
+  <div class="hero-content" style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; color: #fff;">
+    <h1 class="hero-title" style="font-size: 2rem; font-weight: bold; text-shadow: 0 0 10px #0ff;">NONSTOP ACTION</h1>
+    <p class="hero-description" style="max-width: 600px; margin: 20px auto; font-size: 1.2rem; color: #ccc;">
+      Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
+    </p>
+  </div>
 </section>
 
   <!-- Main Content -->
@@ -815,54 +702,6 @@ function closeModal() {
       }
     });
   </script>
-
-    <!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<script>
-  const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // Replace with your TMDB API key
-  const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
-  const imageBase = 'https://image.tmdb.org/t/p/original';
-
-  fetch(apiURL)
-    .then(response => response.json())
-    .then(data => {
-      const slider = document.getElementById('hero-slider');
-      const movies = data.results.slice(0, 5); // First 5 popular movies
-      movies.forEach(movie => {
-        const slide = document.createElement('div');
-        slide.classList.add('swiper-slide');
-        slide.innerHTML = `
-          <img src="${imageBase}${movie.backdrop_path}" alt="${movie.title}">
-          <div class="hero-content">
-            <h2>${movie.title}</h2>
-            <p>${movie.overview.slice(0, 100)}...</p>
-            <button onclick="openModal('${movie.id}')">Watch Now</button>
-          </div>
-        `;
-        slider.appendChild(slide);
-      });
-
-      new Swiper(".mySwiper", {
-        loop: true,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        effect: "fade",
-        speed: 800,
-      });
-    });
-
-  function openModal(movieId) {
-    // Add modal logic or redirect here
-    alert("Play movie ID: " + movieId);
-  }
-</script>
-    
+  
 </body>
 </html>
