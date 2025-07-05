@@ -598,3 +598,36 @@ h2 {
 [class~="social-icon"]:hover {
   color: #1da1f2;
 }
+
+/* === Make layout stack vertically on small screens === */
+@media screen and (max-width: 768px) {
+  [class~="container"] {
+    flex-direction: column; /* stack vertically in portrait */
+    height: auto;
+  }
+
+  [class~="channel-ott"] {
+    position: relative; /* let it flow naturally above player */
+    width: 100%; /* take full width */
+    height: auto; /* height adjusts to content */
+    transform: translateX(0); /* open by default */
+  }
+
+  [class~="ott-container"] {
+    flex: 1;
+    width: 100%;
+  }
+
+  [class~="ott-player"] {
+    position: relative; /* remove absolute centering */
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+  }
+
+  body {
+    overflow-y: auto; /* allow scrolling if needed */
+  }
+}
