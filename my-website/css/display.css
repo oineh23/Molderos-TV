@@ -1,7 +1,7 @@
 #container-ott {
   display: none;
-  width: 120vw;
-  height: 120vh;
+  width: 50vw;
+  height: 50vh;
 }
 [class~="ott-container"],
 [class~="channel-ott"],
