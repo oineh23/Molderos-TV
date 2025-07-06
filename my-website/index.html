@@ -562,7 +562,8 @@ function changeServer() {
   const select = document.getElementById('server');
   const selectedServer = select.value;
   const iframe = document.getElementById('modal-video');
-  iframe.src = `https://${selectedServer}/embed/movie/${currentMovieId}`;
+  const type = currentMovieId.startsWith('tv_') ? 'tv' : 'movie'; // Or store type separately
+  iframe.src = `https://${selectedServer}/embed/${type}/${currentMovieId}`;
 }
 
 function closeModal() {
