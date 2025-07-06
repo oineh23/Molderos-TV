@@ -439,6 +439,10 @@
   font-family: 'Bebas Neue', sans-serif;
   font-size: 18px;
   letter-spacing: 1px;
+}.omdb-rating p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #ccc;
 }
 
 </style>
@@ -671,6 +675,7 @@ function closeModal() {
       <div class="modal-text">
         <h2 id="modal-title"></h2>
         <div class="stars" id="modal-rating"></div>
+        <div id="modal-omdb-rating" class="omdb-rating" style="margin-top: 10px; color: #ccc;"></div>
         <p id="modal-description"></p>
       </div>
     </div>
