@@ -226,17 +226,16 @@
     text-align: center;
   }
 
-  
-.logo {
+    .logo {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #ffffff; /* White text */
+  color: #00ffff;
   text-shadow:
-    0 0 5px #ffffff,
-    0 0 10px #ffffff,
-    0 0 20px #ffffff,
-    0 0 40px #ffffff,
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #0ff,
     2px 2px 0 #111;
   animation: neonPulse 0.7s infinite ease-in-out;
   display: flex;
@@ -246,32 +245,31 @@
   text-transform: uppercase;
 }
 
-[data-theme="light"] .logo {
-  color: #cccccc; /* Soft gray for contrast in light theme */
+    [data-theme="light"] .logo {
+  color: #004466;
   text-shadow:
-    1px 1px 0 #eeeeee,
-    2px 2px 3px #dddddd;
+    1px 1px 0 #ccc,
+    2px 2px 3px #aaa;
 }
 
-@keyframes neonPulse {
+    @keyframes neonPulse {
   0%, 100% {
     text-shadow:
-      0 0 5px #ffffff,
-      0 0 10px #ffffff,
-      0 0 20px #ffffff,
-      0 0 40px #ffffff,
+      0 0 5px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
+      0 0 40px #0ff,
       2px 2px 0 #111;
   }
   50% {
     text-shadow:
-      0 0 2px #ffffff,
-      0 0 4px #ffffff,
-      0 0 10px #ffffff,
-      0 0 20px #ffffff,
+      0 0 2px #0ff,
+      0 0 4px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
       1px 1px 0 #111;
   }
 }
-
     /* --- Search Modal Styling --- */
 .search-modal {
   position: fixed;
