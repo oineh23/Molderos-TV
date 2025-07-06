@@ -14,8 +14,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <script defer src="js/home.js"></script>
 
   <script>
@@ -164,59 +162,6 @@
     z-index: 2000;
   }
 }
-    #warningModal { 
-  display: none; 
-  position: fixed; 
-  z-index: 1000; 
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.6);
-}
-
-#warningContent {
-  padding: 20px;
-  max-width: 400px;
-  margin: 100px auto;
-  border-radius: 8px;
-  text-align: center;
-}
-
-/* Default: Light mode */
-#warningContent {
-  background: white;
-  color: #000;
-}
-
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  #warningContent {
-    background: #222;
-    color: #f1f1f1;
-  }
-}
-
-#warningContent h2 {
-  margin-top: 0;
-}
-
-.modal-btn {
-  margin: 10px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.continue-btn {
-  background: #28a745;
-  color: white;
-}
-
-.cancel-btn {
-  background: #dc3545;
-  color: white;
-}
-    
 </style>
 
   <style>  
@@ -228,7 +173,7 @@
 
     .logo {
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   font-weight: 700;
   color: #00ffff;
   text-shadow:
@@ -434,12 +379,7 @@
     opacity: 1;
   }
 }
-    
-.nav-links a {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 18px;
-  letter-spacing: 1px;
-}
+
 
 </style>
 
@@ -527,133 +467,166 @@ function closeModal() {
 </script>
   
 <body>
-  
   <!-- Navbar -->
   <header class="nav-wrapper">
-  <div class="container nav">
-    <a href="index.html" class="logo">
-      <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
-      M0LD<span class="main-color">ER0S</span>-TV
-    </a>
-
-    <input type="checkbox" id="menu-toggle" />
-    <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
-
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="trending.html">Trending</a>
-      <a href="tvshows.html">TV Shows</a>
-      <a href="anime.html">Anime</a>
-      <a href="korean.html">Korean</a>
-      <a href="vivamax.html">VMX</a>
-      <a href="IPTV.html" id="iptvLink">IPTV</a>
-
-      <div id="warningModal">
-      <div id="warningContent">
-      <h2>⚠️WARNING⚠️</h2>
-      <p>landscape your Phone after clicking continue button IPTV page. Do you want to continue?</p>
-      <button class="modal-btn continue-btn" id="continueBtn">Continue</button>
-      <button class="modal-btn cancel-btn" id="cancelBtn">Cancel</button>
+    <div class="container nav">
+        <a href="#" class="logo">
+  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+  MOLD<span class="main-color">EROS</span>-TV
+        </a>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <input 
+          type="text" 
+          class="search-bar" 
+          placeholder="Search..." 
+          onfocus="openSearchModal()" 
+          aria-label="Search"
+        />
+        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
+      </nav>
     </div>
-  </div>
-      
-      <input 
-        type="text" 
-        class="search-bar" 
-        placeholder="Search..." 
-        onfocus="openSearchModal()" 
-        aria-label="Search"
-      />
-      <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
-    </div>
-  </div>
-</header>
-  
+  </header>
+
   <!-- Hero Section -->
-<section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
-  <!-- Fullscreen YouTube Video -->
-  <iframe
-    id="hero-video"
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/RNuHMQtDl80?autoplay=1&mute=1&controls=0&loop=1&playlist=RNuHMQtDl80&enablejsapi=1"
-    title="YouTube video player"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen
-    style="
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 120vw;
-      height: 120vh;
-      transform: translate(-50%, -50%);
-      z-index: 0;
-      pointer-events: none;
-    "
-  ></iframe>
+  <section class="hero-section" id="banner">
+    <div class="hero-overlay">
+      <h1 id="banner-title">Discover the Top Trending Entertainment</h1>
+      <p class="subtitle">Movies, TV Shows, and Anime – Updated Daily</p>
+      <button onclick="scrollToTrending()" class="cta-button">Explore Now</button>
+    </div>
+  </section>
 
-  <!-- Overlay -->
-  <div style="
-    position: absolute; 
-    top: 0; left: 0; 
-    width: 100%; height: 100%; 
-    background: rgba(0,0,0,0.5); 
-    z-index: 1;">
-  </div>
-
-  <!-- Play Button -->
-  <button id="play-button" style="
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    background: rgba(0,0,0,0.7);
-    border: none;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  ">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#fff" viewBox="0 0 24 24">
-      <path d="M8 5v14l11-7z"/>
-    </svg>
-  </button>
-
-  <!-- Hero Content -->
-  <div class="hero-content" style="
-    position: relative; 
-    z-index: 2; 
-    height: 100%; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-end; 
-    align-items: center; 
-    text-align: center; 
-    padding: 40px; 
-    color: #fff;">
-    <h1 class="hero-title" style="
-      font-size: 2rem; 
-      font-weight: bold; 
-      text-shadow: 0 0 10px #0ff;">
-      Avengers: Infinity War
-    </h1>
-    <p class="hero-description" style="
-      max-width: 600px; 
-      margin: 20px auto; 
-      font-size: 1.2rem; 
-      color: #ccc;">
-      Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
-    </p>
-  </div>
-</section>
-  
   <!-- Main Content -->
   <main>
+  <section class="row" id="movies-list-section">
+    <div class="section-header">
+      <h2>🎬 Trending Movies</h2>
+      <div class="genre-filter">
+        <label for="genre-select">🎯 Filter by Genre:</label>
+        <select id="genre-select" onchange="filterByGenre(this.value)">
+          <option value="">All</option>
+          <option value="28">Action</option>
+          <option value="35">Comedy</option>
+          <option value="18">Drama</option>
+          <option value="27">Horror</option>
+          <option value="16">Animation</option>
+          <option value="10749">Romance</option>
+          <option value="878">Science Fiction</option>
+          <option value="10751">Family</option>
+          <option value="99">Documentary</option>
+          <option value="12">Adventure</option>
+          <option value="80">Crime</option>
+          <option value="9648">Mystery</option>
+          <option value="53">Thriller</option>
+          <option value="14">Fantasy</option>
+          <option value="36">History</option>
+          <option value="10402">Music</option>
+          <option value="10752">War</option>
+          <option value="37">Western</option>
+        </select>
+      </div>
+    </div>
+    <div class="card-container" id="movies-list"></div>
+  </section>
+
+  <!-- Trending TV Shows -->
+  <section class="row" id="tvshows-list-section">
+    <div class="section-header">
+      <h2>📺 Trending TV Shows</h2>
+      <div class="genre-filter">
+        <label for="tv-genre-filter">🎯 Filter by Genre:</label>
+        <select id="tv-genre-filter" onchange="filterByTVGenre(this.value)">
+          <option value="">All</option>
+          <option value="28">Action</option>
+          <option value="35">Comedy</option>
+          <option value="18">Drama</option>
+          <option value="10765">Sci-Fi</option>
+          <option value="16">Anime</option>
+        </select>
+      </div>
+    </div>
+    <div class="card-container" id="tvshows-list"></div>
+  </section>
+
+  <!-- Trending Anime -->
+  <section class="row" id="anime-list-section">
+    <div class="section-header">
+      <h2>🌸 Trending Anime</h2>
+    </div>
+    <div class="card-container" id="anime-list"></div>
+    <div class="load-more-container">
+      <button id="load-more-anime">🎥 Load More</button>
+    </div>
+  </section>
+
+  <!-- Vivamax / Pinoy Movies -->
+  <section class="section" id="pinoy-movies">
+    <div class="section-header">
+      <h2 style="display: flex; align-items: center; gap: 5px;">
+        <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
+        Vivamax
+      </h2>
+      <div class="genre-filter">
+        <label for="pinoy-genre-filter">🎯 Filter by Genre:</label>
+        <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
+          <option value="">All Genres</option>
+          <optgroup label="Popular Genres">
+            <option value="28">Action</option>
+            <option value="35">Comedy</option>
+            <option value="18">Drama</option>
+            <option value="10749">Romance</option>
+            <option value="80">Crime</option>
+            <option value="27">Horror</option>
+            <option value="10751">Family</option>
+            <option value="16">Animation</option>
+          </optgroup>
+          <optgroup label="Other Genres">
+            <option value="99">Documentary</option>
+            <option value="10402">Music</option>
+            <option value="9648">Mystery</option>
+            <option value="878">Science Fiction</option>
+            <option value="10752">War</option>
+            <option value="37">Western</option>
+            <option value="36">History</option>
+            <option value="14">Fantasy</option>
+            <option value="53">Thriller</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+    <div class="vivamax-grid" id="pinoy-movie-list"></div>
+    <div class="load-more-container">
+      <button id="load-more-pinoy">🎥 Load More</button>
+    </div>
+  </section>
+
+  <!-- Korean Movies -->
+  <section class="section" id="korean-movies">
+    <div class="section-header">
+      <h2>🇰🇷 Korean Movies</h2>
+      <div class="genre-filter">
+        <label for="korean-genre-filter">🎯 Filter by Genre:</label>
+        <select id="korean-genre-filter" onchange="filterByKoreanGenre(this.value)">
+          <option value="">All</option>
+          <option value="28">Action</option>
+          <option value="35">Comedy</option>
+          <option value="18">Drama</option>
+          <option value="10749">Romance</option>
+          <option value="27">Horror</option>
+          <option value="80">Crime</option>
+        </select>
+      </div>
+    </div>
+    <div class="vivamax-grid" id="korean-movie-list"></div>
+    <div class="load-more-container">
+      <button id="load-more-korean">🎥 Load More</button>
+    </div>
+  </section>
+</main>
+
   <!-- Loading Spinner -->
   <div class="loading-spinner" id="loading-spinner" style="display: none;">
     <i class="fas fa-spinner fa-spin"></i>
@@ -704,87 +677,15 @@ function closeModal() {
 
     <!-- Footer -->
   <footer class="footer">
-  <p>&copy; 2025 01N3H. All rights reserved.</p>
-  <div class="footer-links">
-    <a href="#">Disclaimer</a>
-    <a href="#">About Us</a>
-    <a href="#">Contact</a>
-  </div>
-</footer>
-
-    <script src="https://www.youtube.com/iframe_api"></script>
-<script>
-  let player;
-
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('hero-video', {
-      events: {
-        onReady: (event) => {
-          event.target.mute(); // Keep it muted for autoplay
-          event.target.setPlaybackQuality('hd1080'); // Request 1080p
-          event.target.playVideo();
-        }
-      }
-    });
-  }
-</script>
-
-    <script>
-    const iptvLink = document.getElementById('iptvLink');
-    const warningModal = document.getElementById('warningModal');
-    const continueBtn = document.getElementById('continueBtn');
-    const cancelBtn = document.getElementById('cancelBtn');
-
-    let targetHref = '';
-
-    iptvLink.addEventListener('click', function(event) {
-      event.preventDefault(); // stop link immediately
-      targetHref = iptvLink.href; // store link
-      warningModal.style.display = 'block'; // show modal
-    });
-
-    continueBtn.addEventListener('click', function() {
-      warningModal.style.display = 'none';
-      window.location.href = targetHref; // go to link
-    });
-
-    cancelBtn.addEventListener('click', function() {
-      warningModal.style.display = 'none'; // just close modal
-    });
-
-    // Optional: Close modal if clicked outside content
-    window.addEventListener('click', function(e) {
-      if (e.target === warningModal) {
-        warningModal.style.display = 'none';
-      }
-    });
-  </script>
-
-    <!-- YouTube API Script -->
-<script>
-  // Load YouTube IFrame Player API
-  var tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  var player;
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('hero-video', {
-      events: {
-        'onReady': onPlayerReady
-      }
-    });
-  }
-
-  function onPlayerReady(event) {
-    document.getElementById('play-button').addEventListener('click', function() {
-      player.unMute();
-      player.playVideo();
-      this.style.display = 'none';
-    });
-  }
-</script>
+    <div class="footer-content">
+      <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Disclaimer</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
   
 </body>
 </html>
