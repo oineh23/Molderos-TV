@@ -226,16 +226,17 @@
     text-align: center;
   }
 
-    .logo {
+  
+.logo {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #A0522D; /* SaddleBrown */
+  color: #ffffff; /* White */
   text-shadow:
-    0 0 5px #A0522D,
-    0 0 10px #A0522D,
-    0 0 20px #A0522D,
-    0 0 40px #A0522D,
+    0 0 5px #00ff00,
+    0 0 10px #00ff00,
+    0 0 20px #00ff00,
+    0 0 40px #00ff00,
     2px 2px 0 #111;
   animation: neonPulse 0.7s infinite ease-in-out;
   display: flex;
@@ -246,31 +247,30 @@
 }
 
 [data-theme="light"] .logo {
-  color: #004466; /* SaddleBrown for light theme */
+  color: #004400; /* Darker green for light theme */
   text-shadow:
-    1px 1px 0 #D2B48C, /* Tan */
-    2px 2px 3px #A0522D;
+    1px 1px 0 #ccffcc,
+    2px 2px 3px #99ff99;
 }
 
 @keyframes neonPulse {
   0%, 100% {
     text-shadow:
-      0 0 5px #A0522D,
-      0 0 10px #A0522D,
-      0 0 20px #A0522D,
-      0 0 40px #A0522D,
+      0 0 5px #00ff00,
+      0 0 10px #00ff00,
+      0 0 20px #00ff00,
+      0 0 40px #00ff00,
       2px 2px 0 #111;
   }
   50% {
     text-shadow:
-      0 0 2px #A0522D,
-      0 0 4px #A0522D,
-      0 0 10px #A0522D,
-      0 0 20px #A0522D,
+      0 0 2px #00ff00,
+      0 0 4px #00ff00,
+      0 0 10px #00ff00,
+      0 0 20px #00ff00,
       1px 1px 0 #111;
   }
 }
-
 
     /* --- Search Modal Styling --- */
 .search-modal {
