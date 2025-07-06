@@ -517,11 +517,12 @@ let currentServerIndex = 0;
 let currentMovieId = ''; // this should be set when opening modal
 let tryTimeout = null;
 
-function openModal(movieId) {
-  currentMovieId = movieId;
+function openModal(id, type = 'movie') {
+  currentMovieId = id;
   currentServerIndex = 0;
   document.getElementById('modal').style.display = 'flex';
-  tryServer(currentServerIndex);
+
+  tryServer(currentServerIndex, type);
 }
 
 function tryServer(index) {
