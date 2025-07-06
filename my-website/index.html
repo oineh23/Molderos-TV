@@ -439,10 +439,6 @@
   font-family: 'Bebas Neue', sans-serif;
   font-size: 18px;
   letter-spacing: 1px;
-}.omdb-rating p {
-  margin: 4px 0;
-  font-size: 0.9rem;
-  color: #ccc;
 }
 
 </style>
@@ -675,22 +671,18 @@ function closeModal() {
       <div class="modal-text">
         <h2 id="modal-title"></h2>
         <div class="stars" id="modal-rating"></div>
-        <div id="modal-omdb-rating" class="omdb-rating" style="margin-top: 10px; color: #ccc;"></div>
         <p id="modal-description"></p>
       </div>
     </div>
     <div class="server-selector">
       <label for="server">Change Server:</label>
       <select id="server" onchange="changeServer()">
-  <option value="vidsrc.cc">vidsrc.cc</option>
-  <option value="vidsrc.me">vidsrc.me</option>
-  <option value="player.videasy.net">videasy.net</option>
-  <option value="embed.su">embed.su</option>
-  <option value="moviesapi.club">moviesapi.club</option>
-  <option value="111movies.com">111movies.com</option>
-</select>
+        <option value="vidsrc.cc">Vidsrc.cc</option>
+        <option value="vidsrc.me">Vidsrc.me</option>
+        <option value="player.videasy.net">Player.Videasy.net</option>
+      </select>
    </div>
-    <iframe id="modal-video" allowfullscreen></iframe>
+    <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
   </div>
 </div>
 
