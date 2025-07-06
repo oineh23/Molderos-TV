@@ -775,24 +775,39 @@ async function fetchAndAddSlide(endpoint) {
     if (!items || items.length === 0) return;
 
     const item = items[Math.floor(Math.random() * items.length)];
+    const id = item.id;
+    const type = item.title ? 'movie' : 'tv';
     const title = item.title || item.name || 'No Title';
     const desc = item.overview ? item.overview.slice(0, 150) + '...' : 'No description available';
-    const bg = item.backdrop_path ? IMAGE_BASE + item.backdrop_path : '';
+    const bg = item.backdrop_path ? IMAGE_BASE + item.backdrop_path : 'img/fallback.jpg';
+
+    // --- Fetch trailer video key ---
+    const videoRes = await fetch(`${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}&language=en-US`);
+    const videoData = await videoRes.json();
+    const trailers = videoData.results.filter(v => v.type === 'Trailer' && v.site === 'YouTube');
+    const trailerKey = trailers.length > 0 ? trailers[0].key : null;
 
     const slide = document.createElement('div');
     slide.className = 'swiper-slide hero-slide';
-    slide.style.backgroundImage = `url('${bg}')`;
+    slide.style.backgroundImage = trailerKey ? 'none' : `url('${bg}')`;
+
     slide.innerHTML = `
-      <div class="hero-content">
+      ${trailerKey ? `
+        <iframe class="hero-video" src="https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&loop=1&playlist=${trailerKey}&controls=0&modestbranding=1&rel=0&showinfo=0" 
+          frameborder="0" allowfullscreen allow="autoplay; encrypted-media" style="position:absolute;width:100%;height:100%;top:0;left:0;z-index:0;"></iframe>
+      ` : ''}
+
+      <div class="hero-content" style="position:relative; z-index:2;">
         <h2>${title}</h2>
         <p>${desc}</p>
-        <a href="#" class="btn">Watch Now</a>
+        <a href="#" class="btn" onclick="openModal('${id}', '${type}')">Watch Now</a>
         <small style="opacity: 0.7">${endpoint.label}</small>
       </div>
     `;
+
     sliderWrapper.appendChild(slide);
   } catch (err) {
-    console.error('Failed to fetch:', endpoint.url, err);
+    console.error('❌ Failed to fetch slide:', endpoint.url, err);
   }
 }
 
