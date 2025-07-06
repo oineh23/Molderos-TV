@@ -251,12 +251,46 @@ function scrollPinoyMovies(direction) {
 }
 
 // ====== MODAL HANDLING ======
-function showDetails(item) {
+async function showDetails(item) {
   currentItem = item;
-  document.getElementById('modal-title').textContent = item.title || item.name;
-  document.getElementById('modal-description').textContent = item.overview || 'No description available.';
-  document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
-  document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2)) || 'N/A';
+
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc = document.getElementById('modal-description');
+  const modalImg = document.getElementById('modal-image');
+  const modalRating = document.getElementById('modal-rating');
+  const modalOMDB = document.getElementById('modal-omdb-rating');
+
+  modalTitle.textContent = item.title || item.name;
+  modalDesc.textContent = item.overview || 'No description available.';
+  modalImg.src = `${IMG_URL}${item.poster_path}`;
+  modalRating.innerHTML = `⭐ ${item.vote_average?.toFixed(1)} / 10`;
+
+  // Get TMDB Details to extract imdb_id
+  try {
+    const type = item.media_type === 'tv' ? 'tv' : 'movie';
+    const tmdbDetailUrl = `${BASE_URL}/${type}/${item.id}?api_key=${API_KEY}`;
+    const res = await fetch(tmdbDetailUrl);
+    const data = await res.json();
+
+    if (data.imdb_id) {
+      const omdbUrl = `https://www.omdbapi.com/?i=${data.imdb_id}&apikey=${OMDB_API_KEY}`;
+      const omdbRes = await fetch(omdbUrl);
+      const omdbData = await omdbRes.json();
+
+      const imdbRating = omdbData.imdbRating || 'N/A';
+      const rtRating = omdbData.Ratings?.find(r => r.Source === 'Rotten Tomatoes')?.Value || 'N/A';
+
+      modalOMDB.innerHTML = `
+        <p>🎥 IMDb: ${imdbRating}</p>
+        <p>🍅 Rotten Tomatoes: ${rtRating}</p>
+      `;
+    } else {
+      modalOMDB.innerHTML = '<p>🎥 No IMDb/OMDB data available.</p>';
+    }
+  } catch (err) {
+    console.error('OMDB fetch error:', err);
+    modalOMDB.innerHTML = '<p>⚠️ Failed to fetch OMDB ratings.</p>';
+  }
 
   changeServer();
   document.getElementById('modal').style.display = 'flex';
