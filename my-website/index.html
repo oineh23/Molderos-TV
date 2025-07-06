@@ -230,12 +230,12 @@
   font-family: 'Orbitron', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #00ffff;
+  color: #00ff00; /* Green */
   text-shadow:
-    0 0 5px #0ff,
-    0 0 10px #0ff,
-    0 0 20px #0ff,
-    0 0 40px #0ff,
+    0 0 5px #0f0,
+    0 0 10px #0f0,
+    0 0 20px #0f0,
+    0 0 40px #0f0,
     2px 2px 0 #111;
   animation: neonPulse 0.7s infinite ease-in-out;
   display: flex;
@@ -245,31 +245,32 @@
   text-transform: uppercase;
 }
 
-    [data-theme="light"] .logo {
-  color: #004466;
+[data-theme="light"] .logo {
+  color: #006600; /* Darker green for light theme */
   text-shadow:
-    1px 1px 0 #ccc,
-    2px 2px 3px #aaa;
+    1px 1px 0 #ccffcc,
+    2px 2px 3px #99cc99;
 }
 
-    @keyframes neonPulse {
+@keyframes neonPulse {
   0%, 100% {
     text-shadow:
-      0 0 5px #0ff,
-      0 0 10px #0ff,
-      0 0 20px #0ff,
-      0 0 40px #0ff,
+      0 0 5px #0f0,
+      0 0 10px #0f0,
+      0 0 20px #0f0,
+      0 0 40px #0f0,
       2px 2px 0 #111;
   }
   50% {
     text-shadow:
-      0 0 2px #0ff,
-      0 0 4px #0ff,
-      0 0 10px #0ff,
-      0 0 20px #0ff,
+      0 0 2px #0f0,
+      0 0 4px #0f0,
+      0 0 10px #0f0,
+      0 0 20px #0f0,
       1px 1px 0 #111;
   }
 }
+
     /* --- Search Modal Styling --- */
 .search-modal {
   position: fixed;
