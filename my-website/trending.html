@@ -389,6 +389,26 @@
   letter-spacing: 2px;
 }
 
+    /* Base style */
+.section-header h2 {
+  font-family: 'Bangers', cursive;
+  font-size: 2.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Light theme */
+[data-theme="light"] .section-header h2 {
+  color: #222; /* Dark color for visibility */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark theme */
+[data-theme="dark"] .section-header h2 {
+  color: #ff3300; /* Bright color for glow */
+  text-shadow: 0 0 8px #ff3300;
+}
 </style>
 
 <script>
