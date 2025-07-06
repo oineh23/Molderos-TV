@@ -251,45 +251,12 @@ function scrollPinoyMovies(direction) {
 }
 
 // ====== MODAL HANDLING ======
-const OMDB_API_KEY = 'acbb1b71'; // Replace with your actual OMDB API key
-
 function showDetails(item) {
-  // Assign current movie ID for modal use
-  currentMovieId = item.id;
-
-  // Show TMDB data
-  document.getElementById('modal-title').textContent = item.title || item.name || 'Untitled';
+  currentItem = item;
+  document.getElementById('modal-title').textContent = item.title || item.name;
   document.getElementById('modal-description').textContent = item.overview || 'No description available.';
-  document.getElementById('modal-image').src = item.poster_path
-    ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
-    : 'https://via.placeholder.com/300x450?text=No+Image';
-  
-  // Reset OMDB rating
-  const omdbDiv = document.getElementById('modal-omdb-rating');
-  omdbDiv.innerHTML = 'Loading OMDB...';
-
-  // Try fetching OMDB rating
-  fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${encodeURIComponent(item.title || item.name)}`)
-    .then(res => res.json())
-    .then(data => {
-      if (data.Response === 'True') {
-        omdbDiv.innerHTML = `
-          <p>📽 Rated: ${data.Rated}</p>
-          <p>🌐 Country: ${data.Country}</p>
-          <p>🎬 Genre: ${data.Genre}</p>
-          <p>🎯 IMDb: ${data.imdbRating}/10</p>
-        `;
-      } else {
-        omdbDiv.innerHTML = `<p>OMDB info not found.</p>`;
-      }
-    })
-    .catch(() => {
-      omdbDiv.innerHTML = `<p>Failed to load OMDB info.</p>`;
-    });
-
-  // Open modal and try servers
-  openModal(item.id);
-}
+  document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
+  document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2)) || 'N/A';
 
   changeServer();
   document.getElementById('modal').style.display = 'flex';
@@ -297,30 +264,22 @@ function showDetails(item) {
 
 function changeServer() {
   const server = document.getElementById('server')?.value;
-  if (!server || !currentMovieId) return;
+  if (!server || !currentItem) return;
 
+  const type = currentItem.media_type === 'movie' ? 'movie' : 'tv';
+  const id = currentItem.id;
   let embedURL = '';
+
   switch (server) {
     case 'vidsrc.cc':
-      embedURL = `https://vidsrc.cc/v2/embed/movie/${currentMovieId}`;
+      embedURL = `https://vidsrc.cc/v2/embed/${type}/${id}`;
       break;
     case 'vidsrc.me':
-      embedURL = `https://vidsrc.net/embed/movie/?tmdb=${currentMovieId}`;
+      embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
       break;
     case 'player.videasy.net':
-      embedURL = `https://player.videasy.net/movie/${currentMovieId}`;
+      embedURL = `https://player.videasy.net/${type}/${id}`;
       break;
-    case 'embed.su':
-      embedURL = `https://embed.su/embed/${currentMovieId}`;
-      break;
-    case 'moviesapi.club':
-      embedURL = `https://moviesapi.club/embed/${currentMovieId}`;
-      break;
-    case '111movies.com':
-      embedURL = `https://111movies.com/embed/${currentMovieId}`;
-      break;
-    default:
-      embedURL = '';
   }
 
   document.getElementById('modal-video').src = embedURL;
