@@ -297,16 +297,16 @@ async function showDetails(item) {
 }
 
 function changeServer() {
-  const server = document.getElementById('server')?.value;
-  if (!server || !currentItem) return;
+  if (!currentItem) return;
 
-  const type = currentItem.media_type === 'movie' ? 'movie' : 'tv';
+  const server = document.getElementById('server')?.value || 'vidsrc.cc';
+  const type = currentItem.media_type === 'tv' ? 'tv' : 'movie';
   const id = currentItem.id;
   let embedURL = '';
 
   switch (server) {
     case 'vidsrc.cc':
-      embedURL = `https://vidsrc.cc/v2/embed/${type}/${id}`;
+      embedURL = `https://vidsrc.to/embed/${type}/${id}`;
       break;
     case 'vidsrc.me':
       embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
@@ -314,6 +314,17 @@ function changeServer() {
     case 'player.videasy.net':
       embedURL = `https://player.videasy.net/${type}/${id}`;
       break;
+    case 'embed.su':
+      embedURL = `https://embed.su/embed/${type}/${id}`;
+      break;
+    case 'moviesapi.club':
+      embedURL = `https://moviesapi.club/${type}/${id}`;
+      break;
+    case '111movies.com':
+      embedURL = `https://111movies.com/embed/${type}/${id}`;
+      break;
+    default:
+      embedURL = `https://vidsrc.to/embed/${type}/${id}`;
   }
 
   document.getElementById('modal-video').src = embedURL;
