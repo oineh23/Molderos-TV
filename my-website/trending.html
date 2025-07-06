@@ -381,34 +381,27 @@
   }
 }
 
- .section-header h2 {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 1.2rem;
-  color: #39ff14;
-  text-shadow: 0 0 6px #0f0;
-  letter-spacing: 2px;
-}
-
-    /* Base style */
+ /* Base trending title styling */
 .section-header h2 {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1.2rem;
+  font-family: 'Press Start 2P', cursive; /* Or your preferred font */
+  font-size: 2.7rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-/* Light theme */
+/* Light mode: Dark green for visibility */
 [data-theme="light"] .section-header h2 {
-  color: #222; /* Dark color for visibility */
+  color: #006400; /* DarkGreen */
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Dark theme */
+/* Dark mode: Neon green glow */
 [data-theme="dark"] .section-header h2 {
-  color: #ff3300; /* Bright color for glow */
-  text-shadow: 0 0 8px #ff3300;
+  color: #39ff14; /* Bright neon green */
+  text-shadow: 0 0 8px #39ff14, 0 0 15px #39ff14;
 }
+
 </style>
 
 <script>
