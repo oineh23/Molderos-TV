@@ -613,16 +613,13 @@ function closeModal() {
 </header>
   
   <!-- Hero Section -->
-<section class="hero">
-    <div class="slides">
-      <img src="https://source.unsplash.com/1600x900/?nature,water" alt="Slide 1">
-      <img src="https://source.unsplash.com/1600x900/?nature,forest" alt="Slide 2">
-      <img src="https://source.unsplash.com/1600x900/?nature,mountain" alt="Slide 3">
-    </div>
-    <div class="hero-content">
-      <h1>Welcome to MOLDEROS-TV</h1>
-      <p>Enjoy Trending Movies & Shows</p>
-    </div>
+<section class="hero-slider">
+    <div class="slide active" style="background-image: url('images/hero1.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slide2.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slide3.jpg');"></div>
+
+    <button class="slider-btn prev">&#10094;</button>
+    <button class="slider-btn next">&#10095;</button>
   </section>
 
   <!-- Main Content -->
@@ -731,6 +728,35 @@ function closeModal() {
         warningModal.style.display = 'none';
       }
     });
+  </script>
+
+    <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[index].classList.add('active');
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      showSlide(currentSlide);
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    // Auto slide
+    setInterval(nextSlide, 5000); // Change slide every 5 seconds
   </script>
   
 </body>
