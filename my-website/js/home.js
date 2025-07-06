@@ -2,6 +2,7 @@
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
+const OMDB_API_KEY = 'acbb1b71'; // 👈 Replace with your real OMDB API key
 
 const genreMap = {
   28: 'Action',
