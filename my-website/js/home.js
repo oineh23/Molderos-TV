@@ -251,46 +251,45 @@ function scrollPinoyMovies(direction) {
 }
 
 // ====== MODAL HANDLING ======
-async function showDetails(item) {
-  currentItem = item;
+const OMDB_API_KEY = 'acbb1b71'; // Replace with your actual OMDB API key
 
-  const modalTitle = document.getElementById('modal-title');
-  const modalDesc = document.getElementById('modal-description');
-  const modalImg = document.getElementById('modal-image');
-  const modalRating = document.getElementById('modal-rating');
-  const modalOMDB = document.getElementById('modal-omdb-rating');
+function showDetails(item) {
+  // Assign current movie ID for modal use
+  currentMovieId = item.id;
 
-  modalTitle.textContent = item.title || item.name;
-  modalDesc.textContent = item.overview || 'No description available.';
-  modalImg.src = `${IMG_URL}${item.poster_path}`;
-  modalRating.innerHTML = `⭐ ${item.vote_average?.toFixed(1)} / 10`;
+  // Show TMDB data
+  document.getElementById('modal-title').textContent = item.title || item.name || 'Untitled';
+  document.getElementById('modal-description').textContent = item.overview || 'No description available.';
+  document.getElementById('modal-image').src = item.poster_path
+    ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+    : 'https://via.placeholder.com/300x450?text=No+Image';
+  
+  // Reset OMDB rating
+  const omdbDiv = document.getElementById('modal-omdb-rating');
+  omdbDiv.innerHTML = 'Loading OMDB...';
 
-  // Get TMDB Details to extract imdb_id
-  try {
-    const type = item.media_type === 'tv' ? 'tv' : 'movie';
-    const tmdbDetailUrl = `${BASE_URL}/${type}/${item.id}?api_key=${API_KEY}`;
-    const res = await fetch(tmdbDetailUrl);
-    const data = await res.json();
+  // Try fetching OMDB rating
+  fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${encodeURIComponent(item.title || item.name)}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.Response === 'True') {
+        omdbDiv.innerHTML = `
+          <p>📽 Rated: ${data.Rated}</p>
+          <p>🌐 Country: ${data.Country}</p>
+          <p>🎬 Genre: ${data.Genre}</p>
+          <p>🎯 IMDb: ${data.imdbRating}/10</p>
+        `;
+      } else {
+        omdbDiv.innerHTML = `<p>OMDB info not found.</p>`;
+      }
+    })
+    .catch(() => {
+      omdbDiv.innerHTML = `<p>Failed to load OMDB info.</p>`;
+    });
 
-    if (data.imdb_id) {
-      const omdbUrl = `https://www.omdbapi.com/?i=${data.imdb_id}&apikey=${OMDB_API_KEY}`;
-      const omdbRes = await fetch(omdbUrl);
-      const omdbData = await omdbRes.json();
-
-      const imdbRating = omdbData.imdbRating || 'N/A';
-      const rtRating = omdbData.Ratings?.find(r => r.Source === 'Rotten Tomatoes')?.Value || 'N/A';
-
-      modalOMDB.innerHTML = `
-        <p>🎥 IMDb: ${imdbRating}</p>
-        <p>🍅 Rotten Tomatoes: ${rtRating}</p>
-      `;
-    } else {
-      modalOMDB.innerHTML = '<p>🎥 No IMDb/OMDB data available.</p>';
-    }
-  } catch (err) {
-    console.error('OMDB fetch error:', err);
-    modalOMDB.innerHTML = '<p>⚠️ Failed to fetch OMDB ratings.</p>';
-  }
+  // Open modal and try servers
+  openModal(item.id);
+}
 
   changeServer();
   document.getElementById('modal').style.display = 'flex';
