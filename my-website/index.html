@@ -433,55 +433,6 @@
   }
 }
 
-    {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-    .hero-slider {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .slide.active {
-      opacity: 1;
-      z-index: 1;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-    }
-
-    .slider-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .prev {
-      left: 20px;
-    }
-
-    .next {
-      right: 20px;
-    }
 
 </style>
 
@@ -612,20 +563,37 @@ function closeModal() {
 </header>
   
   <!-- Hero Section -->
-<section class="hero-slider">
-    <div class="slide active">
-      <iframe src="https://www.youtube.com/watch?v=RNuHMQtDl80" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-    <div class="slide">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2?enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-    <div class="slide">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3?enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+<section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
+  <!-- Fullscreen YouTube Video -->
+  <iframe
+  id="hero-video"
+  src="https://www.youtube.com/watch?v=RNuHMQtDl80"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+  style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 380vw;
+    height: 120vh;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+  "
+></iframe>
 
-    <button class="slider-btn prev">&#10094;</button>
-    <button class="slider-btn next">&#10095;</button>
-  </section>
+  <!-- Overlay -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+
+  <!-- Hero Content -->
+  <div class="hero-content" style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; color: #fff;">
+    <h1 class="hero-title" style="font-size: 2rem; font-weight: bold; text-shadow: 0 0 10px #0ff;">NONSTOP ACTION</h1>
+    <p class="hero-description" style="max-width: 600px; margin: 20px auto; font-size: 1.2rem; color: #ccc;">
+      Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
+    </p>
+  </div>
+</section>
 
   <!-- Main Content -->
   <main>
@@ -733,37 +701,6 @@ function closeModal() {
         warningModal.style.display = 'none';
       }
     });
-  </script>
-
-    <script>
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.querySelector('.prev');
-    const nextBtn = document.querySelector('.next');
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        // Pause YouTube video using postMessage API
-        const iframe = slide.querySelector('iframe');
-        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-      });
-      slides[index].classList.add('active');
-    }
-
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      showSlide(currentSlide);
-    }
-
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      showSlide(currentSlide);
-    }
-
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
   </script>
   
 </body>
