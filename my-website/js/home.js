@@ -297,34 +297,31 @@ async function showDetails(item) {
 }
 
 function changeServer() {
-  if (!currentItem) return;
+  const server = document.getElementById('server')?.value;
+  if (!server || !currentMovieId) return;
 
-  const server = document.getElementById('server')?.value || 'vidsrc.cc';
-  const type = currentItem.media_type === 'tv' ? 'tv' : 'movie';
-  const id = currentItem.id;
   let embedURL = '';
-
   switch (server) {
     case 'vidsrc.cc':
-      embedURL = `https://vidsrc.to/embed/${type}/${id}`;
+      embedURL = `https://vidsrc.cc/v2/embed/movie/${currentMovieId}`;
       break;
     case 'vidsrc.me':
-      embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
+      embedURL = `https://vidsrc.net/embed/movie/?tmdb=${currentMovieId}`;
       break;
     case 'player.videasy.net':
-      embedURL = `https://player.videasy.net/${type}/${id}`;
+      embedURL = `https://player.videasy.net/movie/${currentMovieId}`;
       break;
     case 'embed.su':
-      embedURL = `https://embed.su/embed/${type}/${id}`;
+      embedURL = `https://embed.su/embed/${currentMovieId}`;
       break;
     case 'moviesapi.club':
-      embedURL = `https://moviesapi.club/${type}/${id}`;
+      embedURL = `https://moviesapi.club/embed/${currentMovieId}`;
       break;
     case '111movies.com':
-      embedURL = `https://111movies.com/embed/${type}/${id}`;
+      embedURL = `https://111movies.com/embed/${currentMovieId}`;
       break;
     default:
-      embedURL = `https://vidsrc.to/embed/${type}/${id}`;
+      embedURL = '';
   }
 
   document.getElementById('modal-video').src = embedURL;
