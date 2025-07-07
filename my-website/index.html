@@ -14,8 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script defer src="js/home.js"></script>
 
   <script>
@@ -164,6 +163,59 @@
     z-index: 2000;
   }
 }
+    #warningModal { 
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+#warningContent {
+  padding: 20px;
+  max-width: 400px;
+  margin: 100px auto;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Default: Light mode */
+#warningContent {
+  background: white;
+  color: #000;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  #warningContent {
+    background: #222;
+    color: #f1f1f1;
+  }
+}
+
+#warningContent h2 {
+  margin-top: 0;
+}
+
+.modal-btn {
+  margin: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.continue-btn {
+  background: #28a745;
+  color: white;
+}
+
+.cancel-btn {
+  background: #dc3545;
+  color: white;
+}
+    
 </style>
 
   <style>  
@@ -175,7 +227,7 @@
 
     .logo {
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #00ffff;
   text-shadow:
@@ -217,6 +269,13 @@
       1px 1px 0 #111;
   }
 }
+  #countrySelect {
+  border-radius: 6px;
+  background: #111;
+  color: white;
+  border: 1px solid #444;
+}
+
     /* --- Search Modal Styling --- */
 .search-modal {
   position: fixed;
@@ -382,31 +441,50 @@
   }
 }
 
-.section-header h2 {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 1rem;
-  letter-spacing: 2px;
-  line-height: 1.4;
-  text-transform: uppercase;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+<style>
+    
+.hero-section {
+  position: relative;
+  height: 90vh;
+  overflow: hidden;
 }
 
-/* Light Theme: Black font */
-[data-theme="light"] .section-header h2 {
-  color: #000000;
-  text-shadow: none;
+.hero-slide {
+  position: relative;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
 }
 
-/* Dark Theme: White font */
-[data-theme="dark"] .section-header h2 {
-  color: #ffffff;
-  text-shadow: none;
+.hero-content {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 2rem;
+  max-width: 500px;
+  margin-left: 2rem;
+  border-radius: 10px;
 }
 
- .nav-links a {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 18px;
-  letter-spacing: 1px;
+.hero-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content .btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background-color: red;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
 }
 </style>
 
@@ -439,11 +517,12 @@ let currentServerIndex = 0;
 let currentMovieId = ''; // this should be set when opening modal
 let tryTimeout = null;
 
-function openModal(movieId) {
-  currentMovieId = movieId;
+function openModal(id, type = 'movie') {
+  currentMovieId = id;
   currentServerIndex = 0;
   document.getElementById('modal').style.display = 'flex';
-  tryServer(currentServerIndex);
+
+  tryServer(currentServerIndex, type);
 }
 
 function tryServer(index) {
@@ -483,7 +562,8 @@ function changeServer() {
   const select = document.getElementById('server');
   const selectedServer = select.value;
   const iframe = document.getElementById('modal-video');
-  iframe.src = `https://${selectedServer}/embed/movie/${currentMovieId}`;
+  const type = currentMovieId.startsWith('tv_') ? 'tv' : 'movie'; // Or store type separately
+  iframe.src = `https://${selectedServer}/embed/${type}/${currentMovieId}`;
 }
 
 function closeModal() {
@@ -494,60 +574,75 @@ function closeModal() {
 </script>
   
 <body>
+  
   <!-- Navbar -->
   <header class="nav-wrapper">
-    <div class="container nav">
-        <a href="#" class="logo">
-  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
-  M0LD<span class="main-color">ER0S</span>-TV
-        </a>
-      <input type="checkbox" id="menu-toggle" />
-      <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="trending.html">Trending</a>
-        <a href="tvshows.html">TV Shows</a>
-        <a href="anime.html">Anime</a>
-        <a href="korean.html">Korean</a>
-        <a href="vivamax.html">VMX</a>
-       <input 
-          type="text" 
-          class="search-bar" 
-          placeholder="Search..." 
-          onfocus="openSearchModal()" 
-          aria-label="Search"
-        />
-        <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
-      </nav>
+  <div class="container nav">
+    <a href="index.html" class="logo">
+      <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+      MOLD<span class="main-color">EROS</span>-TV
+    </a>
+
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="trending.html">Trending</a>
+      <a href="tvshows.html">TV Shows</a>
+      <a href="anime.html">Anime</a>
+      <a href="korean.html">Korean</a>
+      <a href="vivamax.html">VMX</a>
+      <a href="IPTV.html" id="iptvLink">IPTV</a>
+
+      <div id="warningModal">
+      <div id="warningContent">
+      <h2>⚠️WARNING⚠️</h2>
+      <p>Run Only in Landscape Mode. Do you want to continue?</p>
+      <button class="modal-btn continue-btn" id="continueBtn">Continue</button>
+      <button class="modal-btn cancel-btn" id="cancelBtn">Cancel</button>
     </div>
-  </header>
+  </div>
+      
+      <div style="padding: 1rem; text-align: center;">
+  <label for="countrySelect" style="font-weight: bold; color: white;">Choose Country:</label>
+  <select id="countrySelect" style="padding: 0.5rem; font-size: 1rem;">
+    <option value="PH">🇵🇭 Philippines</option>
+    <option value="US">🇺🇸 USA</option>
+    <option value="KR">🇰🇷 Korea</option>
+    <option value="JP">🇯🇵 Japan</option>
+    <option value="IN">🇮🇳 India</option>
+    <option value="TH">🇹🇭 Thailand</option>
+  </select>
+</div>
+      <input 
+        type="text" 
+        class="search-bar" 
+        placeholder="Search..." 
+        onfocus="openSearchModal()" 
+        aria-label="Search"
+      />
+      <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
+    </div>
+  </div>
+
+</header>
+  
+  <!-- Hero Section -->
+<section class="hero-section">
+  <div class="swiper heroSwiper">
+    <div class="swiper-wrapper" id="hero-slider-wrapper">
+      <!-- Slides will be inserted dynamically here -->
+    </div>
+
+    <!-- Navigation Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
 
   <!-- Main Content -->
   <main>
-  <!-- Korean Movies -->
-  <section class="section" id="korean-movies">
-    <div class="section-header">
-      <h2>🇰🇷 Korean Movies</h2>
-      <div class="genre-filter">
-        <label for="korean-genre-filter">🎯 Filter by Genre:</label>
-        <select id="korean-genre-filter" onchange="filterByKoreanGenre(this.value)">
-          <option value="">All</option>
-          <option value="28">Action</option>
-          <option value="35">Comedy</option>
-          <option value="18">Drama</option>
-          <option value="10749">Romance</option>
-          <option value="27">Horror</option>
-          <option value="80">Crime</option>
-        </select>
-      </div>
-    </div>
-    <div class="vivamax-grid" id="korean-movie-list"></div>
-    <div class="load-more-container">
-      <button id="load-more-korean">🎥 Load More</button>
-    </div>
-  </section>
-</main>
-
   <!-- Loading Spinner -->
   <div class="loading-spinner" id="loading-spinner" style="display: none;">
     <i class="fas fa-spinner fa-spin"></i>
@@ -598,15 +693,112 @@ function closeModal() {
 
     <!-- Footer -->
   <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Disclaimer</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-  </footer>
-  
-</body>
-</html>
+  <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Disclaimer</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  let player;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('hero-video', {
+      events: {
+        onReady: (event) => {
+          event.target.mute(); // Keep it muted for autoplay
+          event.target.setPlaybackQuality('hd1080'); // Request 1080p
+          event.target.playVideo();
+        }
+      }
+    });
+  }
+</script>
+
+    <script>
+    const iptvLink = document.getElementById('iptvLink');
+    const warningModal = document.getElementById('warningModal');
+    const continueBtn = document.getElementById('continueBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    let targetHref = '';
+
+    iptvLink.addEventListener('click', function(event) {
+      event.preventDefault(); // stop link immediately
+      targetHref = iptvLink.href; // store link
+      warningModal.style.display = 'block'; // show modal
+    });
+
+    continueBtn.addEventListener('click', function() {
+      warningModal.style.display = 'none';
+      window.location.href = targetHref; // go to link
+    });
+
+    cancelBtn.addEventListener('click', function() {
+      warningModal.style.display = 'none'; // just close modal
+    });
+
+    // Optional: Close modal if clicked outside content
+    window.addEventListener('click', function(e) {
+      if (e.target === warningModal) {
+        warningModal.style.display = 'none';
+      }
+    });
+  </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb'; // ← Replace this!
+const BASE_URL = 'https://api.themoviedb.org/3';
+const IMAGE_BASE = 'https://image.tmdb.org/t/p/original';
+const sliderWrapper = document.getElementById('hero-slider-wrapper');
+let swiperInstance = null;
+
+const countrySelect = document.getElementById('countrySelect');
+
+function getEndpoints(region) {
+  return [
+    { url: `/movie/popular?region=${region}`, label: `Popular in ${region}` },
+    { url: `/trending/movie/week?region=${region}`, label: `Trending Movies (${region})` },
+    { url: `/movie/top_rated?region=${region}`, label: `Top Rated Movies (${region})` },
+    { url: `/discover/tv?with_origin_country=${region}`, label: `TV Shows from ${region}` }
+  ];
+}
+
+async function fetchAndAddSlide(endpoint) {
+  try {
+    const res = await fetch(`${BASE_URL}${endpoint.url}&api_key=${API_KEY}&language=en-US`);
+    const data = await res.json();
+    const items = data.results;
+    if (!items || items.length === 0) return;
+
+    const item = items[Math.floor(Math.random() * items.length)];
+    const id = item.id;
+    const type = item.title ? 'movie' : 'tv';
+    const title = item.title || item.name || 'No Title';
+    const desc = item.overview ? item.overview.slice(0, 150) + '...' : 'No description available';
+    const bg = item.backdrop_path ? IMAGE_BASE + item.backdrop_path : 'img/fallback.jpg';
+
+    // --- Fetch trailer video key ---
+    const videoRes = await fetch(`${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}&language=en-US`);
+    const videoData = await videoRes.json();
+    const trailers = videoData.results.filter(v => v.type === 'Trailer' && v.site === 'YouTube');
+    const trailerKey = trailers.length > 0 ? trailers[0].key : null;
+
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide hero-slide';
+    slide.style.backgroundImage = trailerKey ? 'none' : `url('${bg}')`;
+
+    slide.innerHTML = `
+      ${trailerKey ? `
+        <iframe class="hero-video" src="https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&loop=1&playlist=${trailerKey}&controls=0&modestbranding=1&rel=0&showinfo=0" 
+          frameborder="0" allowfullscreen allow="autoplay; encrypted-media" style="position:absolute;width:100%;height:100%;top:0;left:0;z-index:0;"></iframe>
+      ` : ''}
+
+      <div class="hero-content" style="position:relative; z-index:2;">
+        <h2>${title}</h2>
+    
