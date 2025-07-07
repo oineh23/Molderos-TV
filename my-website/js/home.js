@@ -2,7 +2,6 @@
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
-const OMDB_API_KEY = 'acbb1b71'; // 👈 Replace with your real OMDB API key
 
 const genreMap = {
   28: 'Action',
@@ -68,7 +67,7 @@ document.addEventListener("DOMContentLoaded", init);
 // ====== DISPLAY UTILITIES ======
 function displayBanner(item) {
   const banner = document.getElementById('banner');
-  if (!item || !banner) return;
+  if (!item) return;
   banner.style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
   document.getElementById('banner-title').textContent = item.title || item.name || 'Unknown Title';
 }
