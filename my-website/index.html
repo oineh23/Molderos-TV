@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <script defer src="js/home.js"></script>
 
   <script>
@@ -432,7 +434,12 @@
     opacity: 1;
   }
 }
-
+    
+.nav-links a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
 
 </style>
 
@@ -526,7 +533,7 @@ function closeModal() {
   <div class="container nav">
     <a href="index.html" class="logo">
       <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
-      MOLD<span class="main-color">EROS</span>-TV
+      M0LD<span class="main-color">ER0S</span>-TV
     </a>
 
     <input type="checkbox" id="menu-toggle" />
@@ -544,7 +551,7 @@ function closeModal() {
       <div id="warningModal">
       <div id="warningContent">
       <h2>⚠️WARNING⚠️</h2>
-      <p>Run Only in Landscape Mode. Do you want to continue?</p>
+      <p>landscape your Phone after clicking continue button IPTV page. Do you want to continue?</p>
       <button class="modal-btn continue-btn" id="continueBtn">Continue</button>
       <button class="modal-btn cancel-btn" id="cancelBtn">Cancel</button>
     </div>
@@ -566,35 +573,85 @@ function closeModal() {
 <section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
   <!-- Fullscreen YouTube Video -->
   <iframe
-  id="hero-video"
-  src="https://www.youtube.com/embed/qEVUtrk8_B4?autoplay=1&mute=1&controls=0&loop=1&playlist=qEVUtrk8_B4&enablejsapi=1"
-  frameborder="0"
-  allow="autoplay; encrypted-media"
-  allowfullscreen
-  style="
+    id="hero-video"
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/RNuHMQtDl80?autoplay=1&mute=1&controls=0&loop=1&playlist=RNuHMQtDl80&enablejsapi=1"
+    title="YouTube video player"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+    style="
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120vw;
+      height: 120vh;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+    "
+  ></iframe>
+
+  <!-- Overlay -->
+  <div style="
+    position: absolute; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.5); 
+    z-index: 1;">
+  </div>
+
+  <!-- Play Button -->
+  <button id="play-button" style="
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 380vw;
-    height: 120vh;
     transform: translate(-50%, -50%);
-    z-index: 0;
-    pointer-events: none;
-  "
-></iframe>
-
-  <!-- Overlay -->
-  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+    z-index: 2;
+    background: rgba(0,0,0,0.7);
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  ">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#fff" viewBox="0 0 24 24">
+      <path d="M8 5v14l11-7z"/>
+    </svg>
+  </button>
 
   <!-- Hero Content -->
-  <div class="hero-content" style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; color: #fff;">
-    <h1 class="hero-title" style="font-size: 2rem; font-weight: bold; text-shadow: 0 0 10px #0ff;">NONSTOP ACTION</h1>
-    <p class="hero-description" style="max-width: 600px; margin: 20px auto; font-size: 1.2rem; color: #ccc;">
+  <div class="hero-content" style="
+    position: relative; 
+    z-index: 2; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end; 
+    align-items: center; 
+    text-align: center; 
+    padding: 40px; 
+    color: #fff;">
+    <h1 class="hero-title" style="
+      font-size: 2rem; 
+      font-weight: bold; 
+      text-shadow: 0 0 10px #0ff;">
+      Avengers: Infinity War
+    </h1>
+    <p class="hero-description" style="
+      max-width: 600px; 
+      margin: 20px auto; 
+      font-size: 1.2rem; 
+      color: #ccc;">
       Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
     </p>
   </div>
 </section>
-
+  
   <!-- Main Content -->
   <main>
   <!-- Loading Spinner -->
@@ -647,7 +704,7 @@ function closeModal() {
 
     <!-- Footer -->
   <footer class="footer">
-  <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+  <p>&copy; 2025 01N3H. All rights reserved.</p>
   <div class="footer-links">
     <a href="#">Disclaimer</a>
     <a href="#">About Us</a>
@@ -702,6 +759,32 @@ function closeModal() {
       }
     });
   </script>
+
+    <!-- YouTube API Script -->
+<script>
+  // Load YouTube IFrame Player API
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('hero-video', {
+      events: {
+        'onReady': onPlayerReady
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    document.getElementById('play-button').addEventListener('click', function() {
+      player.unMute();
+      player.playVideo();
+      this.style.display = 'none';
+    });
+  }
+</script>
   
 </body>
 </html>
