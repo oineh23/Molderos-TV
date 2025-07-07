@@ -1,35 +1,42 @@
-// === TMDB CONFIG ===
+// js/app.js
+
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
-const IMG_URL = 'https://image.tmdb.org/t/p/original';
+const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
-// === FETCH AND DISPLAY TRENDING MOVIES ===
-async function fetchTrendingMovies() {
+// Fetch "Now Playing" movies from TMDB
+async function fetchMovies() {
   try {
-    const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
+    const res = await fetch(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`);
     const data = await res.json();
-    displayMovies(data.results);
-  } catch (err) {
-    console.error('Failed to fetch trending movies:', err);
+    return data.results;
+  } catch (error) {
+    console.error('Failed to fetch movies:', error);
+    return [];
   }
 }
 
+// Display movies inside #movie-list
 function displayMovies(movies) {
-  const movieList = document.querySelector(".movie-list");
-  movieList.innerHTML = ''; // Clear existing
+  const container = document.getElementById('movie-list');
+  if (!container) {
+    console.error('Movie container not found');
+    return;
+  }
 
-  movies.forEach(movie => {
-    const movieItem = document.createElement("div");
-    movieItem.classList.add("movie-list-item");
-
-    movieItem.innerHTML = `
-      <img class="movie-list-item-img" src="${IMG_URL}${movie.poster_path}" alt="${movie.title}">
+  container.innerHTML = movies.map(movie => `
+    <div class="movie-list-item">
+      <img class="movie-list-item-img" src="${IMG_URL + movie.poster_path}" alt="${movie.title}">
       <span class="movie-list-item-title">${movie.title}</span>
-    `;
-
-    movieList.appendChild(movieItem);
-  });
+      <p class="movie-list-item-desc">${movie.overview ? movie.overview.slice(0, 100) + '...' : 'No description available.'}</p>
+      <button class="movie-list-item-button">Watch</button>
+    </div>
+  `).join('');
 }
+
+// Load and display movies on page load
+fetchMovies().then(displayMovies);
+
 
 // === CAROUSEL ARROW HANDLING ===
 const arrows = document.querySelectorAll(".arrow");
