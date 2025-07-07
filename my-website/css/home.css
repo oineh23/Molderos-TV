@@ -835,3 +835,52 @@ body.light-mode .footer-links a:hover {
 .load-more-container button:hover {
   background-color: #e02e2e;
 }
+
+/* === Netflix-style Horizontal Scroll === */
+.scrollable-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.scrollable-row::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-row .card,
+.scrollable-row .vivamax-card {
+  flex: 0 0 auto;
+  width: 180px;
+  scroll-snap-align: start;
+}
+
+/* Scroll Arrow Buttons */
+.scroll-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.scroll-btn:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.scroll-btn.left {
+  left: 0;
+}
+
+.scroll-btn.right {
+  right: 0;
+}
