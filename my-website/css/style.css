@@ -1,274 +1,836 @@
-* {
+/* --- Enhanced Movie Card Layout and Effects --- */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.card {
+  position: relative;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  z-index: 2;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+
+.card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-bottom: 2px solid #333;
+}
+
+.card-info {
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+.card-info h3 {
+  font-size: 16px;
   margin: 0;
 }
 
-body {
-  font-family: "Roboto", sans-serif;
+.card-info p {
+  font-size: 14px;
+  margin-top: 4px;
 }
 
-.navbar {
-  width: 100%;
-  height: 50px;
-  background-color: black;
-  position: sticky;
-  top: 0;
-}
-
-.navbar-container {
-  display: flex;
-  align-items: center;
-  padding: 0 50px;
-  height: 100%;
-  color: white;
-  font-family: "Sen", sans-serif;
-}
-
-.logo-container {
-  flex: 1;
-}
-
-.logo {
-  font-size: 30px;
-  color: #4dbf00;
-}
-
-.menu-container {
-  flex: 6;
-}
-
-.menu-list {
-  display: flex;
-  list-style: none;
-}
-
-.menu-list-item {
-  margin-right: 30px;
-}
-
-.menu-list-item.active {
-  font-weight: bold;
-}
-.profile-container {
-  flex: 2;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.profile-text-container {
-  margin: 0 20px;
-}
-
-.profile-picture {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.toggle {
-  width: 40px;
-  height: 20px;
-  background-color: white;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  position: relative;
-}
-
-.toggle-icon {
-  color: goldenrod;
-}
-
-.toggle-ball {
-  width: 18px;
-  height: 18px;
-  background-color: black;
+.genre-badge {
   position: absolute;
-  right: 1px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: 1s ease all;
+  top: 8px;
+  left: 8px;
+  background-color: #e50914;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  z-index: 2;
 }
 
-.sidebar {
-  width: 50px;
-  height: 100%;
-  background-color: black;
-  position: fixed;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 60px;
-}
-
-.left-menu-icon {
+.watch-button {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e50914;
   color: white;
-  font-size: 20px;
-  margin-bottom: 40px;
-}
-
-.container {
-  background-color: #151515;
-  min-height: calc(100vh - 50px);
-  color: white;
-}
-
-.content-container {
-  margin-left: 50px;
-}
-
-.featured-content {
-  height: 50vh;
-  padding: 50px;
-}
-
-.featured-title {
-  width: 200px;
-}
-
-.featured-desc {
-  width: 500px;
-  color: lightgray;
-  margin: 30px 0;
-}
-
-.featured-button {
-  background-color: #4dbf00;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
   border: none;
-  outline: none;
-  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
 }
 
-.movie-list-container {
-  padding: 0 20px;
-}
-
-.movie-list-wrapper {
-  position: relative;
-  overflow: hidden;
-}
-
-.movie-list {
-  display: flex;
-  align-items: center;
-  height: 300px;
-  transform: translateX(0);
-  transition: all 1s ease-in-out;
-}
-
-.movie-list-item {
-  margin-right: 30px;
-  position: relative;
-}
-
-.movie-list-item:hover .movie-list-item-img {
-  transform: scale(1.2);
-  margin: 0 30px;
-  opacity: 0.5;
-}
-
-.movie-list-item:hover .movie-list-item-title,
-.movie-list-item:hover .movie-list-item-desc,
-.movie-list-item:hover .movie-list-item-button {
+.card:hover .watch-button {
   opacity: 1;
 }
 
-.movie-list-item-img {
-  transition: all 1s ease-in-out;
-  width: 270px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 20px;
-}
-
-.movie-list-item-title {
-  background-color: #333;
-  padding: 0 10px;
-  font-size: 32px;
-  font-weight: bold;
-  position: absolute;
-  top: 10%;
-  left: 50px;
-  opacity: 0;
-  transition: 1s all ease-in-out;
-}
-
-.movie-list-item-desc {
-  background-color: #333;
+.card-info {
   padding: 10px;
-  font-size: 14px;
-  position: absolute;
-  top: 30%;
-  left: 50px;
-  width: 230px;
-  opacity: 0;
-  transition: 1s all ease-in-out;
-}
-
-.movie-list-item-button {
-  padding: 10px;
-  background-color: #4dbf00;
+  text-align: center;
   color: white;
+}
+
+.card-info h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.card-info p {
+  font-size: 14px;
+  margin: 4px 0 0;
+}
+
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Movie Card Layout and Spacing --- */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between movie cards */
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.card-container .card {
+  width: 180px;
+  background-color: #1e1e1e;
   border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.card-container .card:hover {
+  transform: scale(1.05);
+}
+
+.card-container .card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 2px solid #333;
+}
+
+.card-container .card .card-info {
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #111;
+  color: #fff;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image: url('../images/Elden Ring Game Wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
   outline: none;
+}
+
+/* Navbar */
+.nav-wrapper {
+  background-color: #141414;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  
+  body.light-mode .logo {
+  color: #111;
+}
+
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.main-color {
+  color: #e50914;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  color: #e50914;
+}
+
+.search-bar {
+  background-color: #222;
   border: none;
-  cursor: pointer;
-  position: absolute;
-  bottom: 20px;
-  left: 50px;
-  opacity: 0;
-  transition: 1s all ease-in-out;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: #fff;
+  margin-left: 1rem;
+  width: 200px;
+  transition: background-color 0.3s ease;
 }
 
-.arrow {
-  font-size: 120px;
+.search-bar:focus {
+  background-color: #333;
+}
+
+.search-bar::placeholder {
+  color: #aaa;
+}
+
+/* Make nav responsive */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+#menu-toggle {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #menu-toggle:checked + .menu-icon + .nav-links {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .hero-section h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-section p.subtitle {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .modal-content {
+    flex-direction: column;
+  }
+
+  .modal-body {
+    flex-direction: column;
+  }
+
+  .modal img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 45vh;
+  background: url('../images/hero-bg.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.hero-overlay h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #ccc;
+}
+
+.cta-button {
+  background-color: #e50914;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #f40612;
+}
+
+/* Genre Filter */
+.genre-filter {
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  
+  body.light-mode .genre-filter {
+  background-color: #eee;
+  color: #111;
+}
+
+}
+
+.genre-filter select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #222;
+  color: #fff;
+}
+
+.genre-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.genre-filter label {
+  font-weight: bold;
+}
+
+/* Main Content */
+main {
+  padding: 2rem;
+}
+
+.row h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Card Grid */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background-color: #222;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+
+.card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: #181818;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+}
+
+.modal-body {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.modal-body img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.modal-text {
+  flex: 1;
+}
+
+.modal-text h2 {
+  margin-bottom: 0.5rem;
+}
+
+.close {
   position: absolute;
-  top: 90px;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.stars {
+  margin-bottom: 0.5rem;
+}
+
+/* Spinner */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+  font-size: 1.2rem;
+  color: #e50914;
+}
+
+/* Search Modal */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, 0.95);
+  display: none;
+  flex-direction: column;
+  padding: 2rem;
+  z-index: 1500;
+}
+
+.search-modal input {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background-color: #222;
+  color: #fff;
+}
+
+.search-modal .results {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.search-modal .close {
+  font-size: 2rem;
+  align-self: flex-end;
+  cursor: pointer;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* Search Modal Background Overlay */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.search-modal-box {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Close Button */
+.search-modal-box .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Search Input */
+#search-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Search Results Container */
+#search-results {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Show Modal (controlled by JS) */
+.search-modal.active {
+  display: flex;
+}
+
+/* Footer */
+.footer {
+  background-color: #141414;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  color: #aaa;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .search-bar {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-overlay h1 {
+    font-size: 1.5rem;
+  }
+
+  .cta-button {
+    font-size: 0.9rem;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+}
+
+/* === Light Mode Styles === */
+body.light-mode {
+  background-color: #f5f5f5;
+  color: #111;
+}
+
+body.light-mode .card,
+body.light-mode .card-container .card {
+  background-color: #fff;
+  color: #000;
+}
+
+body.light-mode .card-info,
+body.light-mode .card-info h3,
+body.light-mode .card-info p {
+  color: #000;
+}
+
+body.light-mode .nav-wrapper {
+  background-color: #fff;
+}
+
+body.light-mode .logo {
+  color: #111;
+}
+
+body.light-mode .nav-links a {
+  color: #111;
+}
+
+body.light-mode .nav-links a:hover {
+  color: #e50914;
+}
+
+body.light-mode .search-bar {
+  background-color: #ddd;
+  color: #111;
+}
+
+body.light-mode .search-bar::placeholder {
+  color: #555;
+}
+
+body.light-mode .genre-filter {
+  background-color: #eee;
+}
+
+body.light-mode .genre-filter select {
+  background-color: #fff;
+  color: #000;
+}
+
+body.light-mode .modal-content {
+  background-color: #fff;
+  color: #111;
+}
+
+body.light-mode .modal-text h2,
+body.light-mode .modal-text p {
+  color: #000;
+}
+
+body.light-mode .search-modal {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #000;
+}
+
+body.light-mode .search-modal input {
+  background-color: #fff;
+  color: #000;
+}
+
+body.light-mode .footer {
+  background-color: #f1f1f1;
+  color: #555;
+}
+
+body.light-mode .footer-links a:hover {
+  color: #e50914;
+}
+
+/* === Vivamax-Style Pinoy Movies Section === */
+.vivamax-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.vivamax-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.vivamax-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.vivamax-card:hover {
+  transform: scale(1.05);
+}
+
+.vivamax-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   right: 0;
-  color: lightgray;
-  opacity: 0.5;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
+  color: #ffffff;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.vivamax-card:hover .vivamax-info {
+  opacity: 1;
+}
+
+.vivamax-info h4 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.vivamax-info span {
+  display: block;
+  font-size: 0.75rem;
+  color: #ccc;
+}
+
+/* ==== Vivamax Logo Styling ==== */
+.vivamax-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.vivamax-logo {
+  height: 60px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.vivamax-logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.vivamax-title {
+  font-size: 1.8rem;
+  margin: 0;
+  color: var(--text-color);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Load More Button Styles */
+.load-more-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.load-more-container button {
+  background-color: #ff3c3c;
+  color: #fff;
+  font-size: 0.8rem;        /* smaller text */
+  padding: 6px 16px;        /* smaller button body */
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.container.active {
-  background-color: white;
-}
-
-.movie-list-title.active {
-  color: black;
-}
-
-.navbar-container.active {
-  background-color: white;
-
-  color: black;
-}
-
-.sidebar.active{
-    background-color: white;
-}
-
-.left-menu-icon.active{
-    color: black;
-}
-
-.toggle.active{
-    background-color: black;
-}
-
-.toggle-ball.active{
-    background-color: white;
-    transform: translateX(-20px);
-}
-
-@media only screen and (max-width: 940px){
-    .menu-container{
-        display: none;
-    }
+.load-more-container button:hover {
+  background-color: #e02e2e;
 }
