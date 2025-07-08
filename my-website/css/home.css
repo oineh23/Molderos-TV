@@ -437,23 +437,28 @@ main {
 }
 
 /* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
+.modal-content {
+  background-color: #181818;
+  padding: 2rem;
+  border-radius: 10px;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
+  max-width: 800px;
+  position: relative;
 }
 
 .modal-body {
   display: flex;
   gap: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.modal-body img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.modal-text {
+  flex: 1;
 }
 
 .modal-text h2 {
@@ -467,6 +472,10 @@ main {
   font-size: 2rem;
   cursor: pointer;
   color: #fff;
+}
+
+.stars {
+  margin-bottom: 0.5rem;
 }
 
 /* Spinner */
