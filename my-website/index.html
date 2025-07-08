@@ -663,28 +663,40 @@ function closeModal() {
  <!-- Modal -->
 <div class="modal" id="modal">
   <div class="modal-content">
+    <!-- Close Button -->
     <button class="custom-close-button" onclick="closeModal()" aria-label="Close Video">
-  <i class="fas fa-times"></i>
-</button>
+      <i class="fas fa-times"></i>
+    </button>
+
+    <!-- Movie Info -->
     <div class="modal-body">
-      <img id="modal-image" src="" alt="Movie poster" />
+      <div class="modal-poster">
+        <img id="modal-image" src="" alt="Movie poster" />
+      </div>
       <div class="modal-text">
         <h2 id="modal-title"></h2>
         <div class="stars" id="modal-rating"></div>
         <p id="modal-description"></p>
       </div>
     </div>
-    <div class="server-selector">
-      <label for="server">Change Server:</label>
-      <select id="server" onchange="changeServer()">
-        <option value="vidsrc.cc">Vidsrc.cc</option>
-        <option value="vidsrc.me">Vidsrc.me</option>
-        <option value="player.videasy.net">Player.Videasy.net</option>
-      </select>
-   </div>
-    <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+
+    <!-- Video Player -->
+    <div class="modal-player">
+      <div class="server-selector">
+        <label for="server">Choose Server:</label>
+        <select id="server" onchange="changeServer()">
+          <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
+          <option value="player.videasy.net">Player.Videasy.net</option>
+        </select>
+      </div>
+      <div class="video-wrapper">
+        <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      </div>
+    </div>
   </div>
 </div>
+
 
   <!-- Search Modal -->
 <!-- Search Modal -->
