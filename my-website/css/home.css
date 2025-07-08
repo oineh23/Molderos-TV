@@ -624,6 +624,41 @@ main {
   text-decoration: underline;
 }
 
+.footer {
+  background-color: #111;
+  color: #aaa;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer-content h3 {
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.footer-content p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.footer-content a {
+  color: #1e90ff;
+  text-decoration: underline;
+}
+
+.footer-content a:hover {
+  color: #63b3ed;
+}
+
+.footer .copyright {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .modal-body {
