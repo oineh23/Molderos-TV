@@ -465,12 +465,12 @@ main {
 }
 
 .modal-body img {
-  width: 100px;
+  width: 20px;
   border-radius: 30px;
 }
 
 .modal-text {
-  flex: 0;
+  flex: 1;
 }
 
 .modal-text h2 {
