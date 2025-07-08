@@ -470,7 +470,7 @@ main {
 }
 
 .modal-text {
-  flex: 1;
+  flex: 0;
 }
 
 .modal-text h2 {
