@@ -464,6 +464,11 @@ main {
   margin-bottom: 1rem;
 }
 
+.modal-body img {
+  width: 100px;
+  border-radius: 10px;
+}
+
 .modal-text {
   flex: 1;
 }
