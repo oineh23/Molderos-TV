@@ -448,11 +448,13 @@ main {
   align-items: center;
   justify-content: center;
   z-index: 2000;
+  padding: 1rem; /* Add padding for smaller screens */
+  box-sizing: border-box;
 }
 
 .modal-content {
   background-color: #181818;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 10px;
   width: 100%;
   max-width: 800px;
@@ -461,12 +463,13 @@ main {
 
 .modal-body {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
+  flex-direction: column; /* Stack vertically for mobile */
+  gap: 1rem;
 }
 
 .modal-body img {
-  width: 200px;
+  width: 100%; /* Make image full width */
+  height: auto; /* Maintain aspect ratio */
   border-radius: 10px;
 }
 
@@ -476,12 +479,13 @@ main {
 
 .modal-text h2 {
   margin-bottom: 0.5rem;
+  font-size: 1.2rem; /* Smaller heading for mobile */
 }
 
 .close {
   position: absolute;
   top: 1rem;
-  right: 1.5rem;
+  right: 1rem;
   font-size: 2rem;
   cursor: pointer;
   color: #fff;
@@ -491,16 +495,17 @@ main {
   margin-bottom: 0.5rem;
 }
 
-/* Spinner */
-.loading-spinner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  gap: 1rem;
-  font-size: 1.2rem;
-  color: #e50914;
+/* Add a responsive iframe or video player style */
+.modal-body iframe,
+.modal-body video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Maintain widescreen aspect ratio */
+  border-radius: 10px;
+  max-height: 70vh; /* Keep video inside viewport height */
+  object-fit: cover;
 }
+
 
 /* Search Modal */
 .search-modal {
