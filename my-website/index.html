@@ -663,28 +663,42 @@ function closeModal() {
  <!-- Modal -->
 <div class="modal" id="modal">
   <div class="modal-content">
+    <!-- Close Button -->
     <button class="custom-close-button" onclick="closeModal()" aria-label="Close Video">
-  <i class="fas fa-times"></i>
-</button>
+      ✖
+    </button>
+
+    <!-- Movie Info -->
     <div class="modal-body">
-      <img id="modal-image" src="" alt="Movie poster" />
+      <div class="modal-poster">
+        <img id="modal-image" src="https://via.placeholder.com/200x300" alt="Movie poster" />
+      </div>
       <div class="modal-text">
-        <h2 id="modal-title"></h2>
-        <div class="stars" id="modal-rating"></div>
-        <p id="modal-description"></p>
+        <h2 id="modal-title">Sample Movie</h2>
+        <div class="stars" id="modal-rating">⭐⭐⭐⭐☆</div>
+        <p id="modal-description">This is a sample movie description. Enjoy streaming!</p>
       </div>
     </div>
-    <div class="server-selector">
-      <label for="server">Change Server:</label>
-      <select id="server" onchange="changeServer()">
-        <option value="vidsrc.cc">Vidsrc.cc</option>
-        <option value="vidsrc.me">Vidsrc.me</option>
-        <option value="player.videasy.net">Player.Videasy.net</option>
-      </select>
-   </div>
-    <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+
+    <!-- Video Player -->
+    <div class="modal-player">
+      <div class="server-selector">
+        <p>Choose Server:</p>
+        <div class="server-buttons">
+          <button onclick="changeServer('vidsrc.cc')" id="server-vidsrccc">Vidsrc.cc ✅</button>
+          <button onclick="changeServer('vidsrc.me')" id="server-vidsrcme">Vidsrc.me ✅</button>
+          <button onclick="changeServer('player.videasy.net')" id="server-videasy">Videasy.net ❌</button>
+        </div>
+      </div>
+      <div class="video-wrapper">
+        <iframe id="modal-video" src="" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- Example Open Button -->
+<button onclick="openModal()">Open Video Player</button>
 
   <!-- Search Modal -->
 <!-- Search Modal -->
