@@ -276,6 +276,14 @@
     <div class="modal-content">
       <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
       <div class="server-selector">
+        <div class="modal-body">
+        <img id="modal-image" src="" alt="Movie poster" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
         <label for="server">Change Server:</label>
         <select id="server" onchange="changeServer()">
           <option value="vidsrc.cc">Vidsrc.cc</option>
