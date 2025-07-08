@@ -123,11 +123,6 @@
       z-index: 2000;
     }
   }
-.section-title {
-  text-align: center;
-  margin: 0;
-  font-size: 2rem;  /* Optional: adjust as you like */
-}
 </style>
 
   <style>  
@@ -238,7 +233,7 @@
   <main>
     <section class="row" id="movies-list-section">
   <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0; text-align: center;">🎬 Trending Movies</h2>
+    <h2 class="section-title">🎬 Trending Movies</h2>
     <div class="genre-filter">
       <label for="genre-select">🎯 Filter by Genre:</label>
       <select id="genre-select" onchange="filterByGenre(this.value)">
