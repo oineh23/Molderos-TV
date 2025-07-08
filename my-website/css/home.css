@@ -450,7 +450,7 @@ main {
 .modal-content {
   position: relative;
   background: #000;
-  width: 50%;
+  width: 90%;
   max-width: 800px;
   border-radius: 10px;
   overflow: hidden;
