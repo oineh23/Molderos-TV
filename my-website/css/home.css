@@ -450,12 +450,12 @@ main {
 }
 
 .modal-content {
-  background-color: #181818;
+  background-color: none;
   padding: 2rem;
   border-radius: 10px;
   width: 100%;
   max-width: 800px;
-  position: center;
+  position: relative;
 }
 
 .modal-body {
