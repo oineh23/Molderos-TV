@@ -465,8 +465,8 @@ main {
 }
 
 .modal-body img {
-  width: 20px;
-  border-radius: 30px;
+  width: 0px;
+  border-radius: 0px;
 }
 
 .modal-text {
