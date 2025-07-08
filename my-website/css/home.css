@@ -1,3 +1,4 @@
+
 /* --- Enhanced Movie Card Layout and Effects --- */
 .card-container {
   display: grid;
@@ -464,15 +465,6 @@ main {
   margin-bottom: 1rem;
 }
 
-.modal-body img {
-  width: 200px;
-  border-radius: 10px;
-}
-
-.modal-text {
-  flex: 1;
-}
-
 .modal-text h2 {
   margin-bottom: 0.5rem;
 }
@@ -484,10 +476,6 @@ main {
   font-size: 2rem;
   cursor: pointer;
   color: #fff;
-}
-
-.stars {
-  margin-bottom: 0.5rem;
 }
 
 /* Spinner */
