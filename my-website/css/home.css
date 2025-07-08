@@ -466,7 +466,7 @@ main {
 
 .modal-body img {
   width: 100px;
-  border-radius: 50px;
+  border-radius: 30px;
 }
 
 .modal-text {
@@ -474,7 +474,7 @@ main {
 }
 
 .modal-text h2 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
 }
 
 .close {
