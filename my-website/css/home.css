@@ -446,7 +446,7 @@ main {
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 5000;
+  z-index: 2000;
 }
 
 .modal-content {
@@ -470,7 +470,7 @@ main {
 }
 
 .modal-text {
-  flex: 1;
+  flex: 0;
 }
 
 .modal-text h2 {
