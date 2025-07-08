@@ -5,26 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vivamax Movies - MOLDEROS-TV</title>
   <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <script defer src="js/home.js"></script>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <h1>MOLDEROS-TV</h1>
-      <ul class="nav-links">
-        <li><a href="trending-movies.html">Trending Movies</a></li>
-        <li><a href="trending-tv.html">Trending TV Shows</a></li>
-        <li><a href="trending-anime.html">Trending Anime</a></li>
-        <li><a href="vivamax.html">Vivamax</a></li>
-        <li><a href="korean.html">Korean Movies</a></li>
-      </ul>
+<header class="nav-wrapper">
+  <div class="container nav">
+    <a href="index.html" class="logo">
+      <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+      MOLD<span class="main-color">EROS</span>-TV
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="trending.html">Trending</a>
+      <a href="tvshows.html">TV Shows</a>
+      <a href="anime.html">Anime</a>
+      <a href="vivamax.html">Vivamax</a>
+      <a href="korean.html">Korean</a>
     </nav>
-  </header>
-  <main>
-    <h2 class="section-title">Vivamax Movies</h2>
-    <div id="vivamax-movies" class="card-container"></div>
-    <button id="load-more-vivamax" class="load-more-btn">Load More</button>
-  </main>
-  <footer class="footer">2025 MOLDEROS-TV. All rights reserved.</footer>
-  <script src="js/home.js" defer></script>
+  </div>
+</header>
+<main>
+
+<section class="section" id="pinoy-movies">
+  <div class="section-header">
+    <h2><img src="images/images.jpg" alt="Vivamax" style="height: 40px;" /> Vivamax</h2>
+    <div class="genre-filter">
+      <label for="pinoy-genre-filter">🎯 Filter by Genre:</label>
+      <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
+        <option value="">All Genres</option>
+        <option value="28">Action</option>
+        <option value="35">Comedy</option>
+        <option value="18">Drama</option>
+        <option value="10749">Romance</option>
+        <option value="80">Crime</option>
+        <option value="27">Horror</option>
+        <option value="10751">Family</option>
+        <option value="16">Animation</option>
+        <option value="99">Documentary</option>
+        <option value="10402">Music</option>
+        <option value="9648">Mystery</option>
+        <option value="878">Science Fiction</option>
+        <option value="10752">War</option>
+        <option value="37">Western</option>
+        <option value="36">History</option>
+        <option value="14">Fantasy</option>
+        <option value="53">Thriller</option>
+      </select>
+    </div>
+  </div>
+  <div class="vivamax-grid" id="pinoy-movie-list"></div>
+  <div class="load-more-container">
+    <button id="load-more-pinoy">🎥 Load More</button>
+  </div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>
