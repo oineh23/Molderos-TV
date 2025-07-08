@@ -464,13 +464,8 @@ main {
   margin-bottom: 1rem;
 }
 
-.modal-body img {
-  width: 50px;
-  border-radius: 10px;
-}
-
 .modal-text {
-  flex: 0;
+  flex: 1;
 }
 
 .modal-text h2 {
