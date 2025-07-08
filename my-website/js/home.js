@@ -53,7 +53,11 @@ async function init() {
     fetchTrendingAnime()
   ]);
 
-  displayBanner(movies[Math.floor(Math.random() * movies.length)]);
+  // Only run banner if #banner exists
+  if (document.getElementById('banner')) {
+    displayBanner(movies[Math.floor(Math.random() * movies.length)]);
+  }
+
   displayList(movies, 'movies-list');
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
@@ -62,6 +66,7 @@ async function init() {
   setupPinoyControls();
   setupTVControls();
 }
+
 document.addEventListener("DOMContentLoaded", init);
 
 // ====== DISPLAY UTILITIES ======
