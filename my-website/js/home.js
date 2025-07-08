@@ -255,26 +255,44 @@ function scrollPinoyMovies(direction) {
 }
 
 // ====== MODAL HANDLING ======
-function openModal() {
-  const modal = document.getElementById('modal');
-  modal.classList.add('show');
+function showDetails(item) {
+  currentItem = item;
+  document.getElementById('modal-title').textContent = item.title || item.name;
+  document.getElementById('modal-description').textContent = item.overview || 'No description available.';
+  document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
+  document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2)) || 'N/A';
+
+  changeServer();
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function changeServer() {
+  const server = document.getElementById('server')?.value;
+  if (!server || !currentItem) return;
+
+  const type = currentItem.media_type === 'movie' ? 'movie' : 'tv';
+  const id = currentItem.id;
+  let embedURL = '';
+
+  switch (server) {
+    case 'vidsrc.cc':
+      embedURL = `https://vidsrc.cc/v2/embed/${type}/${id}`;
+      break;
+    case 'vidsrc.me':
+      embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
+      break;
+    case 'player.videasy.net':
+      embedURL = `https://player.videasy.net/${type}/${id}`;
+      break;
+  }
+
+  document.getElementById('modal-video').src = embedURL;
 }
 
 function closeModal() {
-  const modal = document.getElementById('modal');
-  modal.classList.remove('show');
-  setTimeout(() => {
-    modal.style.display = 'none';
-    modal.style.opacity = '0';
-  }, 400); // Match the fade-out time
+  document.getElementById('modal').style.display = 'none';
+  document.getElementById('modal-video').src = '';
 }
-
-function changeServer(serverUrl) {
-  const iframe = document.getElementById('modal-video');
-  iframe.src = `https://${serverUrl}/yourvideo`; 
-  // Adjust your URL logic here
-}
-
 
 // ====== SEARCH MODAL ======
 function openSearchModal() {
