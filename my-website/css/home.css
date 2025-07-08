@@ -549,6 +549,110 @@ main {
 }
 
 .modal-player iframe {
+/* Basic Reset */
+body {
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* Modal overlay fade */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.modal.show {
+  display: block;
+  opacity: 1;
+}
+
+.modal-content {
+  position: relative;
+  margin: 5% auto;
+  max-width: 900px;
+  background: #111;
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.custom-close-button {
+  position: absolute;
+  top: 15px; right: 15px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.modal-poster img {
+  max-width: 200px;
+  border-radius: 10px;
+}
+
+.modal-text {
+  flex: 1;
+}
+
+.modal-text h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+}
+
+.server-selector {
+  margin: 20px 0;
+}
+
+.server-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.server-buttons button {
+  background: #222;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.server-buttons button:hover {
+  background: #333;
+}
+
+.modal-player .video-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.modal-player iframe {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
@@ -556,7 +660,6 @@ main {
   border-radius: 10px;
 }
 
-/* Responsive tweaks */
 @media(max-width: 768px) {
   .modal-body {
     flex-direction: column;
