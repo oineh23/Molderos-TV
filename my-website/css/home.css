@@ -501,6 +501,17 @@ main {
   color: #e50914;
 }
 
+/* Spinner */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+  font-size: 1.2rem;
+  color: #e50914;
+}
+
 /* Search Modal */
 .search-modal {
   position: fixed;
