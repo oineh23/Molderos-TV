@@ -464,19 +464,6 @@ main {
   margin-bottom: 1rem;
 }
 
-.modal-body img {
-  width: 10px;
-  border-radius: 30px;
-}
-
-.modal-text {
-  flex: 1;
-}
-
-.modal-text h2 {
-  margin-bottom: 0.2rem;
-}
-
 .close {
   position: absolute;
   top: 1rem;
