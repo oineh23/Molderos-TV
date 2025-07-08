@@ -525,7 +525,36 @@ function closeModal() {
   document.getElementById('modal-video').src = '';
 }
 </script>
+
   
+  <script>
+function openModal() {
+  const modal = document.getElementById('modal');
+  modal.style.display = 'block';
+  setTimeout(() => {
+    modal.classList.add('show');
+  }, 10);
+
+  // Load default video
+  changeServer('vidsrc.cc');
+}
+
+function closeModal() {
+  const modal = document.getElementById('modal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+    document.getElementById('modal-video').src = ''; // Stop video
+  }, 400);
+}
+
+function changeServer(server) {
+  const iframe = document.getElementById('modal-video');
+  // Replace with your actual video source logic
+  iframe.src = `https://${server}/embed/samplevideo`; 
+}
+</script>
+
 <body>
   
   <!-- Navbar -->
