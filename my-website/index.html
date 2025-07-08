@@ -663,20 +663,21 @@ function closeModal() {
  <!-- Modal -->
 <div class="modal" id="modal">
   <div class="modal-content">
-    <button class="custom-close-button" onclick="closeModal()" aria-label="Close Video">
-  <i class="fas fa-times"></i>
-</button>
-    <div class="server-selector">
-      <label for="server">Change Server:</label>
-      <select id="server" onchange="changeServer()">
-        <option value="vidsrc.cc">Vidsrc.cc</option>
-        <option value="vidsrc.me">Vidsrc.me</option>
-        <option value="player.videasy.net">Player.Videasy.net</option>
-      </select>
-   </div>
-    <iframe id="modal-video" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-body">
+      <div class="video-player">
+        <!-- Embed your <video> or <iframe> here -->
+        <iframe src="YOUR_VIDEO_URL" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="server-menu">
+        <button>Server 1</button>
+        <button>Server 2</button>
+        <button>Server 3</button>
+      </div>
+    </div>
   </div>
 </div>
+
 
   <!-- Search Modal -->
 <!-- Search Modal -->
