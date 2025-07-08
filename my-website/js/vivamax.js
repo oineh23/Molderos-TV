@@ -1,2 +1,1 @@
-// Vivamax Movies Script
-fetchVivamaxMovies();
+console.log('Vivamax Movies JS Loaded');
