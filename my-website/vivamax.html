@@ -14,8 +14,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <script defer src="js/home.js"></script>
 
   <script>
@@ -382,32 +380,7 @@
   }
 }
 
-.section-header h2 {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 1rem;
-  letter-spacing: 2px;
-  line-height: 1.4;
-  text-transform: uppercase;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
 
-/* Light Theme: Black font */
-[data-theme="light"] .section-header h2 {
-  color: #000000;
-  text-shadow: none;
-}
-
-/* Dark Theme: White font */
-[data-theme="dark"] .section-header h2 {
-  color: #ffffff;
-  text-shadow: none;
-}
-
- .nav-links a {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 18px;
-  letter-spacing: 1px;
-}
 </style>
 
 <script>
@@ -452,13 +425,13 @@ function tryServer(index) {
   if (index >= serverList.length) {
     const iframe = document.getElementById('modal-video');
     iframe.src = '';
-    iframe.parentElement.innerHTML += `<div style="position:absolute;color:white;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">⚠️ All servers failed.<br>Try again later.</div>`;
+    iframe.parentElement.innerHTML += <div style="position:absolute;color:white;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">⚠️ All servers failed.<br>Try again later.</div>;
     return;
   }
 
   const server = serverList[index];
   const iframe = document.getElementById('modal-video');
-  iframe.src = `https://${server}/embed/movie/${currentMovieId}`;
+  iframe.src = https://${server}/embed/movie/${currentMovieId};
 
   // Wait and try next if the server refuses to connect
   tryTimeout = setTimeout(() => {
@@ -467,12 +440,12 @@ function tryServer(index) {
       const doc = iframe.contentDocument || iframe.contentWindow.document;
       // Check if it's about:blank (likely blocked or empty)
       if (!doc || doc.location.href === "about:blank") {
-        console.warn(`❌ ${server} returned blank. Trying next...`);
+        console.warn(❌ ${server} returned blank. Trying next...);
         tryServer(index + 1);
       }
     } catch (e) {
       // Most likely a CORS restriction or blocked
-      console.warn(`❌ ${server} refused connection. Trying next...`);
+      console.warn(❌ ${server} refused connection. Trying next...);
       tryServer(index + 1);
     }
   }, 4000); // Wait 4s before checking if it failed
@@ -483,7 +456,7 @@ function changeServer() {
   const select = document.getElementById('server');
   const selectedServer = select.value;
   const iframe = document.getElementById('modal-video');
-  iframe.src = `https://${selectedServer}/embed/movie/${currentMovieId}`;
+  iframe.src = https://${selectedServer}/embed/movie/${currentMovieId};
 }
 
 function closeModal() {
@@ -499,7 +472,7 @@ function closeModal() {
     <div class="container nav">
         <a href="#" class="logo">
   <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
-  M0LD<span class="main-color">ER0S</span>-TV
+  MOLD<span class="main-color">EROS</span>-TV
         </a>
       <input type="checkbox" id="menu-toggle" />
       <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
@@ -527,7 +500,9 @@ function closeModal() {
   <section class="section" id="pinoy-movies">
     <div class="section-header">
       <h2 style="display: flex; align-items: center; gap: 5px;">
-        <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />Vivamax</h2>
+        <img src="images/images.jpg" alt="Vivamax" style="height: 40px;" />
+        Vivamax
+      </h2>
       <div class="genre-filter">
         <label for="pinoy-genre-filter">🎯 Filter by Genre:</label>
         <select id="pinoy-genre-filter" onchange="filterByPinoyGenre(this.value)">
