@@ -450,15 +450,6 @@ main {
   z-index: 2000;
 }
 
-.modal-content {
-  background-color: #181818;
-  padding: 2rem;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 800px;
-  position: relative;
-}
-
 .modal-body {
   display: flex;
   gap: 1.5rem;
