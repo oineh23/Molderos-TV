@@ -455,7 +455,7 @@ main {
   border-radius: 10px;
   width: 100%;
   max-width: 800px;
-  position: relative;
+  position: center;
 }
 
 .modal-body {
@@ -470,7 +470,7 @@ main {
 }
 
 .modal-text {
-  flex: none;
+  flex: 1;
 }
 
 .modal-text h2 {
