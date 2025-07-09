@@ -440,75 +440,6 @@
   font-size: 18px;
   letter-spacing: 1px;
 }
-
-    <style>
-  #warningModal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-  }
-
-  #warningContent {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-    border-radius: 10px;
-  }
-
-  .modal-btn {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-
-  .continue-btn {
-    background-color: #28a745;
-    color: white;
-  }
-
-  .cancel-btn {
-    background-color: #dc3545;
-    color: white;
-  }
-          box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-
-    #warningContent h2 {
-      margin-bottom: 15px;
-    }
-
-    #warningContent p {
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-
-    .modal-btn {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-    }
-
-    .continue-btn {
-      background-color: #28a745;
-      color: white;
-    }
-
-    .cancel-btn {
-      background-color: #dc3545;
-      color: white;
-    }
-    
 </style>
 
 <script>
@@ -592,33 +523,6 @@ function closeModal() {
   document.getElementById('modal').style.display = 'none';
   document.getElementById('modal-video').src = '';
 }
-</script>
-
-  <script>
-  const iptvLink = document.getElementById('iptvLink');
-  const warningModal = document.getElementById('warningModal');
-  const continueBtn = document.getElementById('continueBtn');
-  const cancelBtn = document.getElementById('cancelBtn');
-
-  let pendingLink = '';
-
-  iptvLink.addEventListener('click', function (e) {
-    e.preventDefault(); // Stop link from navigating immediately
-    pendingLink = this.href; // Save the URL
-    warningModal.style.display = 'block'; // Show modal
-  });
-
-  cancelBtn.addEventListener('click', function () {
-    warningModal.style.display = 'none';
-    pendingLink = '';
-  });
-
-  continueBtn.addEventListener('click', function () {
-    warningModal.style.display = 'none';
-    if (pendingLink) {
-      window.location.href = pendingLink; // Proceed to IPTV page
-    }
-  });
 </script>
   
 <body>
