@@ -453,7 +453,7 @@ main {
   background-color: #181818;
   padding: 2rem;
   border-radius: 10px;
-  width: 50%;
+  width: 100%;
   max-width: 800px;
   position: relative;
 }
