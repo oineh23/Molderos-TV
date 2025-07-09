@@ -17,33 +17,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <script defer src="js/home.js"></script>
 
-  <script>
-    document.addEventListener('contextmenu', function(event) {
-      event.preventDefault();
-      alert("Right-click is disabled on this page.");
-    });
-  </script>
-
-  <script>
-  document.addEventListener("keydown", function (e) {
-    // F12
-    if (e.key === "F12") {
-      e.preventDefault();
-    }
-
-    // Ctrl + Shift + I / J / C
-    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
-      e.preventDefault();
-    }
-
-    // Ctrl + U (View Source)
-    if (e.ctrlKey && e.key === "u") {
-      e.preventDefault();
-    }
-  });
-</script>
-
+  
   <style>
+    
   :root {
     --bg-color: #ffffff;
     --text-color: #000000;
@@ -74,7 +50,6 @@
     color: var(--text-color);
   }
 
-    <style>
   /* Fullscreen video modal styles for mobile and tablets */
   @media (max-width: 1024px) {
     .modal {
@@ -123,10 +98,7 @@
       z-index: 2000;
     }
   }
-</style>
-
-  <style>  
-    
+     
   .load-more-container {
     margin-top: 30px;
     text-align: center;
@@ -177,10 +149,25 @@
   }
 }
 
-</style>
+  @media (max-width: 600px) {
+  .genre-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .genre-filter label {
+    margin-bottom: 8px;
+  }
+
+  #genre-select {
+    width: 80%;
+  }
+}
 </style>
+  
 <script>
+  
   // Theme toggle logic
   document.addEventListener("DOMContentLoaded", () => {
     const currentTheme = localStorage.getItem("theme") || "light";
@@ -194,6 +181,28 @@
         localStorage.setItem("theme", newTheme);
         toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
       });
+    }
+  });
+    
+    document.addEventListener('contextmenu', function(event) {
+      event.preventDefault();
+      alert("Right-click is disabled on this page.");
+    });
+
+  document.addEventListener("keydown", function (e) {
+    // F12
+    if (e.key === "F12") {
+      e.preventDefault();
+    }
+
+    // Ctrl + Shift + I / J / C
+    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+      e.preventDefault();
+    }
+
+    // Ctrl + U (View Source)
+    if (e.ctrlKey && e.key === "u") {
+      e.preventDefault();
     }
   });
 </script>
@@ -232,33 +241,34 @@
   <!-- Main Content -->
   <main>
     <section class="row" id="movies-list-section">
-  <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 class="section-title">🎬 Trending Movies</h2>
-    <div class="genre-filter">
-      <label for="genre-select">🎯 Filter by Genre:</label>
-      <select id="genre-select" onchange="filterByGenre(this.value)">
-        <option value="">All</option>
-        <option value="28">Action</option>
-        <option value="35">Comedy</option>
-        <option value="18">Drama</option>
-        <option value="27">Horror</option>
-        <option value="16">Animation</option>
-        <option value="10749">Romance</option>
-        <option value="878">Science Fiction</option>
-        <option value="10751">Family</option>
-        <option value="99">Documentary</option>
-        <option value="12">Adventure</option>
-        <option value="80">Crime</option>
-        <option value="9648">Mystery</option>
-        <option value="53">Thriller</option>
-        <option value="14">Fantasy</option>
-        <option value="36">History</option>
-        <option value="10402">Music</option>
-        <option value="10752">War</option>
-        <option value="37">Western</option>
-      </select>
-    </div>
+  <div class="trending-header" style="text-align: center; margin: 40px auto;">
+  <h2 class="section-title" style="font-size: 2rem; margin-bottom: 20px;">🎬 Trending Movies</h2>
+  
+  <div class="genre-filter" style="margin: 0 auto;">
+    <label for="genre-select" style="margin-right: 10px;">🎯 Filter by Genre:</label>
+    <select id="genre-select" onchange="filterByGenre(this.value)" style="padding: 10px; border-radius: 5px; font-size: 1rem;">
+      <option value="">All</option>
+      <option value="28">Action</option>
+      <option value="35">Comedy</option>
+      <option value="18">Drama</option>
+      <option value="27">Horror</option>
+      <option value="16">Animation</option>
+      <option value="10749">Romance</option>
+      <option value="878">Science Fiction</option>
+      <option value="10751">Family</option>
+      <option value="99">Documentary</option>
+      <option value="12">Adventure</option>
+      <option value="80">Crime</option>
+      <option value="9648">Mystery</option>
+      <option value="53">Thriller</option>
+      <option value="14">Fantasy</option>
+      <option value="36">History</option>
+      <option value="10402">Music</option>
+      <option value="10752">War</option>
+      <option value="37">Western</option>
+    </select>
   </div>
+</div>
 
   <div class="card-container" id="movies-list"></div>
 </section>
