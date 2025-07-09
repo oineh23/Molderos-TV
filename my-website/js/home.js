@@ -414,3 +414,35 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
+
+// ========== VIDEO MODAL SERVER SWITCH ==========
+
+function switchServer(url) {
+  const iframe = document.getElementById('video-frame');
+  const errorMessage = document.getElementById('video-error');
+
+  errorMessage.style.display = 'none'; // Reset error message
+  iframe.src = url;
+
+  // Basic error handling (note: iframe.onerror may not always trigger in all browsers)
+  iframe.onerror = function () {
+    errorMessage.style.display = 'block';
+  };
+}
+
+function closeModal() {
+  const modal = document.getElementById('video-modal');
+  const iframe = document.getElementById('video-frame');
+  const errorMessage = document.getElementById('video-error');
+
+  modal.style.display = 'none';
+  iframe.src = ''; // Stop video
+  errorMessage.style.display = 'none'; // Hide error on close
+}
+
+// Optional: open modal with default server
+function openModal(imdbId) {
+  document.getElementById('video-modal').style.display = 'block';
+  switchServer(`https://vidsrc.cc/embed/${imdbId}`);
+}
+
