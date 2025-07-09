@@ -414,13 +414,3 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
-
-// Function to open the modal
-function openModal() {
-  document.getElementById("myModal").classList.add("active");
-}
-
-// Function to close the modal
-function closeModal() {
-  document.getElementById("myModal").classList.remove("active");
-}
