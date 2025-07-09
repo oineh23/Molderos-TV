@@ -147,7 +147,18 @@
       1px 1px 0 #111;
   }
 }
-    
+
+    .modal,
+.loading-spinner {
+  display: none;
+}
+
+/* Show when active */
+.modal.show,
+.loading-spinner.show {
+  display: flex;
+}
+
 </style>
   
 <script>
