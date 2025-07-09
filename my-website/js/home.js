@@ -13,14 +13,6 @@ const genreMap = {
   10749: 'Romance',
 };
 
-const embedServers = [
-  'player.videasy.net',
-  'vidsrc.in',
-  'embed.su',
-  'moviesapi.club',
-  '111movies.com',
-];
-
 let currentItem;
 let tvShowsPage = 1;
 let currentAnimePage = 1;
@@ -265,29 +257,42 @@ function scrollPinoyMovies(direction) {
 // ====== MODAL HANDLING ======
 function showDetails(item) {
   currentItem = item;
-
-  document.getElementById('modal-title').textContent = item.title || item.name || 'Untitled';
+  document.getElementById('modal-title').textContent = item.title || item.name;
   document.getElementById('modal-description').textContent = item.overview || 'No description available.';
   document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
   document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2)) || 'N/A';
 
-  // Create server selector dynamically
-  const serverSelect = document.getElementById('server');
-  serverSelect.innerHTML = ''; // clear previous
-
-  embedServers.forEach(s => {
-    const opt = document.createElement('option');
-    opt.value = s;
-    opt.textContent = s;
-    serverSelect.appendChild(opt);
-  });
-
-  serverSelect.onchange = changeServer;
-
-  changeServer(); // load initial server
+  changeServer();
   document.getElementById('modal').style.display = 'flex';
 }
 
+function changeServer() {
+  const server = document.getElementById('server')?.value;
+  if (!server || !currentItem) return;
+
+  const type = currentItem.media_type === 'movie' ? 'movie' : 'tv';
+  const id = currentItem.id;
+  let embedURL = '';
+
+  switch (server) {
+    case 'vidsrc.cc':
+      embedURL = `https://vidsrc.cc/v2/embed/${type}/${id}`;
+      break;
+    case 'vidsrc.me':
+      embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
+      break;
+    case 'player.videasy.net':
+      embedURL = `https://player.videasy.net/${type}/${id}`;
+      break;
+  }
+
+  document.getElementById('modal-video').src = embedURL;
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+  document.getElementById('modal-video').src = '';
+}
 
 // ====== SEARCH MODAL ======
 function openSearchModal() {
