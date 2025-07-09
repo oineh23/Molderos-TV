@@ -442,48 +442,69 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  display: none;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex; /* Changed to flex by default for smoother control */
   align-items: center;
   justify-content: center;
   z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal-content {
-  background-color: #181818;
+  background: #181818;
   padding: 2rem;
-  border-radius: 10px;
-  width: 100%;
+  border-radius: 12px;
+  width: 90%;
   max-width: 800px;
   position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
 .modal-body {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  margin-bottom: 1rem;
 }
 
 .modal-body img {
-  width: 0px;
-  border-radius: 0px;
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .modal-text {
   flex: 1;
+  color: #ddd;
 }
 
 .modal-text h2 {
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  color: #fff;
 }
 
 .close {
   position: absolute;
   top: 1rem;
-  right: 1.5rem;
-  font-size: 3rem;
+  right: 1rem;
+  font-size: 2rem;
   cursor: pointer;
   color: #fff;
+  background: transparent;
+  border: none;
+}
+
+.close:hover {
+  color: #ff5555;
+  transform: scale(1.1);
 }
 
 .stars {
