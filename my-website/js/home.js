@@ -265,31 +265,29 @@ function scrollPinoyMovies(direction) {
 // ====== MODAL HANDLING ======
 function showDetails(item) {
   currentItem = item;
-  document.getElementById('modal-title').textContent = item.title || item.name;
+
+  document.getElementById('modal-title').textContent = item.title || item.name || 'Untitled';
   document.getElementById('modal-description').textContent = item.overview || 'No description available.';
   document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
   document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2)) || 'N/A';
 
-  changeServer();
+  // Create server selector dynamically
+  const serverSelect = document.getElementById('server');
+  serverSelect.innerHTML = ''; // clear previous
+
+  embedServers.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s;
+    serverSelect.appendChild(opt);
+  });
+
+  serverSelect.onchange = changeServer;
+
+  changeServer(); // load initial server
   document.getElementById('modal').style.display = 'flex';
 }
 
-function changeServer() {
-  if (!currentItem) return;
-
-  const server = document.getElementById('server')?.value || embedServers[0];
-  const id = currentItem.id || 'acbb1b71'; // fallback ID
-
-  // Most embed servers use the same structure
-  const embedURL = `https://${server}/embed/${id}`;
-
-  document.getElementById('modal-video').src = embedURL;
-}
-
-function closeModal() {
-  document.getElementById('modal').style.display = 'none';
-  document.getElementById('modal-video').src = '';
-}
 
 // ====== SEARCH MODAL ======
 function openSearchModal() {
