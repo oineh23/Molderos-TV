@@ -1,3 +1,4 @@
+
 /* --- Enhanced Movie Card Layout and Effects --- */
 .card-container {
   display: grid;
@@ -460,13 +461,13 @@ main {
 
 .modal-body {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-bottom: 1rem;
 }
 
 .modal-body img {
-  width: 0px;
-  border-radius: 0px;
+  width: 200px;
+  border-radius: 10px;
 }
 
 .modal-text {
@@ -474,31 +475,20 @@ main {
 }
 
 .modal-text h2 {
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .close {
   position: absolute;
   top: 1rem;
   right: 1.5rem;
-  font-size: 3rem;
+  font-size: 2rem;
   cursor: pointer;
   color: #fff;
 }
 
 .stars {
   margin-bottom: 0.5rem;
-}
-
-/* Spinner */
-.loading-spinner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  gap: 1rem;
-  font-size: 1.2rem;
-  color: #e50914;
 }
 
 /* Spinner */
@@ -607,6 +597,7 @@ main {
 
 /* Footer */
 .footer {
+  background-color: #141414;
   padding: 1.5rem 2rem;
   text-align: center;
   color: #aaa;
@@ -622,41 +613,6 @@ main {
 .footer-links a:hover {
   color: #fff;
   text-decoration: underline;
-}
-
-.footer {
-  background-color: none;
-  color: #aaa;
-  padding: 40px 20px;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-.footer-content h3 {
-  color: #fff;
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-}
-
-.footer-content p {
-  margin: 8px 0;
-  line-height: 1.5;
-}
-
-.footer-content a {
-  color: #1e90ff;
-  text-decoration: underline;
-}
-
-.footer-content a:hover {
-  color: #63b3ed;
-}
-
-.footer .copyright {
-  margin-top: 20px;
-  font-size: 0.8rem;
-  color: #666;
 }
 
 /* Responsive Design */
