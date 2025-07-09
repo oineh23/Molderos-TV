@@ -187,6 +187,10 @@
     width: 80%;
   }
 }
+.modal,
+.loading-spinner {
+  display: none !important;
+}
 
 </style>
   
@@ -228,9 +232,6 @@
       e.preventDefault();
     }
   });
-  
-  const theme = localStorage.getItem("theme") || "light";
-  document.documentElement.setAttribute("data-theme", theme);
   
 </script>
 
