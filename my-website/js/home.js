@@ -13,6 +13,14 @@ const genreMap = {
   10749: 'Romance',
 };
 
+const embedServers = [
+  'player.videasy.net',
+  'vidsrc.in',
+  'embed.su',
+  'moviesapi.club',
+  '111movies.com',
+];
+
 let currentItem;
 let tvShowsPage = 1;
 let currentAnimePage = 1;
@@ -267,24 +275,13 @@ function showDetails(item) {
 }
 
 function changeServer() {
-  const server = document.getElementById('server')?.value;
-  if (!server || !currentItem) return;
+  if (!currentItem) return;
 
-  const type = currentItem.media_type === 'movie' ? 'movie' : 'tv';
-  const id = currentItem.id;
-  let embedURL = '';
+  const server = document.getElementById('server')?.value || embedServers[0];
+  const id = currentItem.id || 'acbb1b71'; // fallback ID
 
-  switch (server) {
-    case 'vidsrc.cc':
-      embedURL = `https://vidsrc.cc/v2/embed/${type}/${id}`;
-      break;
-    case 'vidsrc.me':
-      embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
-      break;
-    case 'player.videasy.net':
-      embedURL = `https://player.videasy.net/${type}/${id}`;
-      break;
-  }
+  // Most embed servers use the same structure
+  const embedURL = `https://${server}/embed/${id}`;
 
   document.getElementById('modal-video').src = embedURL;
 }
