@@ -549,6 +549,54 @@ main {
   margin-bottom: 1rem;
 }
 
+/* ====== VIDEO MODAL SERVER SWITCH & ERROR STYLES ====== */
+
+.server-buttons {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.server-buttons button {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.server-buttons button:hover {
+  background-color: #b00610;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.error-message {
+  color: #ff4d4f;
+  background-color: #1e1e1e;
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #ff4d4f;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: none;
+}
+
+/* Responsive height for iframe */
+@media (max-width: 768px) {
+  .video-container iframe {
+    height: 250px;
+  }
+}
+
 /* Search Modal Background Overlay */
 .search-modal {
   position: fixed;
