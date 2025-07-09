@@ -149,21 +149,48 @@
   }
 }
 
-  @media (max-width: 600px) {
+  .trending-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 40px auto;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.genre-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.genre-filter label {
+  font-size: 1rem;
+}
+
+#genre-select {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+/* Responsive tweaks for small screens */
+@media (max-width: 600px) {
   .genre-filter {
-    display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .genre-filter label {
-    margin-bottom: 6px;
-  }
-
   #genre-select {
-    width: 65%;
+    width: 80%;
   }
 }
+
 </style>
   
 <script>
@@ -241,12 +268,12 @@
   <!-- Main Content -->
   <main>
     <section class="row" id="movies-list-section">
-  <div class="trending-header" style="text-align: center; margin: 40px auto;">
-  <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 20px;">🎬 Trending Movies</h2>
-  
-  <div class="genre-filter" style="margin: 0 auto;">
-    <label for="genre-select" style="margin-right: 10px;">🎯 Filter by Genre:</label>
-    <select id="genre-select" onchange="filterByGenre(this.value)" style="padding: 10px; border-radius: 5px; font-size: 1rem;">
+  <div class="trending-header">
+  <h2 class="section-title">🎬 Trending Movies</h2>
+
+  <div class="genre-filter">
+    <label for="genre-select">🎯 Filter by Genre:</label>
+    <select id="genre-select" onchange="filterByGenre(this.value)">
       <option value="">All</option>
       <option value="28">Action</option>
       <option value="35">Comedy</option>
