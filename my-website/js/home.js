@@ -13,7 +13,6 @@ const genreMap = {
   10749: 'Romance',
 };
 
-let currentServer = 'vidsrc.cc'; // default server
 let currentItem;
 let tvShowsPage = 1;
 let currentAnimePage = 1;
@@ -258,36 +257,33 @@ function scrollPinoyMovies(direction) {
 // ====== MODAL HANDLING ======
 function showDetails(item) {
   currentItem = item;
-
   document.getElementById('modal-title').textContent = item.title || item.name;
   document.getElementById('modal-description').textContent = item.overview || 'No description available.';
   document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
   document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2)) || 'N/A';
 
-  changeServer(); // Now uses currentServer
-
+  changeServer();
   document.getElementById('modal').style.display = 'flex';
 }
 
-function changeServer(server) {
-  if (server) {
-    currentServer = server;
-  }
-
-  if (!currentItem) return;
+function changeServer() {
+  const server = document.getElementById('server')?.value;
+  if (!server || !currentItem) return;
 
   const type = currentItem.media_type === 'movie' ? 'movie' : 'tv';
   const id = currentItem.id;
   let embedURL = '';
 
-  if (currentServer === "vidsrc.cc") {
-    embedURL = `https://vidsrc.cc/v2/embed/${type}/${id}`;
-  } else if (currentServer === "vidsrc.me") {
-    embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
-  } else if (currentServer === "player.videasy.net") {
-    embedURL = `https://player.videasy.net/${type}/${id}`;
-  } else if (currentServer === "vidfast.pro") {
-    embedURL = `https://vidfast.pro/${type}/${id}`;
+  switch (server) {
+    case 'vidsrc.cc':
+      embedURL = `https://vidsrc.cc/v2/embed/${type}/${id}`;
+      break;
+    case 'vidsrc.me':
+      embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
+      break;
+    case 'player.videasy.net':
+      embedURL = `https://player.videasy.net/${type}/${id}`;
+      break;
   }
 
   document.getElementById('modal-video').src = embedURL;
