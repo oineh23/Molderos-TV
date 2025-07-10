@@ -659,19 +659,6 @@ main {
   color: #666;
 }
 
-.footer {
-  width: 100%;
-  padding: 20px;
-  background: ; /* Or your site’s footer color */
-  color: #fff; /* Adjust as needed */
-}
-
-.footer-content {
-  max-width: 800px; /* Optional: keeps it from being too wide */
-  margin: 0 auto;   /* Horizontally center the container */
-  text-align: center; /* Center the text inside */
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .modal-body {
