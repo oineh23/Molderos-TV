@@ -662,7 +662,7 @@ main {
 .footer {
   width: 100%;
   padding: 20px;
-  background: #111; /* Or your site’s footer color */
+  background: ; /* Or your site’s footer color */
   color: #fff; /* Adjust as needed */
 }
 
