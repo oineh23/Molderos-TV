@@ -441,17 +441,43 @@
   letter-spacing: 1px;
 }
 
-    /* Light mode by default */
-.footer {
-  background: #f0f0f0;
-  color: #111;
-}
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
 
-/* Dark mode */
-body.dark-mode .footer {
-  background: #111;
-  color: #fff;
-}
+    .footer {
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Light mode (default) */
+    .footer {
+      background: #f0f0f0;
+      color: #111;
+    }
+
+    /* Dark mode */
+    body.dark-mode .footer {
+      background: #111;
+      color: #fff;
+    }
+
+    /* Toggle button style */
+    .toggle-btn {
+      display: block;
+      margin: 40px auto;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    
 </style>
 
 <script>
@@ -536,10 +562,11 @@ function closeModal() {
   document.getElementById('modal-video').src = '';
 }
 
-    document.getElementById('toggle-btn').addEventListener('click', function() {
-  document.body.classList.toggle('dark-mode');
-});
-
+    const toggleBtn = document.getElementById('toggle-btn');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+    
 </script>
   
 <body>
