@@ -8,10 +8,10 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/home.css" />
-  <link rel="preload" href="css/home.css" as="style" />
-  <link rel="preload" href="js/home.js" as="script" />
   <link rel="stylesheet" href="grid.css">
   <link rel="stylesheet" href="app.css">
+  <link rel="preload" href="css/home.css" as="style" />
+  <link rel="preload" href="js/home.js" as="script" />
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -22,9 +22,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-  <script src="flix.js"></script>
   <script defer src="js/home.js"></script>
 
   <style>
@@ -611,7 +608,9 @@ function closeModal() {
 </header>
   
   <!-- Hero Section -->
-<div class="hero-section">
+<section>
+  
+  <div class="hero-section">
     <div class="hero-slide">
       <div class="owl-carousel carousel-nav-center" id="hero-carousel"></div>
     </div>
@@ -637,6 +636,7 @@ function closeModal() {
       <div class="movies-slide carousel-nav-center owl-carousel" id="latest-cartoons"></div>
     </div>
   </div>
+</section>
   
   <!-- END OF CLEANED SECTIONS -->
 
@@ -771,6 +771,9 @@ function closeModal() {
   }
 </script>
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="flix.js"></script>
   
 </body>
 </html>
