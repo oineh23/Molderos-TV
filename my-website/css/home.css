@@ -672,6 +672,18 @@ main {
   text-align: center; /* Center the text inside */
 }
 
+/* Light mode by default */
+.footer {
+  background: #f0f0f0;
+  color: #111;
+}
+
+/* Dark mode */
+body.dark-mode .footer {
+  background: #111;
+  color: #fff;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .modal-body {
