@@ -18,33 +18,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <script defer src="js/home.js"></script>
 
-  <script>
-    document.addEventListener('contextmenu', function(event) {
-      event.preventDefault();
-      alert("Right-click is disabled on this page.");
-    });
-  </script>
-
-  <script>
-  document.addEventListener("keydown", function (e) {
-    // F12
-    if (e.key === "F12") {
-      e.preventDefault();
-    }
-
-    // Ctrl + Shift + I / J / C
-    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
-      e.preventDefault();
-    }
-
-    // Ctrl + U (View Source)
-    if (e.ctrlKey && e.key === "u") {
-      e.preventDefault();
-    }
-  });
-</script>
-
   <style>
+    
   :root {
     --bg-color: #ffffff;
     --text-color: #000000;
@@ -74,7 +49,6 @@
     margin-left: 15px;
     color: var(--text-color);
   }
-    <style>
     
 /* --- Responsive Modal & Video Player --- */
 .modal {
@@ -124,7 +98,7 @@
     border-radius: 0;
   }
 }
-    .custom-close-button {
+  .custom-close-button {
   position: absolute;
   top: 15px;
   right: 20px;
@@ -216,10 +190,6 @@
   background: #dc3545;
   color: white;
 }
-    
-</style>
-
-  <style>  
     
   .load-more-container {
     margin-top: 30px;
@@ -496,9 +466,7 @@
       });
     }
   });
-</script>
 
-  <script>
 const serverList = [
   'vidsrc.cc',
   'vidsrc.me',
@@ -567,6 +535,27 @@ function closeModal() {
       document.body.classList.toggle('dark-mode');
     });
     
+    document.addEventListener('contextmenu', function(event) {
+      event.preventDefault();
+      alert("Right-click is disabled on this page.");
+    });
+
+  document.addEventListener("keydown", function (e) {
+    // F12
+    if (e.key === "F12") {
+      e.preventDefault();
+    }
+
+    // Ctrl + Shift + I / J / C
+    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+      e.preventDefault();
+    }
+
+    // Ctrl + U (View Source)
+    if (e.ctrlKey && e.key === "u") {
+      e.preventDefault();
+    }
+  });
 </script>
   
 <body>
