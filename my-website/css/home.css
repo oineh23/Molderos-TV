@@ -93,6 +93,18 @@
   margin: 4px 0 0;
 }
 
+.input {
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #fff;
+}
 
 /* Fade-in animation */
 @keyframes fadeIn {
