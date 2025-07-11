@@ -454,3 +454,23 @@ async function registerUser() {
     alert("❌ Registration failed: " + error.message);
   }
 }
+
+async function addToWatchlist(item) {
+  const user = firebaseAuth.currentUser;
+  if (!user) {
+    alert("Please login to save to Watchlist.");
+    return;
+  }
+
+  const itemData = {
+    id: item.id,
+    title: item.title || item.name,
+    poster_path: item.poster_path,
+    type: item.media_type,
+    timestamp: Date.now()
+  };
+
+  await firebaseDB.collection('watchlists').doc(user.uid).collection('items').doc(item.id.toString()).set(itemData);
+  alert('✅ Added to Watchlist!');
+}
+
