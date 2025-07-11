@@ -103,7 +103,11 @@ function createCard(item) {
   const button = document.createElement('button');
   button.className = 'watch-button';
   button.textContent = 'Watch Now';
-  button.onclick = () => showDetails(item);
+  button.onclick = () => {
+  showDetails(item);
+  addToWatchlist(item); // Add this
+};
+
 
   const info = document.createElement('div');
   info.className = 'card-info';
