@@ -5,38 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MOLDEROS-TV - Trending Movies & Shows</title>
 
-  <!-- Firebase SDKs -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-  import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAkFT_kGXGSQlGnIcMt8EQc31HuvZJyKSM",
-    authDomain: "molderos-tv-50b70.firebaseapp.com",
-    projectId: "molderos-tv-50b70",
-    storageBucket: "molderos-tv-50b70.firebasestorage.app",
-    messagingSenderId: "338025237859",
-    appId: "1:338025237859:web:39f9eab54bdde7ac4d9756",
-    measurementId: "G-E0KLREJLWQ"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  const storage = getStorage(app);
-
-  // Expose Firebase globally
-  window.firebaseApp = app;
-  window.firebaseAuth = auth;
-  window.firebaseDB = db;
-  window.firebaseStorage = storage;
-</script>
-
   <!-- Styles -->
   <link rel="stylesheet" href="css/home.css" />
   <link rel="preload" href="css/home.css" as="style" />
@@ -48,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  <script type="module" src="js/home.js"></script>
+  <script defer src="js/home.js"></script>
 
   <style>
     
@@ -760,29 +728,6 @@ function closeModal() {
       aria-label="Search input"
     />
     <div class="search-results" id="search-results"></div>
-  </div>
-</div>
-
-  <!-- Login Modal -->
-<div id="loginModal" class="modal">
-  <div class="modal-content" style="max-width: 400px; padding: 2rem; text-align: center;">
-    <span class="close" onclick="closeLoginModal()">&times;</span>
-    <h2>Login to MOLDEROS-TV</h2>
-    <input id="loginEmail" type="email" placeholder="Email" class="input" /><br><br>
-    <input id="loginPassword" type="password" placeholder="Password" class="input" /><br><br>
-    <button onclick="loginUser()" class="cta-button">Login</button>
-    <p style="margin-top:10px;">Don't have an account? <a href="#" onclick="openRegisterModal()">Register</a></p>
-  </div>
-</div>
-
-<!-- Register Modal -->
-<div id="registerModal" class="modal">
-  <div class="modal-content" style="max-width: 400px; padding: 2rem; text-align: center;">
-    <span class="close" onclick="closeRegisterModal()">&times;</span>
-    <h2>Register</h2>
-    <input id="registerEmail" type="email" placeholder="Email" class="input" /><br><br>
-    <input id="registerPassword" type="password" placeholder="Password" class="input" /><br><br>
-    <button onclick="registerUser()" class="cta-button">Register</button>
   </div>
 </div>
 
