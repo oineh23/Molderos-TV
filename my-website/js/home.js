@@ -414,3 +414,43 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
+
+// --- Login/Register Modal Control ---
+function openLoginModal() {
+  document.getElementById('loginModal').style.display = 'flex';
+}
+function closeLoginModal() {
+  document.getElementById('loginModal').style.display = 'none';
+}
+function openRegisterModal() {
+  closeLoginModal();
+  document.getElementById('registerModal').style.display = 'flex';
+}
+function closeRegisterModal() {
+  document.getElementById('registerModal').style.display = 'none';
+}
+
+// --- Firebase Login/Register ---
+async function loginUser() {
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+  try {
+    await firebaseAuth.signInWithEmailAndPassword(email, password);
+    alert("✅ Logged in!");
+    closeLoginModal();
+  } catch (error) {
+    alert("❌ Login failed: " + error.message);
+  }
+}
+
+async function registerUser() {
+  const email = document.getElementById('registerEmail').value;
+  const password = document.getElementById('registerPassword').value;
+  try {
+    await firebaseAuth.createUserWithEmailAndPassword(email, password);
+    alert("✅ Registration successful!");
+    closeRegisterModal();
+  } catch (error) {
+    alert("❌ Registration failed: " + error.message);
+  }
+}
