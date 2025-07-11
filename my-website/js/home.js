@@ -37,7 +37,7 @@ function saveUsername() {
 }
 
 
-const API_KEY = 'a1e72fd93ed59f56e6332813b9f8dcae';
+const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
     const BASE_URL = 'https://api.themoviedb.org/3';
     const IMG_URL = 'https://image.tmdb.org/t/p/original';
     let currentItem;
