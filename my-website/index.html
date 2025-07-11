@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOLDEROS-TV - Trending Movies & Shows</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="preload" href="css/home.css" as="style" />
+  <link rel="preload" href="js/home.js" as="script" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <script defer src="js/home.js"></script>
+
+  <style>
+    
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --nav-bg: #f0f0f0;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --nav-bg: #1e1e1e;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-wrapper {
+    background-color: var(--nav-bg);
+    transition: background-color 0.3s ease;
+  }
+
+  .theme-toggle {
+    cursor: pointer;
+    font-size: 1.4rem;
+    margin-left: 15px;
+    color: var(--text-color);
+  }
+    
+/* --- Responsive Modal & Video Player --- */
+.modal {
+  display: none; /* shown via JS */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  width: 90vw;
+  max-width: 960px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
+
+/* Optional: Fullscreen override on small landscape devices */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  .modal-content {
+    width: 100vw;
+    height: 100vh;
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+}
+  .custom-close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-close-button:hover {
+  background-color: rgba(255, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.custom-close-button i {
+  pointer-events: none;
+}
+
+/* Hide modal extras on small screens */
+@media (max-width: 768px) {
+  .modal-body,
+  .modal-text,
+  .server-selector {
+    display: none;
+  }
+  .modal .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    color: #fff;
+    z-index: 2000;
+  }
+}
+    #warningModal { 
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+#warningContent {
+  padding: 20px;
+  max-width: 400px;
+  margin: 100px auto;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Default: Light mode */
+#warningContent {
+  background: white;
+  color: #000;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  #warningContent {
+    background: #222;
+    color: #f1f1f1;
+  }
+}
+
+#warningContent h2 {
+  margin-top: 0;
+}
+
+.modal-btn {
+  margin: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.continue-btn {
+  background: #28a745;
+  color: white;
+}
+
+.cancel-btn {
+  background: #dc3545;
+  color: white;
+}
+    
+  .load-more-container {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+    .logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #0ff,
+    2px 2px 0 #111;
+  animation: neonPulse 0.7s infinite ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+    [data-theme="light"] .logo {
+  color: #004466;
+  text-shadow:
+    1px 1px 0 #ccc,
+    2px 2px 3px #aaa;
+}
+
+    @keyframes neonPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 5px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
+      0 0 40px #0ff,
+      2px 2px 0 #111;
+  }
+  50% {
+    text-shadow:
+      0 0 2px #0ff,
+      0 0 4px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
+      1px 1px 0 #111;
+  }
+}
+    /* --- Search Modal Styling --- */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+
+.search-modal-content {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.search-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#search-input {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  margin-bottom: 30px;
+  background-color: #fff;
+  color: #000;
+}
+
+[data-theme="dark"] #search-input {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+/* Search results styling */
+.search-results {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.search-card {
+  background-color: var(--nav-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  padding: 10px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.search-card:hover {
+  transform: scale(1.05);
+}
+
+.search-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.search-card h3 {
+  font-size: 0.95rem;
+  margin: 10px 0 0;
+  color: var(--text-color);
+}
+    .section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+  color: var(--text-color);
+}
+
+.genre-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+    /* Section Header Styling */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 40px 0 25px;
+  animation: fadeInUp 0.8s ease both;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Decorative Underline */
+.section-header::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background-color: #00ffff;
+  margin-top: 10px;
+  border-radius: 2px;
+}
+
+/* Genre Filter */
+.genre-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.genre-filter label {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.genre-filter select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/* Fade In Animation */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+    
+.nav-links a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .footer {
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Light mode (default) */
+    .footer {
+      background: ;
+      color: ;
+    }
+
+    /* Dark mode */
+    body.dark-mode .footer {
+      background: #111;
+      color: #fff;
+    }
+
+    /* Toggle button style */
+    .toggle-btn {
+      display: block;
+      margin: 40px auto;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    
+</style>
+
+<script>
+  // Theme toggle logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
+    const toggleBtn = document.getElementById("theme-toggle");
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        toggleBtn.className = newTheme === "dark" ? "fas fa-sun theme-toggle" : "fas fa-moon theme-toggle";
+      });
+    }
+  });
+
+const serverList = [
+  'vidsrc.cc',
+  'vidsrc.me',
+  'player.videasy.net'
+];
+
+let currentServerIndex = 0;
+let currentMovieId = ''; // this should be set when opening modal
+let tryTimeout = null;
+
+function openModal(movieId) {
+  currentMovieId = movieId;
+  currentServerIndex = 0;
+  document.getElementById('modal').style.display = 'flex';
+  tryServer(currentServerIndex);
+}
+
+function tryServer(index) {
+  clearTimeout(tryTimeout);
+
+  if (index >= serverList.length) {
+    const iframe = document.getElementById('modal-video');
+    iframe.src = '';
+    iframe.parentElement.innerHTML += `<div style="position:absolute;color:white;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">⚠️ All servers failed.<br>Try again later.</div>`;
+    return;
+  }
+
+  const server = serverList[index];
+  const iframe = document.getElementById('modal-video');
+  iframe.src = `https://${server}/embed/movie/${currentMovieId}`;
+
+  // Wait and try next if the server refuses to connect
+  tryTimeout = setTimeout(() => {
+    // Try to access contentWindow - if cross-origin or fails, switch server
+    try {
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      // Check if it's about:blank (likely blocked or empty)
+      if (!doc || doc.location.href === "about:blank") {
+        console.warn(`❌ ${server} returned blank. Trying next...`);
+        tryServer(index + 1);
+      }
+    } catch (e) {
+      // Most likely a CORS restriction or blocked
+      console.warn(`❌ ${server} refused connection. Trying next...`);
+      tryServer(index + 1);
+    }
+  }, 4000); // Wait 4s before checking if it failed
+}
+
+function changeServer() {
+  clearTimeout(tryTimeout);
+  const select = document.getElementById('server');
+  const selectedServer = select.value;
+  const iframe = document.getElementById('modal-video');
+  iframe.src = `https://${selectedServer}/embed/movie/${currentMovieId}`;
+}
+
+function closeModal() {
+  clearTimeout(tryTimeout);
+  document.getElementById('modal').style.display = 'none';
+  document.getElementById('modal-video').src = '';
+}
+
+    const toggleBtn = document.getElementById('toggle-btn');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+    
+    document.addEventListener('contextmenu', function(event) {
+      event.preventDefault();
+      alert("Right-click is disabled on this page.");
+    });
+
+  document.addEventListener("keydown", function (e) {
+    // F12
+    if (e.key === "F12") {
+      e.preventDefault();
+    }
+
+    // Ctrl + Shift + I / J / C
+    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+      e.preventDefault();
+    }
+
+    // Ctrl + U (View Source)
+    if (e.ctrlKey && e.key === "u") {
+      e.preventDefault();
+    }
+  });
+</script>
+  
+<body>
+  
+  <!-- Navbar -->
+  <header class="nav-wrapper">
+  <div class="container nav">
+    <a href="index.html" class="logo">
+      <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
+      M0LD<span class="main-color">ER0S</span>-TV
+    </a>
+
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="trending.html">Trending</a>
+      <a href="tvshows.html">TV Shows</a>
+      <a href="anime.html">Anime</a>
+      <a href="korean.html">Korean</a>
+      <a href="vivamax.html">VMX</a>
+      <a href="IPTV.html" id="iptvLink">IPTV</a>
+
+      <div id="warningModal">
+      <div id="warningContent">
+      <h2>⚠️WARNING⚠️</h2>
+      <p>landscape your Phone after clicking continue button IPTV page. Do you want to continue?</p>
+      <button class="modal-btn continue-btn" id="continueBtn">Continue</button>
+      <button class="modal-btn cancel-btn" id="cancelBtn">Cancel</button>
+    </div>
+  </div>
+      
+      <input 
+        type="text" 
+        class="search-bar" 
+        placeholder="Search..." 
+        onfocus="openSearchModal()" 
+        aria-label="Search"
+      />
+      <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
+    </div>
+  </div>
+</header>
+  
+  <!-- Hero Section -->
+<section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
+  <!-- Fullscreen YouTube Video -->
+  <iframe
+    id="hero-video"
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/RNuHMQtDl80?autoplay=1&mute=1&controls=0&loop=1&playlist=RNuHMQtDl80&enablejsapi=1"
+    title="YouTube video player"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+    style="
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120vw;
+      height: 120vh;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+    "
+  ></iframe>
+
+  <!-- Overlay -->
+  <div style="
+    position: absolute; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.5); 
+    z-index: 1;">
+  </div>
+
+  <!-- Play Button -->
+  <button id="play-button" style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background: rgba(0,0,0,0.7);
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  ">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#fff" viewBox="0 0 24 24">
+      <path d="M8 5v14l11-7z"/>
+    </svg>
+  </button>
+
+  <!-- Hero Content -->
+  <div class="hero-content" style="
+    position: relative; 
+    z-index: 2; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end; 
+    align-items: center; 
+    text-align: center; 
+    padding: 40px; 
+    color: #fff;">
+    <h1 class="hero-title" style="
+      font-size: 2rem; 
+      font-weight: bold; 
+      text-shadow: 0 0 10px #0ff;">
+      Avengers: Infinity War
+    </h1>
+    <p class="hero-description" style="
+      max-width: 600px; 
+      margin: 20px auto; 
+      font-size: 1.2rem; 
+      color: #ccc;">
+      Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
+    </p>
+  </div>
+</section>
+  
+  <!-- END OF CLEANED SECTIONS -->
+
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" id="loading-spinner" style="display: none;">
+    <i class="fas fa-spinner fa-spin"></i>
+    <span>Loading content...</span>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
+      <div class="modal-body">
+        <img id="modal-image" src="" alt="Movie poster" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+      <div class="server-selector">
+        <label for="server">Change Server:</label>
+        <select id="server" onchange="changeServer()">
+          <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
+          <option value="player.videasy.net">Player.Videasy.net</option>
+        </select>
+     </div>
+      <iframe id="modal-video" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+<!-- Search Modal -->
+<div class="search-modal" id="search-modal">
+  <div class="search-modal-content">
+    <button class="search-close" onclick="closeSearchModal()" aria-label="Close">&times;</button>
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="🔍 Search movies, TV shows, or anime..." 
+      oninput="searchTMDB()" 
+      aria-label="Search input"
+    />
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+    <!-- Footer -->
+  <footer class="footer">
+  <div class="footer-content">
+    <h3></h3>
+    <p>
+      MOLDEROS-TV does not host any files on its own servers. All content is provided by third-party sources freely available on the internet. We do not claim ownership of any copyrighted material. If you believe any content infringes your copyright, please contact us for removal.
+    </p>
+    <p class="copyright">&copy; 2025 MOLDEROS-TV. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  let player;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('hero-video', {
+      events: {
+        onReady: (event) => {
+          event.target.mute(); // Keep it muted for autoplay
+          event.target.setPlaybackQuality('hd1080'); // Request 1080p
+          event.target.playVideo();
+        }
+      }
+    });
+  }
+</script>
+
+    <script>
+    const iptvLink = document.getElementById('iptvLink');
+    const warningModal = document.getElementById('warningModal');
+    const continueBtn = document.getElementById('continueBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    let targetHref = '';
+
+    iptvLink.addEventListener('click', function(event) {
+      event.preventDefault(); // stop link immediately
+      targetHref = iptvLink.href; // store link
+      warningModal.style.display = 'block'; // show modal
+    });
+
+    continueBtn.addEventListener('click', function() {
+      warningModal.style.display = 'none';
+      window.location.href = targetHref; // go to link
+    });
+
+    cancelBtn.addEventListener('click', function() {
+      warningModal.style.display = 'none'; // just close modal
+    });
+
+    // Optional: Close modal if clicked outside content
+    window.addEventListener('click', function(e) {
+      if (e.target === warningModal) {
+        warningModal.style.display = 'none';
+      }
+    });
+  </script>
+
+    <!-- YouTube API Script -->
+<script>
+  // Load YouTube IFrame Player API
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('hero-video', {
+      events: {
+        'onReady': onPlayerReady
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    document.getElementById('play-button').addEventListener('click', function() {
+      player.unMute();
+      player.playVideo();
+      this.style.display = 'none';
+    });
+  }
+</script>
+  
+</body>
+</html>
