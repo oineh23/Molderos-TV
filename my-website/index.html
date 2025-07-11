@@ -731,6 +731,29 @@ function closeModal() {
   </div>
 </div>
 
+  <!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content" style="max-width: 400px; padding: 2rem; text-align: center;">
+    <span class="close" onclick="closeLoginModal()">&times;</span>
+    <h2>Login to MOLDEROS-TV</h2>
+    <input id="loginEmail" type="email" placeholder="Email" class="input" /><br><br>
+    <input id="loginPassword" type="password" placeholder="Password" class="input" /><br><br>
+    <button onclick="loginUser()" class="cta-button">Login</button>
+    <p style="margin-top:10px;">Don't have an account? <a href="#" onclick="openRegisterModal()">Register</a></p>
+  </div>
+</div>
+
+<!-- Register Modal -->
+<div id="registerModal" class="modal">
+  <div class="modal-content" style="max-width: 400px; padding: 2rem; text-align: center;">
+    <span class="close" onclick="closeRegisterModal()">&times;</span>
+    <h2>Register</h2>
+    <input id="registerEmail" type="email" placeholder="Email" class="input" /><br><br>
+    <input id="registerPassword" type="password" placeholder="Password" class="input" /><br><br>
+    <button onclick="registerUser()" class="cta-button">Register</button>
+  </div>
+</div>
+
     <!-- Footer -->
   <footer class="footer">
   <div class="footer-content">
