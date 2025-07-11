@@ -1,8 +1,3 @@
-// Firebase Auth and DB
-const auth = window.firebaseAuth;
-const db = window.firebaseDB;
-const storage = window.firebaseStorage;
-
 // ====== CONFIGURATION ======
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -108,11 +103,7 @@ function createCard(item) {
   const button = document.createElement('button');
   button.className = 'watch-button';
   button.textContent = 'Watch Now';
-  button.onclick = () => {
-  showDetails(item);
-  addToWatchlist(item); // Add this
-};
-
+  button.onclick = () => showDetails(item);
 
   const info = document.createElement('div');
   info.className = 'card-info';
@@ -423,63 +414,3 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
-
-// --- Login/Register Modal Control ---
-function openLoginModal() {
-  document.getElementById('loginModal').style.display = 'flex';
-}
-function closeLoginModal() {
-  document.getElementById('loginModal').style.display = 'none';
-}
-function openRegisterModal() {
-  closeLoginModal();
-  document.getElementById('registerModal').style.display = 'flex';
-}
-function closeRegisterModal() {
-  document.getElementById('registerModal').style.display = 'none';
-}
-
-// --- Firebase Login/Register ---
-async function loginUser() {
-  const email = document.getElementById('loginEmail').value;
-  const password = document.getElementById('loginPassword').value;
-  try {
-    await auth.signInWithEmailAndPassword(email, password);
-    alert("✅ Logged in!");
-    closeLoginModal();
-  } catch (error) {
-    alert("❌ Login failed: " + error.message);
-  }
-}
-
-async function registerUser() {
-  const email = document.getElementById('registerEmail').value;
-  const password = document.getElementById('registerPassword').value;
-  try {
-    await auth.createUserWithEmailAndPassword(email, password);
-    alert("✅ Registration successful!");
-    closeRegisterModal();
-  } catch (error) {
-    alert("❌ Registration failed: " + error.message);
-  }
-}
-
-async function addToWatchlist(item) {
-  const user = firebaseAuth.currentUser;
-  if (!user) {
-    alert("Please login to save to Watchlist.");
-    return;
-  }
-
-  const itemData = {
-    id: item.id,
-    title: item.title || item.name,
-    poster_path: item.poster_path,
-    type: item.media_type,
-    timestamp: Date.now()
-  };
-
-  await firebaseDB.collection('watchlists').doc(user.uid).collection('items').doc(item.id.toString()).set(itemData);
-  alert('✅ Added to Watchlist!');
-}
-
