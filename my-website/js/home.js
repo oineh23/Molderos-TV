@@ -1,3 +1,8 @@
+// Firebase Auth and DB
+const auth = window.firebaseAuth;
+const db = window.firebaseDB;
+const storage = window.firebaseStorage;
+
 // ====== CONFIGURATION ======
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -439,7 +444,7 @@ async function loginUser() {
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
   try {
-    await firebaseAuth.signInWithEmailAndPassword(email, password);
+    await auth.signInWithEmailAndPassword(email, password);
     alert("✅ Logged in!");
     closeLoginModal();
   } catch (error) {
@@ -451,7 +456,7 @@ async function registerUser() {
   const email = document.getElementById('registerEmail').value;
   const password = document.getElementById('registerPassword').value;
   try {
-    await firebaseAuth.createUserWithEmailAndPassword(email, password);
+    await auth.createUserWithEmailAndPassword(email, password);
     alert("✅ Registration successful!");
     closeRegisterModal();
   } catch (error) {
