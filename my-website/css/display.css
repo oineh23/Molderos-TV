@@ -55,7 +55,9 @@ body {
 body {
   font-family: Arial, sans-serif;
 }
-
+[class~="ott-container"] {
+  border-top-width: 0.0625pc;
+}
 #search-bar {
   padding-top: 7.5pt;
 }
@@ -256,7 +258,28 @@ body,
 }
 [class~="channel-ott"] li {
   padding-bottom: 7.5pt;
-
+}
+[class~="channel-sbr"]::-webkit-scrollbar-thumb {
+  border-right-style: solid;
+}
+[class~="channel-sbr"]::-webkit-scrollbar-thumb {
+  border-top-style: solid;
+}
+[class~="channel-sbr"]::-webkit-scrollbar-thumb {
+  border-left-color: #303946;
+}
+[class~="channel-sbr"]::-webkit-scrollbar-thumb {
+  border-bottom-color: #303946;
+}
+[class~="channel-sbr"]::-webkit-scrollbar-thumb {
+  border-right-color: #303946;
+}
+[class~="channel-sbr"]::-webkit-scrollbar-thumb {
+  border-top-color: #303946;
+}
+[class~="channel-sbr"]::-webkit-scrollbar-thumb {
+  border-image: none;
+}
 [class~="ott-player"] {
   width: 100%;
 }
@@ -575,43 +598,3 @@ h2 {
 [class~="social-icon"]:hover {
   color: #1da1f2;
 }
-
-/* Ensure video fills screen */
-video {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Sidebar width adjustment */
-.channel-ott {
-  width: 300px; /* or use 80vw for mobile */
-  max-width: 80vw;
-}
-
-/* Responsive layout */
-@media screen and (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .channel-ott {
-    position: relative;
-    width: 100%;
-    transform: translateX(0);
-    height: auto;
-    max-height: 300px;
-  }
-
-  #video-ott {
-    height: auto;
-    flex: none;
-  }
-
-  #open-button {
-    bottom: 10px;
-    left: 10px;
-    font-size: 1rem;
-    padding: 10px;
-  }
-}
-
