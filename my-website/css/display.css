@@ -1,16 +1,47 @@
+/* Default styles for desktop */
 #container-ott {
   display: none;
 }
-#container-ott {
-  display: none;
-  background-color: rgba(0, 0, 0, 0.3); /* transparent background at top */
-  backdrop-filter: blur(6px); /* optional blur */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 2000;
+
+[class~="ott-container"],
+[class~="channel-ott"],
+[class~="container"] {
+  display: flex;
 }
+
+[class~="container"] {
+  flex-direction: row;
+  height: 100vh;
+}
+
+[class~="ott-container"] {
+  flex: 1;
+}
+
+/* Responsive styles for tablets (max-width: 1024px) and phones (max-width: 768px) */
+@media (max-width: 1024px) {
+  [class~="container"] {
+    flex-direction: column;
+    height: auto; /* Allow it to expand based on content */
+  }
+
+  [class~="ott-container"] {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  [class~="container"] {
+    padding: 10px;
+  }
+
+  [class~="channel-ott"],
+  [class~="ott-container"] {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
 #search-bar {
   padding-left: 7.5pt;
 }
