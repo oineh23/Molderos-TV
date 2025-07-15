@@ -59,7 +59,10 @@ img {
     left: 0;
     width: 100%;
     z-index: 99;
-    background-color: rgba(0, 0, 0, 0.5);
+    element {
+  background-color: rgba(0, 0, 0, 0.5); /* adjust 0.5 as needed */
+}
+
 
 .nav {
     display: flex;
