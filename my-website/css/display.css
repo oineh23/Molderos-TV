@@ -1,19 +1,15 @@
 #container-ott {
   display: none;
 }
-[class~="ott-container"],
-[class~="channel-ott"],
-[class~="container"] {
-  display: flex;
-}
-[class~="container"] {
-  flex-direction: row;
-}
-[class~="container"] {
-  height: 100vh;
-}
-[class~="ott-container"] {
-  flex: 1;
+#container-ott {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.3); /* transparent background at top */
+  backdrop-filter: blur(6px); /* optional blur */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
 }
 #search-bar {
   padding-left: 7.5pt;
