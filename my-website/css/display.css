@@ -4,7 +4,7 @@
 [class~="ott-container"],
 [class~="channel-ott"],
 [class~="container"] {
-  display: fullscreen;
+  display: flex;
 }
 [class~="container"] {
   flex-direction: row;
@@ -13,7 +13,7 @@
   height: 100vh;
 }
 [class~="ott-container"] {
-  fullscreen: 1;
+  flex: 1;
 }
 #search-bar {
   padding-left: 7.5pt;
