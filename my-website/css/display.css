@@ -256,28 +256,7 @@ body,
 }
 [class~="channel-ott"] li {
   padding-bottom: 7.5pt;
-}
-[class~="channel-sbr"]::-webkit-scrollbar-thumb {
-  border-right-style: solid;
-}
-[class~="channel-sbr"]::-webkit-scrollbar-thumb {
-  border-top-style: solid;
-}
-[class~="channel-sbr"]::-webkit-scrollbar-thumb {
-  border-left-color: #303946;
-}
-[class~="channel-sbr"]::-webkit-scrollbar-thumb {
-  border-bottom-color: #303946;
-}
-[class~="channel-sbr"]::-webkit-scrollbar-thumb {
-  border-right-color: #303946;
-}
-[class~="channel-sbr"]::-webkit-scrollbar-thumb {
-  border-top-color: #303946;
-}
-[class~="channel-sbr"]::-webkit-scrollbar-thumb {
-  border-image: none;
-}
+
 [class~="ott-player"] {
   width: 100%;
 }
