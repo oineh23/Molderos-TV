@@ -1,47 +1,20 @@
-/* Default styles for desktop */
 #container-ott {
   display: none;
 }
-
 [class~="ott-container"],
 [class~="channel-ott"],
 [class~="container"] {
-  display: flex;
+  display: fullscreen;
 }
-
 [class~="container"] {
   flex-direction: row;
+}
+[class~="container"] {
   height: 100vh;
 }
-
 [class~="ott-container"] {
-  flex: 1;
+  fullscreen: 1;
 }
-
-/* Responsive styles for tablets (max-width: 1024px) and phones (max-width: 768px) */
-@media (max-width: 1024px) {
-  [class~="container"] {
-    flex-direction: column;
-    height: auto; /* Allow it to expand based on content */
-  }
-
-  [class~="ott-container"] {
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  [class~="container"] {
-    padding: 10px;
-  }
-
-  [class~="channel-ott"],
-  [class~="ott-container"] {
-    flex-direction: column;
-    width: 100%;
-  }
-}
-
 #search-bar {
   padding-left: 7.5pt;
 }
