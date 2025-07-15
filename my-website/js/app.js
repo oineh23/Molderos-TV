@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('container-ott').classList.add('ott')
 		}
 	}
-	window.addEventListener('resize', checkOrientation);
-	window.addEventListener('load', checkOrientation);
+	window.addEventListener('resize', fullscreen);
+	window.addEventListener('load', fullscreen);
 	const streams = {
 		gma: {
 			name: 'GMA',
