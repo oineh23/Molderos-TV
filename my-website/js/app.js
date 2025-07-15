@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 	const devtools = () => {
 		const threshold = 160;
-		const widthThreshold = window.fullscreen - window.fullscreen > threshold;
-		const heightThreshold = window.fullscreen - window.fullscreen > threshold;
+		const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+		const heightThreshold = window.outerHeight - window.innerHeight > threshold;
 		if (widthThreshold || heightThreshold) {
 			window.location.href = 'https://cignalplaytv.vercel.app/'
 		}
@@ -46,14 +46,20 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	function checkOrientation() {
-		if (window.fullscreen > window.fullscreen) {
-			document.getElementById('container-ott').classList.remove('ott')
-		} else {
-			document.getElementById('container-ott').classList.add('ott')
-		}
+	const container = document.getElementById('container-ott');
+	if (!container) return;
+
+	if (window.innerHeight > window.innerWidth) {
+		container.classList.remove('ott'); // Portrait
+	} else {
+		container.classList.add('ott');    // Landscape
 	}
-	window.addEventListener('resize', fullscreen);
-	window.addEventListener('load', fullscreen);
+}
+
+// Call on load and when screen resizes or rotates
+window.addEventListener('load', checkOrientation);
+window.addEventListener('resize', checkOrientation);
+window.addEventListener('orientationchange', checkOrientation);
 	const streams = {
 		gma: {
 			name: 'GMA',
