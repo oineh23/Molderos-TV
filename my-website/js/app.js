@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 	const devtools = () => {
 		const threshold = 160;
-		const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-		const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+		const widthThreshold = window.fullscreen - window.fullscreen > threshold;
+		const heightThreshold = window.fullscreen - window.fullscreen > threshold;
 		if (widthThreshold || heightThreshold) {
 			window.location.href = 'https://cignalplaytv.vercel.app/'
 		}
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	function checkOrientation() {
-		if (window.innerHeight > window.innerWidth) {
+		if (window.fullscreen > window.fullscreen) {
 			document.getElementById('container-ott').classList.remove('ott')
 		} else {
 			document.getElementById('container-ott').classList.add('ott')
