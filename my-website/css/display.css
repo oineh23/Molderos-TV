@@ -55,9 +55,7 @@ body {
 body {
   font-family: Arial, sans-serif;
 }
-[class~="ott-container"] {
-  border-top-width: 0.0625pc;
-}
+
 #search-bar {
   padding-top: 7.5pt;
 }
