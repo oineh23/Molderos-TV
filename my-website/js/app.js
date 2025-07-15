@@ -31,29 +31,47 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 	const devtools = () => {
 		const threshold = 160;
-		const widthThreshold = window.fullscreen - window.fullscreen > threshold;
-		const heightThreshold = window.fullscreen - window.fullscreen > threshold;
+		const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+		const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+
 		if (widthThreshold || heightThreshold) {
-			window.location.href = 'https://cignalplaytv.vercel.app/'
+			window.location.href = 'https://cignalplaytv.vercel.app/';
 		}
 	};
+
 	devtools();
 	window.addEventListener('resize', devtools);
-	document.documentElement.addEventListener('click', function() {
+
+	// Fullscreen button for #container-ott
+	document.getElementById('fullscreen-btn').addEventListener('click', () => {
+		const ottElement = document.getElementById('container-ott');
+
 		if (!document.fullscreenElement) {
-			document.documentElement.requestFullscreen().catch(err => {})
+			ottElement.requestFullscreen().catch(err => {
+				console.error("Error entering fullscreen:", err);
+			});
+		} else {
+			document.exitFullscreen().catch(err => {
+				console.error("Error exiting fullscreen:", err);
+			});
 		}
 	});
 
+	// Orientation check
 	function checkOrientation() {
-		if (window.fullscreen > window.fullscreen) {
-			document.getElementById('container-ott').classList.remove('ott')
+		const ottElement = document.getElementById('container-ott');
+
+		if (window.innerWidth > window.innerHeight) {
+			ottElement.classList.remove('ott');
 		} else {
-			document.getElementById('container-ott').classList.add('ott')
+			ottElement.classList.add('ott');
 		}
 	}
+
 	window.addEventListener('resize', checkOrientation);
 	window.addEventListener('load', checkOrientation);
+
+	// Your streams object (fill this in as needed)
 	const streams = {
 		gma: {
 			name: 'GMA',
