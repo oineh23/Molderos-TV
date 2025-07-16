@@ -183,12 +183,14 @@ select {
 
 /* Navbar */
 .nav-wrapper {
-  background-color: #141414;
+  background-color: rgba(20, 20, 20, 0.3); /* Semi-transparent black */
+  backdrop-filter: blur(10px); /* Optional: adds a nice blur effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  box-shadow: none; /* Optional: remove shadow for clean transparency */
 }
 
 .nav {
