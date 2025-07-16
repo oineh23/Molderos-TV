@@ -33,13 +33,49 @@
       box-shadow: 0 0 10px #000;
     }
     .logo {
-      display: flex;
-      align-items: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      text-decoration: none;
-      color: #fff;
-    }
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #0ff,
+    2px 2px 0 #111;
+  animation: neonPulse 1.7s infinite ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+    [data-theme="light"] .logo {
+  color: #004466;
+  text-shadow:
+    1px 1px 0 #ccc,
+    2px 2px 3px #aaa;
+}
+
+    @keyframes neonPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 5px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
+      0 0 40px #0ff,
+      2px 2px 0 #111;
+  }
+  50% {
+    text-shadow:
+      0 0 2px #0ff,
+      0 0 4px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
+      1px 1px 0 #111;
+  }
+}
     .main-color { color: #00ffe5; }
     #open-button {
       position: fixed;
