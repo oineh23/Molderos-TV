@@ -186,7 +186,7 @@ select {
   background-color: rgba(20, 20, 20, 0.3); /* Semi-transparent black */
   backdrop-filter: blur(10px); /* Optional: adds a nice blur effect */
   -webkit-backdrop-filter: blur(10px); /* For Safari support */
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   position: sticky;
   top: 0;
   z-index: 1000;
