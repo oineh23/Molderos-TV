@@ -183,14 +183,12 @@ select {
 
 /* Navbar */
 .nav-wrapper {
-  background-color: rgba(10, 10, 10, 0.3); /* Semi-transparent black */
-  backdrop-filter: blur(10px); /* Optional: adds a nice blur effect */
-  -webkit-backdrop-filter: blur(10px); /* For Safari support */
+  background-color: #141414;
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: none; /* Optional: remove shadow for clean transparency */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
 .nav {
@@ -200,7 +198,7 @@ select {
 }
 
 .logo {
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
   
   body.light-mode .logo {
