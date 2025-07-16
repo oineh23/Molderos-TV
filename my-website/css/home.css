@@ -487,6 +487,25 @@ main {
   color: #fff;
 }
 
+@media (max-width: 768px) {
+  .modal-content {
+    width: 100vw;
+    height: auto;
+    aspect-ratio: unset;
+    max-height: 90vh;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 0;
+  }
+  #modal-video {
+    object-fit: contain;
+  }
+}
+
 .stars {
   margin-bottom: 0.5rem;
 }
