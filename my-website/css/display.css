@@ -13,7 +13,7 @@
   height: 100vh;
 }
 [class~="ott-container"] {
-  flex: 5;
+  flex: 10;
 }
 #search-bar {
   padding-left: 7.5pt;
