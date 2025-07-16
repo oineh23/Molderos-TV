@@ -4,7 +4,7 @@
 [class~="ott-container"],
 [class~="channel-ott"],
 [class~="container"] {
-  display: flex;
+  display: fullscreen;
 }
 [class~="container"] {
   flex-direction: row;
