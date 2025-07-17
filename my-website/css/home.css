@@ -614,8 +614,10 @@ main {
   display: flex;
 }
 
-/* Footer */
+/* Default: Light Mode */
 .footer {
+  background-color: #f2f2f2;
+  color: #333;
   padding: 1.5rem 2rem;
   text-align: center;
   transition: background-color 0.3s, color 0.3s;
@@ -628,12 +630,6 @@ main {
   margin-top: 0.5rem;
 }
 
-/* Default styles for light mode */
-.footer {
-  background-color: #f2f2f2;
-  color: #333;
-}
-
 .footer-links a {
   color: #555;
 }
@@ -643,20 +639,18 @@ main {
   text-decoration: underline;
 }
 
-/* Override for dark mode */
-@media (prefers-color-scheme: dark) {
-  .footer {
-    background-color: #141414;
-    color: #aaa;
-  }
+/* Dark Mode Support (using a .dark class on <body> or <html>) */
+.dark .footer {
+  background-color: #141414;
+  color: #aaa;
+}
 
-  .footer-links a {
-    color: #ccc;
-  }
+.dark .footer-links a {
+  color: #ccc;
+}
 
-  .footer-links a:hover {
-    color: #fff;
-  }
+.dark .footer-links a:hover {
+  color: #fff;
 }
 
 /* === Light Mode Styles === */
