@@ -616,11 +616,11 @@ main {
 
 /* Default: Light Mode */
 .footer {
-  background-color: #f2f2f2;
-  color: #333;
   padding: 1.5rem 2rem;
   text-align: center;
   transition: background-color 0.3s, color 0.3s;
+  background-color: #f2f2f2; /* Light mode default */
+  color: #333;
 }
 
 .footer-links {
@@ -639,7 +639,7 @@ main {
   text-decoration: underline;
 }
 
-/* Dark Mode Support (using a .dark class on <body> or <html>) */
+/* Dark mode override */
 .dark .footer {
   background-color: #141414;
   color: #aaa;
@@ -651,87 +651,6 @@ main {
 
 .dark .footer-links a:hover {
   color: #fff;
-}
-
-/* === Light Mode Styles === */
-body.light-mode {
-  background-color: #f5f5f5;
-  color: #111;
-}
-
-body.light-mode .card,
-body.light-mode .card-container .card {
-  background-color: #fff;
-  color: #000;
-}
-
-body.light-mode .card-info,
-body.light-mode .card-info h3,
-body.light-mode .card-info p {
-  color: #000;
-}
-
-body.light-mode .nav-wrapper {
-  background-color: #fff;
-}
-
-body.light-mode .logo {
-  color: #111;
-}
-
-body.light-mode .nav-links a {
-  color: #111;
-}
-
-body.light-mode .nav-links a:hover {
-  color: #e50914;
-}
-
-body.light-mode .search-bar {
-  background-color: #ddd;
-  color: #111;
-}
-
-body.light-mode .search-bar::placeholder {
-  color: #555;
-}
-
-body.light-mode .genre-filter {
-  background-color: #eee;
-}
-
-body.light-mode .genre-filter select {
-  background-color: #fff;
-  color: #000;
-}
-
-body.light-mode .modal-content {
-  background-color: #fff;
-  color: #111;
-}
-
-body.light-mode .modal-text h2,
-body.light-mode .modal-text p {
-  color: #000;
-}
-
-body.light-mode .search-modal {
-  background-color: rgba(255, 255, 255, 0.95);
-  color: #000;
-}
-
-body.light-mode .search-modal input {
-  background-color: #fff;
-  color: #000;
-}
-
-body.light-mode .footer {
-  background-color: #f1f1f1;
-  color: #555;
-}
-
-body.light-mode .footer-links a:hover {
-  color: #e50914;
 }
 
 /* === Vivamax-Style Pinoy Movies Section === */
