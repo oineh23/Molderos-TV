@@ -616,10 +616,9 @@ main {
 
 /* Footer */
 .footer {
-  background-color: #141414;
   padding: 1.5rem 2rem;
   text-align: center;
-  color: #aaa;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .footer-links {
@@ -629,43 +628,34 @@ main {
   margin-top: 0.5rem;
 }
 
+/* Default styles for light mode */
+.footer {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.footer-links a {
+  color: #555;
+}
+
 .footer-links a:hover {
-  color: #fff;
+  color: #000;
   text-decoration: underline;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .modal-body {
-    flex-direction: column;
-    align-items: center;
+/* Override for dark mode */
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background-color: #141414;
+    color: #aaa;
   }
 
-  .nav-links {
-    flex-wrap: wrap;
-    gap: 1rem;
+  .footer-links a {
+    color: #ccc;
   }
 
-  .search-bar {
-    width: 100px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-overlay h1 {
-    font-size: 1.5rem;
-  }
-
-  .cta-button {
-    font-size: 0.9rem;
-  }
-
-  .card-container {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  }
-
-  .logo {
-    font-size: 1.2rem;
+  .footer-links a:hover {
+    color: #fff;
   }
 }
 
