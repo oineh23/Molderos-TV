@@ -858,68 +858,7 @@ function closeModal() {
   }
 </script>
 
-  <script>
-  // Disable right-click
-  document.addEventListener('contextmenu', e => {
-    e.preventDefault();
-    alert("🚫 Right-click is disabled.");
-  });
-
-  // Block dev tools shortcuts
-  document.addEventListener('keydown', function (e) {
-    const blockedCombos = [
-      e.key === "F12",
-      (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())),
-      (e.ctrlKey && e.key.toLowerCase() === 'u'),
-      (e.ctrlKey && e.key.toLowerCase() === 's'),
-      (e.metaKey && e.altKey && e.key.toUpperCase() === 'I'),
-    ];
-    if (blockedCombos.some(Boolean)) {
-      e.preventDefault();
-      alert("🚫 Action blocked.");
-      return false;
-    }
-  });
-
-  // DevTools console bait detection
-  const detectConsoleOpen = () => {
-    const element = new Image();
-    Object.defineProperty(element, 'id', {
-      get: function () {
-        document.body.innerHTML = `
-          <h1 style="color:red; text-align:center; margin-top:20%;">
-            🚫 DevTools access is not allowed.
-          </h1>`;
-        throw new Error("DevTools Detected");
-      }
-    });
-    console.log('%c', element);
-  };
-
-  // Size-based detection
-  const detectBySize = () => {
-    const threshold = 160;
-    return (
-      window.outerWidth - window.innerWidth > threshold ||
-      window.outerHeight - window.innerHeight > threshold
-    );
-  };
-
-  // Periodic check
-  setInterval(() => {
-    try {
-      detectConsoleOpen();
-      if (detectBySize()) {
-        document.body.innerHTML = `
-          <h1 style="color:red; text-align:center; margin-top:20%;">
-            🚫 Developer tools are open. Page access denied.
-          </h1>`;
-      }
-    } catch (e) {
-      console.clear();
-    }
-  }, 1500);
-</script>
+ <script src="js/devtools-protect.js"></script>
 
 </body>
 </html>
