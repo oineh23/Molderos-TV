@@ -886,16 +886,15 @@ function closeModal() {
     const element = new Image();
     Object.defineProperty(element, 'id', {
       get: function () {
-        document.documentElement.innerHTML = `
-  <body style="background:black; color:red; text-align:center; margin-top:20%;">
-    <h1>🚫 DevTools access is not allowed.</h1>
-  </body>`;
+        document.body.innerHTML = `
+          <h1 style="color:red; text-align:center; margin-top:20%;">
+            🚫 DevTools access is not allowed.
+          </h1>`;
         throw new Error("DevTools Detected");
       }
     });
-    setTimeout(() => {
-  console.log('%c', element);
-}, 100);
+    console.log('%c', element);
+  };
 
   // Size-based detection
   const detectBySize = () => {
