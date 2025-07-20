@@ -588,41 +588,47 @@ function closeModal() {
       document.body.classList.toggle('dark-mode');
     });
     
-    document.addEventListener('contextmenu', function(event) {
+    <!-- DevTools Protection Script -->
+  <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', event => {
       event.preventDefault();
-      alert("Right-click is disabled on this page.");
+      alert("Right-click is disabled on this site.");
     });
 
-  document.addEventListener("keydown", function (e) {
-    // F12
-    if (e.key === "F12") {
-      e.preventDefault();
-    }
-
-    // Ctrl + Shift + I / J / C
-    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
-      e.preventDefault();
-    }
-
-    // Ctrl + U (View Source)
-    if (e.ctrlKey && e.key === "u") {
-      e.preventDefault();
-    }
-  });
-
-  // Basic DevTools detection (Console open)
-  setInterval(function () {
-    const check = new Image();
-    Object.defineProperty(check, 'id', {
-      get: function () {
-        document.body.innerHTML = "<h1 style='text-align:center; color:red; padding:50px;'>DevTools Detected. Access Blocked.</h1>";
-        throw new Error("DevTools Blocked");
+    // Block DevTools shortcuts
+    document.addEventListener("keydown", function (e) {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
+        (e.ctrlKey && e.key.toLowerCase() === "u")
+      ) {
+        e.preventDefault();
+        alert("DevTools access is disabled.");
       }
     });
-    console.log(check);
-  }, 1000);
 
-</script>
+    // Detect DevTools using window size difference
+    setInterval(function () {
+      const threshold = 160;
+      if (
+        window.outerHeight - window.innerHeight > threshold ||
+        window.outerWidth - window.innerWidth > threshold
+      ) {
+        document.body.innerHTML = "<h1 style='text-align:center;color:red;padding:40px;'>🚫 DevTools Detected. Page Blocked.</h1>";
+      }
+    }, 1000);
+
+    // Console detection trick
+    (function () {
+      const devtools = /./;
+      devtools.toString = function () {
+        document.body.innerHTML = "<h1 style='text-align:center;color:red;padding:40px;'>🚫 Developer Tools are not allowed.</h1>";
+      };
+      console.log("%c", devtools);
+    })();
+  </script>
+</head>
   
 <body>
 
