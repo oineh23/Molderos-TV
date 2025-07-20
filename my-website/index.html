@@ -588,27 +588,57 @@ function closeModal() {
       document.body.classList.toggle('dark-mode');
     });
     
-    document.addEventListener('contextmenu', function(event) {
-      event.preventDefault();
-      alert("Right-click is disabled on this page.");
-    });
+    <!-- Dev Tools & Right-Click Protection -->
+<script>
+  // Disable right-click context menu
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+    alert("Right-click is disabled on this page.");
+  });
 
-  document.addEventListener("keydown", function (e) {
+  // Block specific key combinations for dev tools
+  document.addEventListener('keydown', function (e) {
     // F12
     if (e.key === "F12") {
       e.preventDefault();
+      return false;
     }
 
-    // Ctrl + Shift + I / J / C
-    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+    // Ctrl+Shift+I/J/C
+    if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
       e.preventDefault();
+      return false;
     }
 
-    // Ctrl + U (View Source)
-    if (e.ctrlKey && e.key === "u") {
+    // Ctrl+U (View Source)
+    if (e.ctrlKey && e.key.toLowerCase() === 'u') {
       e.preventDefault();
+      return false;
+    }
+
+    // Ctrl+S (Save page)
+    if (e.ctrlKey && e.key.toLowerCase() === 's') {
+      e.preventDefault();
+      return false;
+    }
+
+    // Cmd+Option+I on Mac
+    if ((e.metaKey && e.altKey && e.key.toUpperCase() === 'I')) {
+      e.preventDefault();
+      return false;
     }
   });
+
+  // Optional: Attempt to detect DevTools using window dimension differences
+  setInterval(function () {
+    const threshold = 160;
+    if (
+      window.outerWidth - window.innerWidth > threshold ||
+      window.outerHeight - window.innerHeight > threshold
+    ) {
+      document.body.innerHTML = "<h1 style='color:red;text-align:center;padding-top:50px;'>Developer tools are not allowed!</h1>";
+    }
+  }, 1000);
 </script>
   
 <body>
