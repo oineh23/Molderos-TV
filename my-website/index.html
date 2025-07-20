@@ -886,15 +886,16 @@ function closeModal() {
     const element = new Image();
     Object.defineProperty(element, 'id', {
       get: function () {
-        document.body.innerHTML = `
-          <h1 style="color:red; text-align:center; margin-top:20%;">
-            🚫 DevTools access is not allowed.
-          </h1>`;
+        document.documentElement.innerHTML = `
+  <body style="background:black; color:red; text-align:center; margin-top:20%;">
+    <h1>🚫 DevTools access is not allowed.</h1>
+  </body>`;
         throw new Error("DevTools Detected");
       }
     });
-    console.log('%c', element);
-  };
+    setTimeout(() => {
+  console.log('%c', element);
+}, 100);
 
   // Size-based detection
   const detectBySize = () => {
@@ -917,6 +918,29 @@ function closeModal() {
       }
     } catch (e) {
       console.clear();
+    }
+  }, 1500);
+</script>
+
+  <script>
+  setInterval(() => {
+    const devtools = /./;
+    devtools.toString = function () {
+      document.documentElement.innerHTML = `
+        <body style="background:black; color:red; text-align:center; margin-top:20%;">
+          <h1>🚫 DevTools access is not allowed.</h1>
+        </body>`;
+    };
+    console.log('%c', devtools);
+    if (window.outerWidth - window.innerWidth > 160) {
+      document.documentElement.innerHTML = `
+        <body style="background:black; color:red; text-align:center; margin-top:20%;">
+          <h1>🚫 Developer tools are open. Page access denied.</h1>
+        </body>`;
+    }
+    // debugger trap (warning: may affect performance)
+    if (window.devtoolsOpen || window.__debuggerTrap__) {
+      debugger;
     }
   }, 1500);
 </script>
