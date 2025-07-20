@@ -1,46 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-  <script>
-  // Disable right-click
-  document.addEventListener('contextmenu', event => {
-    event.preventDefault();
-    alert("Right-click is disabled on this site.");
-  });
-
-  // Block DevTools shortcuts
-  document.addEventListener("keydown", function (e) {
-    if (
-      e.key === "F12" ||                            // F12
-      (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) || // Ctrl+Shift+I/J/C
-      (e.ctrlKey && e.key.toLowerCase() === "u")    // Ctrl+U
-    ) {
-      e.preventDefault();
-      alert("DevTools access is disabled.");
-    }
-  });
-
-  // Detect DevTools using window size difference
-  setInterval(function () {
-    const threshold = 160; // height or width difference threshold
-    if (
-      window.outerHeight - window.innerHeight > threshold ||
-      window.outerWidth - window.innerWidth > threshold
-    ) {
-      document.body.innerHTML = "<h1 style='text-align:center;color:red;padding:40px;'>🚫 DevTools Detected. Page Blocked.</h1>";
-    }
-  }, 1000);
-
-  // Advanced: Detect if console is open (visual breakpoint hack)
-  (function () {
-    const devtools = /./;
-    devtools.toString = function () {
-      document.body.innerHTML = "<h1 style='text-align:center;color:red;padding:40px;'>🚫 Developer Tools are not allowed.</h1>";
-    };
-    console.log("%c", devtools);
-  })();
-</script>
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -705,6 +664,46 @@ function closeModal() {
       <i id="theme-toggle" class="fas fa-moon theme-toggle" title="Toggle Theme"></i>
     </div>
   </div>
+    <script>
+  // Disable right-click
+  document.addEventListener('contextmenu', event => {
+    event.preventDefault();
+    alert("Right-click is disabled on this site.");
+  });
+
+  // Block DevTools shortcuts
+  document.addEventListener("keydown", function (e) {
+    if (
+      e.key === "F12" ||                            // F12
+      (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) || // Ctrl+Shift+I/J/C
+      (e.ctrlKey && e.key.toLowerCase() === "u")    // Ctrl+U
+    ) {
+      e.preventDefault();
+      alert("DevTools access is disabled.");
+    }
+  });
+
+  // Detect DevTools using window size difference
+  setInterval(function () {
+    const threshold = 160; // height or width difference threshold
+    if (
+      window.outerHeight - window.innerHeight > threshold ||
+      window.outerWidth - window.innerWidth > threshold
+    ) {
+      document.body.innerHTML = "<h1 style='text-align:center;color:red;padding:40px;'>🚫 DevTools Detected. Page Blocked.</h1>";
+    }
+  }, 1000);
+
+  // Advanced: Detect if console is open (visual breakpoint hack)
+  (function () {
+    const devtools = /./;
+    devtools.toString = function () {
+      document.body.innerHTML = "<h1 style='text-align:center;color:red;padding:40px;'>🚫 Developer Tools are not allowed.</h1>";
+    };
+    console.log("%c", devtools);
+  })();
+</script>
+    
 </header>
   
   <!-- Hero Section -->
