@@ -859,68 +859,45 @@ function closeModal() {
 </script>
 
   <script>
-  // Disable right-click
-  document.addEventListener('contextmenu', e => {
-    e.preventDefault();
-    alert("🚫 Right-click is disabled.");
-  });
-
-  // Block dev tools shortcuts
-  document.addEventListener('keydown', function (e) {
-    const blockedCombos = [
-      e.key === "F12",
-      (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())),
-      (e.ctrlKey && e.key.toLowerCase() === 'u'),
-      (e.ctrlKey && e.key.toLowerCase() === 's'),
-      (e.metaKey && e.altKey && e.key.toUpperCase() === 'I'),
+(function(){
+  function _0x3f23(){const _0x3dce6d=['\x66\x75\x6E\x63\x74\x69\x6F\x6E','\x63\x6F\x6E\x74\x65\x78\x74\x6D\x65\x6E\x75','\x70\x72\x65\x76\x65\x6E\x74\x44\x65\x66\x61\x75\x6C\x74','\x6B\x65\x79','\x63\x74\x72\x6C\x4B\x65\x79','\x73\x68\x69\x66\x74\x4B\x65\x79','\x75','\x6D\x65\x74\x61\x4B\x65\x79','\x49','\x43','\x4A','\x61\x6C\x65\x72\x74','\x41\x63\x74\x69\x6F\x6E\x20\x62\x6C\x6F\x63\x6B\x65\x64\x2E','\x6F\x6E\x65\x72\x72\x6F\x72','\x44\x65\x76\x54\x6F\x6F\x6C\x73\x20\x44\x65\x74\x65\x63\x74\x65\x64','\x77\x69\x64\x74\x68','\x69\x6E\x6E\x65\x72\x57\x69\x64\x74\x68','\x68\x65\x69\x67\x68\x74','\x69\x6E\x6E\x65\x72\x48\x65\x69\x67\x68\x74','\x6F\x75\x74\x65\x72\x48\x65\x69\x67\x68\x74','\x6F\x75\x74\x65\x72\x57\x69\x64\x74\x68','\x3C\x68\x31\x20\x73\x74\x79\x6C\x65\x3D\x22\x63\x6F\x6C\x6F\x72\x3A\x72\x65\x64\x3B\x20\x74\x65\x78\x74\x2D\x61\x6C\x69\x67\x6E\x3A\x63\x65\x6E\x74\x65\x72\x3B\x20\x6D\x61\x72\x67\x69\x6E\x2D\x74\x6F\x70\x3A\x32\x30\x25\x3B\x22\x3E\xF0\x9F\x9A\xAB\x20\x44\x65\x76\x65\x6C\x6F\x70\x65\x72\x20\x74\x6F\x6F\x6C\x73\x20\x64\x65\x74\x65\x63\x74\x65\x64\x2E\x20\x41\x63\x63\x65\x73\x73\x20\x62\x6C\x6F\x63\x6B\x65\x64\x2E\x3C\x2F\x68\x31\x3E','\x62\x6F\x64\x79','\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C','\x3C\x68\x31\x20\x73\x74\x79\x6C\x65\x3D\x22\x63\x6F\x6C\x6F\x72\x3A\x72\x65\x64\x3B\x20\x74\x65\x78\x74\x2D\x61\x6C\x69\x67\x6E\x3A\x63\x65\x6E\x74\x65\x72\x3B\x20\x6D\x61\x72\x67\x69\x6E\x2D\x74\x6F\x70\x3A\x32\x30\x25\x3B\x22\x3E\xF0\x9F\x9A\xAB\x20\x44\x65\x76\x54\x6F\x6F\x6C\x73\x20\x69\x73\x20\x6E\x6F\x74\x20\x61\x6C\x6C\x6F\x77\x65\x64\x2E\x3C\x2F\x68\x31\x3E','\x6C\x6F\x67','\x69\x64'];_0x3f23=function(){return _0x3dce6d;};return _0x3f23();}
+(function(){
+  const _0x5c65=_0x3f23();
+  document[_0x5c65[1]](_0x5c65[2],e=>{e[_0x5c65[2]]();alert("\uD83D\uDEAB Right-click is disabled.");});
+  document[_0x5c65[1]]('\x6B\x65\x79\x64\x6F\x77\x6E',function(e){
+    const _0x5e3d=[e[_0x5c65[3]]===_0x5c65[8],
+      (e[_0x5c65[4]]&&e[_0x5c65[5]]&&[_0x5c65[6],_0x5c65[9],_0x5c65[10]][_0x5c65[11]](e[_0x5c65[3]][_0x5c65[12]]())),
+      (e[_0x5c65[4]]&&e[_0x5c65[3]][_0x5c65[12]]()===_0x5c65[6]),
+      (e[_0x5c65[7]]&&e[_0x5c65[13]]&&e[_0x5c65[3]][_0x5c65[12]]()===_0x5c65[8])
     ];
-    if (blockedCombos.some(Boolean)) {
-      e.preventDefault();
-      alert("🚫 Action blocked.");
-      return false;
+    if(_0x5e3d[_0x5c65[11]](Boolean)){
+      e[_0x5c65[2]]();
+      alert(_0x5c65[14]);
+      return ![];
     }
   });
-
-  // DevTools console bait detection
-  const detectConsoleOpen = () => {
-    const element = new Image();
-    Object.defineProperty(element, 'id', {
-      get: function () {
-        document.body.innerHTML = `
-          <h1 style="color:red; text-align:center; margin-top:20%;">
-            🚫 DevTools access is not allowed.
-          </h1>`;
-        throw new Error("DevTools Detected");
+  const detectBySize=()=>window[_0x5c65[15]]-window[_0x5c65[16]]>160||window[_0x5c65[17]]-window[_0x5c65[18]]>160;
+  const detectConsole=()=>{
+    const _0x54c7=new Image();
+    Object['\x64\x65\x66\x69\x6E\x65\x50\x72\x6F\x70\x65\x72\x74\x79'](_0x54c7,_0x5c65[27],{
+      get:function(){
+        document[_0x5c65[22]][_0x5c65[21]]=_0x5c65[23];
+        throw new Error(_0x5c65[14]);
       }
     });
-    console.log('%c', element);
+    console[_0x5c65[25]]('%c',_0x54c7);
   };
-
-  // Size-based detection
-  const detectBySize = () => {
-    const threshold = 160;
-    return (
-      window.outerWidth - window.innerWidth > threshold ||
-      window.outerHeight - window.innerHeight > threshold
-    );
-  };
-
-  // Periodic check
-  setInterval(() => {
-    try {
-      detectConsoleOpen();
-      if (detectBySize()) {
-        document.body.innerHTML = `
-          <h1 style="color:red; text-align:center; margin-top:20%;">
-            🚫 Developer tools are open. Page access denied.
-          </h1>`;
+  setInterval(()=>{
+    try{
+      detectConsole();
+      if(detectBySize()){
+        document[_0x5c65[22]][_0x5c65[21]]=_0x5c65[20];
       }
-    } catch (e) {
-      console.clear();
-    }
-  }, 1500);
+    }catch(e){console['\x63\x6C\x65\x61\x72']();}
+  },1500);
+})();
+})();
 </script>
-
 
 </body>
 </html>
