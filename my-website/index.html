@@ -500,7 +500,6 @@
     aspect-ratio: 16 / 9;
   }
 }
-    body{background:#111;color:#fff;font-family:sans-serif;}
     
 </style>
 
@@ -915,47 +914,5 @@ function closeModal() {
   setInterval(detectDevTools, 1500);
 </script>
 
-  <script>
-// ==== DevTools Detection & Blocking ====
-(function() {
-  const devtools = {
-    open: false,
-    orientation: null
-  };
-
-  const threshold = 160;
-
-  const emitEvent = (status) => {
-    if (status === 'open') {
-      document.body.innerHTML = '<h1 style="text-align:center;margin-top:20%;">DevTools is blocked on this site.</h1>';
-    }
-  };
-
-  const detect = () => {
-    const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-    const heightThreshold = window.outerHeight - window.innerHeight > threshold;
-    const orientation = widthThreshold ? 'vertical' : 'horizontal';
-
-    if (!(heightThreshold && widthThreshold) && (widthThreshold || heightThreshold)) {
-      if (!devtools.open || devtools.orientation !== orientation) {
-        emitEvent('open');
-      }
-      devtools.open = true;
-      devtools.orientation = orientation;
-    } else {
-      devtools.open = false;
-      devtools.orientation = null;
-    }
-  };
-
-  setInterval(detect, 500);
-})();
-  </script>
-
-  <script>
-    const data = atob("IDxoMT5IZWxsbywgd29ybGQhPC9oMT4gPHNjcmlwdD4gY29uc3Qgc2VjcmV0ID0gIllvdSBjYW4ndCBzZWUgdGhpcyBlYXNpbHkiOyBkb2N1bWVudC5ib2R5LmlubmVySFRNTCArPSAnPHA+JyArIHNlY3JldCArICc8L3A+JzsgPC9zY3JpcHQ+IA==");
-    document.write(data);
-  </script>
-  
 </body>
 </html>
