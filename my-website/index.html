@@ -913,6 +913,49 @@ function closeModal() {
 
   setInterval(detectDevTools, 1500);
 </script>
- 
+
+  <script>
+// ==== DevTools Detection & Blocking ====
+(function() {
+  const devtools = {
+    open: false,
+    orientation: null
+  };
+
+  const threshold = 160;
+
+  const emitEvent = (status) => {
+    if (status === 'open') {
+      document.body.innerHTML = '<h1 style="text-align:center;margin-top:20%;">DevTools is blocked on this site.</h1>';
+    }
+  };
+
+  const detect = () => {
+    const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+    const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+    const orientation = widthThreshold ? 'vertical' : 'horizontal';
+
+    if (!(heightThreshold && widthThreshold) && (widthThreshold || heightThreshold)) {
+      if (!devtools.open || devtools.orientation !== orientation) {
+        emitEvent('open');
+      }
+      devtools.open = true;
+      devtools.orientation = orientation;
+    } else {
+      devtools.open = false;
+      devtools.orientation = null;
+    }
+  };
+
+  setInterval(detect, 500);
+})();
+
+// ==== Obfuscated Main Script ====
+(function(){
+const _0xA1B='b8c2d0fa80cd79b5d28d9fe2853806bb';const _0xB2C='https://api.themoviedb.org/3';const _0xC3D='https://image.tmdb.org/t/p/original';let _0x4ea,currentAnimePage=1,pinoyPage=1,pinoyGenre='',tvGenre='',tvPage=1;function _0x1a2(_0x3aa){return fetch(_0x3aa).then(_0x8=>_0x8.json()).then(_0x9=>_0x9.results||[]).catch(()=>[])}function _0x5e6(){Promise.all([_0x381('movie'),_0x381('tv'),_0x39f()]).then(_0x2f0=>{document.getElementById('banner')&&_0x290(_0x2f0[0][Math.floor(Math.random()*_0x2f0[0].length)]),_0x2b3(_0x2f0[0],'movies-list'),_0x2b3(_0x2f0[1],'tvshows-list'),_0x2b3(_0x2f0[2],'anime-list'),_0x4e7(),_0x537()})}function _0x290(_0x1a3){let _0x50=document.getElementById('banner');_0x50&&(document.getElementById('banner-title').textContent=_0x1a3.title||_0x1a3.name||'Unknown Title',_0x50.style.backgroundImage=`url(${_0xC3D}${_0x1a3.backdrop_path})`)}function _0x2b3(_0x31,_0x32){let _0x33=document.getElementById(_0x32);_0x33&&( _0x33.innerHTML='',_0x31.forEach(_0x5=>{_0x5.poster_path&&_0x33.appendChild(_0x3c4(_0x5))}))}function _0x3c4(_0x6){let _0x7=document.createElement('div');_0x7.className='card';let _0x8=document.createElement('span');_0x8.className='genre-badge';_0x8.textContent='Genre';let _0x9=document.createElement('img');_0x9.src=`${_0xC3D}${_0x6.poster_path}`;_0x9.alt=_0x6.title||_0x6.name;_0x9.loading='lazy';let _0xa=document.createElement('button');_0xa.className='watch-button';_0xa.textContent='Watch Now';_0xa.onclick=()=>_0x4d5(_0x6);let _0xb=document.createElement('div');_0xb.className='card-info';let _0xc=document.createElement('h3');_0xc.textContent=_0x6.title||_0x6.name;let _0xd=document.createElement('p');_0xd.className='movie-year';_0xd.textContent=`📅 ${(_0x6.release_date||_0x6.first_air_date||'').slice(0,4)}`;let _0xe=document.createElement('p');_0xe.textContent=`⭐ ${_0x6.vote_average?.toFixed(1)} / 10`;_0xb.appendChild(_0xc);_0xb.appendChild(_0xd);_0xb.appendChild(_0xe);_0x7.append(_0x8,_0x9,_0xa,_0xb);return _0x7}const _0x381=_0x11=>_0x1a2(`${_0xB2C}/trending/${_0x11}/week?api_key=${_0xA1B}`);async function _0x39f(){let _0x1a5=[];for(let _0x1a6=1;_0x1a6<=3;_0x1a6++){let _0x1a7=await _0x1a2(`${_0xB2C}/trending/tv/week?api_key=${_0xA1B}&page=${_0x1a6}`);_0x1a5=_0x1a5.concat(_0x1a7.filter(_0x1a8=>_0x1a8.original_language==='ja'&&_0x1a8.genre_ids.includes(16)))}return _0x1a5}
+document.addEventListener("DOMContentLoaded",_0x5e6);
+})();
+</script>
+
 </body>
 </html>
