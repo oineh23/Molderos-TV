@@ -609,6 +609,38 @@ function closeModal() {
       e.preventDefault();
     }
   });
+
+  // Disable right-click
+  document.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+    alert("Right-click is disabled on this page.");
+  });
+
+  // Block DevTools key combos
+  document.addEventListener('keydown', function (e) {
+    if (
+      e.key === "F12" ||
+      (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
+      (e.ctrlKey && e.key.toLowerCase() === "u")
+    ) {
+      e.preventDefault();
+      alert("DevTools access is blocked.");
+      return false;
+    }
+  });
+
+  // Basic DevTools detection (Console open)
+  setInterval(function () {
+    const check = new Image();
+    Object.defineProperty(check, 'id', {
+      get: function () {
+        document.body.innerHTML = "<h1 style='text-align:center; color:red; padding:50px;'>DevTools Detected. Access Blocked.</h1>";
+        throw new Error("DevTools Blocked");
+      }
+    });
+    console.log(check);
+  }, 1000);
+
 </script>
   
 <body>
