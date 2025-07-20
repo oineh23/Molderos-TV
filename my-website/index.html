@@ -609,6 +609,31 @@ function closeModal() {
       e.preventDefault();
     }
   });
+
+  // Disable right-click
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // Block F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+  document.addEventListener('keydown', function (e) {
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
+      (e.ctrlKey && e.key === 'U')
+    ) {
+      e.preventDefault();
+    }
+  });
+
+  // Detect DevTools via window size hack
+  setInterval(function () {
+    if (
+      window.outerHeight - window.innerHeight > 200 ||
+      window.outerWidth - window.innerWidth > 200
+    ) {
+      document.body.innerHTML = '';
+      alert("DevTools detected. Page has been cleared.");
+    }
+  }, 1000);
 </script>
   
 <body>
