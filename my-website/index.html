@@ -610,25 +610,6 @@ function closeModal() {
     }
   });
 
-  // Disable right-click
-  document.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-    alert("Right-click is disabled on this page.");
-  });
-
-  // Block DevTools key combos
-  document.addEventListener('keydown', function (e) {
-    if (
-      e.key === "F12" ||
-      (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
-      (e.ctrlKey && e.key.toLowerCase() === "u")
-    ) {
-      e.preventDefault();
-      alert("DevTools access is blocked.");
-      return false;
-    }
-  });
-
   // Basic DevTools detection (Console open)
   setInterval(function () {
     const check = new Image();
