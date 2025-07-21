@@ -670,85 +670,50 @@ function closeModal() {
 </header>
   
   <!-- Hero Section -->
-<section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
-  <!-- Fullscreen YouTube Video -->
-  <iframe
-    id="hero-video"
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/RNuHMQtDl80?autoplay=1&mute=1&controls=0&loop=1&playlist=RNuHMQtDl80&enablejsapi=1"
-    title="YouTube video player"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen
-    style="
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 120vw;
-      height: 120vh;
-      transform: translate(-50%, -50%);
-      z-index: 0;
-      pointer-events: none;
-    "
-  ></iframe>
-
-  <!-- Overlay -->
-  <div style="
-    position: absolute; 
-    top: 0; left: 0; 
-    width: 100%; height: 100%; 
-    background: rgba(0,0,0,0.5); 
-    z-index: 1;">
-  </div>
-
-  <!-- Play Button -->
-  <button id="play-button" style="
+<!-- Hero Section (Dynamic from TMDb) -->
+<section id="hero" style="position: relative; height: 100vh; overflow: hidden; background: #000;">
+  <div id="hero-bg" style="
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    background: rgba(0,0,0,0.7);
-    border: none;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  ">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#fff" viewBox="0 0 24 24">
-      <path d="M8 5v14l11-7z"/>
-    </svg>
-  </button>
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+    z-index: 0;
+  "></div>
 
-  <!-- Hero Content -->
-  <div class="hero-content" style="
-    position: relative; 
-    z-index: 2; 
-    height: 100%; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-end; 
-    align-items: center; 
-    text-align: center; 
-    padding: 40px; 
-    color: #fff;">
-    <h1 class="hero-title" style="
-      font-size: 2rem; 
-      font-weight: bold; 
-      text-shadow: 0 0 10px #0ff;">
-      Avengers: Infinity War
-    </h1>
-    <p class="hero-description" style="
-      max-width: 600px; 
-      margin: 20px auto; 
-      font-size: 1.2rem; 
-      color: #ccc;">
-      Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
-    </p>
+  <div style="
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    background: linear-gradient(to top, #000 20%, transparent 80%);
+    z-index: 1;
+  "></div>
+
+  <div id="hero-content" style="
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    padding: 60px 40px;
+    color: white;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+  ">
+    <h1 id="hero-title" style="font-size: 3rem; font-weight: bold; margin-bottom: 1rem;"></h1>
+    <p id="hero-overview" style="max-width: 600px; font-size: 1.2rem; margin-bottom: 2rem; color: #ccc;"></p>
+    <a id="hero-button" href="#" style="
+      display: inline-block;
+      background-color: #0f79af;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.3s;
+    ">Watch Now</a>
   </div>
 </section>
   
@@ -894,6 +859,38 @@ function closeModal() {
     });
   }
 </script>
+
+  <script>
+const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+
+async function loadHeroMovie() {
+  try {
+    // Example: Get a trending movie
+    const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`);
+    const data = await res.json();
+
+    const movie = data.results[Math.floor(Math.random() * data.results.length)];
+
+    const bgUrl = `https://image.tmdb.org/t/p/original${movie.backdrop_path || movie.poster_path}`;
+    const title = movie.title || movie.name;
+    const overview = movie.overview;
+
+    // Set background
+    document.getElementById('hero-bg').style.backgroundImage = `url('${bgUrl}')`;
+    // Set content
+    document.getElementById('hero-title').textContent = title;
+    document.getElementById('hero-overview').textContent = overview;
+    // Link to modal
+    document.getElementById('hero-button').setAttribute('onclick', `openModal('${movie.id}')`);
+
+  } catch (error) {
+    console.error('Failed to load hero movie:', error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadHeroMovie);
+</script>
+
 
 <script src="js/devtools-protect.js"></script>
 <script src="js/home.obfuscated.js"></script>
