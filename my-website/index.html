@@ -719,6 +719,13 @@ function closeModal() {
     text-shadow: 0 2px 6px rgba(0,0,0,0.8);
   ">
     <h1 id="hero-title" style="font-size: 3rem; font-weight: bold; margin-bottom: 1rem;"></h1>
+    <div id="hero-genres" style="
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+"></div>
     <p id="hero-overview" style="max-width: 600px; font-size: 1.2rem; margin-bottom: 2rem; color: #ccc;"></p>
     <a id="hero-button" href="#" style="
       display: inline-block;
@@ -879,39 +886,84 @@ function closeModal() {
 
  <script>
 const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
-let heroMovies = [];
+let heroItems = [];
 let currentIndex = 0;
+let genreMap = {};
 
-async function fetchHeroMovies() {
-  try {
-    const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`);
-    const data = await res.json();
-    heroMovies = data.results.slice(0, 5); // Pick top 5 trending movies
-    loadHeroSlide(0); // Load first one
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % heroMovies.length;
-      loadHeroSlide(currentIndex);
-    }, 8000); // Change every 8 seconds
-  } catch (err) {
-    console.error('Error fetching movies:', err);
-  }
+async function fetchGenres() {
+  const [movieGenres, tvGenres] = await Promise.all([
+    fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`).then(res => res.json()),
+    fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}`).then(res => res.json())
+  ]);
+
+  genreMap = {};
+  [...movieGenres.genres, ...tvGenres.genres].forEach(g => {
+    genreMap[g.id] = g.name;
+  });
+}
+
+async function fetchHeroItems() {
+  const [movieRes, tvRes] = await Promise.all([
+    fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`).then(res => res.json()),
+    fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`).then(res => res.json())
+  ]);
+  
+  // Combine and shuffle movies + shows
+  heroItems = [...movieRes.results.slice(0, 3), ...tvRes.results.slice(0, 3)]
+    .sort(() => 0.5 - Math.random());
+
+  loadHeroSlide(0);
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % heroItems.length;
+    loadHeroSlide(currentIndex);
+  }, 9000);
 }
 
 async function loadHeroSlide(index) {
-  const movie = heroMovies[index];
-  if (!movie) return;
+  const item = heroItems[index];
+  if (!item) return;
 
-  const title = movie.title || movie.name;
-  const overview = movie.overview;
-  const movieId = movie.id;
+  const isMovie = item.title !== undefined;
+  const title = isMovie ? item.title : item.name;
+  const overview = item.overview;
+  const id = item.id;
 
-  document.getElementById('hero-title').textContent = title;
-  document.getElementById('hero-overview').textContent = overview;
-  document.getElementById('hero-button').setAttribute('onclick', `openModal('${movieId}')`);
+  // Fade out old content
+  fadeOut('#hero-title');
+  fadeOut('#hero-overview');
+  fadeOut('#hero-genres');
 
-  // Fetch trailer
+  setTimeout(() => {
+    document.getElementById('hero-title').textContent = title;
+    document.getElementById('hero-overview').textContent = overview;
+    document.getElementById('hero-button').setAttribute('onclick', `openModal('${id}')`);
+
+    // Add genre badges
+    const genreContainer = document.getElementById('hero-genres');
+    genreContainer.innerHTML = '';
+    (item.genre_ids || []).forEach(gid => {
+      const badge = document.createElement('span');
+      badge.textContent = genreMap[gid] || '';
+      badge.style.cssText = `
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 3px;
+        padding: 3px 8px;
+        color: #fff;
+        font-weight: 500;
+      `;
+      genreContainer.appendChild(badge);
+    });
+
+    fadeIn('#hero-title');
+    fadeIn('#hero-overview');
+    fadeIn('#hero-genres');
+  }, 300);
+
+  // Load trailer
+  const type = isMovie ? 'movie' : 'tv';
   try {
-    const videoRes = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`);
+    const videoRes = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${apiKey}`);
     const videoData = await videoRes.json();
     const trailer = videoData.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');
 
@@ -925,7 +977,23 @@ async function loadHeroSlide(index) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', fetchHeroMovies);
+function fadeOut(selector) {
+  const el = document.querySelector(selector);
+  if (el) el.style.opacity = 0;
+}
+
+function fadeIn(selector) {
+  const el = document.querySelector(selector);
+  if (el) {
+    el.style.transition = 'opacity 0.8s ease';
+    el.style.opacity = 1;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  await fetchGenres();
+  await fetchHeroItems();
+});
 </script>
 
 <script src="js/devtools-protect.js"></script>
