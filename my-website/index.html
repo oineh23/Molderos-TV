@@ -877,45 +877,56 @@ function closeModal() {
   }
 </script>
 
-  <script>
+ <script>
 const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
+let heroMovies = [];
+let currentIndex = 0;
 
-async function loadHeroMovie() {
+async function fetchHeroMovies() {
   try {
-    // Fetch trending movie
     const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`);
     const data = await res.json();
-    const movie = data.results[Math.floor(Math.random() * data.results.length)];
+    heroMovies = data.results.slice(0, 5); // Pick top 5 trending movies
+    loadHeroSlide(0); // Load first one
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % heroMovies.length;
+      loadHeroSlide(currentIndex);
+    }, 8000); // Change every 8 seconds
+  } catch (err) {
+    console.error('Error fetching movies:', err);
+  }
+}
 
-    const title = movie.title || movie.name;
-    const overview = movie.overview;
-    const movieId = movie.id;
+async function loadHeroSlide(index) {
+  const movie = heroMovies[index];
+  if (!movie) return;
 
-    // Set text content
-    document.getElementById('hero-title').textContent = title;
-    document.getElementById('hero-overview').textContent = overview;
-    document.getElementById('hero-button').setAttribute('onclick', `openModal('${movieId}')`);
+  const title = movie.title || movie.name;
+  const overview = movie.overview;
+  const movieId = movie.id;
 
-    // Fetch trailer video from TMDb
+  document.getElementById('hero-title').textContent = title;
+  document.getElementById('hero-overview').textContent = overview;
+  document.getElementById('hero-button').setAttribute('onclick', `openModal('${movieId}')`);
+
+  // Fetch trailer
+  try {
     const videoRes = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`);
     const videoData = await videoRes.json();
-
     const trailer = videoData.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');
+
     if (trailer) {
       const trailerId = trailer.key;
       const iframe = document.getElementById('hero-video');
       iframe.src = `https://www.youtube.com/embed/${trailerId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerId}`;
     }
-
   } catch (err) {
-    console.error('Error loading hero content:', err);
+    console.error('Error loading trailer:', err);
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadHeroMovie);
+document.addEventListener('DOMContentLoaded', fetchHeroMovies);
 </script>
-
-
 
 <script src="js/devtools-protect.js"></script>
 <script src="js/home.obfuscated.js"></script>
