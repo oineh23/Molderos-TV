@@ -669,9 +669,9 @@ function closeModal() {
   </div>
 </header>
   
-  <!-- Hero Section with Autoplay Trailer -->
-<section id="hero" style="position: relative; height: 100vh; overflow: hidden; background: #000;">
-  <!-- YouTube video container -->
+ <!-- Netflix-Style Hero Section -->
+<section id="hero" style="position: relative; height: 100vh; overflow: hidden; background-color: #000;">
+  <!-- Video Background -->
   <div id="hero-video-wrapper" style="
     position: absolute;
     top: 0; left: 0;
@@ -697,12 +697,14 @@ function closeModal() {
     ></iframe>
   </div>
 
-  <!-- Gradient Overlay -->
+  <!-- Dark Gradient Overlay -->
   <div style="
     position: absolute;
-    width: 100%; height: 100%;
-    top: 0; left: 0;
-    background: linear-gradient(to top, #000 20%, transparent 80%);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to top, #000 10%, transparent 70%);
     z-index: 1;
   "></div>
 
@@ -716,28 +718,52 @@ function closeModal() {
     height: 100%;
     padding: 60px 40px;
     color: white;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
   ">
-    <h1 id="hero-title" style="font-size: 3rem; font-weight: bold; margin-bottom: 1rem;"></h1>
+    <h1 id="hero-title" style="font-size: 3.5rem; font-weight: bold; margin-bottom: 0.5rem;"></h1>
+
     <div id="hero-genres" style="
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-  font-size: 0.85rem;
-"></div>
-    <p id="hero-overview" style="max-width: 600px; font-size: 1.2rem; margin-bottom: 2rem; color: #ccc;"></p>
-    <a id="hero-button" href="#" style="
-      display: inline-block;
-      background-color: #0f79af;
-      color: #fff;
-      padding: 14px 28px;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: background 0.3s;
-    ">Watch Now</a>
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #ccc;
+    "></div>
+
+    <p id="hero-overview" style="max-width: 650px; font-size: 1.2rem; margin-bottom: 2rem; color: #ddd;"></p>
+
+    <div style="display: flex; gap: 20px;">
+      <a id="hero-button-play" href="#" style="
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: white;
+        color: black;
+        padding: 12px 24px;
+        border-radius: 4px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+      ">
+        ▶ Play
+      </a>
+      <a id="hero-button-info" href="#" style="
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: rgba(109, 109, 110, 0.7);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 4px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+      ">
+        ℹ More Info
+      </a>
+    </div>
   </div>
 </section>
   
@@ -890,109 +916,81 @@ let heroItems = [];
 let currentIndex = 0;
 let genreMap = {};
 
-async function fetchGenres() {
+async function loadGenres() {
   const [movieGenres, tvGenres] = await Promise.all([
     fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`).then(res => res.json()),
     fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}`).then(res => res.json())
   ]);
-
-  genreMap = {};
   [...movieGenres.genres, ...tvGenres.genres].forEach(g => {
     genreMap[g.id] = g.name;
   });
 }
 
-async function fetchHeroItems() {
+async function loadHeroItems() {
   const [movieRes, tvRes] = await Promise.all([
     fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`).then(res => res.json()),
     fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`).then(res => res.json())
   ]);
-  
-  // Combine and shuffle movies + shows
   heroItems = [...movieRes.results.slice(0, 3), ...tvRes.results.slice(0, 3)]
     .sort(() => 0.5 - Math.random());
-
   loadHeroSlide(0);
   setInterval(() => {
     currentIndex = (currentIndex + 1) % heroItems.length;
     loadHeroSlide(currentIndex);
-  }, 9000);
+  }, 8000);
 }
 
 async function loadHeroSlide(index) {
   const item = heroItems[index];
   if (!item) return;
 
-  const isMovie = item.title !== undefined;
-  const title = isMovie ? item.title : item.name;
-  const overview = item.overview;
-  const id = item.id;
-
-  // Fade out old content
-  fadeOut('#hero-title');
-  fadeOut('#hero-overview');
-  fadeOut('#hero-genres');
-
-  setTimeout(() => {
-    document.getElementById('hero-title').textContent = title;
-    document.getElementById('hero-overview').textContent = overview;
-    document.getElementById('hero-button').setAttribute('onclick', `openModal('${id}')`);
-
-    // Add genre badges
-    const genreContainer = document.getElementById('hero-genres');
-    genreContainer.innerHTML = '';
-    (item.genre_ids || []).forEach(gid => {
-      const badge = document.createElement('span');
-      badge.textContent = genreMap[gid] || '';
-      badge.style.cssText = `
-        background: rgba(255,255,255,0.1);
-        border: 1px solid rgba(255,255,255,0.3);
-        border-radius: 3px;
-        padding: 3px 8px;
-        color: #fff;
-        font-weight: 500;
-      `;
-      genreContainer.appendChild(badge);
-    });
-
-    fadeIn('#hero-title');
-    fadeIn('#hero-overview');
-    fadeIn('#hero-genres');
-  }, 300);
-
-  // Load trailer
+  const isMovie = !!item.title;
   const type = isMovie ? 'movie' : 'tv';
-  try {
-    const videoRes = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${apiKey}`);
-    const videoData = await videoRes.json();
-    const trailer = videoData.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');
+  const title = item.title || item.name;
+  const overview = item.overview || '';
+  const id = item.id;
+  const genreIds = item.genre_ids || [];
 
+  document.getElementById('hero-title').textContent = title;
+  document.getElementById('hero-overview').textContent = overview;
+  document.getElementById('hero-button-play').setAttribute('onclick', `playContent('${type}', '${id}')`);
+  document.getElementById('hero-button-info').setAttribute('onclick', `openModal('${id}')`);
+
+  // Genres
+  const genreContainer = document.getElementById('hero-genres');
+  genreContainer.innerHTML = '';
+  genreIds.forEach(gid => {
+    const span = document.createElement('span');
+    span.textContent = genreMap[gid] || '';
+    genreContainer.appendChild(span);
+  });
+
+  // Trailer
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${apiKey}`);
+    const data = await res.json();
+    const trailer = data.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');
     if (trailer) {
       const trailerId = trailer.key;
       const iframe = document.getElementById('hero-video');
       iframe.src = `https://www.youtube.com/embed/${trailerId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerId}`;
     }
   } catch (err) {
-    console.error('Error loading trailer:', err);
+    console.error('Trailer error:', err);
   }
 }
 
-function fadeOut(selector) {
-  const el = document.querySelector(selector);
-  if (el) el.style.opacity = 0;
+function playContent(type, id) {
+  alert(`Now playing ${type} with ID ${id}`);
 }
 
-function fadeIn(selector) {
-  const el = document.querySelector(selector);
-  if (el) {
-    el.style.transition = 'opacity 0.8s ease';
-    el.style.opacity = 1;
-  }
+function openModal(id) {
+  alert(`More info for item ID ${id}`);
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  await fetchGenres();
-  await fetchHeroItems();
+  await loadGenres();
+  await loadHeroItems();
 });
 </script>
 
