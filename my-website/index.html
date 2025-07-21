@@ -505,56 +505,70 @@
       box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
       font-family: Arial, sans-serif;
+      background: black;
+      color: white;
+    }
+
+    .page-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
       background-color: black;
       overflow: hidden;
     }
 
-    .hero {
-      position: relative;
-      height: 79vh;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    /* Background video */
     .video-background {
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       z-index: -2;
     }
 
-    /* Gradient Overlay */
     .overlay-gradient {
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 10%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.2), transparent);
       z-index: -1;
     }
 
     .hero-content {
+      padding: 2rem;
+      text-align: center;
       max-width: 800px;
-      animation: fadeIn 2s ease-in-out;
-      padding: 1rem;
+      margin: 0 auto;
+      animation: fadeIn 1.5s ease-in-out;
+      position: relative;
+      z-index: 1;
     }
 
-    .hero h1 {
-      font-size: 3rem;
+    .hero-content h1 {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
     }
 
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
+    .hero-content p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
     }
 
     .buttons {
@@ -579,8 +593,18 @@
 
     .btn-secondary {
       background-color: transparent;
-      border: 1px solid white;
       color: white;
+      border: 1px solid white;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1rem;
+      position: relative;
+      z-index: 2;
     }
 
     @keyframes fadeIn {
@@ -588,35 +612,15 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1; /* pushes footer down */
-}
-
-footer {
-  background-color: #111;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  font-size: 1rem;
-}
-
     @media (max-width: 768px) {
-  footer {
-    display: block !important;
-  }
-}
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
 
 </style>
 
