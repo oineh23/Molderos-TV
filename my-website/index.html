@@ -669,19 +669,35 @@ function closeModal() {
   </div>
 </header>
   
-  <!-- Hero Section -->
-<!-- Hero Section (Dynamic from TMDb) -->
+  <!-- Hero Section with Autoplay Trailer -->
 <section id="hero" style="position: relative; height: 100vh; overflow: hidden; background: #000;">
-  <div id="hero-bg" style="
+  <!-- YouTube video container -->
+  <div id="hero-video-wrapper" style="
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.5);
     z-index: 0;
-  "></div>
+    overflow: hidden;
+  ">
+    <iframe
+      id="hero-video"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      style="
+        width: 120vw;
+        height: 120vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        opacity: 0.3;
+      "
+    ></iframe>
+  </div>
 
+  <!-- Gradient Overlay -->
   <div style="
     position: absolute;
     width: 100%; height: 100%;
@@ -690,6 +706,7 @@ function closeModal() {
     z-index: 1;
   "></div>
 
+  <!-- Hero Content -->
   <div id="hero-content" style="
     position: relative;
     z-index: 2;
@@ -865,31 +882,39 @@ const apiKey = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 
 async function loadHeroMovie() {
   try {
-    // Example: Get a trending movie
+    // Fetch trending movie
     const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`);
     const data = await res.json();
-
     const movie = data.results[Math.floor(Math.random() * data.results.length)];
 
-    const bgUrl = `https://image.tmdb.org/t/p/original${movie.backdrop_path || movie.poster_path}`;
     const title = movie.title || movie.name;
     const overview = movie.overview;
+    const movieId = movie.id;
 
-    // Set background
-    document.getElementById('hero-bg').style.backgroundImage = `url('${bgUrl}')`;
-    // Set content
+    // Set text content
     document.getElementById('hero-title').textContent = title;
     document.getElementById('hero-overview').textContent = overview;
-    // Link to modal
-    document.getElementById('hero-button').setAttribute('onclick', `openModal('${movie.id}')`);
+    document.getElementById('hero-button').setAttribute('onclick', `openModal('${movieId}')`);
 
-  } catch (error) {
-    console.error('Failed to load hero movie:', error);
+    // Fetch trailer video from TMDb
+    const videoRes = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`);
+    const videoData = await videoRes.json();
+
+    const trailer = videoData.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');
+    if (trailer) {
+      const trailerId = trailer.key;
+      const iframe = document.getElementById('hero-video');
+      iframe.src = `https://www.youtube.com/embed/${trailerId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerId}`;
+    }
+
+  } catch (err) {
+    console.error('Error loading hero content:', err);
   }
 }
 
 document.addEventListener('DOMContentLoaded', loadHeroMovie);
 </script>
+
 
 
 <script src="js/devtools-protect.js"></script>
