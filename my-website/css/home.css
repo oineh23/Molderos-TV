@@ -562,8 +562,8 @@ main {
   }
 
   .modal-body img {
-    width: 20%;
-    max-width: 300px;
+    width: 100%;
+    max-width: 50px;
   }
 }
 
