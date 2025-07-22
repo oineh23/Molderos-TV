@@ -489,7 +489,7 @@ main {
 
 @media (max-width: 768px) {
   .modal-content {
-    width: 100vw;
+    width: 50vw;
     height: auto;
     aspect-ratio: unset;
     max-height: 90vh;
