@@ -562,7 +562,7 @@ main {
   }
 
   .modal-body img {
-    width: 100%;
+    width: 20%;
     max-width: 300px;
   }
 }
