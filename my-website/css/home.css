@@ -231,8 +231,66 @@ select {
 }
 
     .search-bar {
-      padding: 5px; border-radius: 5px; border: none;
-    }
+  background-color: #222;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: #fff;
+  margin-left: 1rem;
+  width: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar:focus {
+  background-color: #333;
+}
+
+.search-bar::placeholder {
+  color: #aaa;
+}
+
+/* Make nav responsive */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+#menu-toggle {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #menu-toggle:checked + .menu-icon + .nav-links {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 10px;
+  }
 
     .banner {
       height: 50vh;
