@@ -185,6 +185,7 @@ select {
 
 /* Navbar */
 .nav-wrapper {
+  background-color: #141414;
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
@@ -278,6 +279,7 @@ select {
     flex-direction: column;
     width: 100%;
     margin-top: 1rem;
+    background-color: transparent; /* <- Add this line */
   }
 
   #menu-toggle:checked + .menu-icon + .nav-links {
@@ -287,6 +289,7 @@ select {
   .menu-icon {
     display: block;
   }
+}
 
   .search-bar {
     width: 100%;
