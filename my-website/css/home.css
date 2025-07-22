@@ -143,7 +143,7 @@
   text-align: center;
 }
 
-/* Global Styles */
+/* === Global Styles === */
 * {
   margin: 0;
   padding: 0;
@@ -151,19 +151,11 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #111;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #000;
   color: #fff;
   line-height: 1.5;
   scroll-behavior: smooth;
-}
-
-body {
-  background-image: url('../images/Elden Ring Game Wallpaper.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 a {
@@ -183,7 +175,7 @@ select {
   outline: none;
 }
 
-/* Navbar */
+/* === Navbar === */
 .nav-wrapper {
   background-color: #141414;
   padding: 1rem 2rem;
@@ -197,29 +189,23 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  
-  body.light-mode .logo {
-  color: #111;
-}
-
+  color: #e50914;
   display: flex;
   align-items: center;
   gap: 0.3rem;
-}
-
-.main-color {
-  color: #e50914;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -251,85 +237,10 @@ select {
   color: #aaa;
 }
 
-/* Make nav responsive */
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.menu-icon {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-#menu-toggle {
-  display: none;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 1rem;
-  }
-
-  #menu-toggle:checked + .menu-icon + .nav-links {
-    display: flex;
-  }
-
-  .menu-icon {
-    display: block;
-  }
-
-  .search-bar {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .hero-section h1 {
-    font-size: 1.6rem;
-  }
-
-  .hero-section p.subtitle {
-    font-size: 1rem;
-  }
-
-  .cta-button {
-    font-size: 1rem;
-    padding: 10px 20px;
-  }
-
-  .card-container {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1rem;
-  }
-
-  .modal-content {
-    flex-direction: column;
-  }
-
-  .modal-body {
-    flex-direction: column;
-  }
-
-  .modal img {
-    width: 100%;
-    height: auto;
-  }
-}
-
-/* Hero Section */
+/* === Hero Section === */
 .hero-section {
   position: relative;
-  height: 45vh;
+  height: 60vh;
   background: url('../images/hero-bg.jpg') no-repeat center center/cover;
   display: flex;
   align-items: center;
@@ -369,39 +280,6 @@ select {
   background-color: #f40612;
 }
 
-/* Genre Filter */
-.genre-filter {
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  gap: 5rem;
-  
-  body.light-mode .genre-filter {
-  background-color: #eee;
-  color: #111;
-}
-
-}
-
-.genre-filter select {
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: none;
-  background-color: #222;
-  color: #fff;
-}
-
-.genre-filter {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.genre-filter label {
-  font-weight: bold;
-}
-
-/* Main Content */
 /* === Netflix Style Movie Row === */
 .movie-row {
   margin-bottom: 2rem;
@@ -439,7 +317,6 @@ select {
   border-bottom: 2px solid #222;
 }
 
-/* Hover Overlay */
 .movie-card .overlay {
   position: absolute;
   top: 0;
@@ -474,282 +351,42 @@ select {
   background: #f40612;
 }
 
-
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 10, 10, 0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
-.modal-content {
-  background: rgba(24, 24, 24, 0.9);
-  padding: 2rem;
-  border-radius: 16px;
-  width: 50%;
-  max-width: 800px;
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2),
-              0 0 50px rgba(0, 255, 255, 0.1);
-  position: relative;
-  color: #f0f0f0;
-  font-family: 'Segoe UI', sans-serif;
-  transition: transform 0.3s ease, box-shadow 0.4s ease;
-  border: 1px solid rgba(0, 255, 255, 0.4);
-}
-
-.modal-content:hover {
-  transform: scale(1.015);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4),
-              0 0 60px rgba(0, 255, 255, 0.2);
-}
-
-.modal-body {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.modal-body img {
-  width: 220px;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.modal-body img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
-}
-
-.modal-text {
-  flex: 1;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.modal-text h2 {
-  font-size: 1.8rem;
-  margin-bottom: 0.75rem;
-  color: #ffffff;
-  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
-}
-
-.stars {
-  margin-bottom: 0.75rem;
-  color: #ffce31;
-  font-size: 1.1rem;
-  text-shadow: 0 0 5px #ffce31aa;
-}
-
-.close {
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-  font-size: 2rem;
-  cursor: pointer;
-  color: #ffffff;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-  text-shadow: 0 0 10px #fff;
-}
-
-.close:hover {
-  color: #ff4e4e;
-  text-shadow: 0 0 10px #ff4e4e, 0 0 20px #ff4e4e;
-}
-
-/* Optional: Pulsing glow */
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.2),
-                0 0 50px rgba(0, 255, 255, 0.1);
-  }
-  50% {
-    box-shadow: 0 0 35px rgba(0, 255, 255, 0.4),
-                0 0 70px rgba(0, 255, 255, 0.2);
-  }
-}
-
-.modal-content.glow {
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .modal-content {
-    width: 90vw;
-    max-height: 90vh;
-    border-radius: 12px;
-    overflow-y: auto;
-  }
-
-  .modal-body {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .modal-body img {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  .modal-content {
-    padding: 1rem;
-  }
-
-  #modal-video {
-    object-fit: contain;
-    width: 100%;
-  }
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* Spinner */
-.loading-spinner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  gap: 1rem;
-  font-size: 1.2rem;
-  color: #e50914;
-}
-
-/* Search Modal */
-.search-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(20, 20, 20, 0.95);
-  display: none;
-  flex-direction: column;
-  padding: 2rem;
-  z-index: 1500;
-}
-
-.search-modal input {
-  padding: 1rem;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  background-color: #222;
-  color: #fff;
-}
-
-.search-modal .results {
-  flex: 1;
-  overflow-y: auto;
-}
-
-.search-modal .close {
-  font-size: 2rem;
-  align-self: flex-end;
-  cursor: pointer;
-  color: #fff;
-  margin-bottom: 1rem;
-}
-
-/* Search Modal Background Overlay */
-.search-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.75);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Modal Box */
-.search-modal-box {
-  background: var(--bg-color);
-  color: var(--text-color);
-  padding: 20px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  position: relative;
-}
-
-/* Close Button */
-.search-modal-box .close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-/* Search Input */
-#search-input {
-  width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-
-/* Search Results Container */
-#search-results {
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-/* Show Modal (controlled by JS) */
-.search-modal.active {
-  display: flex;
-}
-
-/* Default: Light Mode */
+/* === Footer === */
 .footer {
   width: 100%;
-  padding: 20px;
+  padding: 2rem 0;
   text-align: center;
-  background-color: var(--footer-bg);
-  color: var(--footer-text);
-  transition: background-color 0.3s, color 0.3s;
+  background-color: #141414;
+  color: #999;
+  font-size: 0.9rem;
 }
 
-.footer-content {
-  max-width: 800px;
-  margin: 0 auto;
+.footer a {
+  color: #999;
+  margin: 0 10px;
+  transition: color 0.2s;
 }
 
-/* Define footer color variables for light and dark mode */
-:root {
-  --footer-bg: #f2f2f2;
-  --footer-text: #333;
+.footer a:hover {
+  color: #fff;
 }
 
-[data-theme="dark"] {
-  --footer-bg: #111;
-  --footer-text: #fff;
+/* === Responsive === */
+@media (max-width: 768px) {
+  .hero-overlay h1 {
+    font-size: 1.6rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .cta-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+  .search-bar {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
 
 /* === Vivamax-Style Pinoy Movies Section === */
