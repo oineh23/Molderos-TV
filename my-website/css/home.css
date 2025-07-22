@@ -574,7 +574,7 @@ main {
 
   #modal-video {
     object-fit: contain;
-    width: 50%;
+    width: 100%;
   }
 }
 
