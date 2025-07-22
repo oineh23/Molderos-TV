@@ -500,179 +500,6 @@
     aspect-ratio: 16 / 9;
   }
 }
-
-   /* Netflix-style reset */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    background-color: #141414;
-    color: #fff;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-  }
-
-  /* 📺 Banner */
-  .banner {
-    position: relative;
-    height: 70vh;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: flex-end;
-    padding: 3rem;
-    color: white;
-    margin-bottom: 2rem;
-  }
-
-  .banner::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, #141414 10%, transparent 90%);
-    z-index: 0;
-  }
-
-  #banner-title {
-    font-size: 3rem;
-    font-weight: bold;
-    z-index: 1;
-  }
-
-  /* 📁 Row Section */
-  .row {
-    padding: 0 2rem 2rem;
-  }
-
-  .row h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  .list {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding-bottom: 0.5rem;
-    scroll-behavior: smooth;
-  }
-
-  .list::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* 🎞️ Card Styles */
-  .card {
-    position: relative;
-    flex: 0 0 auto;
-    width: 180px;
-    height: 270px;
-    background-color: #222;
-    border-radius: 4px;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
-    cursor: pointer;
-  }
-
-  .card:hover {
-    transform: scale(1.2);
-    z-index: 10;
-  }
-
-  .card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  .card-info {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: linear-gradient(to top, rgba(20, 20, 20, 0.9), transparent);
-    color: #fff;
-    padding: 0.5rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .card:hover .card-info {
-    opacity: 1;
-  }
-
-  .card-info h3 {
-    font-size: 1rem;
-    margin-bottom: 0.2rem;
-  }
-
-  .movie-year,
-  .card-info p {
-    font-size: 0.8rem;
-    color: #ccc;
-  }
-
-  .genre-badge {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background-color: #e50914;
-    padding: 0.3rem 0.6rem;
-    font-size: 0.7rem;
-    font-weight: bold;
-    border-radius: 2px;
-    z-index: 2;
-  }
-
-  .watch-button {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.2rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .card:hover .watch-button {
-    opacity: 1;
-  }
-
-  @media screen and (max-width: 768px) {
-    .banner {
-      height: 50vh;
-      padding: 1.5rem;
-    }
-
-    #banner-title {
-      font-size: 2rem;
-    }
-
-    .card {
-      width: 140px;
-      height: 210px;
-    }
-
-    .row {
-      padding: 1rem;
-    }
-
-    .row h2 {
-      font-size: 1.2rem;
-    }
-  }
     
 </style>
 
@@ -842,26 +669,88 @@ function closeModal() {
   </div>
 </header>
   
-  <!-- 📺 BANNER + ROWS -->
-<div class="banner" id="banner">
-  <h1 id="banner-title"></h1>
-</div>
+  <!-- Hero Section -->
+<section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
+  <!-- Fullscreen YouTube Video -->
+  <iframe
+    id="hero-video"
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/RNuHMQtDl80?autoplay=1&mute=1&controls=0&loop=1&playlist=RNuHMQtDl80&enablejsapi=1"
+    title="YouTube video player"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+    style="
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120vw;
+      height: 120vh;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+    "
+  ></iframe>
 
-<div class="row">
-  <h2>Trending Movies</h2>
-  <div class="list" id="movies-list"></div>
-</div>
+  <!-- Overlay -->
+  <div style="
+    position: absolute; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.5); 
+    z-index: 1;">
+  </div>
 
-<div class="row">
-  <h2>Trending TV Shows</h2>
-  <div class="list" id="tvshows-list"></div>
-</div>
+  <!-- Play Button -->
+  <button id="play-button" style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background: rgba(0,0,0,0.7);
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  ">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#fff" viewBox="0 0 24 24">
+      <path d="M8 5v14l11-7z"/>
+    </svg>
+  </button>
 
-<div class="row">
-  <h2>Trending Anime</h2>
-  <div class="list" id="anime-list"></div>
-</div>
-
+  <!-- Hero Content -->
+  <div class="hero-content" style="
+    position: relative; 
+    z-index: 2; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end; 
+    align-items: center; 
+    text-align: center; 
+    padding: 40px; 
+    color: #fff;">
+    <h1 class="hero-title" style="
+      font-size: 2rem; 
+      font-weight: bold; 
+      text-shadow: 0 0 10px #0ff;">
+      Avengers: Infinity War
+    </h1>
+    <p class="hero-description" style="
+      max-width: 600px; 
+      margin: 20px auto; 
+      font-size: 1.2rem; 
+      color: #ccc;">
+      Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
+    </p>
+  </div>
+</section>
   
   <!-- END OF CLEANED SECTIONS -->
 
