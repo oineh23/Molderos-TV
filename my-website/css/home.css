@@ -444,6 +444,7 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
   display: none;
   align-items: center;
   justify-content: center;
@@ -451,6 +452,7 @@ main {
 }
 
 .modal-content {
+  background-color: #181818;
   padding: 2rem;
   border-radius: 10px;
   width: 100%;
@@ -465,7 +467,7 @@ main {
 }
 
 .modal-body img {
-  width: 100px;
+  width: 200px;
   border-radius: 10px;
 }
 
@@ -488,10 +490,10 @@ main {
 
 @media (max-width: 768px) {
   .modal-content {
-    width: 50vw;
+    width: 100vw;
     height: auto;
     aspect-ratio: unset;
-    max-height: 50vh;
+    max-height: 90vh;
     border-radius: 0;
   }
 }
@@ -522,44 +524,40 @@ main {
 
 /* Search Modal */
 .search-modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 15;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, 0.95);
+  display: none;
+  flex-direction: column;
+  padding: 2rem;
+  z-index: 1500;
+}
 
-    .search-modal input {
-      width: 300px;
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      margin-bottom: 20px;
-    }
+.search-modal input {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background-color: #222;
+  color: #fff;
+}
 
-    .search-modal .results {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
+.search-modal .results {
+  flex: 1;
+  overflow-y: auto;
+}
 
-    .search-modal img {
-      width: 120px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .search-modal .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 30px;
-    }
+.search-modal .close {
+  font-size: 2rem;
+  align-self: flex-end;
+  cursor: pointer;
+  color: #fff;
+  margin-bottom: 1rem;
+}
 
 /* Search Modal Background Overlay */
 .search-modal {
