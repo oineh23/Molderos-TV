@@ -438,45 +438,75 @@ main {
 }
 
 /* Modal */
+/* Modal */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
+  background: rgba(10, 10, 10, 0.85);
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 2000;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
 .modal-content {
-  background-color: #181818;
+  background: rgba(24, 24, 24, 0.9);
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 16px;
   width: 100%;
   max-width: 800px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
   position: relative;
+  color: #f0f0f0;
+  font-family: 'Segoe UI', sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.modal-content:hover {
+  transform: scale(1.01);
 }
 
 .modal-body {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .modal-body img {
-  width: 200px;
-  border-radius: 10px;
+  width: 220px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.modal-body img:hover {
+  transform: scale(1.05);
 }
 
 .modal-text {
   flex: 1;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .modal-text h2 {
-  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+.stars {
+  margin-bottom: 0.75rem;
+  color: #ffce31;
+  font-size: 1.1rem;
 }
 
 .close {
@@ -485,30 +515,49 @@ main {
   right: 1.5rem;
   font-size: 2rem;
   cursor: pointer;
-  color: #fff;
+  color: #ffffff;
+  transition: color 0.3s ease;
 }
 
+.close:hover {
+  color: #ff4e4e;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .modal-content {
-    width: 100vw;
-    height: auto;
-    aspect-ratio: unset;
+    width: 90vw;
     max-height: 90vh;
-    border-radius: 0;
+    border-radius: 12px;
+    overflow-y: auto;
+  }
+
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal-body img {
+    width: 100%;
+    max-width: 300px;
   }
 }
 
 @media (max-width: 480px) {
   .modal-content {
-    padding: 0;
+    padding: 1rem;
   }
+
   #modal-video {
     object-fit: contain;
+    width: 100%;
   }
 }
 
-.stars {
-  margin-bottom: 0.5rem;
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* Spinner */
