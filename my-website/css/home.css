@@ -550,8 +550,8 @@ main {
 /* Responsive */
 @media (max-width: 768px) {
   .modal-content {
-    width: 90vw;
-    max-height: 90vh;
+    width: 50vw;
+    max-height: 50vh;
     border-radius: 12px;
     overflow-y: auto;
   }
