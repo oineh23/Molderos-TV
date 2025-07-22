@@ -442,8 +442,8 @@ main {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   background: rgba(10, 10, 10, 0.85);
   display: none;
   align-items: center;
@@ -563,7 +563,7 @@ main {
 
   .modal-body img {
     width: 100%;
-    max-width: 50px;
+    max-width: 300px;
   }
 }
 
