@@ -550,8 +550,8 @@ main {
 /* Responsive */
 @media (max-width: 768px) {
   .modal-content {
-    width: 100vw;
-    max-height: 100vh;
+    width: 40vw;
+    max-height: 40vh;
     border-radius: 12px;
     overflow-y: auto;
   }
@@ -573,7 +573,7 @@ main {
   }
 
   #modal-video {
-    object-fit: contain;
+    object-fit: flex;
     width: 100%;
   }
 }
