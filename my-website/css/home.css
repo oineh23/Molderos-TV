@@ -402,40 +402,78 @@ select {
 }
 
 /* Main Content */
-main {
-  padding: 2rem;
+/* === Netflix Style Movie Row === */
+.movie-row {
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
 }
 
-.row h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+.movie-row::-webkit-scrollbar {
+  display: none;
 }
 
-/* Card Grid */
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
-}
-
-.card {
-  background-color: #222;
-  border-radius: 10px;
+.movie-card {
+  display: inline-block;
+  width: 200px;
+  margin-right: 1rem;
+  background-color: #111;
+  border-radius: 6px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+.movie-card:hover {
+  transform: scale(1.1);
+  z-index: 10;
 }
 
-.card img {
+.movie-card img {
   width: 100%;
-  height: 240px;
+  height: 120px;
   object-fit: cover;
+  border-bottom: 2px solid #222;
 }
+
+/* Hover Overlay */
+.movie-card .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(20, 20, 20, 0.8);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.movie-card:hover .overlay {
+  opacity: 1;
+}
+
+.movie-card .overlay button {
+  background: #e50914;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.movie-card .overlay button:hover {
+  background: #f40612;
+}
+
 
 /* Modal */
 .modal {
