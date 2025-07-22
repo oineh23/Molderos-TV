@@ -735,16 +735,9 @@ function closeModal() {
 <div class="search-modal" id="search-modal">
   <div class="search-modal-content">
     <button class="search-close" onclick="closeSearchModal()" aria-label="Close">&times;</button>
-    <input 
-      type="text" 
-      id="search-input" 
-      placeholder="🔍 Search movies, TV shows, or anime..." 
-      oninput="searchTMDB()" 
-      aria-label="Search input"
-    />
-    <div class="search-results" id="search-results"></div>
+    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
+    <div class="results" id="search-results"></div>
   </div>
-</div>
 
     <!-- Footer -->
   <footer class="footer">
