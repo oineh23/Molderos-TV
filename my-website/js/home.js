@@ -1,3 +1,4 @@
+
 // ====== CONFIGURATION ======
 const API_KEY = 'b8c2d0fa80cd79b5d28d9fe2853806bb';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -72,34 +73,19 @@ document.addEventListener("DOMContentLoaded", init);
 // ====== DISPLAY UTILITIES ======
 function displayBanner(item) {
   const banner = document.getElementById('banner');
-  if (!item || !banner) return;
-
-  // Set background image
+  if (!item) return;
   banner.style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
-
-  // Set title
   document.getElementById('banner-title').textContent = item.title || item.name || 'Unknown Title';
+}
 
-  // Set description (fallback if no overview)
-  document.getElementById('banner-description').textContent = item.overview?.slice(0, 200) + '...' || 'No description available.';
-
-  // Watch button click behavior
-  const watchBtn = document.querySelector('.watch-now-btn');
-  const infoBtn = document.querySelector('.info-btn');
-
-  if (watchBtn) {
-    watchBtn.onclick = () => {
-      item.media_type = item.media_type || 'movie'; // fallback
-      showDetails(item); // opens modal
-    };
-  }
-
-  if (infoBtn) {
-    infoBtn.onclick = () => {
-      item.media_type = item.media_type || 'movie';
-      showDetails(item); // same action, or later you can customize
-    };
-  }
+function displayList(items, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  items.forEach(item => {
+    if (!item.poster_path) return;
+    container.appendChild(createCard(item));
+  });
 }
 
 function createCard(item) {
