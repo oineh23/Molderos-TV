@@ -128,6 +128,33 @@
     margin: 0;
   }
 
+.row {
+  position: relative;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.row::before,
+.row::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.row::before {
+  left: 0;
+  background: linear-gradient(to right, #141414 0%, transparent 100%);
+}
+
+.row::after {
+  right: 0;
+  background: linear-gradient(to left, #141414 0%, transparent 100%);
+}
+
 
 /* Fade-in animation */
 @keyframes fadeIn {
