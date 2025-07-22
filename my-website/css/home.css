@@ -279,7 +279,6 @@ select {
     flex-direction: column;
     width: 100%;
     margin-top: 1rem;
-    background-color: transparent !important; /* Force override */
   }
 
   #menu-toggle:checked + .menu-icon + .nav-links {
@@ -289,9 +288,7 @@ select {
   .menu-icon {
     display: block;
   }
-}
-
-
+  
   .search-bar {
     width: 100%;
     margin-top: 10px;
