@@ -438,7 +438,6 @@ main {
 }
 
 /* Modal */
-/* Modal */
 .modal {
   position: fixed;
   top: 0;
@@ -461,15 +460,19 @@ main {
   border-radius: 16px;
   width: 100%;
   max-width: 800px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2),
+              0 0 50px rgba(0, 255, 255, 0.1);
   position: relative;
   color: #f0f0f0;
   font-family: 'Segoe UI', sans-serif;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(0, 255, 255, 0.4);
 }
 
 .modal-content:hover {
-  transform: scale(1.01);
+  transform: scale(1.015);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4),
+              0 0 60px rgba(0, 255, 255, 0.2);
 }
 
 .modal-body {
@@ -483,12 +486,13 @@ main {
   width: 220px;
   border-radius: 12px;
   object-fit: cover;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .modal-body img:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
 }
 
 .modal-text {
@@ -501,12 +505,14 @@ main {
   font-size: 1.8rem;
   margin-bottom: 0.75rem;
   color: #ffffff;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
 }
 
 .stars {
   margin-bottom: 0.75rem;
   color: #ffce31;
   font-size: 1.1rem;
+  text-shadow: 0 0 5px #ffce31aa;
 }
 
 .close {
@@ -516,11 +522,29 @@ main {
   font-size: 2rem;
   cursor: pointer;
   color: #ffffff;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 0 10px #fff;
 }
 
 .close:hover {
   color: #ff4e4e;
+  text-shadow: 0 0 10px #ff4e4e, 0 0 20px #ff4e4e;
+}
+
+/* Optional: Pulsing glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.2),
+                0 0 50px rgba(0, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(0, 255, 255, 0.4),
+                0 0 70px rgba(0, 255, 255, 0.2);
+  }
+}
+
+.modal-content.glow {
+  animation: pulseGlow 3s ease-in-out infinite;
 }
 
 /* Responsive */
