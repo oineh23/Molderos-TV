@@ -391,13 +391,6 @@ select {
       font-size: 30px;
     }
 
-/* MOBILE DISPLAY START */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
   .nav-links {
     flex-direction: row;
     width: 100%;
