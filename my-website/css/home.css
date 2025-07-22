@@ -233,23 +233,8 @@ select {
 }
 
 .search-bar {
-  background-color: #222;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  color: #fff;
-  margin-left: 1rem;
-  width: 200px;
-  transition: background-color 0.3s ease;
-}
-
-.search-bar:focus {
-  background-color: #333;
-}
-
-.search-bar::placeholder {
-  color: #aaa;
-}
+      padding: 5px; border-radius: 5px; border: none;
+    }
 
 /* Make nav responsive */
 .nav {
