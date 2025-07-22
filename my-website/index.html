@@ -669,13 +669,11 @@ function closeModal() {
   </div>
 </header>
   
-  <!-- Hero Section -->
-<section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
-  <!-- Fullscreen YouTube Video -->
+ <!-- Hero Section - Plex TV Style -->
+<section class="hero" style="position: relative; width: 100%; height: 100vh; overflow: hidden; font-family: 'Bebas Neue', sans-serif;">
+  <!-- Fullscreen YouTube Background Video -->
   <iframe
     id="hero-video"
-    width="560"
-    height="315"
     src="https://www.youtube.com/embed/RNuHMQtDl80?autoplay=1&mute=1&controls=0&loop=1&playlist=RNuHMQtDl80&enablejsapi=1"
     title="YouTube video player"
     frameborder="0"
@@ -689,69 +687,67 @@ function closeModal() {
       height: 120vh;
       transform: translate(-50%, -50%);
       z-index: 0;
-      pointer-events: none;
-    "
+      pointer-events: none;"
   ></iframe>
 
-  <!-- Overlay -->
+  <!-- Dark Overlay -->
   <div style="
-    position: absolute; 
-    top: 0; left: 0; 
-    width: 100%; height: 100%; 
-    background: rgba(0,0,0,0.5); 
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.5));
     z-index: 1;">
   </div>
 
-  <!-- Play Button -->
-  <button id="play-button" style="
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    background: rgba(0,0,0,0.7);
-    border: none;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  ">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#fff" viewBox="0 0 24 24">
-      <path d="M8 5v14l11-7z"/>
-    </svg>
-  </button>
-
   <!-- Hero Content -->
   <div class="hero-content" style="
-    position: relative; 
-    z-index: 2; 
-    height: 100%; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-end; 
-    align-items: center; 
-    text-align: center; 
-    padding: 40px; 
-    color: #fff;">
-    <h1 class="hero-title" style="
-      font-size: 2rem; 
-      font-weight: bold; 
-      text-shadow: 0 0 10px #0ff;">
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px;
+    max-width: 800px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);">
+    
+    <h1 style="font-size: 3.5rem; margin-bottom: 20px; color: #00ffff;">
       Avengers: Infinity War
     </h1>
-    <p class="hero-description" style="
-      max-width: 600px; 
-      margin: 20px auto; 
-      font-size: 1.2rem; 
-      color: #ccc;">
+    
+    <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 30px;">
       Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
     </p>
+
+    <div style="display: flex; gap: 20px;">
+      <a href="#modal" onclick="openModal('299536')" style="
+        padding: 12px 28px;
+        background-color: #ffcc00;
+        color: #000;
+        font-weight: bold;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background 0.3s;">
+        ▶️ Watch Now
+      </a>
+
+      <a href="#library" style="
+        padding: 12px 28px;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        font-weight: bold;
+        border: 1px solid #fff;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background 0.3s;">
+        📚 Explore Library
+      </a>
+    </div>
   </div>
 </section>
-  
+
   <!-- END OF CLEANED SECTIONS -->
 
   <!-- Loading Spinner -->
