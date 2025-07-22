@@ -550,8 +550,8 @@ main {
 /* Responsive */
 @media (max-width: 768px) {
   .modal-content {
-    width: 30vw;
-    max-height: 40vh;
+    width: 10vw;
+    max-height: 10vh;
     border-radius: 12px;
     overflow-y: auto;
   }
@@ -567,7 +567,7 @@ main {
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 480px) {
   .modal-content {
     padding: 1rem;
   }
