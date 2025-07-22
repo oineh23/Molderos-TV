@@ -550,10 +550,10 @@ main {
 /* Responsive */
 @media (max-width: 768px) {
   .modal-content {
-    width: 30vw;
-    max-height: 30vh;
-    border-radius: 10px;
-    overflow-y: fixed;
+    width: 50vw;
+    max-height: 50vh;
+    border-radius: 12px;
+    overflow-y: auto;
   }
 
   .modal-body {
@@ -569,7 +569,7 @@ main {
 
 @media (max-width: 480px) {
   .modal-content {
-    padding: 1rem;
+    padding: .5rem;
   }
 
   #modal-video {
