@@ -369,6 +369,27 @@ select {
   background-color: #f40612;
 }
 
+.banner {
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  color: white;
+}
+
+.row {
+  padding: 1.5rem;
+}
+
+.list {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+}
+
+
 /* Genre Filter */
 .genre-filter {
   padding: 1rem 2rem;
