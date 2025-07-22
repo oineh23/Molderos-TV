@@ -103,7 +103,7 @@ function createCard(item) {
 
   const button = document.createElement('button');
   button.className = 'watch-button';
-  button.innerHTML = '▶'; // Netflix-style play icon
+  button.textContent = 'Watch Now';
   button.onclick = () => showDetails(item);
 
   const info = document.createElement('div');
