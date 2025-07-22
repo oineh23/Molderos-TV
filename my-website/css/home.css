@@ -234,17 +234,6 @@ select {
 }
 
 /* Make nav responsive */
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
 .menu-icon {
   display: none;
   font-size: 1.8rem;
