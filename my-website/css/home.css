@@ -569,12 +569,12 @@ main {
 
 @media (max-width: 480px) {
   .modal-content {
-    padding: 3rem;
+    padding: 5rem;
   }
 
   #modal-video {
     object-fit: contain;
-    width: 100%;
+    width: 50%;
   }
 }
 
