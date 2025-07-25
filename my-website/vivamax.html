@@ -324,6 +324,21 @@
     </div>
   </div>
 
+   <!-- Search Modal -->
+<div class="search-modal" id="search-modal">
+  <div class="search-modal-box">
+    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Search movies, TV shows, or anime..." 
+      oninput="searchTMDB()" 
+      aria-label="Search input"
+    />
+    <div class="results" id="search-results"></div>
+  </div>
+</div>
+
     <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
