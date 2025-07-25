@@ -1,12 +1,19 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="UTF-8" />
   <title>MOLDEROS_IPTV</title>
+
+  <!-- Icons & Fonts -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+  
+
+  <!-- Styles -->
   <link rel="stylesheet" href="css/display.css" />
   <link rel="stylesheet" href="css/app.css" />
   <style>
@@ -88,27 +95,12 @@
       justify-content: center;
       height: calc(100vh - 60px);
       background: #000;
-      position: relative;
     }
     video {
       width: 100%;
       height: 100%;
       background: #000;
     }
-    .channel-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.5);
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      padding: 10px 16px;
-      cursor: pointer;
-      z-index: 10;
-    }
-    .prev-button { left: 10px; }
-    .next-button { right: 10px; }
     .logo img {
       height: 40px;
       margin-right: 10px;
@@ -146,10 +138,18 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
     }
+
+    body {
+  ...
+  overflow-x: hidden; /* allow vertical scrolling */
+}
   </style>
+
+  <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json" />
 </head>
 <body>
+  <!-- Splash Screen -->
   <div id="splash-screen">
     <div class="splash-content">
       <i class="fas fa-tv" aria-label="TV Icon"></i>
@@ -157,19 +157,19 @@
     </div>
   </div>
 
+  <!-- Navbar -->
   <header class="nav-wrapper">
    <a href="index.html" class="logo" style="display: flex; align-items: center; gap: .4rem;">
-     <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2rem;"></i>
-     <span>M0LD<span class="main-color">ER0S</span>-iPTV</span>
+  <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2rem;"></i>
+  <span>M0LD<span class="main-color">ER0S</span>-iPTV</span>
    </a>
   </header>
 
+  <!-- OTT Container -->
   <div id="container-ott">
     <div class="container">
       <div class="ott-container" id="video-ott">
-        <button class="channel-nav prev-button" onclick="switchChannel(-1)">&#9664;</button>
-        <video id="drm-player" class="ott-player" controls autoplay muted playsinline></video>
-        <button class="channel-nav next-button" onclick="switchChannel(1)">&#9654;</button>
+        <video id="drm-player" class="ott-player" controls autoplay playsinline></video>
       </div>
     </div>
 
@@ -177,29 +177,14 @@
       <h2>CHANNELS</h2>
       <input type="text" id="search-bar" placeholder="Search channels..." />
       <div class="channel-sbr">
-        <ul id="channels">
-          <li data-stream-key="gma">GMA</li>
-          <li data-stream-key="anc">ANC</li>
-          <li data-stream-key="cinemaone">Cinema One</li>
-          <li data-stream-key="cinemo">CINEMO!</li>
-          <li data-stream-key="gmapinoytv">GMA Pinoy TV</li>
-          <li data-stream-key="kapamilyachannel">Kapamilya Channel</li>
-          <li data-stream-key="myx">MYX</li>
-          <li data-stream-key="teleradyoserbisyo">Teleradyo Serbisyo</li>
-          <li data-stream-key="tfc">TFC</li>
-          <li data-stream-key="tv5hd">TV5 HD</li>
-          <li data-stream-key="rptvhd">RPTV HD</li>
-          <li data-stream-key="truefmtv">True FM TV</li>
-          <li data-stream-key="a2z">A2Z</li>
-          <li data-stream-key="ptv4">PTV 4</li>
-          <li data-stream-key="ibc13">IBC 13</li>
-        </ul>
+        <ul id="channels"></ul>
       </div>
     </div>
 
     <button id="open-button"><i class="fa fa-bars"></i> Menu</button>
   </div>
 
+  <!-- Scripts -->
   <script>
     window.addEventListener('load', () => {
       const splash = document.getElementById('splash-screen');
@@ -208,25 +193,10 @@
         setTimeout(() => splash.style.display = 'none', 1000);
       }, 2500);
     });
-
-    const channelKeys = [
-      "gma", "anc", "cinemaone", "cinemo", "gmapinoytv", "kapamilyachannel",
-      "myx", "teleradyoserbisyo", "tfc", "tv5hd", "rptvhd", "truefmtv",
-      "a2z", "ptv4", "ibc13"
-    ];
-    let currentIndex = 0;
-
-    function switchChannel(direction) {
-      currentIndex += direction;
-      if (currentIndex < 0) currentIndex = channelKeys.length - 1;
-      if (currentIndex >= channelKeys.length) currentIndex = 0;
-      const event = new Event('click');
-      const li = document.querySelector(`[data-stream-key="${channelKeys[currentIndex]}"]`);
-      if (li) li.dispatchEvent(event);
-    }
   </script>
   <script src="js/script.js" defer></script>
   <script src="js/browser.js" defer></script>
   <script src="js/app.js" defer></script>
+  <script src="js/devtools-protect.js"></script>
 </body>
 </html>
