@@ -325,17 +325,31 @@
   </div>
 
   <!-- Search Modal -->
-<div class="search-modal" id="search-modal">
+<div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-labelledby="search-input">
   <div class="search-modal-box">
-    <span class="close" onclick="closeSearchModal()" aria-label="Close search modal">&times;</span>
+    
+    <!-- Close Button -->
+    <button 
+      class="close" 
+      onclick="closeSearchModal()" 
+      aria-label="Close search modal"
+    >
+      &times;
+    </button>
+
+    <!-- Search Input -->
     <input 
       type="text" 
       id="search-input" 
       placeholder="Search movies, TV shows, or anime..." 
       oninput="searchTMDB()" 
-      aria-label="Search input"
+      aria-label="Search"
+      autocomplete="off"
     />
-    <div class="results" id="search-results"></div>
+
+    <!-- Search Results -->
+    <div class="results" id="search-results" role="region" aria-live="polite"></div>
+    
   </div>
 </div>
 
