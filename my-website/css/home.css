@@ -824,6 +824,92 @@ select {
   letter-spacing: 0.5px;
 }
 
+/* === Netflix-Style Vivamax (Pinoy Movies) === */
+#pinoy-movies {
+  background-color: #141414;
+  padding: 2rem 1rem;
+  color: #fff;
+}
+
+#pinoy-movies .trending-header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#pinoy-movies h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+
+#pinoy-movie-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+#pinoy-movie-list::-webkit-scrollbar {
+  display: none;
+}
+
+.netflix-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 180px;
+  scroll-snap-align: start;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  background-color: #222;
+}
+
+.netflix-card img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+}
+
+.netflix-card:hover {
+  transform: scale(1.07);
+  z-index: 2;
+}
+
+.netflix-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.netflix-card:hover .netflix-info {
+  opacity: 1;
+}
+
+.netflix-info h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.netflix-info span {
+  font-size: 0.75rem;
+  color: #ccc;
+}
+
 /* Load More Button Styles */
 .load-more-container {
   text-align: center;
