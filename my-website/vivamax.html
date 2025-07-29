@@ -219,6 +219,47 @@
     }
   });
 </script>
+
+  <script>
+  const serverList = [
+    "https://vidsrc.cc/embed/movie/sample-movie",
+    "https://player.videasy.net/embed/sample-movie"
+  ];
+
+  const iframe = document.getElementById('videoPlayer');
+  let currentIndex = 0;
+
+  function loadVideo(index) {
+    if (index >= serverList.length) {
+      alert("Sorry, all servers failed.");
+      return;
+    }
+
+    iframe.src = serverList[index];
+
+    // Wait a few seconds, then check if iframe loaded (very basic check)
+    setTimeout(() => {
+      const isLoaded = iframe.contentWindow && iframe.contentDocument.readyState === "complete";
+      if (!isLoaded) {
+        console.log(`Server ${index + 1} failed, trying next...`);
+        loadVideo(index + 1);
+      }
+    }, 5000); // wait 5 seconds to check
+  }
+
+  // Initial load
+  loadVideo(currentIndex);
+
+  // Optional: Change server manually via dropdown
+  document.getElementById('serverSelect').addEventListener('change', function () {
+    const selected = this.value;
+    const url = selected === "vidsrc.cc"
+      ? "https://vidsrc.cc/embed/movie/sample-movie"
+      : "https://player.videasy.net/embed/sample-movie";
+    iframe.src = url;
+  });
+</script>
+
   
 <body>
   <!-- Navbar -->
@@ -315,14 +356,13 @@
       </div>
       <div class="server-selector">
         <label for="server">Change Server:</label>
-        <select id="server" onchange="changeServer()">
-          <option value="vidsrc.cc">Vidsrc.cc</option>
-          <option value="player.videasy.net">Player.Videasy.net</option>
-        </select>
-     </div>
-      <iframe id="modal-video" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
+        <select id="serverSelect">
+  <option value="vidsrc.cc">Vidsrc.cc</option>
+  <option value="player.videasy.net">Player.Videasy.net</option>
+</select>
+
+<iframe id="videoPlayer" width="100%" height="500" allowfullscreen></iframe>
+
 
    <!-- Search Modal -->
 <div class="search-modal" id="search-modal">
