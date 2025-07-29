@@ -13,8 +13,6 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -671,55 +669,89 @@ function closeModal() {
   </div>
 </header>
   
-  <section class="hero-carousel">
-  <div class="swiper hero-swiper">
-    <div class="swiper-wrapper">
+  <!-- Hero Section -->
+<section class="hero" style="position: relative; width: 100%; height: 90vh; overflow: hidden;">
+  <!-- Fullscreen YouTube Video -->
+  <iframe
+    id="hero-video"
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/RNuHMQtDl80?autoplay=1&mute=1&controls=0&loop=1&playlist=RNuHMQtDl80&enablejsapi=1"
+    title="YouTube video player"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+    style="
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120vw;
+      height: 120vh;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+    "
+  ></iframe>
 
-      <!-- Slide 1 -->
-      <div class="swiper-slide" style="position: relative;">
-        <video autoplay muted loop playsinline class="hero-bg-video">
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-        </video>
-        <div class="hero-overlay">
-          <h1>Avengers: Infinity War</h1>
-          <p>Brace yourself for intense battles and raw adrenaline.</p>
-          <div class="hero-buttons">
-            <button><i class="fas fa-play"></i> Play</button>
-            <button class="info"><i class="fas fa-info-circle"></i> More Info</button>
-          </div>
-        </div>
-      </div>
+  <!-- Overlay -->
+  <div style="
+    position: absolute; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.5); 
+    z-index: 1;">
+  </div>
 
-      <!-- Slide 2 -->
-      <div class="swiper-slide" style="position: relative;">
-        <img src="https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg" class="hero-bg-image" />
-        <div class="hero-overlay">
-          <h1>Wonder Woman</h1>
-          <p>A warrior's destiny begins with courage and hope.</p>
-          <div class="hero-buttons">
-            <button><i class="fas fa-play"></i> Play</button>
-            <button class="info"><i class="fas fa-info-circle"></i> More Info</button>
-          </div>
-        </div>
-      </div>
+  <!-- Play Button -->
+  <button id="play-button" style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background: rgba(0,0,0,0.7);
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  ">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#fff" viewBox="0 0 24 24">
+      <path d="M8 5v14l11-7z"/>
+    </svg>
+  </button>
 
-      <!-- Slide 3 -->
-      <div class="swiper-slide" style="position: relative;">
-        <img src="https://image.tmdb.org/t/p/original/xGuOF1T3WmPsAcQEQJfnG7Ud9f8.jpg" class="hero-bg-image" />
-        <div class="hero-overlay">
-          <h1>Dune</h1>
-          <p>The fight for the galaxy begins with a prophecy.</p>
-          <div class="hero-buttons">
-            <button><i class="fas fa-play"></i> Play</button>
-            <button class="info"><i class="fas fa-info-circle"></i> More Info</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
+  <!-- Hero Content -->
+  <div class="hero-content" style="
+    position: relative; 
+    z-index: 2; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end; 
+    align-items: center; 
+    text-align: center; 
+    padding: 40px; 
+    color: #fff;">
+    <h1 class="hero-title" style="
+      font-size: 2rem; 
+      font-weight: bold; 
+      text-shadow: 0 0 10px #0ff;">
+      Avengers: Infinity War
+    </h1>
+    <p class="hero-description" style="
+      max-width: 600px; 
+      margin: 20px auto; 
+      font-size: 1.2rem; 
+      color: #ccc;">
+      Brace yourself for intense battles, daring escapes, and raw adrenaline — stream action hits now!
+    </p>
   </div>
 </section>
-
+  
   <!-- END OF CLEANED SECTIONS -->
 
   <!-- Loading Spinner -->
@@ -863,24 +895,8 @@ function closeModal() {
   }
 </script>
 
-  <script>
-  const swiper = new Swiper(".hero-swiper", {
-    loop: true,
-    effect: "fade",
-    autoplay: {
-      delay: 8000,
-      disableOnInteraction: false,
-    },
-    allowTouchMove: false
-  });
-</script>
-
-
 <script src="js/devtools-protect.js"></script>
 <script src="js/home.obfuscated.js"></script>
-  <!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
 
 </body>
 </html>
