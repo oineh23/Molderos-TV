@@ -415,3 +415,59 @@ loadMoreKoreanBtn.addEventListener('click', () => {
 
 // Initial Korean movie load
 loadKoreanMovies();
+
+function renderPinoyMovies(movies) {
+  const movieList = document.getElementById('pinoy-movie-list');
+  movieList.innerHTML = ''; // Clear previous results
+
+  movies.forEach(movie => {
+    const { title, name, poster_path, release_date, first_air_date, genre_ids } = movie;
+
+    const imageUrl = poster_path 
+      ? `https://image.tmdb.org/t/p/w500${poster_path}`
+      : 'images/placeholder.jpg';
+
+    const movieTitle = title || name || 'Untitled';
+    const year = (release_date || first_air_date || '').split('-')[0] || 'N/A';
+    const genre = getGenreName(genre_ids[0]) || 'Unknown';
+
+    const card = document.createElement('div');
+    card.className = 'netflix-card';
+    card.innerHTML = `
+      <img src="${imageUrl}" alt="${movieTitle}" />
+      <div class="netflix-info">
+        <h4>${movieTitle}</h4>
+        <span>${genre} • ${year}</span>
+      </div>
+    `;
+
+    // Optional: click opens modal
+    card.addEventListener('click', () => openModalWithMovie(movie));
+
+    movieList.appendChild(card);
+  });
+}
+
+// Optional: map genre ID to name
+function getGenreName(id) {
+  const genreMap = {
+    28: 'Action',
+    35: 'Comedy',
+    18: 'Drama',
+    10749: 'Romance',
+    80: 'Crime',
+    27: 'Horror',
+    10751: 'Family',
+    16: 'Animation',
+    99: 'Documentary',
+    10402: 'Music',
+    9648: 'Mystery',
+    878: 'Sci-Fi',
+    10752: 'War',
+    37: 'Western',
+    36: 'History',
+    14: 'Fantasy',
+    53: 'Thriller'
+  };
+  return genreMap[id];
+}
