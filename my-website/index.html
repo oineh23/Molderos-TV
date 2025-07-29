@@ -863,6 +863,19 @@ function closeModal() {
   }
 </script>
 
+  <script>
+  const swiper = new Swiper(".hero-swiper", {
+    loop: true,
+    effect: "fade",
+    autoplay: {
+      delay: 8000,
+      disableOnInteraction: false,
+    },
+    allowTouchMove: false
+  });
+</script>
+
+
 <script src="js/devtools-protect.js"></script>
 <script src="js/home.obfuscated.js"></script>
   <!-- Swiper JS -->
