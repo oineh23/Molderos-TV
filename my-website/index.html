@@ -504,6 +504,7 @@
 </style>
 
 <script>
+  
   // Theme toggle logic
   document.addEventListener("DOMContentLoaded", () => {
     const currentTheme = localStorage.getItem("theme") || "light";
@@ -519,74 +520,6 @@
       });
     }
   });
-
-const serverList = [
-  'vidsrc.cc',
-  'vidsrc.me',
-  'player.videasy.net'
-];
-
-let currentServerIndex = 0;
-let currentMovieId = ''; // this should be set when opening modal
-let tryTimeout = null;
-
-function openModal(movieId) {
-  currentMovieId = movieId;
-  currentServerIndex = 0;
-  document.getElementById('modal').style.display = 'flex';
-  tryServer(currentServerIndex);
-}
-
-function tryServer(index) {
-  clearTimeout(tryTimeout);
-
-  if (index >= serverList.length) {
-    const iframe = document.getElementById('modal-video');
-    iframe.src = '';
-    iframe.parentElement.innerHTML += `<div style="position:absolute;color:white;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">⚠️ All servers failed.<br>Try again later.</div>`;
-    return;
-  }
-
-  const server = serverList[index];
-  const iframe = document.getElementById('modal-video');
-  iframe.src = `https://${server}/embed/movie/${currentMovieId}`;
-
-  // Wait and try next if the server refuses to connect
-  tryTimeout = setTimeout(() => {
-    // Try to access contentWindow - if cross-origin or fails, switch server
-    try {
-      const doc = iframe.contentDocument || iframe.contentWindow.document;
-      // Check if it's about:blank (likely blocked or empty)
-      if (!doc || doc.location.href === "about:blank") {
-        console.warn(`❌ ${server} returned blank. Trying next...`);
-        tryServer(index + 1);
-      }
-    } catch (e) {
-      // Most likely a CORS restriction or blocked
-      console.warn(`❌ ${server} refused connection. Trying next...`);
-      tryServer(index + 1);
-    }
-  }, 4000); // Wait 4s before checking if it failed
-}
-
-function changeServer() {
-  clearTimeout(tryTimeout);
-  const select = document.getElementById('server');
-  const selectedServer = select.value;
-  const iframe = document.getElementById('modal-video');
-  iframe.src = `https://${selectedServer}/embed/movie/${currentMovieId}`;
-}
-
-function closeModal() {
-  clearTimeout(tryTimeout);
-  document.getElementById('modal').style.display = 'none';
-  document.getElementById('modal-video').src = '';
-}
-
-    const toggleBtn = document.getElementById('toggle-btn');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-    });
     
 </script>
   
