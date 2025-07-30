@@ -540,38 +540,28 @@ function openModal(movieId) {
 function tryServer(index) {
   clearTimeout(tryTimeout);
 
-  if (index >= serverList.length) {
+  const servers = serverList;
+  if (index >= servers.length) {
     const iframe = document.getElementById('modal-video');
     iframe.src = '';
-    iframe.parentElement.innerHTML += `<div style="position:absolute;color:white;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">⚠️ All servers failed.<br>Try again later.</div>`;
+    iframe.parentElement.innerHTML += `<div style="position:absolute;color:white;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:white;">⚠️ All servers failed.<br>Try again later.</div>`;
     return;
   }
 
-  const server = serverList[index];
   const iframe = document.getElementById('modal-video');
-  iframe.src = `https://${server}/embed/movie/${currentMovieId}`;
+  const currentServer = servers[index];
+  const movieUrl = `https://${currentServer}/embed/movie/${currentMovieId}`;
+  iframe.src = movieUrl;
 
-  // Check after 4 seconds if iframe loaded successfully
+  console.log(`🔄 Trying server: ${currentServer}`);
+
+  // Wait 5 seconds, then switch if not playing
   tryTimeout = setTimeout(() => {
-    let failed = false;
-    
-    // 1. Check if iframe is still blank or blocked
-    try {
-      const test = iframe.contentWindow.location.href;
-      // If cross-origin or error, move to next
-      if (test === "about:blank" || test === undefined) failed = true;
-    } catch (e) {
-      failed = true;
-    }
-
-    if (failed) {
-      console.warn(`❌ ${server} failed or blocked. Trying next...`);
-      tryServer(index + 1);
-    } else {
-      console.log(`✅ Loaded from ${server}`);
-    }
-  }, 4000);
+    // Next server
+    tryServer(index + 1);
+  }, 5000);
 }
+
 
 function changeServer() {
   clearTimeout(tryTimeout);
