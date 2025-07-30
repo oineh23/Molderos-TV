@@ -200,6 +200,25 @@
   display: flex;
 }
 
+  /* Hide on desktop */
+  .server-switch {
+    display: none;
+  }
+
+  /* Show on devices smaller than 1024px (tablet and below) */
+  @media (max-width: 1024px) {
+    .server-switch {
+      display: block;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    #serverSelect {
+      padding: 8px;
+      font-size: 16px;
+    }
+  }
+
 </style>
   
 <script>
@@ -219,6 +238,15 @@
     }
   });
 </script>
+
+  <script>
+  function changeServer(server) {
+    const iframe = document.getElementById('videoPlayer');
+    const movieId = iframe.getAttribute('data-movie-id');
+    iframe.src = `https://${server}/embed/${movieId}`;
+  }
+</script>
+
   
 <body>
   <!-- Navbar -->
