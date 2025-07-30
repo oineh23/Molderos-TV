@@ -263,43 +263,36 @@ function showDetails(item) {
   document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
   document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2)) || 'N/A';
 
-  changeServer(0); // Start from first server
+  changeServer();
   document.getElementById('modal').style.display = 'flex';
 }
 
-function changeServer(index = 0) {
-  if (!currentItem) return;
+function changeServer() {
+  const server = document.getElementById('server')?.value;
+  if (!server || !currentItem) return;
 
-  const servers = [
-    `https://vidsrc.cc/v2/embed/${currentItem.media_type}/${currentItem.id}`,
-    `https://vidsrc.net/embed/${currentItem.media_type}/?tmdb=${currentItem.id}`,
-    `https://player.videasy.net/${currentItem.media_type}/${currentItem.id}`
-  ];
+  const type = currentItem.media_type === 'movie' ? 'movie' : 'tv';
+  const id = currentItem.id;
+  let embedURL = '';
 
-  if (index >= servers.length) {
-    document.getElementById('modal-video').src = '';
-    alert('❌ All servers failed. Try again later.');
-    return;
+  switch (server) {
+    case 'vidsrc.cc':
+      embedURL = `https://vidsrc.cc/v2/embed/${type}/${id}`;
+      break;
+    case 'vidsrc.me':
+      embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
+      break;
+    case 'player.videasy.net':
+      embedURL = `https://player.videasy.net/${type}/${id}`;
+      break;
   }
 
-  const iframe = document.getElementById('modal-video');
-  iframe.src = servers[index];
+  document.getElementById('modal-video').src = embedURL;
+}
 
-  // Check if server is valid after 5 seconds
-  setTimeout(() => {
-    try {
-      const doc = iframe.contentDocument || iframe.contentWindow.document;
-      const bodyText = doc?.body?.innerText || '';
-      if (bodyText.includes('Invalid') || bodyText.trim() === '') {
-        console.warn('Server failed, trying next...');
-        changeServer(index + 1); // try next server
-      }
-    } catch (e) {
-      // Most cross-origin iframes block access: assume failed if not loaded
-      console.warn('Cross-origin check failed, assuming broken. Trying next...');
-      changeServer(index + 1);
-    }
-  }, 5000); // adjust delay if needed
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+  document.getElementById('modal-video').src = '';
 }
 
 // ====== SEARCH MODAL ======
