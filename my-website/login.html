@@ -19,7 +19,7 @@
     }
 
     body {
-      background: url('images/cool.jpg') no-repeat center center fixed;
+      background: url('https://assets.nflxext.com/ffe/siteui/vlv3/6d7674b1-e1df-43d3-99a3-8a4ff515ab3a/85775847-fcb7-4219-a6df-94c7d6c6e1ae/PH-en-20240219-popsignuptwoweeks-perspective_alpha_website_large.jpg') no-repeat center center fixed;
       background-size: cover;
       position: relative;
     }
@@ -70,7 +70,7 @@
     input {
       width: 100%;
       padding: 14px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       background: #333;
       border: none;
       border-radius: 4px;
@@ -82,14 +82,19 @@
       color: #bbb;
     }
 
-    .checkbox {
+    .options-row {
       display: flex;
-      align-items: left;
-      justify-content: start;
-      gap: 10px;
-      margin-bottom: 20px;
+      justify-content: flex-start;
+      align-items: center;
+      margin: -5px 0 20px 0;
       font-size: 0.9rem;
       color: #aaa;
+    }
+
+    .remember-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     button {
@@ -114,22 +119,6 @@
       font-size: 0.85rem;
       color: #888;
     }
-
-    .options-row {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin: -10px 0 20px 0;
-  font-size: 0.9rem;
-  color: #aaa;
-}
-
-.remember-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
   </style>
 </head>
 <body>
@@ -140,20 +129,22 @@
       <form id="loginForm">
         <input type="text" id="username" placeholder="Username" required />
         <input type="password" id="password" placeholder="Password" required />
-        <div class="options-row">
-        <label class="remember-checkbox">
-        <input type="checkbox" id="rememberMe" />Remember me</label></div>
-        <button type="submit">Login</button>
 
+        <div class="options-row">
+          <label class="remember-checkbox">
+            <input type="checkbox" id="rememberMe" />
+            Remember me
+          </label>
+        </div>
+
+        <button type="submit">Login</button>
       </form>
       <div class="footer-text">This page is protected by reCAPTCHA and Google Privacy Policy applies.</div>
     </div>
   </div>
 
   <script>
-    const form = document.getElementById('loginForm');
-
-    form.addEventListener('submit', function (e) {
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
       e.preventDefault();
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
@@ -165,7 +156,7 @@
         } else {
           sessionStorage.setItem('username', username);
         }
-        window.location.href = "index.html";
+        window.location.href = "index.html"; // redirect to home
       }
     });
   </script>
