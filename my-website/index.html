@@ -570,19 +570,6 @@
       M0LD<span class="main-color">ER0S</span>-TV
     </a>
 
-    <!-- 🔐 LOGIN SECTION -->
-<div id="login-section" style="display: flex; justify-content: center; gap: 10px; margin: 20px;">
-  <input type="text" id="usernameInput" placeholder="Enter username" style="padding: 10px; font-size: 1rem;" />
-  <button onclick="loginUser()" style="padding: 10px 20px;">Login</button>
-</div>
-
-<!-- 👋 Welcome Section -->
-<div id="user-section" class="hidden" style="text-align: center; margin: 20px;">
-  <span id="welcomeMessage"></span>
-  <button onclick="logoutUser()" style="margin-left: 10px; padding: 8px 16px;">Logout</button>
-</div>
-
-
     <input type="checkbox" id="menu-toggle" />
     <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
 
@@ -755,15 +742,6 @@
   </div>
 </div>
 
-  <!-- ❤️ My List Section -->
-<section id="my-list-section" style="padding: 40px 20px;">
-  <div class="section-header">
-    <h2>❤️ My List</h2>
-  </div>
-  <div id="myList" class="card-container"></div>
-</section>
-
-
     <!-- Footer -->
   <footer class="footer">
   <div class="footer-content">
@@ -850,79 +828,7 @@
   }
 </script>
 
-  <script>
-  let currentUser = null;
-
-  function loginUser() {
-    const username = document.getElementById('usernameInput').value.trim();
-    if (username) {
-      localStorage.setItem('molderos_username', username);
-      currentUser = username;
-      showUserSection();
-      loadMyList();
-    }
-  }
-
-  function logoutUser() {
-    localStorage.removeItem('molderos_username');
-    currentUser = null;
-    document.getElementById('login-section').style.display = 'flex';
-    document.getElementById('user-section').classList.add('hidden');
-    document.getElementById('myList').innerHTML = '';
-  }
-
-  function showUserSection() {
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('user-section').classList.remove('hidden');
-    document.getElementById('welcomeMessage').innerText = `Welcome, ${currentUser}!`;
-  }
-
-  function addToMyList(movie) {
-    if (!currentUser) return alert('Please login first.');
-    let list = JSON.parse(localStorage.getItem(`molderos_list_${currentUser}`)) || [];
-    if (!list.some(item => item.id === movie.id)) {
-      list.push(movie);
-      localStorage.setItem(`molderos_list_${currentUser}`, JSON.stringify(list));
-      loadMyList();
-    }
-  }
-
-  function removeFromMyList(id) {
-    let list = JSON.parse(localStorage.getItem(`molderos_list_${currentUser}`)) || [];
-    list = list.filter(item => item.id !== id);
-    localStorage.setItem(`molderos_list_${currentUser}`, JSON.stringify(list));
-    loadMyList();
-  }
-
-  function loadMyList() {
-    const container = document.getElementById('myList');
-    container.innerHTML = '';
-    const list = JSON.parse(localStorage.getItem(`molderos_list_${currentUser}`)) || [];
-
-    list.forEach(movie => {
-      const card = document.createElement('div');
-      card.classList.add('card');
-      card.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" />
-        <div class="card-content" style="text-align:center; padding:10px;">
-          <h4>${movie.title}</h4>
-          <button onclick="removeFromMyList(${movie.id})">Remove</button>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  // Auto-login
-  window.onload = () => {
-    const savedUser = localStorage.getItem('molderos_username');
-    if (savedUser) {
-      currentUser = savedUser;
-      showUserSection();
-      loadMyList();
-    }
-  };
-</script>
+  
 
 
 <script src="js/devtools-protect.js"></script>
