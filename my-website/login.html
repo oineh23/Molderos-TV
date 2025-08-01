@@ -4,43 +4,86 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - MOLDEROS-TV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #000 url('https://assets.nflxext.com/ffe/siteui/vlv3/6d7674b1-e1df-43d3-99a3-8a4ff515ab3a/85775847-fcb7-4219-a6df-94c7d6c6e1ae/PH-en-20240219-popsignuptwoweeks-perspective_alpha_website_large.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 0;
     }
 
     .login-container {
-      background: #222;
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    input, button {
-      padding: 10px;
-      margin-top: 1rem;
+      position: relative;
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.75);
+      max-width: 400px;
       width: 100%;
-      border-radius: 4px;
-      border: none;
-      font-size: 1rem;
+      padding: 60px 40px;
+      margin: auto;
+      margin-top: 8vh;
+      border-radius: 8px;
+      color: #fff;
     }
 
-    button {
-      background: #00ffff;
-      color: black;
-      cursor: pointer;
+    .login-container h2 {
+      margin: 0 0 30px;
+      font-size: 2rem;
       font-weight: bold;
     }
 
-    h2 {
-      margin-bottom: 1rem;
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      background: #333;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    input::placeholder {
+      color: #bbb;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #e50914;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #f6121d;
+    }
+
+    .footer-text {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #aaa;
+      text-align: center;
     }
   </style>
 </head>
@@ -51,6 +94,7 @@
       <input type="text" id="username" placeholder="Enter username" required />
       <button type="submit">Login</button>
     </form>
+    <div class="footer-text">By continuing, you agree to our terms and privacy policy.</div>
   </div>
 
   <script>
@@ -59,7 +103,7 @@
       const username = document.getElementById('username').value.trim();
       if (username) {
         localStorage.setItem('username', username);
-        window.location.href = "index.html"; // or home.html
+        window.location.href = "index.html"; // redirect after login
       }
     });
   </script>
