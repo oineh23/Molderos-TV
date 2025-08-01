@@ -500,6 +500,39 @@
     aspect-ratio: 16 / 9;
   }
 }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .login-screen, .home-screen {
+      display: none;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .login-screen.active, .home-screen.active {
+      display: flex;
+    }
+    input {
+      padding: 10px;
+      margin: 8px;
+      font-size: 16px;
+      width: 200px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
     
 </style>
 
@@ -569,6 +602,22 @@
       <i class='bx bx-movie-play bx-tada main-color' style="font-size: 2.2rem;"></i>
       M0LD<span class="main-color">ER0S</span>-TV
     </a>
+
+    <!-- LOGIN SCREEN -->
+<div class="login-screen active" id="loginScreen">
+  <h2>Login to MOLDEROS-TV</h2>
+  <input type="text" id="username" placeholder="Username" required />
+  <input type="password" id="password" placeholder="Password" required />
+  <button onclick="login()">Login</button>
+  <div class="error" id="errorMsg"></div>
+</div>
+
+<!-- HOME SCREEN (your real website goes here) -->
+<div class="home-screen" id="homeScreen">
+  <h1>🎬 Welcome to MOLDEROS-TV</h1>
+  <p>This is your home page content.</p>
+  <!-- You can also embed your real homepage using iframe or JS import -->
+</div>
 
     <input type="checkbox" id="menu-toggle" />
     <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
@@ -843,7 +892,24 @@
   }
 </script>
 
-  
+  <script>
+  // Hardcoded login credentials
+  const validUsername = "admin";
+  const validPassword = "1234"; // For demo only — avoid hardcoding in real apps!
+
+  function login() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    const error = document.getElementById("errorMsg");
+
+    if (user === validUsername && pass === validPassword) {
+      document.getElementById("loginScreen").classList.remove("active");
+      document.getElementById("homeScreen").classList.add("active");
+    } else {
+      error.textContent = "Invalid username or password!";
+    }
+  }
+</script>
 
 
 <script src="js/devtools-protect.js"></script>
