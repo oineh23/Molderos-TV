@@ -29,7 +29,8 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
       z-index: 0;
     }
 
@@ -44,25 +45,32 @@
     }
 
     .login-container {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.75);
       max-width: 400px;
       width: 100%;
       padding: 60px 40px;
       border-radius: 8px;
       color: #fff;
       text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .login-logo {
+      margin-bottom: 30px;
+      font-size: 2rem;
+      color: #e50914;
+      font-weight: bold;
     }
 
     .login-container h2 {
-      margin-bottom: 30px;
-      font-size: 2rem;
-      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
     }
 
     input {
       width: 100%;
       padding: 14px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       background: #333;
       border: none;
       border-radius: 4px;
@@ -72,6 +80,16 @@
 
     input::placeholder {
       color: #bbb;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      color: #aaa;
     }
 
     button {
@@ -93,29 +111,44 @@
 
     .footer-text {
       margin-top: 30px;
-      font-size: 0.9rem;
-      color: #aaa;
+      font-size: 0.85rem;
+      color: #888;
     }
   </style>
 </head>
 <body>
   <div class="login-wrapper">
     <div class="login-container">
-      <h2>Login to MOLDEROS-TV</h2>
+      <div class="login-logo">MOLDEROS-TV</div>
+      <h2>Sign In</h2>
       <form id="loginForm">
-        <input type="text" id="username" placeholder="Enter username" required />
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <div class="checkbox">
+          <input type="checkbox" id="rememberMe" />
+          <label for="rememberMe">Remember me</label>
+        </div>
         <button type="submit">Login</button>
       </form>
-      <div class="footer-text">By continuing, you agree to our terms and privacy policy.</div>
+      <div class="footer-text">This page is protected by reCAPTCHA and Google Privacy Policy applies.</div>
     </div>
   </div>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
+    const form = document.getElementById('loginForm');
+
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
       const username = document.getElementById('username').value.trim();
-      if (username) {
-        localStorage.setItem('username', username);
+      const password = document.getElementById('password').value.trim();
+      const remember = document.getElementById('rememberMe').checked;
+
+      if (username && password) {
+        if (remember) {
+          localStorage.setItem('username', username);
+        } else {
+          sessionStorage.setItem('username', username);
+        }
         window.location.href = "index.html";
       }
     });
