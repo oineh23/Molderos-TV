@@ -217,6 +217,13 @@
   });
 
 </script>
+
+  <script>
+  const username = localStorage.getItem('username');
+  if (!username) {
+    window.location.href = "login.html"; // redirect to login if not logged in
+  }
+</script>
   
 <body>
   <!-- Navbar -->
@@ -332,6 +339,15 @@
       </div>
     </div>
   </footer>
+
+  <script>
+  document.getElementById('user-greeting').textContent = `Hi, ${localStorage.getItem('username')}!`;
+
+  function logout() {
+    localStorage.removeItem('username');
+    window.location.href = "login.html";
+  }
+</script>
 
   <script src="js/devtools-protect.js"></script>
   <script src="js/home.obfuscated.js"></script>
