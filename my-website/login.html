@@ -10,13 +10,13 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       font-family: 'Roboto', sans-serif;
+      height: 100%;
       background: #000 url('https://assets.nflxext.com/ffe/siteui/vlv3/6d7674b1-e1df-43d3-99a3-8a4ff515ab3a/85775847-fcb7-4219-a6df-94c7d6c6e1ae/PH-en-20240219-popsignuptwoweeks-perspective_alpha_website_large.jpg') no-repeat center center fixed;
       background-size: cover;
-      position: relative;
     }
 
     body::before {
@@ -28,21 +28,28 @@
       z-index: 0;
     }
 
-    .login-container {
+    .login-wrapper {
       position: relative;
       z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .login-container {
       background: rgba(0, 0, 0, 0.75);
       max-width: 400px;
       width: 100%;
       padding: 60px 40px;
-      margin: auto;
-      margin-top: 8vh;
       border-radius: 8px;
       color: #fff;
+      text-align: center;
     }
 
     .login-container h2 {
-      margin: 0 0 30px;
+      margin-bottom: 30px;
       font-size: 2rem;
       font-weight: bold;
     }
@@ -83,18 +90,19 @@
       margin-top: 30px;
       font-size: 0.9rem;
       color: #aaa;
-      text-align: center;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Login to MOLDEROS-TV</h2>
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Enter username" required />
-      <button type="submit">Login</button>
-    </form>
-    <div class="footer-text">By continuing, you agree to our terms and privacy policy.</div>
+  <div class="login-wrapper">
+    <div class="login-container">
+      <h2>Login to MOLDEROS-TV</h2>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Enter username" required />
+        <button type="submit">Login</button>
+      </form>
+      <div class="footer-text">By continuing, you agree to our terms and privacy policy.</div>
+    </div>
   </div>
 
   <script>
