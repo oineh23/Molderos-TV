@@ -570,6 +570,19 @@
       M0LD<span class="main-color">ER0S</span>-TV
     </a>
 
+    <!-- 🔐 LOGIN SECTION -->
+<div id="login-section" style="display: flex; justify-content: center; gap: 10px; margin: 20px;">
+  <input type="text" id="usernameInput" placeholder="Enter username" style="padding: 10px; font-size: 1rem;" />
+  <button onclick="loginUser()" style="padding: 10px 20px;">Login</button>
+</div>
+
+<!-- 👋 Welcome Section -->
+<div id="user-section" class="hidden" style="text-align: center; margin: 20px;">
+  <span id="welcomeMessage"></span>
+  <button onclick="logoutUser()" style="margin-left: 10px; padding: 8px 16px;">Logout</button>
+</div>
+
+
     <input type="checkbox" id="menu-toggle" />
     <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
 
@@ -741,6 +754,15 @@
     <div class="search-results" id="search-results"></div>
   </div>
 </div>
+
+  <!-- ❤️ My List Section -->
+<section id="my-list-section" style="padding: 40px 20px;">
+  <div class="section-header">
+    <h2>❤️ My List</h2>
+  </div>
+  <div id="myList" class="card-container"></div>
+</section>
+
 
     <!-- Footer -->
   <footer class="footer">
