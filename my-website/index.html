@@ -524,6 +524,14 @@
 </script>
   
 <body>
+
+  <script>
+  const username = localStorage.getItem('username');
+  if (!username) {
+    window.location.href = "login.html"; // redirect to login if not logged in
+  }
+</script>
+
   <script>
   (function () {
     const devtools = {
@@ -589,6 +597,10 @@
       <button class="modal-btn cancel-btn" id="cancelBtn">Cancel</button>
     </div>
   </div>
+
+      <span id="user-greeting" style="margin-left: 10px; font-weight: bold; color: var(--text-color);"></span>
+<button onclick="logout()" style="margin-left: 10px; padding: 6px 12px; border-radius: 4px; border: none; background: #dc3545; color: #fff; cursor: pointer;">Logout</button>
+
       
       <input 
         type="text" 
@@ -843,7 +855,15 @@
   }
 </script>
 
-  
+  <script>
+  document.getElementById('user-greeting').textContent = `Hi, ${localStorage.getItem('username')}!`;
+
+  function logout() {
+    localStorage.removeItem('username');
+    window.location.href = "login.html";
+  }
+</script>
+
 
 
 <script src="js/devtools-protect.js"></script>
