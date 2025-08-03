@@ -856,3 +856,31 @@ select {
 .load-more-container button:hover {
   background-color: #e02e2e;
 }
+
+#server-switch {
+  display: block;
+  margin-top: 1rem;
+}
+
+#serverSelect {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #222;
+  color: #fff;
+  border-radius: 6px;
+  border: 1px solid #444;
+}
+
+/* Mobile Tweaks */
+@media (max-width: 768px) {
+  #server-switch {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #serverSelect {
+    font-size: 1rem;
+    width: 100%;
+  }
+}
