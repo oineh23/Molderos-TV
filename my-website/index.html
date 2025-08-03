@@ -742,13 +742,13 @@
     </div>
 
     <!-- Server Selector -->
-    <div class="server-selector">
-      <label for="server">Change Server:</label>
-      <select id="server" onchange="changeServer()">
-        <option value="vidsrc.cc">Vidsrc.cc</option>
-        <option value="vidsrc.me">Vidsrc.me</option>
-        <option value="player.videasy.net">Player.Videasy.net</option>
-      </select>
+    <div id="server-switch" style="margin-top: 1rem;">
+    <label for="serverSelect" style="display: block; margin-bottom: 5px;">Change Server:</label>
+    <select id="serverSelect" style="width: 100%; padding: 8px; font-size: 1rem;">
+    <option value="vidsrc.cc">Vidsrc.cc</option>
+    <option value="vidsrc.me">Vidsrc.me</option>
+    <option value="player.videasy.net">Videasy.net</option>
+    </select>
     </div>
   </div>
 </div>
@@ -871,3 +871,4 @@
 
 </body>
 </html>
+
