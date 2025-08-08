@@ -161,6 +161,15 @@
       }
     });
 
+    // Load users array from localStorage
+    function getUsers() {
+      return JSON.parse(localStorage.getItem('users')) || [];
+    }
+
+    function saveUsers(users) {
+      localStorage.setItem('users', JSON.stringify(users));
+    }
+
     // Handle form submit
     authForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -169,9 +178,14 @@
 
       if (isLogin) {
         // LOGIN MODE
-        const storedUser = JSON.parse(localStorage.getItem('user'));
-        if (storedUser && storedUser.username === username && storedUser.password === password) {
-          localStorage.setItem('username', username);
+        const users = getUsers();
+        const foundUser = users.find(user => user.username === username && user.password === password);
+        if (foundUser) {
+          if (document.getElementById('rememberMe').checked) {
+            localStorage.setItem('currentUser', username);
+          } else {
+            sessionStorage.setItem('currentUser', username);
+          }
           window.location.href = "index.html";
         } else {
           alert("Invalid username or password!");
@@ -182,7 +196,13 @@
           alert("Username must be at least 3 chars and password at least 4 chars.");
           return;
         }
-        localStorage.setItem('user', JSON.stringify({ username, password }));
+        let users = getUsers();
+        if (users.some(user => user.username === username)) {
+          alert("Username already exists. Choose another.");
+          return;
+        }
+        users.push({ username, password });
+        saveUsers(users);
         alert("Account created! Please log in.");
         isLogin = true;
         formTitle.textContent = "Sign In";
@@ -193,10 +213,5 @@
       }
     });
   </script>
-
-  <script src="js/devtools-protect.js"></script>
-  <script src="js/home.obfuscated.js"></script>
-  
 </body>
 </html>
-
