@@ -6,10 +6,7 @@
   <title>Login - 01N3H-TV</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     html, body {
       margin: 0;
       padding: 0;
@@ -17,13 +14,11 @@
       height: 100%;
       background: #000;
     }
-
     body {
       background: url('images/cool.jpg') no-repeat center center fixed;
       background-size: cover;
       position: relative;
     }
-
     body::before {
       content: "";
       position: absolute;
@@ -33,7 +28,6 @@
       backdrop-filter: blur(4px);
       z-index: 0;
     }
-
     .login-wrapper {
       position: relative;
       z-index: 1;
@@ -43,7 +37,6 @@
       min-height: 100vh;
       padding: 20px;
     }
-
     .login-container {
       background: rgba(0, 0, 0, 0.75);
       max-width: 400px;
@@ -54,19 +47,16 @@
       text-align: center;
       backdrop-filter: blur(8px);
     }
-
     .login-logo {
       margin-bottom: 30px;
       font-size: 2rem;
       color: #e50914;
       font-weight: bold;
     }
-
     .login-container h2 {
       margin-bottom: 20px;
       font-size: 1.8rem;
     }
-
     input {
       width: 100%;
       padding: 14px;
@@ -77,21 +67,20 @@
       color: #fff;
       font-size: 1rem;
     }
-
-    input::placeholder {
-      color: #bbb;
-    }
-
-    .checkbox {
+    input::placeholder { color: #bbb; }
+    .options-row {
       display: flex;
-      align-items: left;
-      justify-content: start;
-      gap: 10px;
-      margin-bottom: 20px;
+      justify-content: flex-start;
+      align-items: center;
+      margin: -10px 0 10px 0;
       font-size: 0.9rem;
       color: #aaa;
     }
-
+    .remember-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     button {
       width: 100%;
       padding: 14px;
@@ -104,77 +93,105 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-
-    button:hover {
-      background: #f6121d;
-    }
-
+    button:hover { background: #f6121d; }
     .footer-text {
-      margin-top: 30px;
+      margin-top: 20px;
       font-size: 0.85rem;
       color: #888;
     }
-
-    .options-row {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin: -10px 0 10px 0;
-  font-size: 0.9rem;
-  color: #aaa;
-}
-
-.remember-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
+    .toggle-link {
+      color: #fff;
+      margin-top: 15px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: underline;
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
   <div class="login-wrapper">
     <div class="login-container">
       <div class="login-logo">M0LDER0S-TV™</div>
-      <h2>Sign In</h2>
-      <form id="loginForm">
+      <h2 id="form-title">Sign In</h2>
+
+      <form id="authForm">
         <input type="text" id="username" placeholder="Username" required />
         <input type="password" id="password" placeholder="Password" required />
-        <div class="options-row">
-        <label class="remember-checkbox">
-        <input type="checkbox" id="rememberMe" />REMEMBER ME</label></div>
-        <button type="submit">Login</button>
+        
+        <div class="options-row" id="rememberRow">
+          <label class="remember-checkbox">
+            <input type="checkbox" id="rememberMe" />REMEMBER ME
+          </label>
+        </div>
 
+        <button type="submit" id="submitBtn">Login</button>
       </form>
-      <div class="footer-text">This page is protected by reCAPTCHA and Google Privacy Policy applies.</div>
+
+      <span class="toggle-link" id="toggleForm">Don't have an account? Sign Up</span>
+
+      <div class="footer-text">
+        This page is protected by reCAPTCHA and Google Privacy Policy applies.
+      </div>
     </div>
   </div>
 
   <script>
-    const form = document.getElementById('loginForm');
+    const formTitle = document.getElementById('form-title');
+    const authForm = document.getElementById('authForm');
+    const toggleForm = document.getElementById('toggleForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const rememberRow = document.getElementById('rememberRow');
 
-    form.addEventListener('submit', function (e) {
+    let isLogin = true; // default mode
+
+    // Toggle between login and sign up
+    toggleForm.addEventListener('click', () => {
+      isLogin = !isLogin;
+      if (isLogin) {
+        formTitle.textContent = "Sign In";
+        submitBtn.textContent = "Login";
+        toggleForm.textContent = "Don't have an account? Sign Up";
+        rememberRow.style.display = "flex";
+      } else {
+        formTitle.textContent = "Sign Up";
+        submitBtn.textContent = "Register";
+        toggleForm.textContent = "Already have an account? Sign In";
+        rememberRow.style.display = "none";
+      }
+    });
+
+    // Handle form submit
+    authForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
-      const remember = document.getElementById('rememberMe').checked;
 
-      if (username && password) {
-        if (remember) {
+      if (isLogin) {
+        // LOGIN MODE
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        if (storedUser && storedUser.username === username && storedUser.password === password) {
           localStorage.setItem('username', username);
+          window.location.href = "index.html";
         } else {
-          sessionStorage.setItem('username', username);
+          alert("Invalid username or password!");
         }
-        window.location.href = "index.html";
+      } else {
+        // SIGN UP MODE
+        if (username.length < 3 || password.length < 4) {
+          alert("Username must be at least 3 chars and password at least 4 chars.");
+          return;
+        }
+        localStorage.setItem('user', JSON.stringify({ username, password }));
+        alert("Account created! Please log in.");
+        isLogin = true;
+        formTitle.textContent = "Sign In";
+        submitBtn.textContent = "Login";
+        toggleForm.textContent = "Don't have an account? Sign Up";
+        rememberRow.style.display = "flex";
+        authForm.reset();
       }
     });
   </script>
-
-  <script src="js/devtools-protect.js"></script>
-  <script src="js/home.obfuscated.js"></script>
-  
 </body>
 </html>
-
-
-
