@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - 01N3H-TV</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
   
   <style>
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     height: 100%;
     background: #000;
   }
@@ -50,27 +51,26 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-
-    /* Animation settings */
     opacity: 0;
     transform: scale(0.9);
     animation: fadeInScale 0.8s ease-out forwards;
   }
   @keyframes fadeInScale {
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+    to { opacity: 1; transform: scale(1); }
   }
   .login-logo {
     margin-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
     color: #e50914;
-    font-weight: bold;
+    font-weight: 800;
+    letter-spacing: 1px;
   }
   .login-container h2 {
     margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.8rem;
+    font-weight: 600;
   }
   input {
     width: 100%;
@@ -216,6 +216,7 @@
   
 </body>
 </html>
+
 
 
 
