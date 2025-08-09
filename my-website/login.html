@@ -17,7 +17,7 @@
     background: #000;
   }
   body {
-    background: url('images/stage.jpg') no-repeat center center fixed;
+    background: url('images/room.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
   }
@@ -51,6 +51,8 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+
+    /* Animation for form */
     opacity: 0;
     transform: scale(0.9);
     animation: fadeInScale 0.8s ease-out forwards;
@@ -58,6 +60,8 @@
   @keyframes fadeInScale {
     to { opacity: 1; transform: scale(1); }
   }
+
+  /* Logo */
   .login-logo {
     margin-bottom: 30px;
     font-family: 'Montserrat', sans-serif;
@@ -66,12 +70,22 @@
     font-weight: 800;
     letter-spacing: 1px;
   }
+
+  /* Title with glow animation */
   .login-container h2 {
     margin-bottom: 20px;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.8rem;
     font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 5px #e50914, 0 0 10px #e50914;
+    animation: glowTitle 1.5s ease-in-out infinite alternate;
   }
+  @keyframes glowTitle {
+    from { text-shadow: 0 0 5px #e50914, 0 0 10px #e50914; }
+    to   { text-shadow: 0 0 15px #ff2a2a, 0 0 25px #ff2a2a; }
+  }
+
   input {
     width: 100%;
     padding: 14px;
@@ -216,6 +230,7 @@
   
 </body>
 </html>
+
 
 
 
