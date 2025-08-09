@@ -39,17 +39,28 @@
     padding: 20px;
   }
   .login-container {
-    background: rgba(255, 255, 255, 0.05); /* More transparent */
-    border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     max-width: 400px;
     width: 100%;
     padding: 60px 40px;
     border-radius: 12px;
     color: #fff;
     text-align: center;
-    backdrop-filter: blur(12px); /* Glass effect */
+    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+
+    /* Animation settings */
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeInScale 0.8s ease-out forwards;
+  }
+  @keyframes fadeInScale {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
   .login-logo {
     margin-bottom: 30px;
@@ -112,6 +123,7 @@
     display: inline-block;
   }
 </style>
+
 
 </head>
 <body>
@@ -204,5 +216,6 @@
   
 </body>
 </html>
+
 
 
