@@ -2,50 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BisdakTV</title>
+  
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="tv.png" />
-  <script src="https://fle-rvd0i908-moo.com/player/jw8_26/jwplayer.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- JW Player -->
+  <script src="https://fle-rvd0i9o8-moo.com/player/jw8_26/jwplayer.js"></script>
   <script>
     jwplayer.key = "XSuP4qM1+9tK17QNb+4+th2Pm9AWgMO/cYH8CIOHGGr7bdjo";
   </script>
+
+  <!-- Disable DevTools -->
   <script src="https://cdn.jsdelivr.net/npm/disable-devtool"></script>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark-theme">
   <div class="container">
+
+    <!-- Video Section -->
     <div class="video-container">
       <div id="clock"></div>
       <div id="player"></div>
       <div id="fallbackMessage">🍿 Select a channel to start watching!</div>
     </div>
 
-    <div class="sidebar">
+    <!-- Sidebar -->
+    <aside class="sidebar">
       <div class="top-controls">
+
+        <!-- Theme Toggle -->
         <div class="theme-toggle">
-          <input type="checkbox" id="themeSwitch" />
+          <input type="checkbox" id="themeSwitch" aria-label="Toggle dark mode" />
           <span class="slider"></span>
           <div class="channel-text">BisdakTV</div>
         </div>
+
+        <!-- Channel Count -->
         <div id="channelCount"></div>
+
+        <!-- Category Filter -->
         <select id="categoryFilter" onchange="setupChannelList()">
           <!-- <option value="all">All Channels</option> -->
         </select>
       </div>
 
+      <!-- Channel List -->
       <div class="list-container">
         <ul class="channel-list" id="channelList"></ul>
       </div>
 
-      <input class="search-input" type="search" placeholder="Search channel" />
-    </div>
+      <!-- Search Input -->
+      <input 
+        class="search-input" 
+        type="search" 
+        placeholder="Search channel" 
+        aria-label="Search channels"
+      />
+    </aside>
   </div>
 
+  <!-- External Script -->
   <script src="script.js"></script>
 
+  <!-- Footer -->
   <footer style="color: var(--text-color); text-align: center; font-size: 14px; margin-top: 20px;">
     &copy; 2025 BisdakTV. All rights reserved. 
-    Follow me on <a href="http://yourlink.com" target="_blank">My Page</a>
+    Follow me on <a href="http://yourlink.com" target="_blank" rel="noopener noreferrer">My Page</a>
   </footer>
 </body>
 </html>
