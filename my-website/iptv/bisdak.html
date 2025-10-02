@@ -21,17 +21,13 @@
     <aside class="sidebar">
       <div class="top-controls">
         <div class="theme-toggle">
-          <input type="checkbox" id="themeSwitch" aria-label="Toggle dark mode" />
+          <input type="checkbox" id="themeSwitch"/>
           <span class="slider"></span>
           <div class="channel-text">BisdakTV</div>
         </div>
 
-        <!-- Channel Count -->
         <div id="channelCount"></div>
-
-        <!-- Category Filter -->
         <select id="categoryFilter" onchange="setupChannelList()">
-          <!-- <option value="all">All Channels</option> -->
         </select>
       </div>
 
@@ -40,13 +36,7 @@
         <ul class="channel-list" id="channelList"></ul>
       </div>
 
-      <!-- Search Input -->
-      <input 
-        class="search-input" 
-        type="search" 
-        placeholder="Search channel" 
-        aria-label="Search channels"
-      />
+      <input class="search-input" type="search" placeholder="Search channel..." oninput="setupChannelList()" id=searchinput" />
     </aside>
   </div>
 
