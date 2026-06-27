@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  
+  <script defer src="js/home.js"></script>
 
   <style>  
   :root {
@@ -103,7 +104,7 @@
 
     .logo {
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #00ffff;
   text-shadow:
@@ -216,13 +217,27 @@
     }
   });
 
-</script>
+    document.addEventListener('contextmenu', function(event) {
+      event.preventDefault();
+      alert("Right-click is disabled on this page.");
+    });
+  
+  document.addEventListener("keydown", function (e) {
+    // F12
+    if (e.key === "F12") {
+      e.preventDefault();
+    }
 
-  <script>
-  const username = localStorage.getItem('username');
-  if (!username) {
-    window.location.href = "login.html"; // redirect to login if not logged in
-  }
+    // Ctrl + Shift + I / J / C
+    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+      e.preventDefault();
+    }
+
+    // Ctrl + U (View Source)
+    if (e.ctrlKey && e.key === "u") {
+      e.preventDefault();
+    }
+  });
 </script>
   
 <body>
@@ -242,7 +257,7 @@
         <a href="anime.html">Anime</a>
         <a href="korean.html">Korean</a>
         <a href="vivamax.html">VMX</a>
-        <a href="https://bisdaktv.vercel.app" id="iptvLink" target="_blank" rel="noopener noreferrer">TV</a>
+        <a href="IPTV.html" id="iptvLink">IPTV</a>
         
         <input 
           type="text" 
@@ -262,9 +277,9 @@
     <!-- Korean Movies Section -->
 <section class="section" id="korean-movies">
   <div class="trending-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h2 style="margin: 0;">🇰🇷 Korean Movies</h2>
+    <h2 style="margin: 0;">ðŸ‡°ðŸ‡· Korean Movies</h2>
     <div class="genre-filter">
-      <label for="korean-genre-filter">🎯 Filter by Genre:</label>
+      <label for="korean-genre-filter">ðŸŽ¯ Filter by Genre:</label>
       <select id="korean-genre-filter" onchange="filterByKoreanGenre(this.value)">
         <option value="">All</option>
         <option value="28">Action</option>
@@ -278,7 +293,7 @@
   </div>
   <div class="vivamax-grid" id="korean-movie-list"></div>
   <div class="load-more-container">
-    <button id="load-more-korean">🎥 Load More</button>
+    <button id="load-more-korean">ðŸŽ¥ Load More</button>
   </div>
 </section>
     
@@ -306,6 +321,7 @@
         <label for="server">Change Server:</label>
         <select id="server" onchange="changeServer()">
           <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
           <option value="player.videasy.net">Player.Videasy.net</option>
         </select>
      </div>
@@ -339,15 +355,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-  document.getElementById('user-greeting').textContent = `Hi, ${localStorage.getItem('username')}!`;
-
-  function logout() {
-    localStorage.removeItem('username');
-    window.location.href = "login.html";
-  }
-</script>
 
 </body>
 </html>
