@@ -4,10 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - HMCC™</title>
-  <!-- Added Orbitron font for a futuristic MOLDEROS-TV logo -->
-  <link href="https://googleapis.com" rel="stylesheet">
-  <link href="https://googleapis.com" rel="stylesheet">
-  <link href="https://googleapis.com" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
   
   <style>
   * { box-sizing: border-box; }
@@ -63,15 +61,14 @@
     to { opacity: 1; transform: scale(1); }
   }
 
-  /* Logo - Updated to Orbitron with a tech glow */
+  /* Logo */
   .login-logo {
     margin-bottom: 30px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.2rem;
-    color: #fff; /* Changed to white so the red glow stands out */
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-shadow: 0 0 10px #e50914, 0 0 20px #e50914;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    color: #e50914;
+    font-weight: 800;
+    letter-spacing: 1px;
   }
 
   /* Title with glow animation */
@@ -181,12 +178,12 @@
         formTitle.textContent = "Sign In";
         submitBtn.textContent = "Login";
         toggleForm.textContent = "Don't have an account? Sign Up";
-        if(rememberRow) rememberRow.style.display = "flex";
+        rememberRow.style.display = "flex";
       } else {
         formTitle.textContent = "Sign Up";
         submitBtn.textContent = "Register";
         toggleForm.textContent = "Already have an account? Sign In";
-        if(rememberRow) rememberRow.style.display = "none";
+        rememberRow.style.display = "none";
       }
     });
 
@@ -217,7 +214,7 @@
         formTitle.textContent = "Sign In";
         submitBtn.textContent = "Login";
         toggleForm.textContent = "Don't have an account? Sign Up";
-        if(rememberRow) rememberRow.style.display = "flex";
+        rememberRow.style.display = "flex";
         authForm.reset();
       }
     });
