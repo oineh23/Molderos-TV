@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - HMCC™</title>
+  <!-- Added Bangers font for MOLDEROS-TV -->
+  <link href="https://googleapis.com" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
   
@@ -61,14 +63,13 @@
     to { opacity: 1; transform: scale(1); }
   }
 
-  /* Logo */
+  /* Logo - Updated to Bangers font */
   .login-logo {
     margin-bottom: 30px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2rem;
+    font-family: 'Bangers', cursive;
+    font-size: 3rem; /* Increased size slightly to fit the new font style */
     color: #e50914;
-    font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
   }
 
   /* Title with glow animation */
@@ -178,12 +179,12 @@
         formTitle.textContent = "Sign In";
         submitBtn.textContent = "Login";
         toggleForm.textContent = "Don't have an account? Sign Up";
-        rememberRow.style.display = "flex";
+        if(rememberRow) rememberRow.style.display = "flex";
       } else {
         formTitle.textContent = "Sign Up";
         submitBtn.textContent = "Register";
         toggleForm.textContent = "Already have an account? Sign In";
-        rememberRow.style.display = "none";
+        if(rememberRow) rememberRow.style.display = "none";
       }
     });
 
@@ -214,7 +215,7 @@
         formTitle.textContent = "Sign In";
         submitBtn.textContent = "Login";
         toggleForm.textContent = "Don't have an account? Sign Up";
-        rememberRow.style.display = "flex";
+        if(rememberRow) rememberRow.style.display = "flex";
         authForm.reset();
       }
     });
@@ -222,13 +223,3 @@
   
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
